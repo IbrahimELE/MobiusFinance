@@ -1,0 +1,40 @@
+{
+ "ticker": "NVDA",
+ "thesis": "NVIDIA Corp. (NVDA) trguje se po cijeni od 118,4 USD (+1,9 %), uz tržišnu kapitalizaciju od oko 2.900 milijardi USD [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 130 milijardi USD, što je rast od 78 % u odnosu na prethodnu godinu [1]. Neto dobit iznosila je 72 milijarde USD, uz neto maržu od 55 % [1]. To ukazuje na izuzetnu profitabilnost, ali P/E omjer od 52 pokazuje da tržište već računa na nastavak snažnog rasta [1]. Glavni rizici za tezu su koncentracija kupaca među velikim cloud davateljima i ovisnost o AI ciklusu ulaganja [2], izvozna ograničenja i geopolitički rizik za čipove prema Kini [2], te ovisnost o jednom proizvođaču (TSMC) i rizik lanca nabave [2].",
+ "mode": "llm",
+ "metrics": {
+  "price": 118.4,
+  "pe": 52.0,
+  "revenue_growth_yoy": 0.78,
+  "net_margin": 0.55
+ },
+ "risks": [
+  {
+   "text": "Koncentracija kupaca (veliki cloud davatelji) i ovisnost o AI ciklusu ulaganja.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Izvozna ograničenja i geopolitički rizik za čipove prema Kini.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Ovisnost o jednom proizvođaču (TSMC) i rizik lanca nabave.",
+   "source": "10-K 2025, Item 1A"
+  }
+ ],
+ "peers": [
+  "MSFT",
+  "TSLA"
+ ],
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/NVDA"
+  },
+  {
+   "label": "10-K 2025",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=NVDA&type=10-K"
+  }
+ ],
+ "generated_at": "2026-10-05T13:01:09.982169+00:00"
+}

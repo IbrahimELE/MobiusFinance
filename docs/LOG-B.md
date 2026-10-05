@@ -20,3 +20,30 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 ## 2026-10-05 · Korak 4: gitflow s dev granom i hookovima
 - Dodano: .githooks (pre-commit, commit-msg, pre-merge-commit, pre-rebase), setup.sh, nova GITFLOW.md i README sekcija; grana `dev`; push main+dev na IbrahimELE/MobiusFinance.
 - Napomena: PR šablon i CODEOWNERS ciljaju main; prebaciti default branch na dev u GitHub postavkama.
+
+## 2026-10-05 · Korak 5: LLM teza (feature/brief-llm)
+- `write_thesis()` poziva Anthropic Messages API (httpx, bez novih ovisnosti) kad je postavljen `ANTHROPIC_API_KEY` (opcionalno `LLM_MODEL`, default claude-sonnet-4-5); inače/uz grešku šablon, pa demo radi offline.
+- Prompt traži oznake izvora [n]; `sources[0]`=Yahoo, `sources[1]`=10-K, redoslijed je dio dogovora s promptom.
+- Testirano samo šablonom (nema ključa). Ključ treba unijeti preko sealed card-a u `.env` (ne u repo).
+- Sljedeće: mockovi za još 2 tickera, grafikon bez CDN-a, UI da prikaže [n] kao linkove.
+
+## 2026-10-05 · Korak 6: LLM bez API ključa
+- `llm()`: ANTHROPIC_API_KEY ako postoji, inače `claude -p` (u Möbiusu je Claude već prijavljen, radi bez ključa; testirano), inače šablon.
+- Ograničenje: na drugom računaru bez prijavljenog `claude` CLI-ja pada na šablon. Za demo snimiti keširane briefove.
+
+## 2026-10-05 · Korak 7: offline UI, više tickera, izvori
+- Lightweight Charts lokalno u `frontend/vendor/` (nema CDN-a, demo radi offline).
+- Mockovi za MSFT i TSLA (quote, financials, history, risk-factors); vrijednosti su ilustrativne, ne prave. Brief mock postoji samo za AAPL; briefovi se generišu.
+- UI: oznake [n] u tezi su linkovi na `sources[n-1]`; HTML se escapuje.
+- Napomena o objavi: Store paket mora biti Möbius mini-app (index.jsx), vidi /data/apps/finance-desk; ovaj repo je izvor za hackathon.
+
+## 2026-10-05 · Korak 8: Windows bugfix
+- Internal Server Error na Windowsu: read_text()/write_text() bez encodinga (cp1252) lomili su UTF-8 mockove s č/ž. Svi fajlovi sada eksplicitno utf-8; subprocess koristi tempfile.gettempdir() umjesto /tmp.
+
+## 2026-10-05 · Korak 9: cijeli plan varijante B (feature/b-core-complete)
+- Agent: build_brief() s keširanim demo briefovima (`agent_service/demo_cache/`, generisani pravim LLM-om; koriste se kad AI nije dostupan, mode="cache"); projekti (/projects), /compare, /chat (odgovara samo iz briefova), DELETE /briefs; PEERS tablica je privremena do A-ovog /peers.
+- Mockovi za NVDA i GOOGL (ilustrativni brojevi).
+- UI: odabir/kreiranje projekta, značka načina (AI/keš/šablon), konkurenti kao linkovi, usporedba označenih, brisanje, chat.
+- `claude -p` se zove s `--strict-mcp-config` (bez toga CLI je dodavao strane napomene o konektorima).
+- Dokumenti: DEMO.md, PRESENTATION.md, TESTING.md. UI nije vizualno provjeren u pregledniku; API jest (uklj. test bez AI-ja).
+- Otvoreno: spajanje na pravi data_service, FinRobot (preskočeno prema planu), snimak demoa (pet).
