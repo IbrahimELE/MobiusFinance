@@ -32,7 +32,7 @@ def template_thesis(quote, fin, risks):
     return (f"{quote['name']} raste {g:.1f}% godišnje uz neto maržu {m:.1f}% i P/E {fin['pe']}. "
             f"Glavni rizik: {risks['items'][0]['text']} [2]")
 
-PROMPT = """Ti si financijski analitičar. Napiši tezu (3-4 rečenice, bosanski) za {name} ({t}) ISKLJUČIVO iz podataka ispod.
+PROMPT = """Ti si financijski analitičar. Napiši tezu (zadano 3-4 rečenice, bosanski; upute korisnika, ako ih ima, imaju prednost, i nad dužinom) za {name} ({t}) ISKLJUČIVO iz podataka ispod.
 Svaku tvrdnju završi oznakom izvora [n]. Ne izmišljaj brojeve. Izvori: [1] financials/quote (Yahoo Finance), [2] {filing}.
 {instructions}Podaci: {data}
 Vrati samo tekst teze."""
@@ -95,7 +95,7 @@ def get_profile(project_id: str) -> dict:
     if not LEARNING_URL:
         return {}
     try:
-        r = httpx.get(f"{LEARNING_URL}/profile", params={"project_id": project_id}, timeout=3)
+        r = httpx.get(f"{LEARNING_URL}/profile", params={"project_id": slug(project_id)}, timeout=3)
         return r.json() if r.status_code == 200 else {}
     except Exception:
         return {}
@@ -118,7 +118,7 @@ def build_brief(t: str, project_id: str = "default") -> dict:
                      {"label": risks["filing"], "url": risks["url"]}],
          "generated_at": dt.datetime.now(dt.timezone.utc).isoformat()}
     if prof.get("instructions"):
-        b["learned"] = {"instructions": prof["instructions"], "feedback_count": prof.get("feedback_count", 0)}
+        b["learned"] = {"instructions": prof["instructions"], "label": prof.get("label", ""), "feedback_count": prof.get("feedback_count", 0)}
     return b
 
 PEERS = {"AAPL": ["MSFT", "GOOGL"], "MSFT": ["AAPL", "GOOGL"], "GOOGL": ["MSFT", "AAPL"],
@@ -209,7 +209,7 @@ def proxy(base, method: str, path: str, params=None, body=None):
 
 @app.get("/paper/portfolio")
 def paper_portfolio(project_id: str = "default"):
-    return proxy(DATA_URL, "GET", "/paper/portfolio", {"project_id": project_id})
+    return proxy(DATA_URL, "GET", "/paper/portfolio", {"project_id": slug(project_id)})
 
 @app.post("/paper/orders")
 def paper_order(body: dict):
@@ -217,7 +217,7 @@ def paper_order(body: dict):
 
 @app.post("/paper/reset")
 def paper_reset(project_id: str = "default"):
-    return proxy(DATA_URL, "POST", "/paper/reset", {"project_id": project_id})
+    return proxy(DATA_URL, "POST", "/paper/reset", {"project_id": slug(project_id)})
 
 @app.post("/feedback")
 def feedback_post(body: dict):
@@ -225,15 +225,15 @@ def feedback_post(body: dict):
 
 @app.get("/feedback")
 def feedback_list(project_id: str = "default"):
-    return proxy(LEARNING_URL, "GET", "/feedback", {"project_id": project_id})
+    return proxy(LEARNING_URL, "GET", "/feedback", {"project_id": slug(project_id)})
 
 @app.get("/profile")
 def profile_get(project_id: str = "default"):
-    return proxy(LEARNING_URL, "GET", "/profile", {"project_id": project_id})
+    return proxy(LEARNING_URL, "GET", "/profile", {"project_id": slug(project_id)})
 
 @app.delete("/profile")
 def profile_del(project_id: str = "default"):
-    return proxy(LEARNING_URL, "DELETE", "/profile", {"project_id": project_id})
+    return proxy(LEARNING_URL, "DELETE", "/profile", {"project_id": slug(project_id)})
 
 @app.get("/history/{ticker}")
 def history(ticker: str, period: str = "1y"):
