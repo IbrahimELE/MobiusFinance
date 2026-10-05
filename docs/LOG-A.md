@@ -9,3 +9,12 @@ Osoba A: dopisuj ovdje isti format kao u LOG-B.md (datum · korak · šta · za�
 - Za B: kad nema LLM-a, `/brief` vraća `agent_service/demo_cache/<T>.json` (stari mock brojevi, npr. AAPL 227.5) umjesto pravih podataka iz data_service; `/compare` i `/history` već koriste prave. Možda regenerisati demo briefove nad pravim data_service-om.
 - Pokretanje: vidi `data_service/README.md` (port 8001, `SEC_USER_AGENT` u `.env`).
 - Sljedeće: zajednički test cijelog toka na 3 tickera s B; zatim opcionalno `/peers` (zamjena za PEERS u agentu).
+
+## 2026-10-05 · Korak 2: faza 2 (učenje od korisnika + paper trading), grana `feature/a-learning-paper`
+- Napravljeno: `learning_service/` (port 8003): `POST/GET /feedback`, `GET/DELETE /profile`, `POST /demo/seed`. Profil iz pravila (odmah, offline; BS/EN, s i bez kvačica, zadnje mišljenje pobjeđuje) + AI sažetak u pozadini (API ključ ili `claude` CLI), vezan za otisak ocjena pa nikad nije zastario. Demo: `learning_service/demo/` (2 ocjene + unaprijed AI profil).
+- Paper trading u `data_service/app/paper.py`: `POST /paper/orders`, `GET /paper/portfolio`, `POST /paper/reset`; zamjenjiva pohrana (`PaperStore`), cijene iz `/quote` (keš/offline vrijedi i ovdje).
+- Ugovori: PRIJEDLOG u `contracts/README.md` (sekcija Faza 2) + mockovi `profile.demo.json`, `feedback.demo.json`, `paper-portfolio.demo.json`, `paper-order.demo.json`. Čeka potvrdu B (CODEOWNERS na contracts/). Dodato polje `label` za „Naučeno: …".
+- Provjera: `data_service` 33 testa, `learning_service` 16 testova (bez mreže, uklj. usklađenost s mockovima). Uživo: kopija agenta koja ubacuje `profile.instructions` u prompt → nakon 2 ocjene teza AAPL počinje FCF-om umjesto cijenom; paper kupovina/portfelj/greška; `/demo/seed` bez AI-ja daje spremljeni AI profil.
+- Za B: (1) u `write_thesis` dodati `instructions` iz `GET {LEARNING_URL}/profile` (primjer u `learning_service/README.md`); (2) prompt fiksno traži 3–4 rečenice, pa „kraće" nema puni efekat; (3) project_id isti slug kao u agentu.
+- Grana je napravljena iz `featureA` (još nije u `dev`); nakon squash-merge PR-a featureA treba `git rebase --onto origin/dev featureA feature/a-learning-paper`.
+- Sljedeće: dogovor ugovora s B (utorak ujutro), PR-ovi; `/peers` ako ostane vremena.
