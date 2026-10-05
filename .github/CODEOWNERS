@@ -1,7 +1,7 @@
-# Zamijeni sa stvarnim GitHub korisničkim imenima
-/data_service/            @OSOBA_A
-/agent_service/           @OSOBA_B
-/frontend/                @OSOBA_B
-/contracts/               @OSOBA_A @OSOBA_B
-/docs/LOG-A.md            @OSOBA_A
-/docs/LOG-B.md            @OSOBA_B
+# Vlasnici po modulu
+/data_service/            @IbrahimELE
+/agent_service/           @mfehric
+/frontend/                @mfehric
+/contracts/               @IbrahimELE @mfehric
+/docs/LOG-A.md            @IbrahimELE
+/docs/LOG-B.md            @mfehric
