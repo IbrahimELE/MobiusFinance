@@ -1,24 +1,32 @@
 {
  "ticker": "AAPL",
- "thesis": "Apple Inc. (AAPL) je na dan 2. 10. 2026. vrijedio 227,5 USD po dionici (+0,8%), uz tržišnu kapitalizaciju od oko 3,45 biliona USD [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 391 milijardu USD, što je rast od 6% u odnosu na prethodnu godinu, te neto dobit od 97 milijardi USD i neto maržu od 24,8% [1]. Uz P/E omjer od 33,1, tržište plaća premiju za ovu profitabilnost, iako je rast prihoda umjeren [1]. Glavni rizici su ovisnost o lancu nabave i proizvodnji u Aziji, regulatorni pritisak na App Store (EU DMA, antitrust) te koncentracija prihoda u iPhoneu, zbog koje je kompanija osjetljiva na potrošačku potražnju [2].",
+ "thesis": "Apple je u fiskalnoj 2025. godini ostvario prihod od 416,16 milijardi USD, što je rast od 6,43% u odnosu na prethodnu godinu. Neto dobit je iznosila 112,01 milijardi USD, uz neto maržu od 26,92% [1]. Profitabilnost ostaje visoka, s bruto maržom od 48,65% i operativnom maržom od 32,62%, iako je slobodni novčani tok pao sa 108,81 milijardi USD u 2024. na 98,77 milijardi USD u 2025. godini [1]. Dionica se trguje po 333,69 USD, uz P/E od 38,27 i forward P/E od 34,82, što ukazuje na to da tržište već računa s visokim očekivanjima [1]. Glavni rizici su izrazito konkurentna tržišta podložna brzim tehnološkim promjenama i oslanjanje na partnere za proizvodnju i logistiku, od kojih se mnogi nalaze izvan SAD-a [2].",
  "mode": "llm",
  "metrics": {
-  "price": 227.5,
-  "pe": 33.1,
-  "revenue_growth_yoy": 0.06,
-  "net_margin": 0.248
+  "price": 333.69,
+  "pe": 38.27,
+  "revenue_growth_yoy": 0.0643,
+  "net_margin": 0.2692
  },
  "risks": [
   {
-   "text": "Ovisnost o lancu nabave i proizvodnji u Aziji; poremećaji mogu zaustaviti isporuke.",
+   "text": "The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations, financial condition and stock price.",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Regulatorni pritisak na App Store i tržišno natjecanje (EU DMA, antitrust).",
+   "text": "The Company’s business can be impacted by political events, trade and other international disputes, geopolitical tensions, conflict, terrorism, natural disasters, public health issues, industrial accidents and other business interruptions.",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Koncentracija prihoda u iPhoneu i osjetljivost na potrošačku potražnju.",
+   "text": "Global markets for the Company’s products and services are highly competitive and subject to rapid technological change, and the Company may be unable to compete effectively in these markets.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "To remain competitive and stimulate customer demand, the Company must successfully manage frequent introductions and transitions of products and services.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "The Company depends on component and product manufacturing and logistical services provided by outsourcing partners, many of which are located outside of the U.S.",
    "source": "10-K 2025, Item 1A"
   }
  ],
@@ -33,8 +41,8 @@
   },
   {
    "label": "10-K 2025",
-   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AAPL&type=10-K"
+   "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm"
   }
  ],
- "generated_at": "2026-10-05T13:00:45.597366+00:00"
+ "generated_at": "2026-10-05T13:29:57.095062+00:00"
 }

@@ -68,6 +68,8 @@ def build_brief(t: str) -> dict:
     quote = fetch("quote", t, f"/quote/{t}")
     fin = fetch("financials", t, f"/financials/{t}")
     risks = fetch("risk-factors", t, f"/filings/{t}/risk-factors")
+    top = [{**r, "text": r["text"][:350].rstrip() + ("…" if len(r["text"]) > 350 else "")} for r in risks["items"][:5]]
+    risks = {**risks, "items": top}           # brief nosi 5 ključnih rizika, ne cijeli Item 1A
     thesis, mode = write_thesis(t, quote, fin, risks)
     cached = CACHE / f"{t}.json"
     if mode == "template" and cached.exists():      # nema LLM-a, a imamo puni brief iz keša

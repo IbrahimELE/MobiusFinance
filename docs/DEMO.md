@@ -2,7 +2,7 @@
 Cilj: žiriju pokazati cijeli tok bez ovisnosti o internetu ili ključu.
 
 ## Priprema (prije snimanja)
-1. `cd agent_service && pip install -r requirements.txt && python -m uvicorn main:app --port 8002`, otvori http://localhost:8002/.
+1. Pravi podaci: `./run.sh` (ili `DATA_OFFLINE=1 ./run.sh` za potpuno offline: tickeri AAPL, MSFT, NVDA), otvori http://localhost:8002/. U demou koristi ta tri tickera.
 2. Bez AI-ja servis koristi `agent_service/demo_cache/*.json` (AAPL, MSFT, TSLA, NVDA, GOOGL), pa teza je puna i na laptopu bez ključa (značka "iz keša").
 3. Napravi projekt "Hackathon demo" (+ Projekt). Isključi Wi-Fi da pokažeš offline rad.
 
@@ -20,5 +20,5 @@ Cilj: žiriju pokazati cijeli tok bez ovisnosti o internetu ili ključu.
 
 ## Napomene
 - Pitanja u chatu rade samo uz AI (ključ ili Claude); za snimak ih pripremi unaprijed na mašini s AI-jem.
-- Mockovi (osim AAPL oblika) su ILUSTRATIVNI brojevi dok A ne spoji pravi data service; ne tvrdi da su stvarni.
+- Uz `run.sh` brojevi i rizici su stvarni (yfinance, SEC EDGAR). Mockovi s ilustrativnim brojevima se koriste samo ako agent radi bez `DATA_URL`.
 - Snimak i prijava: radi se u petak, bez novog koda.
