@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brief",
+  "type": "object",
+  "required": ["ticker","thesis","metrics","risks","sources","generated_at"],
+  "properties": {
+    "ticker": {"type":"string"},
+    "thesis": {"type":"string"},
+    "metrics": {"type":"object","properties":{
+      "price":{"type":["number","null"]},"pe":{"type":["number","null"]},
+      "revenue_growth_yoy":{"type":["number","null"]},"net_margin":{"type":["number","null"]}}},
+    "risks": {"type":"array","items":{"type":"object","required":["text","source"],
+      "properties":{"text":{"type":"string"},"source":{"type":"string"}}}},
+    "peers": {"type":"array","default":[]},
+    "sources": {"type":"array","items":{"type":"object","required":["label","url"],
+      "properties":{"label":{"type":"string"},"url":{"type":"string"}}}},
+    "generated_at": {"type":"string","format":"date-time"}
+  }
+}

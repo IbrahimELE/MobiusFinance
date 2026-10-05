@@ -1,0 +1,40 @@
+<!doctype html><html lang="bs"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Desk</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+body{font:15px system-ui;margin:0;background:#0f1419;color:#e6e9ee}
+main{max-width:900px;margin:0 auto;padding:20px}
+form{display:flex;gap:8px}input,button{padding:10px 12px;border-radius:8px;border:1px solid #2a3340;background:#18202a;color:inherit;font:inherit}
+button{background:#2f6fed;border:0;cursor:pointer}
+.card{background:#18202a;border-radius:12px;padding:16px;margin-top:14px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpis div{background:#0f1419;border-radius:8px;padding:10px}
+.kpis b{display:block;font-size:20px}small{color:#8b96a5}li{margin:6px 0}
+#chart{height:260px}
+</style>
+<main><h1>Finance Desk</h1>
+<form id="f"><input id="t" value="AAPL" size="8"><button>Analiziraj</button></form>
+<div id="out"></div>
+<h3>Sačuvani briefovi</h3><div id="saved"></div></main>
+<script>
+const P="default",pct=x=>x==null?"–":(x*100).toFixed(1)+"%";
+async function run(t){
+ out.innerHTML='<div class="card">Radim brief…</div>';
+ const r=await fetch("/brief",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ticker:t,project_id:P})});
+ if(!r.ok){out.innerHTML='<div class="card">Greška: '+(await r.text())+'</div>';return}
+ show(await r.json());list()}
+function show(b){
+ out.innerHTML=`<div class="card"><h2>${b.ticker}</h2><div id="chart"></div></div>
+ <div class="card kpis"><div><small>Cijena</small><b>${b.metrics.price}</b></div><div><small>P/E</small><b>${b.metrics.pe}</b></div>
+ <div><small>Rast prihoda</small><b>${pct(b.metrics.revenue_growth_yoy)}</b></div><div><small>Neto marža</small><b>${pct(b.metrics.net_margin)}</b></div></div>
+ <div class="card"><h3>Teza</h3><p>${b.thesis}</p><h3>Rizici</h3><ul>${b.risks.map(r=>`<li>${r.text} <small>[${r.source}]</small></li>`).join("")}</ul>
+ <h3>Izvori</h3><ul>${b.sources.map(s=>`<li><a style="color:#7aa7ff" href="${s.url}">${s.label}</a></li>`).join("")}</ul></div>`;
+ chart(b.ticker)}
+async function chart(t){
+ if(!window.LightweightCharts)return;
+ const c=LightweightCharts.createChart(document.getElementById("chart"),{layout:{background:{color:"#18202a"},textColor:"#8b96a5"},grid:{vertLines:{visible:false},horzLines:{color:"#222c38"}}});
+ const h=await (await fetch("/history/"+t)).json();
+ c.addLineSeries({color:"#2f6fed"}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}
+async function list(){const l=await (await fetch("/briefs?project_id="+P)).json();
+ saved.innerHTML=l.map(b=>`<div class="card" style="cursor:pointer" onclick='show(${JSON.stringify(b).replace(/'/g,"&#39;")})'>${b.ticker} <small>${b.generated_at.slice(0,16)}</small></div>`).join("")||"<small>Još ništa.</small>"}
+f.onsubmit=e=>{e.preventDefault();run(t.value.trim().toUpperCase())};list();
+</script></html>
