@@ -1,40 +1,48 @@
-# Git workflow (A i B)
-Lagan gitflow za 5 dana. Cilj: nikad isti fajlovi, spajanje barem jednom dnevno, `main` uvijek radi.
+# Git Workflow Guide (Finance Desk)
+Repo koristi **hookove koji provode** pravila, da historija ostane čista.
 
-## Grane
-- `main`: uvijek pokretljiv i demo-spreman. Niko ne pusha direktno; samo preko PR-a.
-- `feat/a-<tema>` (osoba A), `feat/b-<tema>` (osoba B): kratkotrajne grane, npr. `feat/a-edgar-risk-factors`, `feat/b-brief-prompt`. Jedna tema = jedna grana = jedan PR.
-- `contracts/` mijenja se samo posebnom granom `contract/<tema>` uz pregled druge osobe.
-- Nema `develop` grane: s dvoje ljudi i 5 dana je suvišna.
+## Strategija grana
+- Zaštićene grane: `main`, `dev`. **Ne commituj direktno na njih.**
+- `dev` = integracija (radno stanje); `main` = stabilno/demo-spremno, u njega ide samo `dev` preko PR-a (u petak, predaja).
+- Radne grane se prave iz `dev`: `feature/<ime>`, `bugfix/<ime>`, `hotfix/<ime>`, `docs/<ime>`, `refactor/<ime>`, `test/<ime>` (mala slova, crtice).
+  Primjeri: `feature/edgar-risk-factors` (A), `feature/brief-prompt` (B), `bugfix/chart-empty-history`.
+- Predlog: dodaj prefiks osobe u ime kad treba razlikovati, npr. `feature/a-edgar`, `feature/b-brief-prompt`.
 
-## Vlasništvo (vidi .github/CODEOWNERS)
-| Folder | Vlasnik |
-|---|---|
-| `data_service/` | A |
-| `agent_service/`, `frontend/` | B |
-| `contracts/` | oba (pregled obavezan) |
-| `docs/LOG-A.md` / `docs/LOG-B.md` | A / B |
-| `AGENTS.md`, `docs/GITFLOW.md` | oba, rijetko |
-Zato se konflikti ne dešavaju: svako dira samo svoje.
+## Format commit poruke
+`type(scope): opis`. Tipovi: feat, fix, docs, style, refactor, perf, test, build, ci, chore, hotfix.
+Scope = modul: `data`, `agent`, `ui`, `contracts`, `docs`. Primjeri: `feat(data): dohvat Item 1A iz EDGAR-a`, `fix(ui): grafikon ne crta praznu historiju`.
 
-## Dnevni ritam
-1. Ujutro: `git checkout main && git pull`, nova grana `git checkout -b feat/b-<tema>`.
-2. Mali commitovi, poruka `tip(opseg): šta`, npr. `feat(agent): LLM teza s izvorima`. Tipovi: feat, fix, docs, chore, test.
-3. Prije PR-a: `git fetch && git rebase origin/main` (ili merge main u granu), provjeri da se pokreće.
-4. PR u `main` s kratkim opisom (šablon u .github/). Druga osoba (ili njen agent) pregleda; za vlastite foldere dovoljno brzo odobrenje.
-5. Merge: **squash and merge**, brisanje grane. Navečer `main` mora raditi na mockovima.
-6. Dopiši zapis u svoj `docs/LOG-*.md` (dio PR-a).
+## Zabranjeno (provodi se hookovima)
+- Direktni commit na `main` ili `dev`
+- Merge commitovi (`git merge`) lokalno
+- Rebase dok si na `main` ili `dev`
+- Nedozvoljeni nazivi grana i poruke commita
 
-## Pravila
-- Promjena ugovora (`contracts/`) = prvo napiši u `docs/QUESTIONS.md` / javi drugoj strani, tek onda PR.
-- Pet 9.10: samo demo/prijava, bez novog koda; ako treba hotfix, `fix/<tema>` s odobrenjem oboje.
-- Prije predaje oznaka: `git tag v1-demo` na `main`.
-- Tajne (API ključevi, FRED/Finnhub/Alpaca) nikad u repo; `.env` je u .gitignore, a `.env.example` se commituje.
-- Licence: prije kopiranja tuđeg koda provjeri licencu i navedi izvor u README-u.
+## Dnevni tok
+```
+git switch dev && git pull
+git switch -c feature/tvoj-zadatak
+# rad
+git add . && git commit -m "feat(scope): opis"
+git fetch && git rebase origin/dev          # (na radnoj grani) ažuriranje
+git push -u origin HEAD                     # pa otvori PR u dev
+# merge kroz PR (Squash and merge), zatim:
+git switch dev && git pull
+git branch -d feature/tvoj-zadatak
+git push origin --delete feature/tvoj-zadatak
+```
+Greškom commitao na dev/main? `git stash push -u && git switch -c feature/tvoj-zadatak && git stash pop` (commit koji je već napravljen: `git switch -c feature/x` pa vrati dev na origin/dev: `git branch -f dev origin/dev`).
 
-## Postavljanje (jednom, vlasnik repoa)
-1. Napravi GitHub repo (npr. `finance-desk`), dodaj drugu osobu kao collaboratora (Settings → Collaborators).
-2. Push početnog stanja na `main`.
-3. Settings → Branches → zaštiti `main`: zahtijevaj PR, zabrani force-push. (Opcionalno: obavezno 1 odobrenje.)
-4. Oba: `git clone`, pa slijedi dnevni ritam.
-Napomena za AI agente: push, PR i komentari na GitHubu su javne akcije; rade se samo uz izričito odobrenje vlasnika.
+## Izbjegavanje merge konflikata
+Vlasništvo po folderima: A `data_service/`, B `agent_service/` + `frontend/`, `contracts/` zajednički (promjena samo dogovorom), `docs/LOG-A.md` A, `docs/LOG-B.md` B. Diraj samo svoje. Vidi README.md i .github/CODEOWNERS.
+
+## Postavljanje hookova (jednom nakon clone-a)
+`./setup.sh` (kopira `.githooks/*.sh` u `.git/hooks/` bez `.sh`, postavlja `pull.ff only`).
+
+## Privremeno zaobilaženje (rijetki slučajevi)
+- Isključi: `git config --local hooks.gitflow.enabled false`
+- Uključi: `git config --local hooks.gitflow.enabled true`
+- Provjera: `git config --get --bool hooks.gitflow.enabled`
+
+## Ostalo
+Petak 9.10. bez novog koda; prije predaje PR `dev` → `main` i tag `v1-demo`. Tajne nikad u repo (`.env` ignoriran). Push/PR/komentari na GitHubu rade se uz odobrenje vlasnika (AI agenti: izričito).

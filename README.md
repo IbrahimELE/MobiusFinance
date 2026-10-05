@@ -17,15 +17,15 @@ docs/GITFLOW.md, AGENTS.md, README.md       → oba, rijetko
 ```
 **Zlatno pravilo:** diraj samo svoje foldere. Ako ti treba promjena u tuđem, zapiši u `docs/QUESTIONS.md` ili javi, ne uređuj sam. Moduli komuniciraju samo preko `contracts/`.
 
-## Gitflow u 6 koraka
-1. `git checkout main && git pull`
-2. Nova grana: A `git checkout -b feat/a-<tema>`, B `git checkout -b feat/b-<tema>` (npr. `feat/a-edgar-risk-factors`).
-3. Mali commitovi: `feat(data): ...`, `fix(agent): ...`, `docs: ...` (tipovi: feat, fix, docs, chore, test).
-4. Prije PR-a: `git fetch && git rebase origin/main`, provjeri da se pokreće.
-5. Otvori PR u `main`, druga osoba pregleda. Merge: **Squash and merge**, obriši granu.
-6. Dopiši zapis u svoj `docs/LOG-*.md` (u istom PR-u).
-
-Pravila: nema direktnog pusha na `main`; `main` navečer mora raditi na mockovima; spajanje barem jednom dnevno; tajne nikad u repo (`.env` ignoriran, `.env.example` commitovan); petak 9.10. samo demo, bez novog koda; prije predaje tag `v1-demo`. Detalji: `docs/GITFLOW.md`.
+## Git workflow (kratko, detalji u `docs/GITFLOW.md`)
+Zaštićene grane `main` i `dev`; radne grane iz `dev`: `feature/`, `bugfix/`, `hotfix/`, `docs/`, `refactor/`, `test/` + `<ime>`. Commit: `type(scope): opis`. Merge samo kroz PR u `dev` (Squash and merge), bez lokalnih merge commitova. `main` dobija samo `dev` preko PR-a (predaja).
+Nakon clone-a jednom: `./setup.sh` (instalira hookove koji provode pravila).
+```
+git switch dev && git pull
+git switch -c feature/tvoj-zadatak
+git add . && git commit -m "feat(agent): opis"
+git push -u origin HEAD     # PR u dev
+```
 
 ## Pokretanje
 - **Data service (A):** port 8001 (`uvicorn` iz `data_service/`), endpointi iz `contracts/README.md`.

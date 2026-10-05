@@ -5,7 +5,7 @@ Hackathon 2026, izazov "Private pro desk", rok petak 9.10.2026. Tim od dvoje, po
 Vlasništvo: svaka varijanta mijenja SAMO svoje foldere. `contracts/` mijenja se samo dogovorom obje strane.
 
 ## Pravila
-0. Git: radi se po `docs/GITFLOW.md` (feat/a-* ili feat/b-* grane, PR u main, squash merge, vlastiti folderi). Push/PR na GitHub samo uz odobrenje vlasnika.
+0. Git: `docs/GITFLOW.md`. Zaštićeni main i dev; grane feature/bugfix/hotfix/docs/refactor/test/<ime> iz dev; commit `type(scope): opis`; PR u dev, squash. Instaliraj hookove: `./setup.sh`. Push/PR na GitHub samo uz odobrenje vlasnika.
 1. Moduli komuniciraju samo preko `contracts/` (šeme + mockovi). Ne importaj kod iz tuđeg modula.
 2. Prije mijenjanja fajlova uzmi work-claim: `mapi -X PUT /api/projects/e310249e-b859-5a09-8051-4b3734654d93/work-claim` (chat_id, path, summary); na kraju DELETE.
 3. Nakon svakog koraka dopiši zapis u `docs/LOG-<varijanta>.md` (šta, zašto, kako pokrenuti, šta je sljedeće). Ovo je obavezno.

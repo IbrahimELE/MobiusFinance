@@ -16,3 +16,7 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 
 ## 2026-10-05 · Korak 3: README
 - Dodan README.md (struktura foldera i vlasništvo, gitflow u 6 koraka, pokretanje). Remote je već povezan: IbrahimELE/MobiusFinance. Push čeka potvrdu.
+
+## 2026-10-05 · Korak 4: gitflow s dev granom i hookovima
+- Dodano: .githooks (pre-commit, commit-msg, pre-merge-commit, pre-rebase), setup.sh, nova GITFLOW.md i README sekcija; grana `dev`; push main+dev na IbrahimELE/MobiusFinance.
+- Napomena: PR šablon i CODEOWNERS ciljaju main; prebaciti default branch na dev u GitHub postavkama.
