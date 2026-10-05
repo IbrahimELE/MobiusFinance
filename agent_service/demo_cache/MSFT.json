@@ -1,0 +1,40 @@
+{
+ "ticker": "MSFT",
+ "thesis": "Microsoft Corp. (MSFT) se 2. oktobra 2026. trgovao po cijeni od 431,2 USD (+0,4%), uz tržišnu kapitalizaciju od oko 3,2 biliona USD [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 281 milijardu USD, što je 14% više nego godinu ranije, i neto dobit od 88 milijardi USD [1]. P/E od 34,8 pokazuje da tržište već računa na nastavak takvog rasta [1]. Glavni rizici za tezu su koncentracija prihoda u Azure oblaku i ovisnost o potražnji za AI, regulatorni i antitrust pritisak EU i FTC-a na bundling proizvoda te visoki kapitalni izdaci za AI infrastrukturu koji opterećuju slobodni novčani tok [2].",
+ "mode": "llm",
+ "metrics": {
+  "price": 431.2,
+  "pe": 34.8,
+  "revenue_growth_yoy": 0.14,
+  "net_margin": 0.35
+ },
+ "risks": [
+  {
+   "text": "Koncentracija prihoda u Azure oblaku i ovisnost o rastu AI potražnje.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Regulatorni i antitrust pritisak (EU, FTC) na bundling proizvoda.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Visoki kapitalni izdaci za AI infrastrukturu pritišću slobodni novčani tok.",
+   "source": "10-K 2025, Item 1A"
+  }
+ ],
+ "peers": [
+  "AAPL",
+  "GOOGL"
+ ],
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/MSFT"
+  },
+  {
+   "label": "10-K 2025",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=MSFT&type=10-K"
+  }
+ ],
+ "generated_at": "2026-10-05T13:00:54.309004+00:00"
+}

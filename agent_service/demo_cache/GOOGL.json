@@ -1,0 +1,40 @@
+{
+ "ticker": "GOOGL",
+ "thesis": "Alphabet Inc. (GOOGL) trguje se po cijeni od 178,6 USD, uz tržišnu kapitalizaciju od oko 2.200 milijardi USD i P/E omjer od 23,9 [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 350 milijardi USD, što je rast od 13% u odnosu na prethodnu godinu, te neto dobit od 100 milijardi USD uz neto maržu od 29% [1]. Glavni rizik je ovisnost o prihodu od oglašavanja, jer umjetna inteligencija može poremetiti tržište pretrage [2]. Tezu dodatno opterećuju antitrust presude i regulatorni pritisak u SAD-u i EU, kao i visoka ulaganja u AI infrastrukturu čiji povrat nije siguran [2].",
+ "mode": "llm",
+ "metrics": {
+  "price": 178.6,
+  "pe": 23.9,
+  "revenue_growth_yoy": 0.13,
+  "net_margin": 0.29
+ },
+ "risks": [
+  {
+   "text": "Ovisnost o prihodu od oglašavanja i rizik disrupcije pretrage AI-jem.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Antitrust presude i regulatorni pritisak (SAD, EU).",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Visoka ulaganja u AI infrastrukturu i nesigurnost povrata.",
+   "source": "10-K 2025, Item 1A"
+  }
+ ],
+ "peers": [
+  "MSFT",
+  "AAPL"
+ ],
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/GOOGL"
+  },
+  {
+   "label": "10-K 2025",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=GOOGL&type=10-K"
+  }
+ ],
+ "generated_at": "2026-10-05T13:01:16.953590+00:00"
+}

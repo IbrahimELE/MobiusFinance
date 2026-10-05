@@ -39,3 +39,11 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 
 ## 2026-10-05 · Korak 8: Windows bugfix
 - Internal Server Error na Windowsu: read_text()/write_text() bez encodinga (cp1252) lomili su UTF-8 mockove s č/ž. Svi fajlovi sada eksplicitno utf-8; subprocess koristi tempfile.gettempdir() umjesto /tmp.
+
+## 2026-10-05 · Korak 9: cijeli plan varijante B (feature/b-core-complete)
+- Agent: build_brief() s keširanim demo briefovima (`agent_service/demo_cache/`, generisani pravim LLM-om; koriste se kad AI nije dostupan, mode="cache"); projekti (/projects), /compare, /chat (odgovara samo iz briefova), DELETE /briefs; PEERS tablica je privremena do A-ovog /peers.
+- Mockovi za NVDA i GOOGL (ilustrativni brojevi).
+- UI: odabir/kreiranje projekta, značka načina (AI/keš/šablon), konkurenti kao linkovi, usporedba označenih, brisanje, chat.
+- `claude -p` se zove s `--strict-mcp-config` (bez toga CLI je dodavao strane napomene o konektorima).
+- Dokumenti: DEMO.md, PRESENTATION.md, TESTING.md. UI nije vizualno provjeren u pregledniku; API jest (uklj. test bez AI-ja).
+- Otvoreno: spajanje na pravi data_service, FinRobot (preskočeno prema planu), snimak demoa (pet).

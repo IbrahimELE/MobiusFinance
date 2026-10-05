@@ -3,40 +3,67 @@
 <script src="vendor/lightweight-charts.js"></script>
 <style>
 body{font:15px system-ui;margin:0;background:#0f1419;color:#e6e9ee}
-main{max-width:900px;margin:0 auto;padding:20px}
-form{display:flex;gap:8px}input,button{padding:10px 12px;border-radius:8px;border:1px solid #2a3340;background:#18202a;color:inherit;font:inherit}
-button{background:#2f6fed;border:0;cursor:pointer}
+main{max-width:980px;margin:0 auto;padding:20px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input,button,select{padding:10px 12px;border-radius:8px;border:1px solid #2a3340;background:#18202a;color:inherit;font:inherit}
+button{background:#2f6fed;border:0;cursor:pointer}button.g{background:#222c38}
 .card{background:#18202a;border-radius:12px;padding:16px;margin-top:14px}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpis div{background:#0f1419;border-radius:8px;padding:10px}
-.kpis b{display:block;font-size:20px}small{color:#8b96a5}li{margin:6px 0}
-#chart{height:260px}
+.kpis b{display:block;font-size:20px}small,.muted{color:#8b96a5}li{margin:6px 0}
+#chart{height:260px}a{color:#7aa7ff}
+.badge{font-size:12px;padding:2px 8px;border-radius:99px;background:#222c38;color:#8b96a5;margin-left:8px}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;text-align:right;border-bottom:1px solid #222c38}td:first-child,th:first-child{text-align:left}
+.chip{display:inline-block;background:#222c38;border-radius:99px;padding:6px 12px;margin:4px 6px 0 0;cursor:pointer}
+.chip input{margin-right:6px;padding:0}
+#log div{margin:8px 0;white-space:pre-wrap}.me{color:#8b96a5}
+@media(max-width:600px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style>
 <main><h1>Finance Desk</h1>
-<form id="f"><input id="t" value="AAPL" size="8"><button>Analiziraj</button></form>
+<div class="row"><select id="proj"></select><button class="g" id="newp">+ Projekt</button>
+<form id="f" class="row" style="margin-left:auto"><input id="t" value="AAPL" size="8" aria-label="Ticker"><button>Analiziraj</button></form></div>
 <div id="out"></div>
-<h3>Sačuvani briefovi</h3><div id="saved"></div></main>
+<div class="card"><h3 style="margin-top:0">Sačuvani briefovi <small id="pname"></small></h3><div id="saved"></div>
+<button class="g" id="cmp" style="margin-top:10px">Usporedi označene</button><div id="cmpout"></div></div>
+<div class="card"><h3 style="margin-top:0">Pitaj o briefovima</h3><div id="log"></div>
+<form id="cf" class="row"><input id="q" placeholder="npr. Koji su glavni rizici?" style="flex:1"><button>Pitaj</button></form></div></main>
 <script>
-const P="default",pct=x=>x==null?"–":(x*100).toFixed(1)+"%";
-async function run(t){
- out.innerHTML='<div class="card">Radim brief…</div>';
- const r=await fetch("/brief",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ticker:t,project_id:P})});
- if(!r.ok){out.innerHTML='<div class="card">Greška: '+(await r.text())+'</div>';return}
- show(await r.json());list()}
+const $=id=>document.getElementById(id),pct=x=>x==null?"–":(x*100).toFixed(1)+"%";
 const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a title="${esc(s.label)}" style="color:#7aa7ff" href="${esc(s.url)}" target="_blank">[${n}]</a>`:m})}
+const J=(u,o)=>fetch(u,o).then(async r=>{if(!r.ok)throw new Error(await r.text());return r.json()});
+const post=(u,b)=>J(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
+let P=localStorage.proj||"default",chart;
+const MODE={llm:"AI",cache:"iz keša",template:"šablon"};
+function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a title="${esc(s.label)}" href="${esc(s.url)}" target="_blank">[${n}]</a>`:m})}
+async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(P);
+ $("proj").innerHTML=l.map(x=>`<option ${x==P?"selected":""}>${esc(x)}</option>`).join("");$("pname").textContent="· "+P}
+async function run(t){
+ $("out").innerHTML='<div class="card">Radim brief (AI, do 15 s)…</div>';
+ try{show(await post("/brief",{ticker:t,project_id:P}));list()}catch(e){$("out").innerHTML='<div class="card">Greška: '+esc(e.message)+'</div>'}}
 function show(b){
- out.innerHTML=`<div class="card"><h2>${b.ticker}</h2><div id="chart"></div></div>
+ $("out").innerHTML=`<div class="card"><h2 style="margin-top:0">${esc(b.ticker)}<span class="badge">${MODE[b.mode]||""}</span></h2><div id="chart"></div></div>
  <div class="card kpis"><div><small>Cijena</small><b>${b.metrics.price}</b></div><div><small>P/E</small><b>${b.metrics.pe}</b></div>
  <div><small>Rast prihoda</small><b>${pct(b.metrics.revenue_growth_yoy)}</b></div><div><small>Neto marža</small><b>${pct(b.metrics.net_margin)}</b></div></div>
- <div class="card"><h3>Teza</h3><p>${cite(b)}</p><h3>Rizici</h3><ul>${b.risks.map(r=>`<li>${r.text} <small>[${r.source}]</small></li>`).join("")}</ul>
- <h3>Izvori</h3><ul>${b.sources.map(s=>`<li><a style="color:#7aa7ff" href="${s.url}">${s.label}</a></li>`).join("")}</ul></div>`;
- chart(b.ticker)}
-async function chart(t){
- if(!window.LightweightCharts)return;
- const c=LightweightCharts.createChart(document.getElementById("chart"),{layout:{background:{color:"#18202a"},textColor:"#8b96a5"},grid:{vertLines:{visible:false},horzLines:{color:"#222c38"}}});
- const h=await (await fetch("/history/"+t)).json();
- c.addLineSeries({color:"#2f6fed"}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}
-async function list(){const l=await (await fetch("/briefs?project_id="+P)).json();
- saved.innerHTML=l.map(b=>`<div class="card" style="cursor:pointer" onclick='show(${JSON.stringify(b).replace(/'/g,"&#39;")})'>${b.ticker} <small>${b.generated_at.slice(0,16)}</small></div>`).join("")||"<small>Još ništa.</small>"}
-f.onsubmit=e=>{e.preventDefault();run(t.value.trim().toUpperCase())};list();
+ <div class="card"><h3 style="margin-top:0">Teza</h3><p>${cite(b)}</p><h3>Rizici</h3><ul>${b.risks.map(r=>`<li>${esc(r.text)} <small>[${esc(r.source)}]</small></li>`).join("")}</ul>
+ <h3>Izvori</h3><ol>${b.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank">${esc(s.label)}</a></li>`).join("")}</ol>
+ ${b.peers&&b.peers.length?`<p class="muted">Konkurenti: ${b.peers.map(p=>`<a href="#" onclick="run('${esc(p)}');return false">${esc(p)}</a>`).join(", ")}</p>`:""}</div>`;
+ draw(b.ticker)}
+async function draw(t){if(!window.LightweightCharts)return;
+ const c=LightweightCharts.createChart($("chart"),{layout:{background:{color:"#18202a"},textColor:"#8b96a5"},grid:{vertLines:{visible:false},horzLines:{color:"#222c38"}}});
+ try{const h=await J("/history/"+t);c.addLineSeries({color:"#2f6fed"}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}catch(e){}}
+async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));
+ $("saved").innerHTML=l.map(b=>`<span class="chip"><input type="checkbox" value="${esc(b.ticker)}" aria-label="označi ${esc(b.ticker)}"><span onclick='openB("${esc(b.ticker)}")'>${esc(b.ticker)} <small>${esc(b.generated_at.slice(5,16).replace("T"," "))}</small></span> <a href="#" onclick="del('${esc(b.ticker)}');return false" title="obriši">×</a></span>`).join("")||"<small>Još ništa u ovom projektu.</small>"}
+async function openB(t){show((await J("/briefs?project_id="+encodeURIComponent(P))).find(b=>b.ticker==t))}
+async function del(t){await J(`/briefs/${t}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});list()}
+$("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:checked")].map(i=>i.value);
+ if(s.length<2){$("cmpout").innerHTML='<p class="muted">Označi bar 2 briefa.</p>';return}
+ const r=await J("/compare?tickers="+s.join(","));
+ $("cmpout").innerHTML=`<table><tr><th></th>${r.map(x=>`<th>${esc(x.ticker)}</th>`).join("")}</tr>`+
+ [["Cijena",x=>x.price],["P/E",x=>x.pe],["Rast prihoda",x=>pct(x.revenue_growth_yoy)],["Neto marža",x=>pct(x.net_margin)]].map(([n,f])=>`<tr><td>${n}</td>${r.map(x=>`<td>${f(x)}</td>`).join("")}</tr>`).join("")+"</table>"};
+$("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
+$("proj").onchange=()=>{P=$("proj").value;localStorage.proj=P;$("pname").textContent="· "+P;$("out").innerHTML="";$("log").innerHTML="";list()};
+$("newp").onclick=async()=>{const n=prompt("Naziv projekta");if(!n)return;P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;await projects();$("out").innerHTML="";list()};
+$("cf").onsubmit=async e=>{e.preventDefault();const q=$("q").value.trim();if(!q)return;$("q").value="";
+ $("log").insertAdjacentHTML("beforeend",`<div class="me">Ti: ${esc(q)}</div><div id="pend" class="muted">…</div>`);
+ try{const r=await post("/chat",{message:q,project_id:P});$("pend").outerHTML=`<div>${esc(r.answer)}</div>`}catch(e){$("pend").outerHTML=`<div>Greška: ${esc(e.message)}</div>`}};
+projects().then(list);
 </script></html>

@@ -1,0 +1,40 @@
+{
+ "ticker": "AAPL",
+ "thesis": "Apple Inc. (AAPL) je na dan 2. 10. 2026. vrijedio 227,5 USD po dionici (+0,8%), uz tržišnu kapitalizaciju od oko 3,45 biliona USD [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 391 milijardu USD, što je rast od 6% u odnosu na prethodnu godinu, te neto dobit od 97 milijardi USD i neto maržu od 24,8% [1]. Uz P/E omjer od 33,1, tržište plaća premiju za ovu profitabilnost, iako je rast prihoda umjeren [1]. Glavni rizici su ovisnost o lancu nabave i proizvodnji u Aziji, regulatorni pritisak na App Store (EU DMA, antitrust) te koncentracija prihoda u iPhoneu, zbog koje je kompanija osjetljiva na potrošačku potražnju [2].",
+ "mode": "llm",
+ "metrics": {
+  "price": 227.5,
+  "pe": 33.1,
+  "revenue_growth_yoy": 0.06,
+  "net_margin": 0.248
+ },
+ "risks": [
+  {
+   "text": "Ovisnost o lancu nabave i proizvodnji u Aziji; poremećaji mogu zaustaviti isporuke.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Regulatorni pritisak na App Store i tržišno natjecanje (EU DMA, antitrust).",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Koncentracija prihoda u iPhoneu i osjetljivost na potrošačku potražnju.",
+   "source": "10-K 2025, Item 1A"
+  }
+ ],
+ "peers": [
+  "MSFT",
+  "GOOGL"
+ ],
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/AAPL"
+  },
+  {
+   "label": "10-K 2025",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=AAPL&type=10-K"
+  }
+ ],
+ "generated_at": "2026-10-05T13:00:45.597366+00:00"
+}
