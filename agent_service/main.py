@@ -1,7 +1,7 @@
 """Agent service (osoba B): ticker -> Brief JSON. Podatke uzima samo preko data endpointa iz contracts/.
 DATA_URL nije postavljen -> koriste se mockovi iz contracts/mocks (rad od prvog sata, i demo offline).
 """
-import json, os, datetime as dt
+import json, os, shutil, subprocess, datetime as dt
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -36,22 +36,30 @@ Svaku tvrdnju završi oznakom izvora [n]. Ne izmišljaj brojeve. Izvori: [1] fin
 Podaci: {data}
 Vrati samo tekst teze."""
 
-def write_thesis(t, quote, fin, risks):
-    """LLM teza s oznakama izvora [n]; bez ANTHROPIC_API_KEY ili uz grešku pada na šablon (demo radi offline)."""
+def llm(prompt: str) -> str:
+    """Redoslijed: ANTHROPIC_API_KEY (API) -> `claude -p` (prijavljeni Claude, npr. u Möbiusu) -> greška."""
     key = os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        return template_thesis(quote, fin, risks)
-    data = json.dumps({"quote": quote, "financials": fin, "risks": risks["items"]}, ensure_ascii=False)
-    try:
+    if key:
         r = httpx.post("https://api.anthropic.com/v1/messages", timeout=60,
             headers={"x-api-key": key, "anthropic-version": "2023-06-01"},
             json={"model": os.environ.get("LLM_MODEL", "claude-sonnet-4-5"), "max_tokens": 500,
-                  "messages": [{"role": "user", "content": PROMPT.format(
-                      name=quote["name"], t=t, filing=risks["filing"], data=data)}]})
+                  "messages": [{"role": "user", "content": prompt}]})
         r.raise_for_status()
         return r.json()["content"][0]["text"].strip()
+    if shutil.which("claude"):
+        r = subprocess.run(["claude", "-p", prompt], capture_output=True, text=True, timeout=120, cwd="/tmp")
+        if r.returncode == 0 and r.stdout.strip():
+            return r.stdout.strip()
+        raise RuntimeError(r.stderr[:200] or "claude -p prazan odgovor")
+    raise RuntimeError("nema LLM-a")
+
+def write_thesis(t, quote, fin, risks):
+    """LLM teza s oznakama izvora [n]; uz bilo koju grešku pada na šablon (demo radi offline)."""
+    data = json.dumps({"quote": quote, "financials": fin, "risks": risks["items"]}, ensure_ascii=False)
+    try:
+        return llm(PROMPT.format(name=quote["name"], t=t, filing=risks["filing"], data=data))
     except Exception as e:
-        print("LLM greška, koristim šablon:", e)
+        print("LLM nedostupan, koristim šablon:", e)
         return template_thesis(quote, fin, risks)
 
 @app.post("/brief")

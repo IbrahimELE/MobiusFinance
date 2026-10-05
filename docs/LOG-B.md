@@ -26,3 +26,7 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Prompt traži oznake izvora [n]; `sources[0]`=Yahoo, `sources[1]`=10-K, redoslijed je dio dogovora s promptom.
 - Testirano samo šablonom (nema ključa). Ključ treba unijeti preko sealed card-a u `.env` (ne u repo).
 - Sljedeće: mockovi za još 2 tickera, grafikon bez CDN-a, UI da prikaže [n] kao linkove.
+
+## 2026-10-05 · Korak 6: LLM bez API ključa
+- `llm()`: ANTHROPIC_API_KEY ako postoji, inače `claude -p` (u Möbiusu je Claude već prijavljen, radi bez ključa; testirano), inače šablon.
+- Ograničenje: na drugom računaru bez prijavljenog `claude` CLI-ja pada na šablon. Za demo snimiti keširane briefove.
