@@ -89,6 +89,12 @@ class LearningService:
         except llm.LLMUnavailable as e:
             log.info("LLM summary skipped for %s: %s", pid, e)
             return False
+        # Refreshes run in the background and an LLM call takes seconds: if more feedback
+        # arrived meanwhile, this summary is already outdated and must not overwrite the
+        # newer one (the refresh started by that feedback will store it).
+        if feedback_key(self.store.feedback(pid)) != key:
+            log.info("LLM summary for %s outdated before it finished; dropped", pid)
+            return False
         self.store.save_llm_summary(pid, {"key": key, **summary})
         return True
 

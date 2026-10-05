@@ -16,14 +16,14 @@ Testovi (bez mreže): `python -m pytest -q`
 Env: `LEARNING_DATA_DIR` (default `./data`, nije u gitu), `LEARNING_LLM=auto|off`,
 `ANTHROPIC_API_KEY` (ili prijavljeni `claude` CLI, isti redoslijed kao u agentu).
 
-## Endpointi (ugovor: `contracts/README.md`, mockovi `profile.demo.json`, `feedback.demo.json`)
+## Endpointi (ugovor: `contracts/learning.md`, mock `contracts/mocks/profile.demo.json`)
 
 | Ruta | Šta radi |
 |---|---|
-| `POST /feedback` {project_id, ticker, brief_generated_at?, rating: up\|down, note?, tags?} | sačuva ocjenu; profil se odmah osvježi |
+| `POST /feedback` {project_id, ticker, brief_generated_at?, rating: up\|down, note?, tags?} | sačuva ocjenu, vraća `{"ok": true, "feedback_count": n, …}`; profil se odmah osvježi |
 | `GET /feedback?project_id=` | sve ocjene projekta, najnovija zadnja |
 | `GET /profile?project_id=` | `instructions` (za prompt), `label` (za „Naučeno: …"), `focus`, `avoid`, `style`, `mode` |
-| `DELETE /profile?project_id=` | zaboravi sve (ponavljanje demoa) |
+| `DELETE /profile?project_id=` | zaboravi sve (ponavljanje demoa), vraća `{"ok": true, …}` |
 | `POST /demo/seed?project_id=demo` | učita 2 ocjene iz demo scenarija + unaprijed AI profil (radi offline) |
 
 `project_id` je isti „slug" kao u agentu (`Moj Projekt` → `moj-projekt`).
@@ -39,6 +39,8 @@ Env: `LEARNING_DATA_DIR` (default `./data`, nije u gitu), `LEARNING_LLM=auto|off
 2. **AI sažetak (kad je dostupan)** – poslije svake ocjene, u pozadini, AI napiše 2–3 rečenice
    uputa i kratak `label`. Čuva se uz otisak ocjena koje pokriva; čim stigne nova ocjena, stari
    sažetak se ne koristi dok AI ne napravi novi (do tada `mode: "rules"`). Ako AI padne, ostaju pravila.
+   Sažetak koji završi tek nakon što je stigla nova ocjena se odbacuje, pa sporiji stariji poziv nikad
+   ne pregazi noviji (provjereno s dvije brze ocjene).
 
 ## Demo
 ```bash

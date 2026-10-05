@@ -25,14 +25,14 @@ Testovi (bez interneta): `.venv/bin/python -m pytest -q`
 | `GET /history/{ticker}?period=1y` | yfinance | ugovor: `ticker, period, points[{time:"YYYY-MM-DD", close}]`; dodatno: open/high/low/volume u tačkama. `period`: 1mo 3mo 6mo 1y 2y 5y max (5y sedmično, max mjesečno) |
 | `GET /financials/{ticker}` | yfinance | ugovor: `ticker, pe, revenue, revenue_growth_yoy, net_income, net_margin, fiscal_year` (zadnja fiskalna godina); dodatno: marže, EPS, FCF, opis firme, `annual[]` po godinama |
 | `GET /filings/{ticker}/risk-factors` | SEC EDGAR | ugovor: `ticker, filing ("10-K 2025"), url, items[{text, source}]` (svi rizici iz Item 1A); dodatno: `risks[{category, title, text}]` s punim tekstom |
-| `POST /paper/orders` {project_id, ticker, side: buy\|sell, qty} | simulacija | tržišni nalog po zadnjoj cijeni iz `/quote`; vraća `{order, portfolio}` |
+| `POST /paper/orders` {project_id, ticker, side: buy\|sell, qty} | simulacija | tržišni nalog po zadnjoj cijeni iz `/quote`; vraća portfelj (kao ispod) + `fill {ticker, side, qty, price, at}` |
 | `GET /paper/portfolio?project_id=` | simulacija | gotovina, pozicije s dobiti/gubitkom (`pnl_pct` u %), ukupna vrijednost |
 | `POST /paper/reset?project_id=` | simulacija | novi račun sa 100.000 USD (`starting_cash` opcionalno) |
 | `GET /health` | – | offline mod, uključeni opcionalni izvori, keširani tickeri |
 
 Paper trading je **simulacija, nije savjet**: račun po projektu u `paper_data/<projekt>.json`
 (nije u gitu, `DATA_PAPER_DIR`), pohrana iza `PaperStore` u `app/paper.py` pa se može zamijeniti.
-Greške `insufficient_cash` / `insufficient_shares` (422). Offline radi za keširane tickere.
+Ugovor: `contracts/paper.md`. Greške 409 `insufficient_cash` / `insufficient_position`, 422 za qty<=0 ili neispravan ticker. Offline radi za keširane tickere.
 
 **Ugovor** je `../contracts/` (README + `mocks/*.AAPL.json`). Svako polje iz mockova postoji
 na istom mjestu, s istim imenom i tipom; sve ostalo je dodatak koji agent smije ignorisati.

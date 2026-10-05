@@ -36,6 +36,13 @@ class Feedback(FeedbackIn):
     created_at: str
 
 
+class FeedbackAck(Feedback):
+    """Contract (contracts/learning.md): {"ok": true, "feedback_count": n}; the stored feedback is extra."""
+
+    ok: bool = True
+    feedback_count: int
+
+
 class Style(BaseModel):
     length: Literal["short", "long"] | None = None
     tone: Literal["simple", "numbers"] | None = None
@@ -52,6 +59,12 @@ class Profile(BaseModel):
     recent_notes: list[str] = Field(description="Up to 3 latest non-empty notes, newest last.")
     updated_at: str | None
     mode: Literal["rules", "llm"]
+
+
+class ProfileAck(Profile):
+    """DELETE /profile: contract {"ok": true}; the (now empty) profile is extra."""
+
+    ok: bool = True
 
 
 class ErrorBody(BaseModel):

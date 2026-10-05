@@ -65,16 +65,26 @@ class Portfolio(BaseModel):
     stale_prices: bool = Field(description="True when a position is valued at its last trade price (no quote).")
 
 
-class OrderResult(BaseModel):
-    order: Order
-    portfolio: Portfolio
+class Fill(BaseModel):
+    ticker: str
+    side: Literal["buy", "sell"]
+    qty: float
+    price: float
+    at: str
+
+
+class OrderResult(Portfolio):
+    """Contract (contracts/paper.md): the portfolio after the order, plus `fill`."""
+
+    fill: Fill
+    order: Order = Field(description="Extra: the stored order with id and value.")
 
 
 class InsufficientCash(InvalidParameter):
     pass
 
 
-class InsufficientShares(InvalidParameter):
+class InsufficientPosition(InvalidParameter):
     pass
 
 
@@ -153,7 +163,7 @@ class PaperService:
                 acc["cash"] = round(acc["cash"] - value, 2)
             else:
                 if req.qty > pos["qty"] + 1e-9:
-                    raise InsufficientShares(f"Holding {pos['qty']:g} {ticker}, cannot sell {req.qty:g}")
+                    raise InsufficientPosition(f"Holding {pos['qty']:g} {ticker}, cannot sell {req.qty:g}")
                 acc["realized_pnl"] = round(acc["realized_pnl"] + (price - pos["avg_price"]) * req.qty, 2)
                 pos["qty"] = round(pos["qty"] - req.qty, 8)
                 acc["cash"] = round(acc["cash"] + value, 2)
@@ -166,7 +176,8 @@ class PaperService:
                           price=price, value=value, created_at=_now())
             acc["orders"].append(order.model_dump())
             self.store.save(pid, acc)
-        return OrderResult(order=order, portfolio=self.portfolio(pid))
+        fill = Fill(ticker=ticker, side=req.side, qty=req.qty, price=price, at=order.created_at)
+        return OrderResult(**self.portfolio(pid).model_dump(), fill=fill, order=order)
 
     def portfolio(self, project_id: str) -> Portfolio:
         pid = slug(project_id)

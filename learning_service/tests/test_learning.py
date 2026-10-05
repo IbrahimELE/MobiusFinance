@@ -85,6 +85,23 @@ def test_new_feedback_invalidates_llm_summary(make):
     assert svc.profile("demo-projekt").mode == "rules"  # old summary no longer matches
 
 
+def test_slow_summary_of_older_feedback_never_overwrites_newer(make):
+    """Two quick ratings: the first rating's slow LLM call finishes after the second one's."""
+    svc = make()
+    svc.add(fb("Više o dugu"))
+
+    def slow(items, rules):  # while summarising 1 rating, a 2nd rating arrives and is summarised first
+        svc._summarise = lambda i, r: {"instructions": f"AI za {len(i)}", "label": "x"}
+        svc.add(fb("Manje o proizvodima"))
+        assert svc.refresh_llm("demo-projekt") is True
+        return {"instructions": "AI za 1 (zastarjelo)", "label": "old"}
+
+    svc._summarise = slow
+    assert svc.refresh_llm("demo-projekt") is False  # outdated result dropped
+    p = svc.profile("demo-projekt")
+    assert p.mode == "llm" and p.instructions == "AI za 2"
+
+
 def test_llm_failure_keeps_rules(make):
     def broken(items, rules):
         raise LLMUnavailable("offline")
@@ -140,19 +157,21 @@ def test_api_flow_matches_contract(make):
         r = c.post("/feedback", json={"project_id": "demo", "ticker": "aapl", "rating": "down",
                                       "note": "Više o dugu i slobodnom novčanom toku, kraće."})
         assert r.status_code == 200 and r.json()["ticker"] == "AAPL"
+        assert r.json()["ok"] is True and r.json()["feedback_count"] == 1  # contracts/learning.md
         c.post("/feedback", json={"project_id": "demo", "ticker": "MSFT", "rating": "down",
                                   "note": "Manje o proizvodima.", "tags": ["short"]})
         prof = c.get("/profile?project_id=demo").json()
         _conforms(json.loads((MOCKS / "profile.demo.json").read_text(encoding="utf-8")), prof)
         assert prof["focus"] == ["debt", "free_cash_flow"] and prof["avoid"] == ["product_details"]
         items = c.get("/feedback?project_id=demo").json()
-        _conforms(json.loads((MOCKS / "feedback.demo.json").read_text(encoding="utf-8")), items)
         assert [i["ticker"] for i in items] == ["AAPL", "MSFT"]
+        assert {"project_id", "ticker", "brief_generated_at", "rating", "note", "tags", "created_at"} <= set(items[0])
         bad = c.post("/feedback", json={"project_id": "demo", "ticker": "AAPL", "rating": "meh"})
         assert bad.status_code == 422 and bad.json()["error"] == "invalid_parameter"
         bad = c.post("/feedback", json={"project_id": "demo", "ticker": "AAPL", "rating": "up", "tags": ["x"]})
         assert bad.status_code == 422
-        assert c.delete("/profile?project_id=demo").json()["feedback_count"] == 0
+        gone = c.delete("/profile?project_id=demo").json()
+        assert gone["ok"] is True and gone["feedback_count"] == 0
         assert c.post("/demo/seed?project_id=demo").json()["feedback_count"] == 2
     finally:
         main.app.dependency_overrides.clear()

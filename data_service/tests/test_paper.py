@@ -4,7 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app import main
-from app.paper import InsufficientCash, InsufficientShares, JsonPaperStore, OrderIn, PaperService
+from app.paper import InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, PaperService
 
 
 @pytest.fixture
@@ -52,15 +52,15 @@ def test_average_price_and_realized_pnl(paper, prices):
     buy(paper, "AAPL", 10)
     assert paper.portfolio("demo").positions[0].avg_price == 240.0
     res = sell(paper, "AAPL", 20)
-    assert res.portfolio.positions == []
-    assert res.portfolio.realized_pnl == 200.0
-    assert res.portfolio.cash == 100_200
+    assert res.positions == [] and res.fill.side == "sell" and res.fill.qty == 20
+    assert res.realized_pnl == 200.0
+    assert res.cash == 100_200
 
 
 def test_cannot_overspend_or_oversell(paper):
     with pytest.raises(InsufficientCash):
         buy(paper, "MSFT", 1000)
-    with pytest.raises(InsufficientShares):
+    with pytest.raises(InsufficientPosition):
         sell(paper, "AAPL", 1)
     assert paper.portfolio("demo").cash == 100_000  # nothing changed
 
@@ -86,11 +86,13 @@ def test_routes_and_error_codes(paper):
         r = c.post("/paper/orders", json={"project_id": "demo", "ticker": "aapl", "side": "buy", "qty": 10})
         assert r.status_code == 200
         body = r.json()
-        assert body["order"]["ticker"] == "AAPL" and body["order"]["value"] == 2300.0
-        assert body["portfolio"]["positions"][0]["ticker"] == "AAPL"
+        assert body["fill"] == {"ticker": "AAPL", "side": "buy", "qty": 10, "price": 230.0, "at": body["fill"]["at"]}
+        assert body["cash"] == 97_700 and body["positions"][0]["ticker"] == "AAPL"
         assert c.get("/paper/portfolio?project_id=demo").json()["cash"] == 97_700
         r = c.post("/paper/orders", json={"project_id": "demo", "ticker": "MSFT", "side": "buy", "qty": 1000})
-        assert r.status_code == 422 and r.json()["error"] == "insufficient_cash"
+        assert r.status_code == 409 and r.json()["error"] == "insufficient_cash"
+        r = c.post("/paper/orders", json={"project_id": "demo", "ticker": "MSFT", "side": "sell", "qty": 1})
+        assert r.status_code == 409 and r.json()["error"] == "insufficient_position"
         r = c.post("/paper/orders", json={"project_id": "demo", "ticker": "AAPL", "side": "sell", "qty": 0})
         assert r.status_code == 422 and r.json()["error"] == "invalid_parameter"
         assert c.post("/paper/reset?project_id=demo").json()["cash"] == 100_000
@@ -103,6 +105,8 @@ def test_responses_match_contract_mocks(paper):
 
     from tests.test_contract import MOCKS, _assert_conforms
 
+    portfolio_mock = json.loads((MOCKS / "portfolio.demo.json").read_text(encoding="utf-8"))
     res = buy(paper, "AAPL", 10).model_dump(mode="json")
-    _assert_conforms(json.loads((MOCKS / "paper-order.demo.json").read_text(encoding="utf-8")), res)
-    _assert_conforms(json.loads((MOCKS / "paper-portfolio.demo.json").read_text(encoding="utf-8")), res["portfolio"])
+    _assert_conforms(portfolio_mock, res)  # order response = portfolio + fill (contracts/paper.md)
+    assert set(res["fill"]) == {"ticker", "side", "qty", "price", "at"}
+    _assert_conforms(portfolio_mock, paper.portfolio("demo").model_dump(mode="json"))

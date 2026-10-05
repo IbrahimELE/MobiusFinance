@@ -18,3 +18,11 @@ Osoba A: dopisuj ovdje isti format kao u LOG-B.md (datum · korak · šta · za�
 - Za B: (1) u `write_thesis` dodati `instructions` iz `GET {LEARNING_URL}/profile` (primjer u `learning_service/README.md`); (2) prompt fiksno traži 3–4 rečenice, pa „kraće" nema puni efekat; (3) project_id isti slug kao u agentu.
 - Grana je napravljena iz `featureA` (još nije u `dev`); nakon squash-merge PR-a featureA treba `git rebase --onto origin/dev featureA feature/a-learning-paper`.
 - Sljedeće: dogovor ugovora s B (utorak ujutro), PR-ovi; `/peers` ako ostane vremena.
+
+## 2026-10-05 · Korak 3: usklađeno s B-ovim ugovorima (learning.md, paper.md)
+- B je paralelno napisao `contracts/learning.md`, `contracts/paper.md`, `mocks/portfolio.demo.json`, `mocks/profile.demo.json` (grana `feature/b-ui-faza2`). Moj prijedlog je povučen; preuzeti su njegovi fajlovi bajt-po-bajt (spajanje bez konflikta).
+- Paper: `POST /paper/orders` vraća portfelj + `fill {ticker, side, qty, price, at}` (dodatno `order`); greške 409 `insufficient_cash` / `insufficient_position`.
+- Learning: `POST /feedback` vraća `{"ok": true, "feedback_count": n}` (+ sačuvana ocjena), `DELETE /profile` vraća `{"ok": true}` (+ prazan profil). Profil ima i `label`, `recent_notes` (dodatno).
+- Ispravljena utrka: kad dvije ocjene stignu brzo, sporiji AI sažetak starije ocjene je mogao pregaziti noviji; sada se zastarjeli odbacuje (test + provjereno uživo).
+- Provjera: B-ov agent s `feature/b-ui-faza2` nad mojim servisima: 2 ocjene preko agenta → profil; kupovina AAPL i 409 preko agenta; brief NVDA s naučenim profilom: tačno 3 rečenice, počinje zaduženošću (D/E 0,17) i FCF-om, bez opisa proizvoda. Testovi: data_service 33, learning_service 17.
+- Za B: `proxy()` u agentu prosljeđuje grešku kao tekst (`{"detail": "{\"error\":...}"}`), pa UI prikaže sirovi JSON; predlog: `raise HTTPException(r.status_code, r.json().get("detail", r.text))` ili proslijediti JSON kakav jeste.

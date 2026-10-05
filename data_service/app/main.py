@@ -20,7 +20,7 @@ from .models import ErrorBody, Financials, History, Quote, RiskFactors
 from .providers.base import FilingNotFound, TickerNotFound, UpstreamError
 from .providers.edgar_provider import EdgarProvider
 from .providers.yfinance_provider import YFinanceProvider
-from .paper import (InsufficientCash, InsufficientShares, JsonPaperStore, OrderIn, OrderResult, PaperService,
+from .paper import (InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, OrderResult, PaperService,
                     Portfolio)
 from .service import DataService, InvalidParameter, InvalidTicker, NotInCache, normalize_ticker
 
@@ -47,7 +47,7 @@ def get_paper() -> PaperService:
     return PaperService(JsonPaperStore(svc.settings.paper_dir), lambda t: svc.quote(t).price)
 
 
-ERRORS = {404: {"model": ErrorBody}, 422: {"model": ErrorBody}, 502: {"model": ErrorBody}, 503: {"model": ErrorBody}}
+ERRORS = {404: {"model": ErrorBody}, 409: {"model": ErrorBody}, 422: {"model": ErrorBody}, 502: {"model": ErrorBody}, 503: {"model": ErrorBody}}
 
 
 def _err(status: int, code: str, detail: str) -> JSONResponse:
@@ -61,12 +61,12 @@ async def _invalid(_: Request, e: InvalidTicker):
 
 @app.exception_handler(InsufficientCash)
 async def _no_cash(_: Request, e: InsufficientCash):
-    return _err(422, "insufficient_cash", str(e))
+    return _err(409, "insufficient_cash", str(e))
 
 
-@app.exception_handler(InsufficientShares)
-async def _no_shares(_: Request, e: InsufficientShares):
-    return _err(422, "insufficient_shares", str(e))
+@app.exception_handler(InsufficientPosition)
+async def _no_position(_: Request, e: InsufficientPosition):
+    return _err(409, "insufficient_position", str(e))
 
 
 @app.exception_handler(InvalidParameter)

@@ -16,7 +16,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from .models import ErrorBody, Feedback, FeedbackIn, Profile
+from .models import ErrorBody, Feedback, FeedbackAck, FeedbackIn, Profile, ProfileAck
 from .service import LearningService
 from .store import LearningStore
 
@@ -47,12 +47,12 @@ def health(svc: LearningService = Depends(get_service)):
     return {"status": "ok", "llm": svc.use_llm}
 
 
-@app.post("/feedback", response_model=Feedback, responses={422: {"model": ErrorBody}})
+@app.post("/feedback", response_model=FeedbackAck, responses={422: {"model": ErrorBody}})
 def add_feedback(req: FeedbackIn, background: BackgroundTasks, svc: LearningService = Depends(get_service)):
     fb = svc.add(req)
     # The rule profile is updated immediately; the LLM summary follows in the background.
     background.add_task(svc.refresh_llm, fb.project_id)
-    return fb
+    return FeedbackAck(**fb.model_dump(), feedback_count=len(svc.store.feedback(fb.project_id)))
 
 
 @app.get("/feedback", response_model=list[Feedback])
@@ -65,10 +65,10 @@ def get_profile(project_id: str = "default", svc: LearningService = Depends(get_
     return svc.profile(project_id)
 
 
-@app.delete("/profile", response_model=Profile)
+@app.delete("/profile", response_model=ProfileAck)
 def forget(project_id: str = "default", svc: LearningService = Depends(get_service)):
     svc.forget(project_id)
-    return svc.profile(project_id)
+    return ProfileAck(**svc.profile(project_id).model_dump())
 
 
 @app.post("/demo/seed", response_model=Profile)
