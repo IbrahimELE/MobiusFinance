@@ -60,3 +60,4 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - UI: novi "desk" izgled (header, sidebar, hero s cijenom i promjenom, izbor perioda, KPI kartice + 52w traka, kategorije rizika, mini grafikoni, "Naučeno", ocjena 👍/👎 + bilješka, paper panel s oznakom "simulacija", teza kroz vrijeme).
 - Contracts: `contracts/learning.md`, `contracts/paper.md`, mockovi `profile.demo.json`, `portfolio.demo.json` (prijedlog, čeka A-ov pregled).
 - Provjereno: API (brief MSFT s kategorijama i extras, 503/404 za neuključene servise), JS sintaksa. Vizualna provjera u toku (preglednik je instaliran, sesije su se prekidale zbog memorije).
+- Vizualno provjereno (Playwright, desktop 1280 i mobilni 390): bez JS grešaka; ispravljen preljev na mobitelu (min-width:0, chart autoSize).

@@ -11,7 +11,8 @@ header{display:flex;gap:10px;align-items:center;padding:12px 20px;border-bottom:
 .logo{font-weight:800;letter-spacing:.3px;margin-right:6px}.logo b{color:var(--acc)}
 header form{margin-left:auto;display:flex;gap:8px}
 .wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;max-width:1280px;margin:0 auto;padding:16px 20px}
-@media(max-width:960px){.wrap{grid-template-columns:1fr}}
+@media(max-width:960px){.wrap{grid-template-columns:minmax(0,1fr)}}
+.wrap>*{min-width:0}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
 .card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut)}
 .hero{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.hero h2{margin:0;font-size:24px}.price{font-size:26px;font-weight:700}
@@ -89,7 +90,7 @@ function show(b){cur=b;const m=b.metrics,x=b.extras||{};
  if($("rate"))$("rate").onclick=e=>{const r=e.target.dataset.r;if(r)rateUI(r)};
  draw(b.ticker);since(b);paperUI()}
 async function draw(t){if(!window.LightweightCharts)return;$("chart").innerHTML="";
- const c=LightweightCharts.createChart($("chart"),{layout:{background:{color:"#121923"},textColor:"#8593a6"},grid:{vertLines:{visible:false},horzLines:{color:"#212c3a"}},rightPriceScale:{borderVisible:false},timeScale:{borderVisible:false}});
+ const c=LightweightCharts.createChart($("chart"),{autoSize:true,layout:{background:{color:"#121923"},textColor:"#8593a6"},grid:{vertLines:{visible:false},horzLines:{color:"#212c3a"}},rightPriceScale:{borderVisible:false},timeScale:{borderVisible:false}});
  try{const h=await J(`/history/${t}?period=${per}`);c.addAreaSeries({lineColor:"#4c8dff",topColor:"rgba(76,141,255,.25)",bottomColor:"rgba(76,141,255,0)",lineWidth:2}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}catch(e){$("chart").innerHTML='<span class="err">Grafikon nije dostupan</span>'}}
 async function since(b){try{const q=await J("/quote/"+b.ticker);const d=q.change_pct;$("chg").textContent=(d>=0?"+":"")+num(d,2)+"%";$("chg").className="chg "+(d>=0?"up":"dn");
  if(Math.abs(q.price-b.metrics.price)>.005){const ch=(q.price/b.metrics.price-1)*100;$("since").innerHTML=`<div class="since">Teza od ${esc((b.generated_at||"").slice(0,10))}: cijena tada ${usd(b.metrics.price)}, danas ${usd(q.price)} <b class="chg ${ch>=0?"up":"dn"}">(${ch>=0?"+":""}${ch.toFixed(1)}%)</b></div>`}}catch(e){}}
