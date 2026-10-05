@@ -1,0 +1,7 @@
+# Zamijeni sa stvarnim GitHub korisničkim imenima
+/data_service/            @OSOBA_A
+/agent_service/           @OSOBA_B
+/frontend/                @OSOBA_B
+/contracts/               @OSOBA_A @OSOBA_B
+/docs/LOG-A.md            @OSOBA_A
+/docs/LOG-B.md            @OSOBA_B
