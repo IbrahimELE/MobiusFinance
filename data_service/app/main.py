@@ -20,7 +20,9 @@ from .models import ErrorBody, Financials, History, Quote, RiskFactors
 from .providers.base import FilingNotFound, TickerNotFound, UpstreamError
 from .providers.edgar_provider import EdgarProvider
 from .providers.yfinance_provider import YFinanceProvider
-from .service import DataService, InvalidParameter, InvalidTicker, NotInCache
+from .paper import (InsufficientCash, InsufficientShares, JsonPaperStore, OrderIn, OrderResult, PaperService,
+                    Portfolio)
+from .service import DataService, InvalidParameter, InvalidTicker, NotInCache, normalize_ticker
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
@@ -30,13 +32,19 @@ app = FastAPI(
     description="Market data and SEC filings for the Finance Desk. No LLM, no UI.",
 )
 # The frontend and agent run on other ports during the hackathon.
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST"], allow_headers=["*"])
 
 
 @lru_cache
 def get_service() -> DataService:
     settings = load_settings()
     return DataService(settings, YFinanceProvider(), EdgarProvider(settings.sec_user_agent))
+
+
+@lru_cache
+def get_paper() -> PaperService:
+    svc = get_service()
+    return PaperService(JsonPaperStore(svc.settings.paper_dir), lambda t: svc.quote(t).price)
 
 
 ERRORS = {404: {"model": ErrorBody}, 422: {"model": ErrorBody}, 502: {"model": ErrorBody}, 503: {"model": ErrorBody}}
@@ -49,6 +57,16 @@ def _err(status: int, code: str, detail: str) -> JSONResponse:
 @app.exception_handler(InvalidTicker)
 async def _invalid(_: Request, e: InvalidTicker):
     return _err(422, "invalid_ticker", f"Not a valid ticker symbol: {e}")
+
+
+@app.exception_handler(InsufficientCash)
+async def _no_cash(_: Request, e: InsufficientCash):
+    return _err(422, "insufficient_cash", str(e))
+
+
+@app.exception_handler(InsufficientShares)
+async def _no_shares(_: Request, e: InsufficientShares):
+    return _err(422, "insufficient_shares", str(e))
 
 
 @app.exception_handler(InvalidParameter)
@@ -116,3 +134,20 @@ def financials(ticker: str, svc: DataService = Depends(get_service)):
 @app.get("/filings/{ticker}/risk-factors", response_model=RiskFactors, responses=ERRORS)
 def risk_factors(ticker: str, svc: DataService = Depends(get_service)):
     return svc.risk_factors(ticker)
+
+
+# --- paper trading (simulation, not advice) ------------------------------------------
+
+@app.post("/paper/orders", response_model=OrderResult, responses=ERRORS)
+def paper_order(req: OrderIn, paper: PaperService = Depends(get_paper)):
+    return paper.place(req, normalize_ticker(req.ticker))
+
+
+@app.get("/paper/portfolio", response_model=Portfolio)
+def paper_portfolio(project_id: str = "default", paper: PaperService = Depends(get_paper)):
+    return paper.portfolio(project_id)
+
+
+@app.post("/paper/reset", response_model=Portfolio, responses=ERRORS)
+def paper_reset(project_id: str = "default", starting_cash: float = 100_000.0, paper: PaperService = Depends(get_paper)):
+    return paper.reset(project_id, starting_cash)

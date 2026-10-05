@@ -24,6 +24,8 @@ class Settings:
     # Runtime cache (gitignored) and the committed demo snapshot used as last resort.
     cache_dir: Path = field(default_factory=lambda: Path(os.getenv("DATA_CACHE_DIR", SERVICE_DIR / "cache")))
     demo_cache_dir: Path = field(default_factory=lambda: Path(os.getenv("DATA_DEMO_CACHE_DIR", SERVICE_DIR / "demo_cache")))
+    # Paper trading accounts, one JSON file per project (gitignored).
+    paper_dir: Path = field(default_factory=lambda: Path(os.getenv("DATA_PAPER_DIR", SERVICE_DIR / "paper_data")))
     # Offline: never call upstreams, serve only from cache/demo snapshot.
     offline: bool = field(default_factory=lambda: _flag("DATA_OFFLINE"))
     # Optional sources are switched on by name, e.g. DATA_OPTIONAL=peers,news
