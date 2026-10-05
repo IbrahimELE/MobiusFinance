@@ -1,0 +1,87 @@
+{
+ "stored_at": "2026-10-05T13:24:03+00:00",
+ "payload": {
+  "ticker": "AAPL",
+  "pe": 38.27,
+  "revenue": 416161000000.0,
+  "revenue_growth_yoy": 0.0643,
+  "net_income": 112010000000.0,
+  "net_margin": 0.2692,
+  "fiscal_year": 2025,
+  "name": "Apple Inc.",
+  "sector": "Technology",
+  "industry": "Consumer Electronics",
+  "currency": "USD",
+  "summary": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple Vision Pro, Apple TV, Apple Watch, Beats products, and HomePod, as well as Apple branded and third-party accessories. It also provides AppleCare support and cloud services; and operates various platforms, including the App Store that allows customers to discover and download applications and digital content, such as books, music, video, games, and podcasts, as well as advertising services include third-party licensing arrangements and its own advertising platforms. In addition, the company offers various subscription-based services, such as Apple Arcade, a game subscription service; Apple Fitness+, a personalized fitness service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV, which offers original content and live sports; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It distributes third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers and resellers. The company was formerly known as Apple Computer, Inc. and changed its name to Apple Inc. in January 2007. Apple Inc. was founded in 1976 and is headquartered in Cupertino, California.",
+  "price": 333.69,
+  "market_cap": 4869931925504.0,
+  "forward_pe": 34.82,
+  "eps": 8.72,
+  "revenue_ttm": 466822987776.0,
+  "gross_margin": 0.48653,
+  "operating_margin": 0.32623002,
+  "net_margin_ttm": 0.27618998,
+  "free_cash_flow": 107721875456.0,
+  "debt_to_equity": 0.7844,
+  "dividend_yield": 0.0032,
+  "beta": 1.069,
+  "annual": [
+   {
+    "fiscal_year": 2025,
+    "period_end": "2025-09-30",
+    "revenue": 416161000000.0,
+    "gross_profit": 195201000000.0,
+    "operating_income": 133050000000.0,
+    "net_income": 112010000000.0,
+    "diluted_eps": 7.46,
+    "free_cash_flow": 98767000000.0
+   },
+   {
+    "fiscal_year": 2024,
+    "period_end": "2024-09-30",
+    "revenue": 391035000000.0,
+    "gross_profit": 180683000000.0,
+    "operating_income": 123216000000.0,
+    "net_income": 93736000000.0,
+    "diluted_eps": 6.08,
+    "free_cash_flow": 108807000000.0
+   },
+   {
+    "fiscal_year": 2023,
+    "period_end": "2023-09-30",
+    "revenue": 383285000000.0,
+    "gross_profit": 169148000000.0,
+    "operating_income": 114301000000.0,
+    "net_income": 96995000000.0,
+    "diluted_eps": 6.13,
+    "free_cash_flow": 99584000000.0
+   },
+   {
+    "fiscal_year": 2022,
+    "period_end": "2022-09-30",
+    "revenue": 394328000000.0,
+    "gross_profit": 170782000000.0,
+    "operating_income": 119437000000.0,
+    "net_income": 99803000000.0,
+    "diluted_eps": 6.11,
+    "free_cash_flow": 111443000000.0
+   }
+  ],
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-05T13:24:03+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance key statistics",
+     "url": "https://finance.yahoo.com/quote/AAPL/key-statistics"
+    },
+    {
+     "label": "Yahoo Finance income statement",
+     "url": "https://finance.yahoo.com/quote/AAPL/financials"
+    }
+   ]
+  }
+ }
+}

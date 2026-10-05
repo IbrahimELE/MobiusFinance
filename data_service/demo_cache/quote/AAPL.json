@@ -1,0 +1,32 @@
+{
+ "stored_at": "2026-10-05T13:24:03+00:00",
+ "payload": {
+  "ticker": "AAPL",
+  "name": "Apple Inc.",
+  "price": 333.69,
+  "currency": "USD",
+  "change_pct": 1.0202,
+  "market_cap": 4869931925504.0,
+  "as_of": "2026-10-02T20:00:01+00:00",
+  "exchange": "NasdaqGS",
+  "previous_close": 330.32,
+  "change": 3.37,
+  "day_high": 334.54,
+  "day_low": 330.61,
+  "year_high": 345.34,
+  "year_low": 243.42,
+  "volume": 33278552.0,
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-05T13:24:03+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance quote",
+     "url": "https://finance.yahoo.com/quote/AAPL"
+    }
+   ]
+  }
+ }
+}

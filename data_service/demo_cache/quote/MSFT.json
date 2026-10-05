@@ -1,0 +1,32 @@
+{
+ "stored_at": "2026-10-05T13:24:04+00:00",
+ "payload": {
+  "ticker": "MSFT",
+  "name": "Microsoft Corporation",
+  "price": 517.53,
+  "currency": "USD",
+  "change_pct": 0.9224,
+  "market_cap": 3842942959616.0,
+  "as_of": "2026-10-02T20:00:01+00:00",
+  "exchange": "NasdaqGS",
+  "previous_close": 512.8,
+  "change": 4.73,
+  "day_high": 522.5,
+  "day_low": 513.66,
+  "year_high": 553.72,
+  "year_low": 349.2,
+  "volume": 17822339.0,
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-05T13:24:04+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance quote",
+     "url": "https://finance.yahoo.com/quote/MSFT"
+    }
+   ]
+  }
+ }
+}

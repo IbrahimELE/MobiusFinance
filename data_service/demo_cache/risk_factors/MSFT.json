@@ -1,0 +1,220 @@
+{
+ "stored_at": "2026-10-05T13:24:07+00:00",
+ "payload": {
+  "ticker": "MSFT",
+  "filing": "10-K 2026",
+  "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+  "items": [
+   {
+    "text": "We face intense competition across all markets for our products and services, which could adversely affect our results of operations.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our cloud and AI strategy requires substantial investments and depends on evolving customer demand, technological developments, competitive dynamics, and regulatory conditions, any of which could adversely affect our business, financial condition, and results of operations.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our success depends on our ability to develop, deliver, and maintain competitive cloud-based and AI products and services that achieve broad customer adoption and sustainable revenue growth.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We make significant investments in products and services that may not achieve expected returns.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Acquisitions, joint ventures, and strategic alliances could have an adverse effect on our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Cyberattacks and security vulnerabilities could lead to reduced revenue, increased costs, liability claims, or harm to our reputation or competitive position.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Disclosure and misuse of personal data could result in liability and harm our reputation.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Abuse of our platforms may harm our reputation or user engagement.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our products and services, how they are used by customers, and how third-party products and services interact with them, may present security, privacy, and execution risks.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We may be unable to develop and expand adequate infrastructure.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We may experience outages, disruptions, or capacity constraints if we fail to maintain and operate adequate infrastructure or secure the resources necessary to support it.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We may experience other quality problems.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We are subject to a variety of new, existing, and evolving legal and regulatory requirements that could adversely affect our results of operations.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We have claims and lawsuits against us that may result in adverse outcomes.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our business with government customers may present additional uncertainties.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We face risks related to the protection and utilization of our intellectual property that may result in our business and operating results being harmed.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Third parties may claim that we infringe their intellectual property.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Adverse economic or market conditions could harm our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Catastrophic events or geopolitical conditions could disrupt our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our global business exposes us to operational and economic risks.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our business depends on our ability to attract and retain talented employees.",
+    "source": "10-K 2026, Item 1A"
+   }
+  ],
+  "company": "MICROSOFT CORP",
+  "cik": "0000789019",
+  "form": "10-K",
+  "filing_date": "2026-07-29",
+  "report_date": "2026-06-30",
+  "accession_number": "0001193125-26-323660",
+  "risks": [
+   {
+    "category": "STRATEGIC AND COMPETITIVE RISKS",
+    "title": "We face intense competition across all markets for our products and services, which could adversely affect our results of operations.",
+    "text": "Competition in the technology sector: Our competitors range in size from diversified global companies with significant research and development resources to small, specialized firms who may be more effective in deploying technical, marketing, and financial resources. Barriers to entry in many of our businesses are low and many of the areas in which we compete evolve rapidly with changing and disruptive technologies, shifting user needs, and frequent introductions of new products and services. If we do not continue to innovate and provide products, devices, and services that appeal to businesses and consumers, we may not remain competitive, which could adversely affect our business, financial condition, and results of operations. Competition among platform-based ecosystems: An important element of our business model has been to create platform-based ecosystems on which many participants can build diverse solutions. A well-established ecosystem creates beneficial network effects among users, application developers, and the platform provider that can accelerate growth. Establishing significant scale in the marketplace is necessary to meet consumer demand and to achieve and maintain attractive margins. Firms offering competing platforms may make it more difficult to attract and retain customers. …"
+   },
+   {
+    "category": "STRATEGIC AND COMPETITIVE RISKS",
+    "title": "Our cloud and AI strategy requires substantial investments and depends on evolving customer demand, technological developments, competitive dynamics, and regulatory conditions, any of which could adversely affect our business, financial condition, and results of operations.",
+    "text": "We have made and are continuing to make significant capital and operational investments to develop, train, deploy, and support AI models and related cloud-based services, including building and expanding datacenters, acquiring necessary components, and securing energy resources. These investments are being made at significant scale and on an accelerated timeline, require substantial and increasing capital expenditures and continued access to capital, and are in advance of fully developed revenue streams. The associated revenue may not be realized in the expected timeframes or at expected levels. Our capital and operational investments are complex and involve projects in multiple locations around the world that expose us to increased compliance risks and political challenges, among others. Our ability to fund these investments depends on our ability to generate sufficient cash flows and obtain financing on acceptable terms. Adverse changes in interest rates, credit markets, investor sentiment, our credit ratings, or other factors affecting capital availability could increase our cost of capital or limit our ability to execute our infrastructure strategy. …"
+   },
+   {
+    "category": "STRATEGIC AND COMPETITIVE RISKS",
+    "title": "Our success depends on our ability to develop, deliver, and maintain competitive cloud-based and AI products and services that achieve broad customer adoption and sustainable revenue growth.",
+    "text": "Our ability to succeed depends on our ability to develop and deliver differentiated products and services that meet evolving customer needs, achieve broad adoption, maintain customer trust, and generate sustainable revenue and growth. The markets for cloud-based and AI products and services are highly dynamic, characterized by shifting customer expectations, increasing regulatory and governmental scrutiny, intense competition, and rapid technological change, such as the accelerating importance of agentic computing. Whether we succeed in cloud-based and AI products and services depends on our execution in several areas, including: Continuing to bring to market compelling cloud-based and AI products and services that generate increasing traffic and market share. Driving customer adoption, usage, and retention of our cloud-based and AI products and services. Effectively monetizing our cloud-based and AI products through pricing models that reflect their value while remaining competitive. Attracting third parties to utilize, build on, and extend our cloud and AI platforms. Ensuring our cloud-based and AI services meet the reliability expectations and specific requirements of our customers and maintain the security of their data as well as help them meet their own compliance needs. …"
+   },
+   {
+    "category": "RISKS RELATING TO THE EVOLUTION OF OUR BUSINESS",
+    "title": "We make significant investments in products and services that may not achieve expected returns.",
+    "text": "We will continue to make significant investments in research, development, and marketing for existing products, services, and technologies, including AI-based products and services. We also invest in the development and acquisition of a variety of hardware for productivity, communication, and entertainment, including PCs, tablets, and gaming devices. Investments in new technology are speculative. Commercial success depends on many factors, including innovation, developer support, and effective distribution and marketing. If customers do not perceive our latest offerings as providing significant new functionality or other value, they may reduce their purchases of new software and hardware products or upgrades, unfavorably affecting revenue. We may not achieve significant revenue from new product, service, and distribution channel investments for several years, if at all. New products and services may not be profitable or may not achieve operating margins as high as we have experienced historically. We may not get engagement in certain features that drive post-sale monetization opportunities. Our data-handling practices across our products and services will continue to be under scrutiny. Perceptions of mismanagement, driven by regulatory activity or negative public reaction to our practices or product experiences, could negatively impact product and feature adoption. Developing new technologies is complex. It can require long development and testing periods. …"
+   },
+   {
+    "category": "RISKS RELATING TO THE EVOLUTION OF OUR BUSINESS",
+    "title": "Acquisitions, joint ventures, and strategic alliances could have an adverse effect on our business.",
+    "text": "We expect to continue making acquisitions and entering into joint ventures and strategic alliances as part of our long-term business strategy. For example, in October 2023 we completed our acquisition of Activision Blizzard , Inc. Additionally, we have a long-term strategic partnership with OpenAI. Acquisitions and other transactions and arrangements involve significant challenges and risks, including that they do not advance our business strategy, that we get an unsatisfactory return on our investment, that they raise new compliance-related obligations and challenges, that we have difficulty integrating and retaining new employees, business systems, and technology, that they distract management from our other businesses, or that announced transactions may not be completed. If an arrangement fails to adequately anticipate changing circumstances and interests of a party, it may result in early termination or renegotiation of the arrangement. We also have limited ability to control or influence third parties with whom we have arrangements, which may impact our ability to realize the anticipated benefits. The success of these transactions and arrangements depend in part on our ability to leverage them to enhance our existing products and services or develop compelling new ones, as well as the acquired companies’ ability to meet our policies and processes in areas such as data governance, privacy, digital safety, responsible AI, and cybersecurity. …"
+   },
+   {
+    "category": "CYBERSECURITY, DATA PRIVACY, AND PLATFORM ABUSE RISKS",
+    "title": "Cyberattacks and security vulnerabilities could lead to reduced revenue, increased costs, liability claims, or harm to our reputation or competitive position.",
+    "text": "Security of our information technology: Threats to security can take a variety of forms. Threat actors, including individual and groups of hackers and sophisticated organizations, including nation-states, state-sponsored organizations, or cybercriminal groups, continuously undertake attacks that pose threats to our customers and our internal infrastructure, and we have experienced cybersecurity incidents in which such actors have gained unauthorized access to our systems and data, as well as customer, partner, and supplier systems and data. These actors use a wide variety of methods, which include developing and deploying malicious software; exploiting known, latent, or potential vulnerabilities or intentionally designed processes in our or third-party hardware, software, or other infrastructure to attack our products and services or gain access to our networks and datacenters; using social engineering and AI-assisted techniques to induce our employees, users, partners, suppliers, or customers to disclose sensitive information, such as passwords, or take other actions to gain access to our data or our users’ or customers’ data; or acting in a coordinated manner or conducting coordinated attacks. …"
+   },
+   {
+    "category": "CYBERSECURITY, DATA PRIVACY, AND PLATFORM ABUSE RISKS",
+    "title": "Disclosure and misuse of personal data could result in liability and harm our reputation.",
+    "text": "As we continue to grow the number, breadth, and scale of our cloud-based offerings, we store and process increasingly large amounts of personal data of our customers and users. The continued occurrence of high-profile data breaches provides evidence of an external environment increasingly hostile to information security. Our security controls over personal data, our training of employees and third parties on data security, and other practices we follow may not prevent the improper disclosure or misuse of customer or user data we or our vendors store and manage. Relatedly, we may fail to identify or mitigate insider threat activities that could lead to the misuse of our systems or customer and user data. In addition, third parties who have limited access to our customer or user data may use this data in unauthorized ways. Improper disclosure or misuse could harm our reputation, lead to legal exposure to customers or users, or subject us to liability under laws that protect personal data, resulting in increased costs or loss of revenue. Our software products and services also enable our customers and users to store and process personal data on-premises or in a cloud-based environment we host. Government authorities can sometimes require us to produce customer or user data in response to valid legal orders. In the U.S. and elsewhere, we advocate for transparency concerning these requests and appropriate limitations on government authority to compel disclosure. …"
+   },
+   {
+    "category": "CYBERSECURITY, DATA PRIVACY, AND PLATFORM ABUSE RISKS",
+    "title": "Abuse of our platforms may harm our reputation or user engagement.",
+    "text": "Advertising, professional, marketplace, and gaming platform abuses: For platform products and services that provide content or host ads that come from or can be influenced by third parties, our reputation or user engagement may be negatively affected by activity that is hostile or inappropriate. This activity may come from users impersonating other people or organizations, including through the use of AI technologies, dissemination of information that may be viewed as misleading or intended to manipulate the opinions of our users, or the use of our products or services that violates our terms of service or otherwise for objectionable or illegal ends. Preventing or responding to these actions may require us to make substantial investments in people and technology and these investments may not be successful, adversely affecting our business, financial condition, and results of operations. Other digital safety abuses: Our services may be used to find, generate, store, or disseminate harmful or illegal content in violation of our terms or applicable law. We may not proactively discover such content due to scale, the limitations of existing technologies, and conflicting legal frameworks. This content may negatively affect users, our reputation, our brands, or could impact our business in certain markets. Regulatory enforcement is increasingly focused on product design, safety-by-design, and the responsibility of platform providers. …"
+   },
+   {
+    "category": "CYBERSECURITY, DATA PRIVACY, AND PLATFORM ABUSE RISKS",
+    "title": "Our products and services, how they are used by customers, and how third-party products and services interact with them, may present security, privacy, and execution risks.",
+    "text": "Our products and services may contain defects in design, manufacture, or operation that make them insecure or ineffective for their intended purposes. For example, customers control our products and services, including our AI products, within their environments, and may deploy them in high-risk scenarios or utilize them inappropriately. Our products may also collect large amounts of data in manners which may not satisfy customers or regulatory requirements. Our customers also operate complex systems with third-party hardware and software from multiple vendors whose products or personnel may take or fail to take actions which impact the reliability or security of our products and services. If our products and services do not work as intended, are utilized in methods not intended, violate the law, or harm individuals or businesses, we may be subject to legal claims or enforcement actions. These risks, if realized, may increase our costs, damage our reputation, or adversely affect our results of operations. Issues in the development, deployment, and use of AI may result in reputational or competitive harm or liability . We are providing access to AI across our offerings and enabling customers and partners to build AI-based solutions using our platforms. These capabilities may be developed by Microsoft or third parties and are becoming an increasing part of our business. …"
+   },
+   {
+    "category": "OPERATIONAL RISKS",
+    "title": "We may be unable to develop and expand adequate infrastructure.",
+    "text": "Our increasing user traffic, our growth in services, and the complexity of our products and services demand more infrastructure capacity and computing power. We have spent and will continue to spend substantial amounts to build, purchase, or lease datacenters and equipment and to upgrade our technology and network infrastructure. Our infrastructure capacity depends on the availability of permitted and buildable land, predictable and affordable energy, networking supplies, and servers, including graphics processing units and other components. These demands continue to increase as we introduce new products and services and support the growth and the augmentation of existing services, and scale further the incorporation of AI features and/or functionality. We are rapidly growing our business of providing a platform and back-end hosting for services provided by third parties to their end users. In addition, infrastructure in certain geographies carries higher safety and reliability risks. Maintaining, securing, and expanding our infrastructure globally is expensive and complex. The availability, reliability, and cost of electrical power are critical to the operation and expansion of our datacenters. In many regions, electricity generation, transmission, and distribution infrastructure is experiencing increasing demand and capacity constraints. …"
+   },
+   {
+    "category": "OPERATIONAL RISKS",
+    "title": "We may experience outages, disruptions, or capacity constraints if we fail to maintain and operate adequate infrastructure or secure the resources necessary to support it.",
+    "text": "Maintaining, securing, and operating our infrastructure requires that we maintain an Internet connectivity infrastructure and storage and compute capacity that is robust, resilient, and reliable within competitive, economic, and regulatory constraints that continue to evolve. The cost or availability of critical resources necessary to support our infrastructure, including power, networking supplies, servers, graphics processing units, and other components, could be adversely affected by a variety of factors, including supply chain and energy issues, evolving environmental or other regulations, and geopolitical disruptions. In addition to datacenters we own or operate, we rely on third-party providers, including colocation facilities, leased datacenters, and cloud infrastructure providers, to support portions of our operations. If any of these providers fail to meet our requirements, or experience service interruptions, operational failures, capacity constraints, physical damage, cybersecurity incidents, or other disruptions, our ability to provide services, maintain system performance, or meet customer expectations could be negatively impacted. …"
+   },
+   {
+    "category": "OPERATIONAL RISKS",
+    "title": "We may experience other quality problems.",
+    "text": "Our AI and other software products and services also have and may in the future experience quality or reliability problems. The processes we use to develop our software are imperfect. Like all software, our software contains bugs and other defects that interfere with their intended operation. Our customers rely on us for critical business functions and multiple workloads. Many of our products and services are interdependent on one another. Our products and services may be impacted by interaction with third-party products and services. Our customers may also utilize their own or third-party products and services whose reliability is dependent on interaction with our products and services. Each of these circumstances potentially magnifies the impact of quality or reliability issues. Weaknesses in our processes could result in defects we do not detect and fix in pre-release testing, which could cause reduced sales, damage to our reputation, repair or remediation costs, delays in the release of new products or versions, or legal liability, any of which could adversely affect our business, financial condition, and results of operations. Although our license agreements typically contain provisions that eliminate or limit our exposure to liability, these provisions may not withstand legal challenge. Our datacenters and our hardware products such as XBOX consoles, Surface devices, and other devices we design and market are highly complex. …"
+   },
+   {
+    "category": "LEGAL, REGULATORY, AND LITIGATION RISKS",
+    "title": "We are subject to a variety of new, existing, and evolving legal and regulatory requirements that could adversely affect our results of operations.",
+    "text": "We are subject to a wide range of laws, regulations, and legal requirements in the U.S. and globally, including those that may apply to our products and online services offerings, and those that impose requirements related to user privacy, cybersecurity, telecommunications, data storage and protection, digital accessibility, advertising, and online safety. Laws in several jurisdictions, including EU Member State laws under the European Electronic Communications Code, increasingly define certain of our services as regulated services. This trend may continue with our offerings becoming subject to additional data protection, security, digital safety, law enforcement surveillance, and other obligations. Regulators and private litigants may assert that our collection, use, and management of customer data and other information is inconsistent with their laws and regulations, including laws that apply to the tracking of users via technology such as cookies. In addition, laws requiring us to retrieve and produce customer data in response to compulsory legal demands from law enforcement and governmental authorities are evolving and the requests we are experiencing are increasing in volume and complexity. …"
+   },
+   {
+    "category": "LEGAL, REGULATORY, AND LITIGATION RISKS",
+    "title": "We have claims and lawsuits against us that may result in adverse outcomes.",
+    "text": "We are subject to a variety of claims and lawsuits. These claims may arise from a wide variety of business practices and initiatives, including major new product releases, AI products and services, significant business transactions, warranty or product claims, employment practices, and regulation. As we continue to expand our business and offerings, we may experience new and novel legal claims. Adverse outcomes in some or all of these claims may result in significant monetary damages or injunctive relief that could adversely affect our ability to conduct our business. Litigation and other claims are subject to inherent uncertainties and management’s view of these matters may change in the future. An adverse impact to our financial condition and results of operations could occur for the period in which the effect of an unfavorable outcome becomes probable and reasonably estimable."
+   },
+   {
+    "category": "LEGAL, REGULATORY, AND LITIGATION RISKS",
+    "title": "Our business with government customers may present additional uncertainties.",
+    "text": "We derive substantial revenue from government contracts. Government contracts and regulatory requirements can present risks and challenges not present in private commercial agreements. For instance, we are subject to government audits and investigations relating to these contracts, and we are required to provide assurance and attestations about our products and processes. If we do not satisfy contractual or regulatory requirements, we could be suspended or debarred as a governmental contractor, we could incur civil and criminal fines and penalties, and under certain circumstances contracts may be rescinded. Some agreements may allow a government to terminate without cause and provide for higher liability limits for certain losses. Some contracts may be subject to periodic funding approval, reductions, cancellations, or delays which could adversely impact public-sector demand for our products and services. These events could negatively impact our financial condition, results of operations, and reputation. We may have additional tax liabilities. We are subject to income taxes in the U.S. and many foreign jurisdictions. Significant judgment is required in determining our worldwide provision for income taxes. In the course of our business, there are many transactions and calculations where the ultimate tax determination is uncertain. …"
+   },
+   {
+    "category": "INTELLECTUAL PROPERTY RISKS",
+    "title": "We face risks related to the protection and utilization of our intellectual property that may result in our business and operating results being harmed.",
+    "text": "Protecting our intellectual property rights and combating unlicensed copying and use of our software, source code, trade secrets, and other intellectual property on a global basis is difficult. Similarly, the absence of harmonized patent laws makes it more difficult to ensure consistent respect for patent rights. Source code, the detailed program commands for our software programs, is critical to our business. Unauthorized access to or disclosure of source code or other intellectual property may negatively impact future trade secret protection for that intellectual property. It may then become easier for third parties to compete with our products by copying functionality, which could adversely affect our results of operations. Unauthorized access to or disclosure of source code or other intellectual property also increases the security risks described elsewhere in these risk factors."
+   },
+   {
+    "category": "INTELLECTUAL PROPERTY RISKS",
+    "title": "Third parties may claim that we infringe their intellectual property.",
+    "text": "From time to time, others claim we infringe their intellectual property rights, including current copyright infringement and other claims arising from AI training, inference, and output. To resolve these claims, we may enter into royalty-bearing data access or licensing agreements on terms that are less favorable than currently available, stop selling or redesign affected products or services, or pay damages to satisfy indemnification commitments with our customers. Adverse outcomes could also include monetary damages or injunctive relief that may limit or prevent importing, marketing, and selling our products or services that have infringing technologies. We have paid significant amounts to settle claims related to the use of technology and intellectual property rights and to procure intellectual property rights as part of our strategy to manage this risk, and may continue to do so, which could adversely affect our results of operations."
+   },
+   {
+    "category": "GENERAL RISKS",
+    "title": "Adverse economic or market conditions could harm our business.",
+    "text": "Worsening economic conditions, including inflation, recession, pandemic, or other changes in economic conditions, periods of economic uncertainty, evolution of customer demand, technology investment cycles, interest rates, foreign exchange rates, or the timing and mix of customer spending, may cause lower or delayed IT spending and adversely affect our results of operations. If demand for computing power, PCs, servers, and other computing devices declines, or consumer or business spending for those products declines, our results of operations could be adversely affected. Our product distribution system relies on an extensive partner and retail network. OEMs building devices that run our software have also been a significant means of distribution. The impact of economic conditions on our partners, such as the bankruptcy of a major distributor, OEM, or retailer, could cause sales channel disruption. Challenging economic conditions also may impair the ability of our customers to pay for products and services they have purchased. As a result, allowances for doubtful accounts and write-offs of accounts receivable may increase. We maintain an investment portfolio of various holdings, types, and maturities. These investments are subject to general credit, liquidity, market, and interest rate risks, which may be exacerbated by market downturns or events that affect global financial markets. A significant part of our investment portfolio consists of U.S. government securities. …"
+   },
+   {
+    "category": "GENERAL RISKS",
+    "title": "Catastrophic events or geopolitical conditions could disrupt our business.",
+    "text": "A disruption or failure of our systems, operations, or supply chain because of a major earthquake, weather event, cyberattack, terrorist attack, pandemic, or other catastrophic event could cause delays in completing sales, providing services, or performing other critical functions. As an example, our corporate headquarters, a significant portion of our research and development activities, and certain other essential business operations are in the Seattle, Washington area, and we have other business operations in the Silicon Valley area of California, both of which are seismically active regions. A catastrophic event that results in the destruction or disruption of any of our critical business or systems, or the infrastructure or systems they rely on, such as power grids, could harm our ability to conduct normal business operations or adversely affect our results of operations. Providing our customers with more services and solutions in the cloud puts a premium on the resilience of our systems and strength of our business continuity management plans and magnifies the potential negative consequences of prolonged service outages. …"
+   },
+   {
+    "category": "GENERAL RISKS",
+    "title": "Our global business exposes us to operational and economic risks.",
+    "text": "Our customers, employees, and infrastructure are located throughout the world and a significant part of our revenue comes from international sales. The global nature of our business creates operational, economic, and geopolitical risks. Global, regional, and local economic developments, monetary policy, geopolitical tension, restrictions on international trade, such as tariffs and other controls on imports or exports, inflation, and recession, as well as political and military disputes, could adversely affect our results of operations. Non-compliance with sanctions as well as general ecosystem disruptions could result in reputational harm, operational delays, monetary fines, loss of revenue, increased costs, loss of export privileges, or criminal sanctions, which could adversely affect our business, financial condition, and results of operations. In addition, our international growth strategy includes certain markets, the developing nature of which presents several risks, including deterioration of social, political, labor, or economic conditions in a country or region, and difficulties in staffing and managing foreign operations. Emerging nationalist and protectionist trends and concerns about human rights, the environment, and political expression in specific countries may significantly alter the trade and commercial environments. …"
+   },
+   {
+    "category": "GENERAL RISKS",
+    "title": "Our business depends on our ability to attract and retain talented employees.",
+    "text": "Our business is based on successfully attracting, training, and retaining talented employees representing diverse backgrounds, experiences, and skill sets. The market for highly skilled workers and leaders in our industry is extremely competitive. Maintaining our brand and reputation, as well as an inclusive work environment that enables all our employees to thrive, are important to our ability to recruit and retain employees. We are also limited in our ability to recruit internationally by restrictive domestic immigration laws. Restraints on the flow of technical and professional talent, including those derived from changes to U.S. immigration policies or laws, may inhibit our ability to adequately staff our research and development efforts. If we are less successful in our recruiting efforts, or if we cannot retain highly skilled workers and key leaders, our ability to develop and deliver successful products and services could be adversely affected. Effective succession planning is also important to our long-term success. Failure to ensure effective transfer of knowledge and smooth transitions involving key employees could hinder our strategic planning and execution. How employment-related laws are interpreted and applied to our workforce practices may result in increased operating costs and less flexibility in how we meet our workforce needs. Our global workforce is predominantly non-unionized, although we do have some employees in the U.S. …"
+   }
+  ],
+  "max_chars_per_risk": 1500,
+  "meta": {
+   "provider": "sec_edgar",
+   "fetched_at": "2026-10-05T13:24:07+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "SEC EDGAR 10-K 2026, Item 1A",
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
+    }
+   ]
+  }
+ }
+}
