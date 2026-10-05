@@ -1,24 +1,32 @@
 {
  "ticker": "GOOGL",
- "thesis": "Alphabet Inc. (GOOGL) trguje se po cijeni od 178,6 USD, uz tržišnu kapitalizaciju od oko 2.200 milijardi USD i P/E omjer od 23,9 [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 350 milijardi USD, što je rast od 13% u odnosu na prethodnu godinu, te neto dobit od 100 milijardi USD uz neto maržu od 29% [1]. Glavni rizik je ovisnost o prihodu od oglašavanja, jer umjetna inteligencija može poremetiti tržište pretrage [2]. Tezu dodatno opterećuju antitrust presude i regulatorni pritisak u SAD-u i EU, kao i visoka ulaganja u AI infrastrukturu čiji povrat nije siguran [2].",
+ "thesis": "Alphabet je u fiskalnoj 2025. ostvario prihod od 402,8 mlrd USD, što je rast od 15,1% u odnosu na prethodnu godinu, uz neto dobit od 132,2 mlrd USD i neto maržu od 32,8% [1]. Razrijeđena dobit po dionici porasla je s 8,04 USD u 2024. na 10,81 USD u 2025., a omjer duga i kapitala od 0,19 ukazuje na konzervativnu bilansnu strukturu [1]. Dionica trenutno vrijedi 344,24 USD, oko 16% ispod 52-sedmičnog maksimuma od 408,61 USD, uz P/E od 17,27 i forward P/E od 22,84 [1]. Glavni rizici su velika zavisnost prihoda od oglašavanja, intenzivna konkurencija i rastuća ulaganja u nove poslove i tehnologije, koja mogu naštetiti poslovanju i rezultatima [2].",
  "mode": "llm",
  "metrics": {
-  "price": 178.6,
-  "pe": 23.9,
-  "revenue_growth_yoy": 0.13,
-  "net_margin": 0.29
+  "price": 344.235,
+  "pe": 17.27,
+  "revenue_growth_yoy": 0.1509,
+  "net_margin": 0.3281
  },
  "risks": [
   {
-   "text": "Ovisnost o prihodu od oglašavanja i rizik disrupcije pretrage AI-jem.",
+   "text": "We generate a significant portion of our revenues from advertising. Reduced spending by advertisers, a loss of partners, shifts in online advertising, new and evolving advertising formats, or new or existing technologies that block ads online or affect our ability to personalize ads could harm our business.",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Antitrust presude i regulatorni pritisak (SAD, EU).",
+   "text": "Our increasing investment in new businesses, products, services, and technologies is inherently risky, and could divert management attention and harm our business, financial condition, and operating results.",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Visoka ulaganja u AI infrastrukturu i nesigurnost povrata.",
+   "text": "Alphabet Inc.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "We face intense competition. If we do not continue to innovate and provide products and services that are useful to users, customers, and other partners, we may not remain competitive, which could harm our business, financial condition, and operating results.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Alphabet Inc.",
    "source": "10-K 2025, Item 1A"
   }
  ],
@@ -33,8 +41,8 @@
   },
   {
    "label": "10-K 2025",
-   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=GOOGL&type=10-K"
+   "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
   }
  ],
- "generated_at": "2026-10-05T13:01:16.953590+00:00"
+ "generated_at": "2026-10-05T13:31:24.720636+00:00"
 }

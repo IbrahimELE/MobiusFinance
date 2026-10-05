@@ -1,24 +1,32 @@
 {
  "ticker": "TSLA",
- "thesis": "Tesla Inc. (TSLA) vrijedi 248,9 USD po dionici, uz dnevni pad od 1,3% i tržišnu kapitalizaciju od oko 790 milijardi USD (stanje na dan 2. 10. 2026.) [1]. Prihod u fiskalnoj 2025. godini iznosio je 97 milijardi USD, što je rast od samo 2% u odnosu na prethodnu godinu, a neto dobit od 7,1 milijardu USD daje neto maržu od 7,3% [1]. P/E od 72,4 znači da tržište plaća veliku premiju za kompaniju čiji je rast prihoda gotovo stao [1]. Tu premiju dodatno dovode u pitanje rizici navedeni u 10-K izvještaju: pad marži zbog cjenovnog rata i jače konkurencije u EV segmentu, ovisnost o liderstvu Elona Muska s pratećim reputacijskim rizikom, te neizvjesnost i regulatorni rizik oko Autopilota/FSD-a [2].",
+ "thesis": "Tesla, Inc. (TSLA) zatvorila je na 370,59 USD (+4,65%), uz tržišnu kapitalizaciju od oko 1.464 milijarde USD, što je i dalje znatno ispod 52-sedmičnog maksimuma od 498,83 USD [1]. Fundamenti ne prate ovu valuaciju: prihod u 2025. pao je na 94,83 milijarde USD (−2,93% međugodišnje), a neto dobit na 3,79 milijardi USD u odnosu na 7,13 milijardi USD u 2024., uz neto maržu od samo 4% i operativnu maržu od 1,41% [1]. Uz P/E od 343,14 i forward P/E od 172,79, cijena se zasniva na očekivanjima budućeg rasta, a ne na trenutnoj profitabilnosti, iako slobodni novčani tok od 6,22 milijarde USD u 2025. i nizak omjer duga i kapitala (0,18) daju određenu finansijsku stabilnost [1]. Ključni rizici za tezu rasta su moguća kašnjenja u razvoju i povećanju proizvodnje, nemogućnost kontrole proizvodnih troškova i potreba da kompanija značajno poveća pristup baterijskim ćelijama, uključujući i vlastitu proizvodnju [2].",
  "mode": "llm",
  "metrics": {
-  "price": 248.9,
-  "pe": 72.4,
-  "revenue_growth_yoy": 0.02,
-  "net_margin": 0.073
+  "price": 370.59,
+  "pe": 343.14,
+  "revenue_growth_yoy": -0.0293,
+  "net_margin": 0.04
  },
  "risks": [
   {
-   "text": "Pad marži zbog cjenovnog rata i jače konkurencije u EV segmentu.",
+   "text": "We may experience issues or delays in developing, launching and ramping the production of our products, services and features, or we may be unable to control our manufacturing costs.",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Ovisnost o jednom liderstvu (Elon Musk) i reputacijski rizik.",
+   "text": "Our suppliers may fail to deliver components according to schedules, prices, quality and volumes that are acceptable to us, or we may be unable to manage these components effectively.",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Neizvjesnost autonomne vožnje i regulatorni rizik oko Autopilot/FSD-a.",
+   "text": "We may be unable to meet our projected construction timelines, costs and production ramps at new factories, or we may experience difficulties in generating and maintaining demand for products manufactured there and related services.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "We may be unable to grow our global product sales, delivery and installation capabilities and our servicing and vehicle charging networks, or we may be unable to accurately project and effectively manage our growth.",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "We will need to maintain and significantly grow our access to battery cells, including through the development and manufacture of our own cells, and control our related costs.",
    "source": "10-K 2025, Item 1A"
   }
  ],
@@ -32,8 +40,8 @@
   },
   {
    "label": "10-K 2025",
-   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=TSLA&type=10-K"
+   "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
   }
  ],
- "generated_at": "2026-10-05T13:01:03.074498+00:00"
+ "generated_at": "2026-10-05T13:31:12.812267+00:00"
 }

@@ -47,3 +47,10 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - `claude -p` se zove s `--strict-mcp-config` (bez toga CLI je dodavao strane napomene o konektorima).
 - Dokumenti: DEMO.md, PRESENTATION.md, TESTING.md. UI nije vizualno provjeren u pregledniku; API jest (uklj. test bez AI-ja).
 - Otvoreno: spajanje na pravi data_service, FinRobot (preskočeno prema planu), snimak demoa (pet).
+
+## 2026-10-05 · Korak 10: spajanje na pravi data_service (feature/b-real-data)
+- Provjereno sa `DATA_URL=http://localhost:8001`: AAPL/MSFT/NVDA/TSLA/GOOGL daju brief s pravim brojevima i rizicima iz 10-K (AAPL 333.69 USD, P/E 38.3); /compare i /history rade s pravim podacima.
+- Brief nosi 5 ključnih rizika (tekst skraćen na 350 znakova) umjesto cijelog Item 1A (27–40 stavki), što je ubrzalo i LLM poziv.
+- `agent_service/demo_cache/` regenerisan nad pravim podacima (AAPL, MSFT, NVDA, TSLA, GOOGL). Ranije su sadržavali stare mock brojeve (primijetio A u LOG-A).
+- `run.sh` pokreće oba servisa; `DATA_OFFLINE=1` = A-ov offline keš (AAPL, MSFT, NVDA).
+- Poznato: ako je data_service ugašen, a DATA_URL postavljen, /brief vraća grešku (namjerno, da se ne prikriju kvarovi).

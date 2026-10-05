@@ -1,25 +1,33 @@
 {
  "ticker": "NVDA",
- "thesis": "NVIDIA Corp. (NVDA) trguje se po cijeni od 118,4 USD (+1,9 %), uz tržišnu kapitalizaciju od oko 2.900 milijardi USD [1]. U fiskalnoj 2025. godini kompanija je ostvarila prihod od 130 milijardi USD, što je rast od 78 % u odnosu na prethodnu godinu [1]. Neto dobit iznosila je 72 milijarde USD, uz neto maržu od 55 % [1]. To ukazuje na izuzetnu profitabilnost, ali P/E omjer od 52 pokazuje da tržište već računa na nastavak snažnog rasta [1]. Glavni rizici za tezu su koncentracija kupaca među velikim cloud davateljima i ovisnost o AI ciklusu ulaganja [2], izvozna ograničenja i geopolitički rizik za čipove prema Kini [2], te ovisnost o jednom proizvođaču (TSMC) i rizik lanca nabave [2].",
+ "thesis": "NVIDIA je u fiskalnoj 2026. godini ostvarila prihod od 215,94 mlrd USD, što je rast od 65,47% u odnosu na prethodnu godinu, uz neto dobit od 120,07 mlrd USD i neto maržu od 55,6% [1]. Profitabilnost je izuzetno visoka: bruto marža iznosi 74,67%, operativna 66,24%, a omjer duga i kapitala je nizak i iznosi 0,17 [1]. Dionica trenutno vrijedi 236,34 USD, blizu 52-sedmičnog maksimuma od 237,88 USD, s trenutnim P/E od 29,88 i forward P/E od 14,96, što znači da tržište očekuje nastavak rasta zarade [1]. Glavni rizici su konkurencija, neusklađenost ponude i potražnje zbog dugih proizvodnih rokova i zavisnost od dobavljača trećih strana [2], a beta od 2,22 ukazuje na znatno veću volatilnost od tržišta [1].",
  "mode": "llm",
  "metrics": {
-  "price": 118.4,
-  "pe": 52.0,
-  "revenue_growth_yoy": 0.78,
-  "net_margin": 0.55
+  "price": 236.3415,
+  "pe": 29.88,
+  "revenue_growth_yoy": 0.6547,
+  "net_margin": 0.556
  },
  "risks": [
   {
-   "text": "Koncentracija kupaca (veliki cloud davatelji) i ovisnost o AI ciklusu ulaganja.",
-   "source": "10-K 2025, Item 1A"
+   "text": "Failure to meet the evolving needs of our industry and markets may adversely impact our financial results.",
+   "source": "10-K 2026, Item 1A"
   },
   {
-   "text": "Izvozna ograničenja i geopolitički rizik za čipove prema Kini.",
-   "source": "10-K 2025, Item 1A"
+   "text": "Competition could adversely impact our market share and financial results.",
+   "source": "10-K 2026, Item 1A"
   },
   {
-   "text": "Ovisnost o jednom proizvođaču (TSMC) i rizik lanca nabave.",
-   "source": "10-K 2025, Item 1A"
+   "text": "Long manufacturing lead times and uncertain supply and capacity availability, combined with a failure to estimate customer demand accurately, has led and could lead to mismatches between supply and demand.",
+   "source": "10-K 2026, Item 1A"
+  },
+  {
+   "text": "Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+   "source": "10-K 2026, Item 1A"
+  },
+  {
+   "text": "Defects in our products have caused and could cause us to incur significant expenses to remediate, which can damage our reputation and cause us to lose market share.",
+   "source": "10-K 2026, Item 1A"
   }
  ],
  "peers": [
@@ -32,9 +40,9 @@
    "url": "https://finance.yahoo.com/quote/NVDA"
   },
   {
-   "label": "10-K 2025",
-   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=NVDA&type=10-K"
+   "label": "10-K 2026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
   }
  ],
- "generated_at": "2026-10-05T13:01:09.982169+00:00"
+ "generated_at": "2026-10-05T13:31:01.075963+00:00"
 }

@@ -27,12 +27,13 @@ git add . && git commit -m "feat(agent): opis"
 git push -u origin HEAD     # PR u dev
 ```
 
-## Pokretanje
-- **Data service (A):** port 8001 (`uvicorn` iz `data_service/`), endpointi iz `contracts/README.md`.
-- **Agent + UI (B):** `cd agent_service && pip install -r requirements.txt && uvicorn main:app --port 8002`, otvori http://localhost:8002/. Bez `DATA_URL` koristi mockove; sa `DATA_URL=http://localhost:8001` pravi data service.
-
-## Ključ za AI (svako koristi svoj)
-Teza se generiše LLM-om. Redoslijed: `ANTHROPIC_API_KEY` iz okruženja/`.env` (svako svoj, nikad u repo) → prijavljeni `claude` CLI → šablon. Bez ključa radi šablon i keširani briefovi (demo ne ovisi o ključu). Kao Möbius mini-app (Store) ključ ne treba: brief piše korisnikov vlastiti Möbius agent.
+## Pokretanje (oba servisa jednom naredbom)
+```
+pip install -r data_service/requirements.txt -r agent_service/requirements.txt
+./run.sh                      # ili: DATA_OFFLINE=1 ./run.sh  (offline demo: AAPL, MSFT, NVDA iz keša)
+```
+Otvori http://localhost:8002/. Zasebno: data_service na 8001 (`data_service/README.md`), agent+UI na 8002 s `DATA_URL=http://localhost:8001`. Bez `DATA_URL` agent koristi mockove iz `contracts/mocks` (ilustrativni brojevi).
+Prije prvog pokretanja upiši svoj `SEC_USER_AGENT` (ime + e-mail) u `data_service/.env` (EDGAR to traži).
 
 ## Status varijante B (pon 5.10.)
 Urađeno: ugovori+mockovi (5 tickera), agent (/brief, /briefs, /projects, /compare, /chat, LLM teza s izvorima, keš za demo), UI (grafikon offline, kartice, projekti, usporedba, chat), docs/DEMO.md, docs/PRESENTATION.md, docs/TESTING.md.
