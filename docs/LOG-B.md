@@ -64,3 +64,8 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 
 ## 2026-10-05 · Korak 12: run.sh pokreće i learning_service
 - run.sh: data_service 8001, learning_service 8003, agent+UI 8002 (LEARNING_URL postavljen). API tok provjeren (ocjena → profil → drugi brief s fokusom na dug i FCF → paper kupovina). Browser test usporen opterećenjem hosta; kad AI poziv ne uspije, brief pada na keš (bez 'Naučeno').
+
+## 2026-10-05 · Korak 13: skoro-uživo cijene (feature/b-live-quotes)
+- UI osvježava cijenu, promjenu, 'teza od…' traku, zadnju tačku grafikona i paper portfelj svakih 15 s (pauza kad je tab skriven), oznaka '● uživo HH:MM:SS' ili '○ bez veze'; količina u paper panelu se čuva pri osvježavanju.
+- data_service/app/service.py (A-ov folder, jedna linija): TTL cijene 15 min → 15 s (env QUOTE_TTL, 900 vraća staro). Dogovoriti s A-om.
+- Provjereno: dva /quote poziva u razmaku 16 s daju različite cijene; u browseru #px se promijenio (33.53 → 33.49). Ograničenje: yfinance je skoro uživo (ne tick po tick), a izvan radnog vremena berze (15:30–22:00 CET) cijena stoji. Offline demo ne može biti uživo.

@@ -13,6 +13,7 @@ Lookup order for every endpoint:
 from __future__ import annotations
 
 import logging
+import os
 import re
 from typing import Callable, TypeVar
 
@@ -28,7 +29,7 @@ log = logging.getLogger("data_service")
 M = TypeVar("M", bound=BaseModel)
 
 TTL = {
-    "quote": 15 * 60,
+    "quote": int(os.environ.get("QUOTE_TTL", 15)),   # sekunde; 15 s = skoro uživo (UI osvježava svakih 15 s), vrijednost 900 vraća stari keš od 15 min
     "history": 6 * 3600,
     "financials": 24 * 3600,
     "risk_factors": 7 * 24 * 3600,

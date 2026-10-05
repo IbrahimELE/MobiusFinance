@@ -61,7 +61,7 @@ const post=(u,b)=>J(u,{method:"POST",headers:{"Content-Type":"application/json"}
 const pct=x=>x==null?"–":(x*100).toFixed(1)+"%",num=(x,d=1)=>x==null?"–":Number(x).toFixed(d);
 const big=x=>x==null?"–":Math.abs(x)>=1e9?(x/1e9).toFixed(1)+" mlrd":Math.abs(x)>=1e6?(x/1e6).toFixed(0)+" mil":num(x,0);
 const usd=x=>x==null?"–":Number(x).toLocaleString("en-US",{style:"currency",currency:"USD"});
-let P=localStorage.proj||"default",cur=null,per="1y",feat={paper:false,learning:false},chart;
+let P=localStorage.proj||"default",cur=null,per="1y",feat={paper:false,learning:false},chart,series=null,lastPx=null;
 const MODE={llm:"AI",cache:"iz keša",template:"šablon"};
 function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a title="${esc(s.label)}" href="${esc(s.url)}" target="_blank">[${n}]</a>`:m})}
 async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(P);
@@ -76,7 +76,7 @@ function show(b){cur=b;const m=b.metrics,x=b.extras||{};
  const rng=x.year_low!=null&&x.year_high!=null?`<div class="kpi range"><small>52-sedmični raspon</small><div class="bar"><i style="left:calc(${Math.min(100,Math.max(0,(m.price-x.year_low)/(x.year_high-x.year_low)*100))}% - 1px)"></i></div><div class="ends"><span>${usd(x.year_low)}</span><span>${usd(x.year_high)}</span></div></div>`:"";
  const cats={};b.risks.forEach(r=>(cats[r.category||"Rizici"]??=[]).push(r));
  const ann=x.annual&&x.annual.length>1?`<div class="card"><h3>Posljednje godine</h3><div class="ann">${[["Prihod","revenue","#4c8dff"],["Neto dobit","net_income","#2ecc8f"],["Slobodni novčani tok","free_cash_flow","#f5b84c"]].map(([n,k,c])=>`<div><small>${n}, ${x.annual.at(-1)[k]!=null?big(x.annual.at(-1)[k]):""} USD</small>${bars(x.annual.map(a=>a[k]),x.annual.map(a=>a.year),c)}</div>`).join("")}</div></div>`:"";
- $("main").innerHTML=`<div class="card"><div class="hero"><h2>${esc(b.name||b.ticker)} <small>${esc(b.ticker)}</small></h2><span class="price" id="px">${usd(m.price)}</span><span class="chg" id="chg"></span><span class="badge">${MODE[b.mode]||""}</span></div>
+ $("main").innerHTML=`<div class="card"><div class="hero"><h2>${esc(b.name||b.ticker)} <small>${esc(b.ticker)}</small></h2><span class="price" id="px">${usd(m.price)}</span><span class="chg" id="chg"></span><span class="badge" id="live" title="Cijena se osvježava svakih 15 s">○ uživo</span><span class="badge">${MODE[b.mode]||""}</span></div>
   <div class="per" id="per">${["1mo","6mo","1y","5y"].map(p=>`<button class="g ${p==per?"on":""}" data-p="${p}">${{"1mo":"1 mj","6mo":"6 mj","1y":"1 god","5y":"5 god"}[p]}</button>`).join("")}</div><div id="chart"></div></div>
   <div class="card"><h3>Pokazatelji</h3><div class="kpis">${kp("P/E",num(m.pe))}${kp("Forward P/E",num(x.forward_pe))}${kp("Rast prihoda",pct(m.revenue_growth_yoy))}${kp("Neto marža",pct(m.net_margin))}${kp("Bruto marža",x.gross_margin!=null?pct(x.gross_margin):null)}${kp("Operativna marža",x.operating_margin!=null?pct(x.operating_margin):null)}${kp("Dug/kapital",x.debt_to_equity!=null?num(x.debt_to_equity,2):null)}${kp("Slobodni novčani tok",x.free_cash_flow!=null?big(x.free_cash_flow)+" USD":null)}${rng}</div></div>
   <div class="card thesis"><h3>Teza</h3><div id="since"></div>${b.learned?`<div class="learned"><b>Naučeno:</b> ${esc(b.learned.label||b.learned.instructions)} <small>(iz ${b.learned.feedback_count} ocjena)</small></div>`:""}<p>${cite(b)}</p>
@@ -91,9 +91,16 @@ function show(b){cur=b;const m=b.metrics,x=b.extras||{};
  draw(b.ticker);since(b);paperUI()}
 async function draw(t){if(!window.LightweightCharts)return;$("chart").innerHTML="";
  const c=LightweightCharts.createChart($("chart"),{autoSize:true,layout:{background:{color:"#121923"},textColor:"#8593a6"},grid:{vertLines:{visible:false},horzLines:{color:"#212c3a"}},rightPriceScale:{borderVisible:false},timeScale:{borderVisible:false}});
- try{const h=await J(`/history/${t}?period=${per}`);c.addAreaSeries({lineColor:"#4c8dff",topColor:"rgba(76,141,255,.25)",bottomColor:"rgba(76,141,255,0)",lineWidth:2}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}catch(e){$("chart").innerHTML='<span class="err">Grafikon nije dostupan</span>'}}
-async function since(b){try{const q=await J("/quote/"+b.ticker);const d=q.change_pct;$("chg").textContent=(d>=0?"+":"")+num(d,2)+"%";$("chg").className="chg "+(d>=0?"up":"dn");
+ try{const h=await J(`/history/${t}?period=${per}`);series=c.addAreaSeries({lineColor:"#4c8dff",topColor:"rgba(76,141,255,.25)",bottomColor:"rgba(76,141,255,0)",lineWidth:2}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}catch(e){$("chart").innerHTML='<span class="err">Grafikon nije dostupan</span>'}}
+async function since(b){try{const q=await J("/quote/"+b.ticker);lastPx=q.price;$("px").textContent=usd(q.price);const d=q.change_pct;$("chg").textContent=(d>=0?"+":"")+num(d,2)+"%";$("chg").className="chg "+(d>=0?"up":"dn");
  if(Math.abs(q.price-b.metrics.price)>.005){const ch=(q.price/b.metrics.price-1)*100;$("since").innerHTML=`<div class="since">Teza od ${esc((b.generated_at||"").slice(0,10))}: cijena tada ${usd(b.metrics.price)}, danas ${usd(q.price)} <b class="chg ${ch>=0?"up":"dn"}">(${ch>=0?"+":""}${ch.toFixed(1)}%)</b></div>`}}catch(e){}}
+const LIVE_MS=15000;
+async function tick(){if(document.hidden||!cur||!$("px"))return;
+ try{await since(cur);if(series&&lastPx!=null)series.update({time:new Date().toISOString().slice(0,10),value:lastPx});
+  $("live").textContent="● uživo "+new Date().toLocaleTimeString("bs",{hour:"2-digit",minute:"2-digit",second:"2-digit"});$("live").style.color="var(--up)"}
+ catch(e){$("live").textContent="○ bez veze";$("live").style.color="var(--warn)"}
+ paperUI()}
+setInterval(tick,LIVE_MS);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 function rateUI(r){$("rate").innerHTML=`<span>${r=="up"?"👍":"👎"}</span><input id="rn" placeholder="Šta ti fali / šta da bude drukčije? (nije obavezno)"><button id="rs">Pošalji</button><span id="rm" class="mut"></span>`;
  $("rs").onclick=async()=>{try{await post("/feedback",{project_id:P,ticker:cur.ticker,brief_generated_at:cur.generated_at,rating:r,note:$("rn").value,tags:[]});$("rate").innerHTML='<span class="mut">Hvala! Sljedeći brief u ovom projektu to uzima u obzir.</span>'}catch(e){$("rm").textContent="Greška: "+e.message}}}
 async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));
@@ -105,12 +112,12 @@ $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:c
  if(s.length<2){$("cmpout").innerHTML='<p class="mut">Označi bar 2 briefa.</p>';return}
  const r=await J("/compare?tickers="+s.join(","));
  $("cmpout").innerHTML=`<table><tr><th></th>${r.map(x=>`<th>${esc(x.ticker)}</th>`).join("")}</tr>`+[["Cijena",x=>num(x.price,2)],["P/E",x=>num(x.pe)],["Rast prih.",x=>pct(x.revenue_growth_yoy)],["Neto marža",x=>pct(x.net_margin)]].map(([n,f])=>`<tr><td>${n}</td>${r.map(x=>`<td>${f(x)}</td>`).join("")}</tr>`).join("")+"</table>"};
-async function paperUI(){if(!feat.paper)return;
+async function paperUI(){if(!feat.paper)return;const qv=$("qty")?$("qty").value:"10";
  try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));$("paper").hidden=false;
   const t=cur?cur.ticker:"";
   $("pf").innerHTML=`<div class="kpis" style="grid-template-columns:1fr 1fr"><div class="kpi"><small>Vrijednost</small><b>${usd(p.equity)}</b></div><div class="kpi"><small>Dobit/gubitak</small><b class="chg ${p.pnl>=0?"up":"dn"}">${usd(p.pnl)}</b></div></div><div class="note">Gotovina ${usd(p.cash)}</div>
   ${p.positions.length?`<table><tr><th>Ticker</th><th>Kol.</th><th>Cijena</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td>${esc(x.ticker)}</td><td>${x.qty}</td><td>${num(x.price,2)}</td><td class="chg ${x.pnl>=0?"up":"dn"}">${num(x.pnl_pct,1)}%</td></tr>`).join("")}</table>`:'<p class="mut">Nema pozicija.</p>'}
-  ${t?`<div class="trade"><input id="qty" type="number" min="1" value="10" aria-label="Količina"><button class="buy" data-s="buy">Kupi ${esc(t)}</button><button class="sell" data-s="sell">Prodaj</button></div>`:""}
+  ${t?`<div class="trade"><input id="qty" type="number" min="1" value="${esc(qv)}" aria-label="Količina"><button class="buy" data-s="buy">Kupi ${esc(t)}</button><button class="sell" data-s="sell">Prodaj</button></div>`:""}
   <div id="pm" class="note"></div><button class="g" id="prst" style="margin-top:8px;font-size:12px">Resetuj račun</button>`;
   $("pf").onclick=async e=>{const s=e.target.dataset.s;
    if(s){try{await post("/paper/orders",{project_id:P,ticker:cur.ticker,side:s,qty:+$("qty").value});paperUI()}catch(er){$("pm").innerHTML='<span class="err">'+esc(er.message)+'</span>'}}
