@@ -26,11 +26,33 @@ def fetch(kind: str, ticker: str, path: str):
     if not f.exists(): raise HTTPException(404, f"Nema mocka za {ticker} ({kind})")
     return json.loads(f.read_text())
 
-def write_thesis(t, quote, fin, risks):
-    """Mjesto za LLM. Sada šablon; kasnije prompt s tvrdnjama vezanim za izvore."""
+def template_thesis(quote, fin, risks):
     g, m = fin["revenue_growth_yoy"] * 100, fin["net_margin"] * 100
     return (f"{quote['name']} raste {g:.1f}% godišnje uz neto maržu {m:.1f}% i P/E {fin['pe']}. "
-            f"Glavni rizik: {risks['items'][0]['text']}")
+            f"Glavni rizik: {risks['items'][0]['text']} [2]")
+
+PROMPT = """Ti si financijski analitičar. Napiši tezu (3-4 rečenice, bosanski) za {name} ({t}) ISKLJUČIVO iz podataka ispod.
+Svaku tvrdnju završi oznakom izvora [n]. Ne izmišljaj brojeve. Izvori: [1] financials/quote (Yahoo Finance), [2] {filing}.
+Podaci: {data}
+Vrati samo tekst teze."""
+
+def write_thesis(t, quote, fin, risks):
+    """LLM teza s oznakama izvora [n]; bez ANTHROPIC_API_KEY ili uz grešku pada na šablon (demo radi offline)."""
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        return template_thesis(quote, fin, risks)
+    data = json.dumps({"quote": quote, "financials": fin, "risks": risks["items"]}, ensure_ascii=False)
+    try:
+        r = httpx.post("https://api.anthropic.com/v1/messages", timeout=60,
+            headers={"x-api-key": key, "anthropic-version": "2023-06-01"},
+            json={"model": os.environ.get("LLM_MODEL", "claude-sonnet-4-5"), "max_tokens": 500,
+                  "messages": [{"role": "user", "content": PROMPT.format(
+                      name=quote["name"], t=t, filing=risks["filing"], data=data)}]})
+        r.raise_for_status()
+        return r.json()["content"][0]["text"].strip()
+    except Exception as e:
+        print("LLM greška, koristim šablon:", e)
+        return template_thesis(quote, fin, risks)
 
 @app.post("/brief")
 def brief(req: BriefReq):
@@ -42,8 +64,8 @@ def brief(req: BriefReq):
          "metrics": {"price": quote["price"], "pe": fin["pe"],
                      "revenue_growth_yoy": fin["revenue_growth_yoy"], "net_margin": fin["net_margin"]},
          "risks": risks["items"], "peers": [],
-         "sources": [{"label": risks["filing"], "url": risks["url"]},
-                     {"label": "Yahoo Finance", "url": f"https://finance.yahoo.com/quote/{t}"}],
+         "sources": [{"label": "Yahoo Finance", "url": f"https://finance.yahoo.com/quote/{t}"},
+                     {"label": risks["filing"], "url": risks["url"]}],
          "generated_at": dt.datetime.now(dt.timezone.utc).isoformat()}
     d = STORE / req.project_id; d.mkdir(parents=True, exist_ok=True)
     (d / f"{t}.json").write_text(json.dumps(b, ensure_ascii=False, indent=1))

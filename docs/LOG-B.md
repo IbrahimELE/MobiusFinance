@@ -20,3 +20,9 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 ## 2026-10-05 · Korak 4: gitflow s dev granom i hookovima
 - Dodano: .githooks (pre-commit, commit-msg, pre-merge-commit, pre-rebase), setup.sh, nova GITFLOW.md i README sekcija; grana `dev`; push main+dev na IbrahimELE/MobiusFinance.
 - Napomena: PR šablon i CODEOWNERS ciljaju main; prebaciti default branch na dev u GitHub postavkama.
+
+## 2026-10-05 · Korak 5: LLM teza (feature/brief-llm)
+- `write_thesis()` poziva Anthropic Messages API (httpx, bez novih ovisnosti) kad je postavljen `ANTHROPIC_API_KEY` (opcionalno `LLM_MODEL`, default claude-sonnet-4-5); inače/uz grešku šablon, pa demo radi offline.
+- Prompt traži oznake izvora [n]; `sources[0]`=Yahoo, `sources[1]`=10-K, redoslijed je dio dogovora s promptom.
+- Testirano samo šablonom (nema ključa). Ključ treba unijeti preko sealed card-a u `.env` (ne u repo).
+- Sljedeće: mockovi za još 2 tickera, grafikon bez CDN-a, UI da prikaže [n] kao linkove.
