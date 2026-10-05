@@ -30,3 +30,9 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 ## 2026-10-05 · Korak 6: LLM bez API ključa
 - `llm()`: ANTHROPIC_API_KEY ako postoji, inače `claude -p` (u Möbiusu je Claude već prijavljen, radi bez ključa; testirano), inače šablon.
 - Ograničenje: na drugom računaru bez prijavljenog `claude` CLI-ja pada na šablon. Za demo snimiti keširane briefove.
+
+## 2026-10-05 · Korak 7: offline UI, više tickera, izvori
+- Lightweight Charts lokalno u `frontend/vendor/` (nema CDN-a, demo radi offline).
+- Mockovi za MSFT i TSLA (quote, financials, history, risk-factors); vrijednosti su ilustrativne, ne prave. Brief mock postoji samo za AAPL; briefovi se generišu.
+- UI: oznake [n] u tezi su linkovi na `sources[n-1]`; HTML se escapuje.
+- Napomena o objavi: Store paket mora biti Möbius mini-app (index.jsx), vidi /data/apps/finance-desk; ovaj repo je izvor za hackathon.

@@ -1,6 +1,6 @@
 <!doctype html><html lang="bs"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Finance Desk</title>
-<script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<script src="vendor/lightweight-charts.js"></script>
 <style>
 body{font:15px system-ui;margin:0;background:#0f1419;color:#e6e9ee}
 main{max-width:900px;margin:0 auto;padding:20px}
@@ -22,11 +22,13 @@ async function run(t){
  const r=await fetch("/brief",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ticker:t,project_id:P})});
  if(!r.ok){out.innerHTML='<div class="card">Greška: '+(await r.text())+'</div>';return}
  show(await r.json());list()}
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a title="${esc(s.label)}" style="color:#7aa7ff" href="${esc(s.url)}" target="_blank">[${n}]</a>`:m})}
 function show(b){
  out.innerHTML=`<div class="card"><h2>${b.ticker}</h2><div id="chart"></div></div>
  <div class="card kpis"><div><small>Cijena</small><b>${b.metrics.price}</b></div><div><small>P/E</small><b>${b.metrics.pe}</b></div>
  <div><small>Rast prihoda</small><b>${pct(b.metrics.revenue_growth_yoy)}</b></div><div><small>Neto marža</small><b>${pct(b.metrics.net_margin)}</b></div></div>
- <div class="card"><h3>Teza</h3><p>${b.thesis}</p><h3>Rizici</h3><ul>${b.risks.map(r=>`<li>${r.text} <small>[${r.source}]</small></li>`).join("")}</ul>
+ <div class="card"><h3>Teza</h3><p>${cite(b)}</p><h3>Rizici</h3><ul>${b.risks.map(r=>`<li>${r.text} <small>[${r.source}]</small></li>`).join("")}</ul>
  <h3>Izvori</h3><ul>${b.sources.map(s=>`<li><a style="color:#7aa7ff" href="${s.url}">${s.label}</a></li>`).join("")}</ul></div>`;
  chart(b.ticker)}
 async function chart(t){
