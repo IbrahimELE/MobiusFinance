@@ -1,0 +1,87 @@
+{
+ "stored_at": "2026-10-05T13:24:08+00:00",
+ "payload": {
+  "ticker": "NVDA",
+  "pe": 29.58,
+  "revenue": 215938000000.0,
+  "revenue_growth_yoy": 0.6547,
+  "net_income": 120067000000.0,
+  "net_margin": 0.556,
+  "fiscal_year": 2026,
+  "name": "NVIDIA Corporation",
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "currency": "USD",
+  "summary": "NVIDIA Corporation operates as a data center scale AI infrastructure company in the United States, Taiwan, China, Hong Kong, Europe, and internationally. It operates through Compute & Networking, and Graphics segments. The Compute & Networking segment provides data center accelerated computing and networking platforms and artificial intelligence solutions and software, and automotive platforms and autonomous and electric vehicle solutions, including software. The Graphics segment offers GeForce GPUs for gaming and PCs; Quadro/NVIDIA RTX GPUs for enterprise workstation graphics. The company's products are used in gaming, professional visualization, data center, and automotive markets. It sells its products to original equipment manufacturers, original device manufacturers, system integrators and distributors, independent software vendors, cloud service providers, add-in board manufacturers, distributors, automotive manufacturers and tier-1 automotive suppliers, and other ecosystem participants. NVIDIA Corporation was incorporated in 1993 and is headquartered in Santa Clara, California.",
+  "price": 233.95,
+  "market_cap": 5649190617088.0,
+  "forward_pe": 14.81,
+  "eps": 7.91,
+  "revenue_ttm": 302970011648.0,
+  "gross_margin": 0.74674004,
+  "operating_margin": 0.66236997,
+  "net_margin_ttm": 0.63663,
+  "free_cash_flow": 41809874944.0,
+  "debt_to_equity": 0.1697,
+  "dividend_yield": 0.0043,
+  "beta": 2.216,
+  "annual": [
+   {
+    "fiscal_year": 2026,
+    "period_end": "2026-01-31",
+    "revenue": 215938000000.0,
+    "gross_profit": 153463000000.0,
+    "operating_income": 130387000000.0,
+    "net_income": 120067000000.0,
+    "diluted_eps": 4.9,
+    "free_cash_flow": 96676000000.0
+   },
+   {
+    "fiscal_year": 2025,
+    "period_end": "2025-01-31",
+    "revenue": 130497000000.0,
+    "gross_profit": 97858000000.0,
+    "operating_income": 81453000000.0,
+    "net_income": 72880000000.0,
+    "diluted_eps": 2.94,
+    "free_cash_flow": 60853000000.0
+   },
+   {
+    "fiscal_year": 2024,
+    "period_end": "2024-01-31",
+    "revenue": 60922000000.0,
+    "gross_profit": 44301000000.0,
+    "operating_income": 32972000000.0,
+    "net_income": 29760000000.0,
+    "diluted_eps": 1.19,
+    "free_cash_flow": 27021000000.0
+   },
+   {
+    "fiscal_year": 2023,
+    "period_end": "2023-01-31",
+    "revenue": 26974000000.0,
+    "gross_profit": 15356000000.0,
+    "operating_income": 5577000000.0,
+    "net_income": 4368000000.0,
+    "diluted_eps": 0.174,
+    "free_cash_flow": 3808000000.0
+   }
+  ],
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-05T13:24:08+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance key statistics",
+     "url": "https://finance.yahoo.com/quote/NVDA/key-statistics"
+    },
+    {
+     "label": "Yahoo Finance income statement",
+     "url": "https://finance.yahoo.com/quote/NVDA/financials"
+    }
+   ]
+  }
+ }
+}

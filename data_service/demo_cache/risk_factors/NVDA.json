@@ -1,0 +1,247 @@
+{
+ "stored_at": "2026-10-05T13:24:08+00:00",
+ "payload": {
+  "ticker": "NVDA",
+  "filing": "10-K 2026",
+  "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+  "items": [
+   {
+    "text": "Failure to meet the evolving needs of our industry and markets may adversely impact our financial results.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Competition could adversely impact our market share and financial results.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Long manufacturing lead times and uncertain supply and capacity availability, combined with a failure to estimate customer demand accurately, has led and could lead to mismatches between supply and demand.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Defects in our products have caused and could cause us to incur significant expenses to remediate, which can damage our reputation and cause us to lose market share.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Adverse economic conditions may harm our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "International sales and operations are a significant part of our business, which exposes us to risks that could harm our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Product, system security, and data protection incidents or breaches, as well as cyber-attacks, could disrupt our operations, reduce our expected revenue, increase our expenses, and significantly harm our business and reputation.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Business disruptions could harm our operations, lead to a decline in revenue and increase our costs.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Climate change may have a long-term impact on our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We may not be able to realize the potential benefits of business investments or acquisitions, and we may not be able to successfully integrate acquired companies, which could hurt our ability to grow our business, develop new products or sell our products.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We receive a significant amount of our revenue from a limited number of partners and distributors and we have a concentration of sales to customers who purchase directly or indirectly from us, and our revenue could be adversely affected if we lose or are prevented from selling to any of these customers.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Commercial arrangements expose us to counterparty risks.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "If we are unable to attract, retain and motivate our executives and key employees, our business may be harmed.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our business is dependent upon the proper functioning of our business processes and information systems and modification or interruption of such systems may disrupt our business and internal controls.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our operating results have in the past fluctuated and may in the future fluctuate, and if our operating results are below the expectations of securities analysts or investors, our stock price could decline.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We are subject to complex laws, rules, regulations, and political and other actions, including restrictions on the export of our products, which may adversely impact our business.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Scrutiny from shareholders, regulators and others regarding our corporate sustainability practices could result in additional costs or risks and adversely impact our reputation and willingness of customers and suppliers to do business with us.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Issues relating to the responsible use of our technologies, including AI in our offerings, may result in reputational or financial harm and liability.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Actions to adequately protect our IP rights could result in substantial costs to us and our ability to compete could be harmed if we are unsuccessful or if we are prohibited from making or selling our products.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We are subject to stringent and changing data privacy and security laws, rules, regulations and other obligations. These areas could damage our reputation, deter current and potential customers, affect our product design, or result in legal or regulatory proceedings and liability.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "We may have exposure to additional tax liabilities and our operating results may be adversely impacted by changes in tax laws, higher than expected tax rates and other tax-related factors.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Our business is exposed to the burden and risks associated with litigation, investigations and regulatory proceedings.",
+    "source": "10-K 2026, Item 1A"
+   },
+   {
+    "text": "Delaware law and our certificate of incorporation, bylaws and agreement with Microsoft could delay or prevent a change in control.",
+    "source": "10-K 2026, Item 1A"
+   }
+  ],
+  "company": "NVIDIA CORP",
+  "cik": "0001045810",
+  "form": "10-K",
+  "filing_date": "2026-02-25",
+  "report_date": "2026-01-25",
+  "accession_number": "0001045810-26-000021",
+  "risks": [
+   {
+    "category": "Risks Related to Our Industry and Markets",
+    "title": "Failure to meet the evolving needs of our industry and markets may adversely impact our financial results.",
+    "text": "Our accelerated computing platforms experience rapid changes in technology, customer requirements, competitive products, and industry standards. Our success depends on our ability to: • timely identify industry changes, adapt our strategies, and develop new or enhance and maintain existing products and technologies that meet the evolving needs of our markets, including addressing unexpected shifts in industry standards or disruptive technological innovations that could render our products incompatible with those developed by other companies; • develop or secure access to new products and technologies through investments in research and development; • launch new offerings with new business models including software, services, and cloud solutions, as well as software-, infrastructure-, or platform-as-a-service solutions; • expand the ecosystem for our products and technologies; • meet evolving and prevailing customer and industry safety, security, reliability expectations, and compliance standards; • manage product and software lifecycles to maintain customer and end-user satisfaction; • develop, acquire, maintain, and secure access to the internal and external infrastructure needed to scale our business, including sufficient energy for powering data centers using our products, acquisition integrations, customer support, e-commerce, IP licensing capabilities, and cloud service capacity; and • complete technical, financial, operational, compliance, sales and marketing investment …"
+   },
+   {
+    "category": "Risks Related to Our Industry and Markets",
+    "title": "Competition could adversely impact our market share and financial results.",
+    "text": "Our target markets remain competitive, and competition may intensify with expanding and changing product and service offerings, industry standards, customer and market needs, new entrants and consolidations. Our competitors’ products, services and technologies, including those mentioned above in this Annual Report on Form 10-K, may be cheaper or provide better functionality or features than ours, which has resulted and may in the future result in lower-than-expected selling prices or demand for our products. Some of our competitors operate their own fabrication facilities, and have longer operating histories, larger customer bases, more comprehensive IP portfolios and patent protections, more design wins, and greater financial, sales, marketing and distribution resources than we do. These competitors may be able to acquire market share and/or prevent us from doing so, more effectively identify and capitalize upon opportunities in new markets and end-user trends, more quickly transition their products, and impinge on our ability to procure sufficient foundry capacity and scarce input materials during a supply-constrained environment, which could harm our business. Some of our customers have in-house expertise and internal development capabilities similar to some of ours and can use or develop their own solutions to replace those we are providing. …"
+   },
+   {
+    "category": "Risks Related to Demand, Supply, and Manufacturing",
+    "title": "Long manufacturing lead times and uncertain supply and capacity availability, combined with a failure to estimate customer demand accurately, has led and could lead to mismatches between supply and demand.",
+    "text": "We have long manufacturing lead times and build finished products and maintain inventory in advance of anticipated demand. In periods of shortages impacting the semiconductor industry and/or limited supply or capacity in our supply chain, the lead times for certain supply may be extended. We have previously experienced and may continue to experience extended lead times of more than 12 months. To secure future supply and capacity, we have paid premiums, provided deposits, and entered into long-term supply agreements and capacity commitments, which have increased our product costs and this may continue. We may still be unable to secure sufficient commitments for capacity to address our business needs. If we inaccurately estimate demand, or our customers change orders, as we have experienced in the past, we may not be able to reduce our supply commitments in time, at the same rate, or at all. Significant mismatches between supply and demand have varied across our market platforms, resulted in both product shortages and excess inventory, significantly harmed our financial results and could reoccur. If we underestimate demand, and our foundry partners and contract manufacturers are unable to increase production or provide sufficient supply, we may not be able to meet increased customer demand in a timely manner, or at all. Our reputation and customer relationships could be damaged and we could lose revenue and market share. …"
+   },
+   {
+    "category": "Risks Related to Demand, Supply, and Manufacturing",
+    "title": "Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+    "text": "We depend on foundries to manufacture our semiconductor wafers using their fabrication equipment and techniques. We do not assemble, test, or package our products, but instead contract with independent subcontractors. These subcontractors assist with procuring components used in our systems, boards, and products. We face risks which have adversely affected or could adversely affect our ability to meet customer demand and scale our supply chain, negatively impact longer-term demand for our products and services, and adversely affect our business operations, gross margin, revenue and/or financial results, including: • lack of guaranteed supply of components and capacity; • decommitment by our suppliers; • potential higher wafer and component prices resulting from incorrectly estimating demand and failing to place orders with our suppliers with sufficient quantities or timely; • failure by our foundries or contract manufacturers to procure raw materials or provide adequate levels of manufacturing or test capacity for our products; • failure by our foundries to develop, obtain, or successfully implement high quality process technologies, including transitions to smaller geometry process technologies such as advanced process node technologies and memory designs needed to manufacture our products; • failure by our suppliers to comply with our policies and expectations and emerging regulatory requirements; • limited number and geographic concentration of global suppliers, foundries, …"
+   },
+   {
+    "category": "Risks Related to Demand, Supply, and Manufacturing",
+    "title": "Defects in our products have caused and could cause us to incur significant expenses to remediate, which can damage our reputation and cause us to lose market share.",
+    "text": "Our hardware and software product and service offerings are complex. They have in the past and may in the future contain defects, security vulnerabilities, experience failures, or unsatisfactory performance due to issues in design, fabrication, packaging, materials, bugs and/or use within a system. These risks may also increase when our products are introduced into new devices, markets, technologies and applications, or new versions are released, and when we rely on partners to supply and manufacture components that are used in our products, as these arrangements reduce our direct control over production. AI software products that we or our partners offer rely on training data that may originate from third parties and new training methods, and the resulting products may contain unknown or undetected defects and errors, or reflect unintended bias. Although arrangements with component providers may contain provisions for product defect expense reimbursement, we generally remain responsible to the customer for warranty product defects that may occur from time to time. Some failures in our products or services have been in the past and may in the future be only discovered after a product or service has been shipped or used. Undiscovered vulnerabilities in our products or services could result in loss of data or intangible property, or expose our customers to unscrupulous third parties who develop and deploy malicious software programs that could attack our products or services. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Adverse economic conditions may harm our business.",
+    "text": "Economic and industry uncertainty or changes, including recession or slowing growth, inflation, changes or uncertainty in fiscal, monetary, or trade policy, disruptions to capital markets and the banking system, currency fluctuations, higher interest rates, tighter credit, lower capital expenditures by businesses, including on IT infrastructure, increases in unemployment, labor shortages, and lower consumer confidence and spending, global supply chain constraints, and global economic and geopolitical developments, including the implementation of tariffs by the USG or other governments, have in the past and/or could in the future have adverse, wide-ranging effects on our business and financial results, including: • increased costs for wafers, components, logistics, and other supply chain expenses, which have negatively impacted our gross margin in the past and may do so in the future; • increased supply, employee, facilities and infrastructure costs and volatility in the financial markets, which have reduced and may in the future reduce our margins; • decrease in demand for our products, services and technologies and those of our customers, partners or licensees; • the inability of our suppliers to deliver on their supply commitments to us and our customers’ or our licensees’ inability to supply products to customers and/or end users; • limits on our ability to forecast operating results and make business decisions; • the insolvency of key suppliers, distributors, customers, C …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "International sales and operations are a significant part of our business, which exposes us to risks that could harm our business.",
+    "text": "We sell our products internationally, and we also have operations and conduct business internationally. Our semiconductor wafers are manufactured, assembled, tested and packaged by third parties located outside of the United States, and we generated 31% of our revenue in fiscal year 2026 from sales outside the United States. The market in China, where our offerings are limited by export controls, is highly competitive and we expect it to remain competitive going forward. The global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations. These include domestic and international economic and political conditions in countries in which we and our suppliers and manufacturers do business, government lockdowns to control case spread of global or local health issues, differing legal standards with respect to protection of IP and employment practices, different domestic and international business and cultural practices, disruptions to capital markets, counter-inflation policies, currency fluctuations, natural disasters, acts of war or other military actions, terrorism, public health issues, restrictions on international trade, such as tariffs, sanctions, and other controls on imports or exports, and catastrophic events."
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Product, system security, and data protection incidents or breaches, as well as cyber-attacks, could disrupt our operations, reduce our expected revenue, increase our expenses, and significantly harm our business and reputation.",
+    "text": "Security breaches, computer malware, social-engineering attacks, denial-of-service attacks, software bugs, server malfunctions, software or hardware failures, loss of data or other information technology assets, and other cyber-attacks are becoming increasingly sophisticated, making it more difficult to successfully detect, defend against them or implement adequate preventative measures. Cyber-attacks, including ransomware attacks by organized criminal threat actors, nation-states, and nation-state-supported actors, may become more prevalent and severe. Our ability to recover from ransomware attacks may be limited if our backups have been affected by the attack, or if restore from backups is delayed or not feasible. Individuals, groups of hackers and sophisticated organizations, including nation-states and nation-state-supported actors, and other threat actors have engaged and are expected to continue to engage in cyber-attacks. Additionally, some actors are using AI technology to launch more automated, targeted and coordinated attacks. Due to geopolitical conflicts and during times of war or other major conflicts, we and the third parties we rely upon may be subject to a heightened risk of cyber-attacks that could materially disrupt our ability to provide services and products. We may also face cybersecurity threats due to error or intentional misconduct by employees, contractors or other third-party service providers. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Business disruptions could harm our operations, lead to a decline in revenue and increase our costs.",
+    "text": "Factors that have caused and/or could in the future cause disruptions to our worldwide operations include: natural disasters, extreme weather conditions, power or water shortages, critical infrastructure failures, telecommunications failures, supplier disruptions, terrorist attacks, acts of violence, political and/or civil unrest, acts of war or other military actions, epidemics or pandemics, abrupt regulatory changes, and other natural or man-made disasters and catastrophic events. Our corporate headquarters, a large portion of our current data center capacity, and a portion of our research and development activities are located in California, and other critical business operations, finished goods inventory and some of our suppliers are located in Asia, making our operations vulnerable to natural disasters such as earthquakes, wildfires or other business disruptions occurring in these geographical areas. Catastrophic events can also have an impact on third-party vendors who provide us critical infrastructure services for IT and research and development systems and personnel. Geopolitical and domestic political developments and other events beyond our control can increase economic volatility globally. Political instability, changes in government or adverse political developments in or around any of the major countries in which we do business may harm our business, financial condition, and results of operations. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Climate change may have a long-term impact on our business.",
+    "text": "Climate change may have an increasingly adverse impact on our business and on our customers, partners and vendors. Water and energy availability and reliability in the regions where we conduct business is critical, and certain of our facilities may be vulnerable to the impacts of extreme weather events. Extreme heat and wind coupled with dry conditions in Northern California may lead to power safety shut offs due to wildfire risk, which can have adverse implications for our Santa Clara, California headquarter offices and data centers, including impairing the ability of our employees to work effectively. Climate change, its impact on our supply chain and critical infrastructure worldwide and its potential to increase political instability in regions where we, our customers, partners and our vendors do business, may disrupt our business and cause us to experience higher attrition, losses and costs to maintain or resume operations. Although we maintain insurance coverage for a variety of property, casualty, and other risks, the types and amounts of insurance we obtain vary depending on availability and cost. Some of our policies have large deductibles and broad exclusions, and our insurance providers may be unable or unwilling to pay a claim. Losses not covered by insurance may be large, which could harm our results of operations and financial condition. Our business and those of our suppliers and customers is subject to sustainability-related laws, regulations and lawsuits. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "We may not be able to realize the potential benefits of business investments or acquisitions, and we may not be able to successfully integrate acquired companies, which could hurt our ability to grow our business, develop new products or sell our products.",
+    "text": "We acquire and invest in businesses that offer products, services and technologies that we believe will help expand or enhance our strategic objectives. Acquisitions or investments involve significant challenges and risks and could impair our ability to grow our business, develop new products or sell our products and ultimately could have a negative impact on our financial results. If we pursue a particular transaction, we may limit our ability to enter into other transactions that could help us achieve our other strategic objectives. If we are unable to timely complete acquisitions, including due to delays and challenges in obtaining regulatory approvals, we may be unable to pursue other transactions, we may not be able to retain critical talent from the target company, technology may evolve and make the acquisition less attractive, and other changes can take place, which could reduce the anticipated benefits of the transaction and negatively impact our business. Regulators could also impose conditions that reduce the ultimate value of our acquisitions. In addition, to the extent that our perceived ability to consummate acquisitions is harmed, future acquisitions may be more difficult, complex or expensive. Our investments in companies could create volatility and fluctuations in our results. These investments may generate realized and unrealized gains or losses and we could realize losses up to the value of the investments. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "We receive a significant amount of our revenue from a limited number of partners and distributors and we have a concentration of sales to customers who purchase directly or indirectly from us, and our revenue could be adversely affected if we lose or are prevented from selling to any of these customers.",
+    "text": "We have experienced periods where we receive a significant amount of our revenue from a limited number of customers, and this trend may continue. For fiscal year 2026, sales to one direct customer represented 22% of total revenue and sales to another direct customer represented 14% of total revenue, all of which were primarily attributable to the Compute & Networking segment. With several of these partners, we are selling multiple products and systems in our portfolio through their channels. Our operating results depend on sales to our partner network, as well as the ability of these partners to sell products that incorporate our technologies. We have a small number of partners that are involved in system integration with our key customers. As our system design becomes increasingly complex, system integrators may be unable to meet specifications of our key customers. Changes in our partners' or customers' business models or their ownership can reduce the number of partners available to us and harm our ability to sell our advanced data center systems to customers. In the future, these partners may decide to purchase fewer products, not to incorporate our products into their ecosystem, or to alter their purchasing patterns in some other way. Because most of our sales are made on a purchase order basis, our customers can generally cancel, change, or delay product purchase commitments with little notice to us and without penalty. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Commercial arrangements expose us to counterparty risks.",
+    "text": "We have entered and may in the future enter into commercial arrangements, including long-term capacity purchase obligations and financial guarantees, and have been asked to offer financing arrangements to support our customers’ and partners’ buildout of datacenter infrastructure. We have not entered into any financing arrangements. Commercial arrangements expose us to counterparty risk, including customers' or partners' inability to fulfill their financial commitments and secure necessary financing or infrastructure, the occurrence of significant project delays, and counterparty financial distress or insolvency, all of which may negatively impact our business, financial condition, or results of operations. Financing arrangements, if undertaken, may in some circumstances result in lower upfront cash flows associated with extended payment terms or payment terms made over a multi-year term and may increase credit risk."
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "If we are unable to attract, retain and motivate our executives and key employees, our business may be harmed.",
+    "text": "To remain competitive and successfully execute our business strategy, we must attract, retain, and motivate our executives and key employees, as well as recruit and develop exceptional talent. However, labor is subject to external factors that are beyond our control, including our industry’s increasingly highly competitive market for skilled workers and leaders, and workforce participation rates. Changes in immigration and work permit regulations, or in their administration or interpretation, could impair our ability to attract, employ and retain qualified employees. Competition for talent drives up costs in the form of cash and stock-based compensation. In times of stock price volatility, as we have experienced in the past and may experience in the future, the retentive value of our stock-based compensation may decrease. Additionally, we are highly dependent on the services of our longstanding executive team. Failure to ensure effective succession planning, transfer of knowledge, and smooth transitions involving executives and key employees could hinder our strategic planning, execution, and long-term success."
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Our business is dependent upon the proper functioning of our business processes and information systems and modification or interruption of such systems may disrupt our business and internal controls.",
+    "text": "We rely upon internal processes and information systems to support key business functions, including our assessment of internal controls over financial reporting as required by Section 404 of the Sarbanes-Oxley Act. The efficient operation and scalability of these processes and systems is critical to support our growth. We continue to design and implement updated accounting functionality related to a new enterprise resource planning, or ERP, system. Any ERP system implementation may introduce problems, such as quality issues or programming errors, that could have an impact on our continued ability to successfully operate our business or to timely and accurately report our financial results. These changes may be costly and disruptive to our operations and could impose substantial demands on management time. Failure to implement new or updated controls, or difficulties encountered in their implementation, could harm our operating results or cause us to fail to meet our reporting obligations. Identification of material weaknesses in our internal controls, even if quickly remediated once disclosed, may cause investors to lose confidence in our financial statements and our stock price may decline. …"
+   },
+   {
+    "category": "Risks Related to Our Global Operating Business",
+    "title": "Our operating results have in the past fluctuated and may in the future fluctuate, and if our operating results are below the expectations of securities analysts or investors, our stock price could decline.",
+    "text": "Our operating results have in the past fluctuated and may continue to fluctuate due to a number of factors. Therefore, investors should not rely on our past results of operations as an indication of our future performance. Factors that could affect our results of operations include, but are not limited to: • our ability to adjust spending due to the multi-year development cycle for some of our products and services; • our ability to comply with our contractual obligations to customers; • our extended payment term arrangements with certain customers, the inability of some customers to make required payments, our ability to obtain credit insurance for customers with extended payment terms, and customer bad debt write-offs; • our vendors' payment requirements; • unanticipated costs associated with environmental liabilities; and • changes in financial accounting standards or interpretations of existing standards. Any of these factors could prevent us from achieving our anticipated financial results. For example, we have granted and may continue to grant extended payment terms to some customers, particularly during macroeconomic downturns, which could impact our ability to collect payment. Our vendors have requested and may continue to ask for shorter payment terms, which may impact our cash flow generation. These arrangements reduce the cash we have available for general business operations. …"
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "We are subject to complex laws, rules, regulations, and political and other actions, including restrictions on the export of our products, which may adversely impact our business.",
+    "text": "We are subject to laws and regulations domestically and worldwide, affecting our operations in areas including, but not limited to, IP ownership and infringement; taxes; import and export requirements and tariffs; anti-corruption, including the Foreign Corrupt Practices Act; business acquisitions; foreign exchange controls and cash repatriation restrictions; foreign ownership and investment; data privacy requirements; competition and antitrust; advertising; employment; product regulations; cybersecurity; environmental, health, and safety requirements; the responsible use of AI; sustainability; cryptocurrency; and consumer laws. Compliance with such requirements can be onerous and expensive, could impact our competitive position, and may negatively impact our business operations and ability to manufacture and ship our products. There can be no assurance that our employees, contractors, suppliers, customers or agents will not violate applicable laws or the policies, controls, and procedures that we have designed to help ensure compliance with such laws, and violations could result in fines, criminal sanctions against us, our officers, or our employees, prohibitions on the conduct of our business, and damage to our reputation. …"
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "Scrutiny from shareholders, regulators and others regarding our corporate sustainability practices could result in additional costs or risks and adversely impact our reputation and willingness of customers and suppliers to do business with us.",
+    "text": "Certain shareholder advocacy groups, investment funds, shareholders and other market participants, customers and government regulators have focused on corporate sustainability practices and disclosures, including those associated with climate change and human rights. Stakeholders may not be satisfied with our corporate sustainability practices and goals or the speed of their adoption. Further, there are state-level initiatives in the U.S. that may differ from other regulatory requirements or our various stakeholders’ expectations. Additionally, our corporate sustainability practices, oversight of our practices or disclosure controls may not meet evolving shareholder, regulator or other industry stakeholder expectations, or we may fail to meet corporate sustainability disclosure or reporting standards or legal requirements. We could also incur additional costs and require additional resources to monitor, report, and comply with various corporate sustainability practices and legal requirements, choose not to conduct business with potential customers and suppliers, or discontinue or not expand business with existing customers and suppliers due to our policies. These factors and increased disclosure may negatively harm our brand, reputation and business activities or expose us to liability."
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "Issues relating to the responsible use of our technologies, including AI in our offerings, may result in reputational or financial harm and liability.",
+    "text": "Concerns relating to the responsible use of new and evolving technologies, such as AI, in our products and services may result in reputational or financial harm and liability and may cause us to incur costs to resolve such issues. We are increasingly building AI capabilities and protections into many of our products and services, and we also offer stand-alone AI applications. AI poses emerging legal, social, and ethical issues and presents risks and challenges that could affect its adoption, and therefore our business. If we enable or offer solutions that draw controversy due to their perceived or actual impact on society, such as AI solutions that have unintended consequences, infringe copyright or rights of publicity, or are controversial because of their impact on human rights, privacy, employment or other social, economic or political issues, or if we are unable to implement effective internal policies and frameworks relating to the responsible development and use of AI models and systems offered through our sales channels, we may experience brand or reputational harm, competitive harm or legal liability. Leveraging AI capabilities to potentially improve our internal functions and operations may present further risks, costs, and challenges. …"
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "Actions to adequately protect our IP rights could result in substantial costs to us and our ability to compete could be harmed if we are unsuccessful or if we are prohibited from making or selling our products.",
+    "text": "From time to time, we are involved in lawsuits or other legal proceedings alleging patent infringement or other IP rights violations by us, our employees or parties that we have agreed to indemnify. An unfavorable ruling could include significant damages, invalidation of one or more patents, indemnification of third parties, payment of lost profits, or injunctive relief. Claims that our products or processes infringe the IP rights of others, regardless of their merit, could cause us to incur significant costs to respond to, defend, and resolve such claims, and they may also divert the efforts and attention of management and technical personnel. We may commence legal proceedings to protect our IP rights, which may increase our operating expenses. We could be subject to countersuits as a result. If infringement claims are made against us or our products are found to infringe a third party’s IP, we or one of our indemnitees may have to seek a license to the third party’s IP rights. If we or one of our indemnitees is unable to obtain such a license on acceptable terms or at all, we could be subject to substantial liabilities or have to suspend or discontinue the manufacture and sale of one or more of our products. We may also have to make royalty or other payments or cross license our technology. If these arrangements are not concluded on commercially reasonable terms, our business could be negatively impacted. …"
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "We are subject to stringent and changing data privacy and security laws, rules, regulations and other obligations. These areas could damage our reputation, deter current and potential customers, affect our product design, or result in legal or regulatory proceedings and liability.",
+    "text": "We process sensitive, confidential or personal data or information that is subject to privacy and security laws, regulations, industry standards, external and internal policies, contracts and other obligations that govern the processing of such data by us and on our behalf. Concerns about our practices or the ultimate use of our products and services with regard to the collection, use, retention, security or disclosure of personal information or other privacy-related matters, including for use in AI, even if unfounded, could damage our reputation and adversely affect our operating results. The theft, loss or misuse of personal data in our possession or by one of our partners could result in damage to our reputation, regulatory proceedings, disruption of our business activities or increased security or remediation costs and costs related to defending legal claims. In the United States, federal, state and local authorities have enacted numerous data privacy and security laws, including for data breach notification, personal data privacy and consumer protection. Numerous U.S. states have enacted comprehensive privacy laws that impose certain obligations on covered businesses, including providing specific disclosures in privacy notices and affording residents with certain rights concerning their personal data. …"
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "We may have exposure to additional tax liabilities and our operating results may be adversely impacted by changes in tax laws, higher than expected tax rates and other tax-related factors.",
+    "text": "We are subject to complex income tax laws and regulations, as well as non-income-based taxes, in various jurisdictions. Significant judgment is required in determining our worldwide provision for income taxes and other tax liabilities. We are regularly under audit by tax authorities in different jurisdictions. Although we believe our tax estimates are reasonable, any adverse outcome could increase our worldwide effective tax rate, increase the amount of non-income taxes imposed on our business, and harm our financial position, results of operations, net income, and cash flows. Further, changes in tax laws or their interpretation by tax authorities in the U.S. or foreign jurisdictions could increase our future tax liability or cause other adverse tax impacts, which may materially impact our results of operations, or the way we conduct our business. Most of our income is taxable in the U.S., with a significant portion qualifying for preferential treatment as foreign-derived deduction eligible income, or FDDEI. If U.S. tax rates increase or the FDDEI deduction is reduced, our provision for income taxes, results of operations, net income, and cash flows would be adversely affected. …"
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "Our business is exposed to the burden and risks associated with litigation, investigations and regulatory proceedings.",
+    "text": "We currently and will likely continue to face legal, administrative and regulatory proceedings, claims, demands and/or investigations involving shareholder, consumer, competition, intellectual property and/or other issues relating to our business. For example, we are defending a securities class action lawsuit from multiple shareholders asserting claims that we and certain of our officers made false and/or misleading statements related to channel inventory and the impact of cryptocurrency mining on GPU demand in 2017 and 2018. Litigation and regulatory proceedings are inherently uncertain, and adverse rulings could occur, including monetary damages or fines, or an injunction stopping us from manufacturing or selling certain products, engaging in certain business practices, or requiring other remedies, such as compulsory licensing of patents. An unfavorable outcome or settlement may result in a material adverse impact. Regardless of the outcome, litigation can be costly, time-consuming, and disruptive to our operations."
+   },
+   {
+    "category": "Risks Related to Regulatory, Legal, Our Stock and Other Matters",
+    "title": "Delaware law and our certificate of incorporation, bylaws and agreement with Microsoft could delay or prevent a change in control.",
+    "text": "The anti-takeover provisions of the Delaware General Corporation Law may discourage, delay, or prevent a change in control. Provisions in our certificate of incorporation and bylaws could make it more difficult for a third party to acquire a majority of our outstanding stock. These provisions include the ability of our Board of Directors to create and issue preferred stock, change the number of directors, and to make, amend or repeal our bylaws without prior shareholder approval; the inability of our shareholders to act by written consent; advance notice requirements for director nominations and shareholder proposals; and super-majority voting requirement to amend some provisions in our certificate of incorporation and bylaws. Under our agreement with Microsoft for the Xbox, if someone makes an offer to purchase at least 30% of our outstanding common stock, Microsoft may have first and last rights of refusal to purchase the stock. These provisions could delay or prevent a change in control of NVIDIA, discourage proxy contests, and make it more difficult for shareholders to elect directors of their choosing and to cause us to take other corporate actions they desire."
+   }
+  ],
+  "max_chars_per_risk": 1500,
+  "meta": {
+   "provider": "sec_edgar",
+   "fetched_at": "2026-10-05T13:24:08+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "SEC EDGAR 10-K 2026, Item 1A",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+    }
+   ]
+  }
+ }
+}
