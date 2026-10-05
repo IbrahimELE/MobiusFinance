@@ -36,3 +36,6 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Mockovi za MSFT i TSLA (quote, financials, history, risk-factors); vrijednosti su ilustrativne, ne prave. Brief mock postoji samo za AAPL; briefovi se generišu.
 - UI: oznake [n] u tezi su linkovi na `sources[n-1]`; HTML se escapuje.
 - Napomena o objavi: Store paket mora biti Möbius mini-app (index.jsx), vidi /data/apps/finance-desk; ovaj repo je izvor za hackathon.
+
+## 2026-10-05 · Korak 8: Windows bugfix
+- Internal Server Error na Windowsu: read_text()/write_text() bez encodinga (cp1252) lomili su UTF-8 mockove s č/ž. Svi fajlovi sada eksplicitno utf-8; subprocess koristi tempfile.gettempdir() umjesto /tmp.

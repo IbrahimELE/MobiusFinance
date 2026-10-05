@@ -1,7 +1,7 @@
 """Agent service (osoba B): ticker -> Brief JSON. Podatke uzima samo preko data endpointa iz contracts/.
 DATA_URL nije postavljen -> koriste se mockovi iz contracts/mocks (rad od prvog sata, i demo offline).
 """
-import json, os, shutil, subprocess, datetime as dt
+import json, os, shutil, subprocess, tempfile, datetime as dt
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -24,7 +24,7 @@ def fetch(kind: str, ticker: str, path: str):
         r = httpx.get(f"{DATA_URL}{path}", timeout=20); r.raise_for_status(); return r.json()
     f = MOCKS / f"{kind}.{ticker}.json"
     if not f.exists(): raise HTTPException(404, f"Nema mocka za {ticker} ({kind})")
-    return json.loads(f.read_text())
+    return json.loads(f.read_text(encoding='utf-8'))
 
 def template_thesis(quote, fin, risks):
     g, m = fin["revenue_growth_yoy"] * 100, fin["net_margin"] * 100
@@ -47,7 +47,7 @@ def llm(prompt: str) -> str:
         r.raise_for_status()
         return r.json()["content"][0]["text"].strip()
     if shutil.which("claude"):
-        r = subprocess.run(["claude", "-p", prompt], capture_output=True, text=True, timeout=120, cwd="/tmp")
+        r = subprocess.run(["claude", "-p", prompt], capture_output=True, text=True, encoding="utf-8", timeout=120, cwd=tempfile.gettempdir())
         if r.returncode == 0 and r.stdout.strip():
             return r.stdout.strip()
         raise RuntimeError(r.stderr[:200] or "claude -p prazan odgovor")
@@ -76,13 +76,13 @@ def brief(req: BriefReq):
                      {"label": risks["filing"], "url": risks["url"]}],
          "generated_at": dt.datetime.now(dt.timezone.utc).isoformat()}
     d = STORE / req.project_id; d.mkdir(parents=True, exist_ok=True)
-    (d / f"{t}.json").write_text(json.dumps(b, ensure_ascii=False, indent=1))
+    (d / f"{t}.json").write_text(json.dumps(b, ensure_ascii=False, indent=1), encoding='utf-8')
     return b
 
 @app.get("/briefs")
 def briefs(project_id: str = "default"):
     d = STORE / project_id
-    return [json.loads(f.read_text()) for f in sorted(d.glob("*.json"))] if d.exists() else []
+    return [json.loads(f.read_text(encoding='utf-8')) for f in sorted(d.glob("*.json"))] if d.exists() else []
 
 @app.get("/history/{ticker}")
 def history(ticker: str, period: str = "1y"):
