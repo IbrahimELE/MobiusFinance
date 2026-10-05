@@ -31,6 +31,9 @@ git push -u origin HEAD     # PR u dev
 - **Data service (A):** port 8001 (`uvicorn` iz `data_service/`), endpointi iz `contracts/README.md`.
 - **Agent + UI (B):** `cd agent_service && pip install -r requirements.txt && uvicorn main:app --port 8002`, otvori http://localhost:8002/. Bez `DATA_URL` koristi mockove; sa `DATA_URL=http://localhost:8001` pravi data service.
 
+## Ključ za AI (svako koristi svoj)
+Teza se generiše LLM-om. Redoslijed: `ANTHROPIC_API_KEY` iz okruženja/`.env` (svako svoj, nikad u repo) → prijavljeni `claude` CLI → šablon. Bez ključa radi šablon i keširani briefovi (demo ne ovisi o ključu). Kao Möbius mini-app (Store) ključ ne treba: brief piše korisnikov vlastiti Möbius agent.
+
 ## Dnevni plan
 | Dan | A (podaci) | B (agent + UI) |
 |---|---|---|
