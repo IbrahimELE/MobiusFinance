@@ -61,3 +61,6 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Contracts: `contracts/learning.md`, `contracts/paper.md`, mockovi `profile.demo.json`, `portfolio.demo.json` (prijedlog, čeka A-ov pregled).
 - Provjereno: API (brief MSFT s kategorijama i extras, 503/404 za neuključene servise), JS sintaksa. Vizualna provjera u toku (preglednik je instaliran, sesije su se prekidale zbog memorije).
 - Vizualno provjereno (Playwright, desktop 1280 i mobilni 390): bez JS grešaka; ispravljen preljev na mobitelu (min-width:0, chart autoSize).
+
+## 2026-10-05 · Korak 12: run.sh pokreće i learning_service
+- run.sh: data_service 8001, learning_service 8003, agent+UI 8002 (LEARNING_URL postavljen). API tok provjeren (ocjena → profil → drugi brief s fokusom na dug i FCF → paper kupovina). Browser test usporen opterećenjem hosta; kad AI poziv ne uspije, brief pada na keš (bez 'Naučeno').

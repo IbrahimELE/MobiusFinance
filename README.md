@@ -29,7 +29,7 @@ git push -u origin HEAD     # PR u dev
 
 ## Pokretanje (oba servisa jednom naredbom)
 ```
-pip install -r data_service/requirements.txt -r agent_service/requirements.txt
+pip install -r data_service/requirements.txt -r learning_service/requirements.txt -r agent_service/requirements.txt
 ./run.sh                      # ili: DATA_OFFLINE=1 ./run.sh  (offline demo: AAPL, MSFT, NVDA iz keša)
 ```
 Otvori http://localhost:8002/. Zasebno: data_service na 8001 (`data_service/README.md`), agent+UI na 8002 s `DATA_URL=http://localhost:8001`. Bez `DATA_URL` agent koristi mockove iz `contracts/mocks` (ilustrativni brojevi).
