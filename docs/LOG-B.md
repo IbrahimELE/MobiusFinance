@@ -54,3 +54,10 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - `agent_service/demo_cache/` regenerisan nad pravim podacima (AAPL, MSFT, NVDA, TSLA, GOOGL). Ranije su sadržavali stare mock brojeve (primijetio A u LOG-A).
 - `run.sh` pokreće oba servisa; `DATA_OFFLINE=1` = A-ov offline keš (AAPL, MSFT, NVDA).
 - Poznato: ako je data_service ugašen, a DATA_URL postavljen, /brief vraća grešku (namjerno, da se ne prikriju kvarovi).
+
+## 2026-10-05 · Korak 11: Faza 2, UI redesign + priprema za učenje i paper (feature/b-ui-faza2)
+- Agent: rizici po kategorijama (`pick_risks`, raznoliko, naslov + detalji), `extras` (52w raspon, marže, dug, FCF, godišnji brojevi), `/quote/{t}`, `/features`, proxy `/paper/*` → DATA_URL i `/feedback`, `/profile` → LEARNING_URL (bez URL-a 503, UI skriva funkciju), profil (`instructions`) ulazi u prompt a brief dobija `learned`.
+- UI: novi "desk" izgled (header, sidebar, hero s cijenom i promjenom, izbor perioda, KPI kartice + 52w traka, kategorije rizika, mini grafikoni, "Naučeno", ocjena 👍/👎 + bilješka, paper panel s oznakom "simulacija", teza kroz vrijeme).
+- Contracts: `contracts/learning.md`, `contracts/paper.md`, mockovi `profile.demo.json`, `portfolio.demo.json` (prijedlog, čeka A-ov pregled).
+- Provjereno: API (brief MSFT s kategorijama i extras, 503/404 za neuključene servise), JS sintaksa. Vizualna provjera u toku (preglednik je instaliran, sesije su se prekidale zbog memorije).
+- Vizualno provjereno (Playwright, desktop 1280 i mobilni 390): bez JS grešaka; ispravljen preljev na mobitelu (min-width:0, chart autoSize).

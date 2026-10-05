@@ -2,68 +2,125 @@
 <title>Finance Desk</title>
 <script src="vendor/lightweight-charts.js"></script>
 <style>
-body{font:15px system-ui;margin:0;background:#0f1419;color:#e6e9ee}
-main{max-width:980px;margin:0 auto;padding:20px}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-input,button,select{padding:10px 12px;border-radius:8px;border:1px solid #2a3340;background:#18202a;color:inherit;font:inherit}
-button{background:#2f6fed;border:0;cursor:pointer}button.g{background:#222c38}
-.card{background:#18202a;border-radius:12px;padding:16px;margin-top:14px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpis div{background:#0f1419;border-radius:8px;padding:10px}
-.kpis b{display:block;font-size:20px}small,.muted{color:#8b96a5}li{margin:6px 0}
-#chart{height:260px}a{color:#7aa7ff}
-.badge{font-size:12px;padding:2px 8px;border-radius:99px;background:#222c38;color:#8b96a5;margin-left:8px}
-table{width:100%;border-collapse:collapse}td,th{padding:8px;text-align:right;border-bottom:1px solid #222c38}td:first-child,th:first-child{text-align:left}
-.chip{display:inline-block;background:#222c38;border-radius:99px;padding:6px 12px;margin:4px 6px 0 0;cursor:pointer}
-.chip input{margin-right:6px;padding:0}
-#log div{margin:8px 0;white-space:pre-wrap}.me{color:#8b96a5}
-@media(max-width:600px){.kpis{grid-template-columns:repeat(2,1fr)}}
+:root{--bg:#0b0f14;--panel:#121923;--panel2:#18212d;--line:#212c3a;--tx:#e8ecf1;--mut:#8593a6;--acc:#4c8dff;--up:#2ecc8f;--dn:#ff6b6b;--warn:#f5b84c}
+*{box-sizing:border-box}body{font:14px/1.5 system-ui,Segoe UI,sans-serif;margin:0;background:var(--bg);color:var(--tx)}
+a{color:var(--acc)}small,.mut{color:var(--mut)}
+input,button,select,textarea{font:inherit;color:inherit;border-radius:8px;border:1px solid var(--line);background:var(--panel2);padding:8px 11px}
+button{background:var(--acc);border:0;cursor:pointer;font-weight:600}button.g{background:var(--panel2);border:1px solid var(--line);font-weight:500}button:disabled{opacity:.5}
+header{display:flex;gap:10px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+.logo{font-weight:800;letter-spacing:.3px;margin-right:6px}.logo b{color:var(--acc)}
+header form{margin-left:auto;display:flex;gap:8px}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;max-width:1280px;margin:0 auto;padding:16px 20px}
+@media(max-width:960px){.wrap{grid-template-columns:minmax(0,1fr)}}
+.wrap>*{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut)}
+.hero{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.hero h2{margin:0;font-size:24px}.price{font-size:26px;font-weight:700}
+.chg.up{color:var(--up)}.chg.dn{color:var(--dn)}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--panel2);color:var(--mut);border:1px solid var(--line)}
+.per{display:flex;gap:6px;margin:10px 0}.per button{padding:4px 10px;font-size:12px}.per button.on{background:var(--acc);color:#fff;border:0}
+#chart{height:280px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:600px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel2);border-radius:10px;padding:10px 12px}.kpi small{display:block;font-size:11px}.kpi b{font-size:18px}
+.range{grid-column:1/-1}.bar{position:relative;height:6px;background:var(--line);border-radius:3px;margin:10px 0 4px}.bar i{position:absolute;top:-4px;width:3px;height:14px;background:var(--acc);border-radius:2px}
+.range .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}
+.learned{background:#10233b;border:1px solid #1f4170;border-radius:10px;padding:10px 12px;margin-bottom:12px;color:#b9d4ff}
+.thesis p{font-size:15px;margin:0}
+.rate{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}.rate input{flex:1;min-width:160px}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.risk{background:var(--panel2);border-radius:10px;padding:10px 12px;border-left:3px solid var(--warn)}
+.risk small{display:block;text-transform:uppercase;font-size:10px;letter-spacing:.5px;margin-bottom:3px}
+.risk details{margin-top:6px;color:var(--mut);font-size:12px}.risk summary{cursor:pointer;color:var(--acc)}
+.ann{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:600px){.ann{grid-template-columns:1fr}}
+.ann svg{width:100%;height:90px}.ann small{display:block;margin-bottom:4px}
+.since{background:var(--panel2);border-radius:10px;padding:8px 12px;margin-bottom:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;padding:5px 11px;margin:3px 5px 0 0;cursor:pointer}
+.chip input{padding:0;margin:0}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;text-align:right;border-bottom:1px solid var(--line)}td:first-child,th:first-child{text-align:left}
+.trade{display:flex;gap:6px;margin-top:8px}.trade input{width:70px}.buy{background:var(--up);color:#06281c}.sell{background:var(--dn);color:#2b0a0a}
+#log div{margin:8px 0;white-space:pre-wrap}.me{color:var(--mut)}
+.note{font-size:11px;color:var(--mut);margin-top:6px}
+.err{color:var(--dn)}
 </style>
-<main><h1>Finance Desk</h1>
-<div class="row"><select id="proj"></select><button class="g" id="newp">+ Projekt</button>
-<form id="f" class="row" style="margin-left:auto"><input id="t" value="AAPL" size="8" aria-label="Ticker"><button>Analiziraj</button></form></div>
-<div id="out"></div>
-<div class="card"><h3 style="margin-top:0">Sačuvani briefovi <small id="pname"></small></h3><div id="saved"></div>
+<header><div class="logo">Finance<b>Desk</b></div>
+<select id="proj" aria-label="Projekt"></select><button class="g" id="newp">+ Projekt</button>
+<form id="f"><input id="t" value="AAPL" size="7" aria-label="Ticker"><button>Analiziraj</button></form></header>
+<div class="wrap"><main id="main"><div class="card mut">Upiši ticker (npr. AAPL, MSFT, NVDA) i klikni Analiziraj.</div></main>
+<aside>
+<div class="card"><h3>Sačuvani briefovi <span id="pname"></span></h3><div id="saved"></div>
 <button class="g" id="cmp" style="margin-top:10px">Usporedi označene</button><div id="cmpout"></div></div>
-<div class="card"><h3 style="margin-top:0">Pitaj o briefovima</h3><div id="log"></div>
-<form id="cf" class="row"><input id="q" placeholder="npr. Koji su glavni rizici?" style="flex:1"><button>Pitaj</button></form></div></main>
+<div class="card" id="paper" hidden><h3>Paper trading <span class="badge">simulacija</span></h3><div id="pf"></div><div class="note">Virtualni račun, ne pravo trgovanje. Nije savjet za ulaganje.</div></div>
+<div class="card"><h3>Pitaj o briefovima</h3><div id="log"></div>
+<form id="cf" style="display:flex;gap:6px"><input id="q" placeholder="npr. Koji su glavni rizici?" style="flex:1;min-width:0"><button>Pitaj</button></form></div>
+</aside></div>
 <script>
-const $=id=>document.getElementById(id),pct=x=>x==null?"–":(x*100).toFixed(1)+"%";
-const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const J=(u,o)=>fetch(u,o).then(async r=>{if(!r.ok)throw new Error(await r.text());return r.json()});
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const J=(u,o)=>fetch(u,o).then(async r=>{if(!r.ok){let m=await r.text();try{const j=JSON.parse(m);m=typeof j.detail=="string"?j.detail:m}catch(e){}throw new Error(m)}return r.json()});
 const post=(u,b)=>J(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
-let P=localStorage.proj||"default",chart;
+const pct=x=>x==null?"–":(x*100).toFixed(1)+"%",num=(x,d=1)=>x==null?"–":Number(x).toFixed(d);
+const big=x=>x==null?"–":Math.abs(x)>=1e9?(x/1e9).toFixed(1)+" mlrd":Math.abs(x)>=1e6?(x/1e6).toFixed(0)+" mil":num(x,0);
+const usd=x=>x==null?"–":Number(x).toLocaleString("en-US",{style:"currency",currency:"USD"});
+let P=localStorage.proj||"default",cur=null,per="1y",feat={paper:false,learning:false},chart;
 const MODE={llm:"AI",cache:"iz keša",template:"šablon"};
 function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a title="${esc(s.label)}" href="${esc(s.url)}" target="_blank">[${n}]</a>`:m})}
 async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(P);
  $("proj").innerHTML=l.map(x=>`<option ${x==P?"selected":""}>${esc(x)}</option>`).join("");$("pname").textContent="· "+P}
 async function run(t){
- $("out").innerHTML='<div class="card">Radim brief (AI, do 15 s)…</div>';
- try{show(await post("/brief",{ticker:t,project_id:P}));list()}catch(e){$("out").innerHTML='<div class="card">Greška: '+esc(e.message)+'</div>'}}
-function show(b){
- $("out").innerHTML=`<div class="card"><h2 style="margin-top:0">${esc(b.ticker)}<span class="badge">${MODE[b.mode]||""}</span></h2><div id="chart"></div></div>
- <div class="card kpis"><div><small>Cijena</small><b>${b.metrics.price}</b></div><div><small>P/E</small><b>${b.metrics.pe}</b></div>
- <div><small>Rast prihoda</small><b>${pct(b.metrics.revenue_growth_yoy)}</b></div><div><small>Neto marža</small><b>${pct(b.metrics.net_margin)}</b></div></div>
- <div class="card"><h3 style="margin-top:0">Teza</h3><p>${cite(b)}</p><h3>Rizici</h3><ul>${b.risks.map(r=>`<li>${esc(r.text)} <small>[${esc(r.source)}]</small></li>`).join("")}</ul>
- <h3>Izvori</h3><ol>${b.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank">${esc(s.label)}</a></li>`).join("")}</ol>
- ${b.peers&&b.peers.length?`<p class="muted">Konkurenti: ${b.peers.map(p=>`<a href="#" onclick="run('${esc(p)}');return false">${esc(p)}</a>`).join(", ")}</p>`:""}</div>`;
- draw(b.ticker)}
-async function draw(t){if(!window.LightweightCharts)return;
- const c=LightweightCharts.createChart($("chart"),{layout:{background:{color:"#18202a"},textColor:"#8b96a5"},grid:{vertLines:{visible:false},horzLines:{color:"#222c38"}}});
- try{const h=await J("/history/"+t);c.addLineSeries({color:"#2f6fed"}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}catch(e){}}
+ $("main").innerHTML='<div class="card mut">Radim brief (AI, do 20 s)…</div>';
+ try{show(await post("/brief",{ticker:t,project_id:P}));list()}catch(e){$("main").innerHTML='<div class="card err">Greška: '+esc(e.message)+'</div>'}}
+function bars(vals,labels,color){const mx=Math.max(...vals.map(v=>Math.abs(v||0)),1),w=100/vals.length;
+ return `<svg viewBox="0 0 100 60" preserveAspectRatio="none">${vals.map((v,i)=>{const h=Math.abs(v||0)/mx*48;return `<rect x="${i*w+w*.18}" y="${52-h}" width="${w*.64}" height="${h}" fill="${color}" rx="1"/><text x="${i*w+w/2}" y="59" font-size="5" text-anchor="middle" fill="#8593a6">${labels[i]}</text>`}).join("")}</svg>`}
+function show(b){cur=b;const m=b.metrics,x=b.extras||{};
+ const kp=(l,v)=>v==null||v==="–"?"":`<div class="kpi"><small>${l}</small><b>${v}</b></div>`;
+ const rng=x.year_low!=null&&x.year_high!=null?`<div class="kpi range"><small>52-sedmični raspon</small><div class="bar"><i style="left:calc(${Math.min(100,Math.max(0,(m.price-x.year_low)/(x.year_high-x.year_low)*100))}% - 1px)"></i></div><div class="ends"><span>${usd(x.year_low)}</span><span>${usd(x.year_high)}</span></div></div>`:"";
+ const cats={};b.risks.forEach(r=>(cats[r.category||"Rizici"]??=[]).push(r));
+ const ann=x.annual&&x.annual.length>1?`<div class="card"><h3>Posljednje godine</h3><div class="ann">${[["Prihod","revenue","#4c8dff"],["Neto dobit","net_income","#2ecc8f"],["Slobodni novčani tok","free_cash_flow","#f5b84c"]].map(([n,k,c])=>`<div><small>${n}, ${x.annual.at(-1)[k]!=null?big(x.annual.at(-1)[k]):""} USD</small>${bars(x.annual.map(a=>a[k]),x.annual.map(a=>a.year),c)}</div>`).join("")}</div></div>`:"";
+ $("main").innerHTML=`<div class="card"><div class="hero"><h2>${esc(b.name||b.ticker)} <small>${esc(b.ticker)}</small></h2><span class="price" id="px">${usd(m.price)}</span><span class="chg" id="chg"></span><span class="badge">${MODE[b.mode]||""}</span></div>
+  <div class="per" id="per">${["1mo","6mo","1y","5y"].map(p=>`<button class="g ${p==per?"on":""}" data-p="${p}">${{"1mo":"1 mj","6mo":"6 mj","1y":"1 god","5y":"5 god"}[p]}</button>`).join("")}</div><div id="chart"></div></div>
+  <div class="card"><h3>Pokazatelji</h3><div class="kpis">${kp("P/E",num(m.pe))}${kp("Forward P/E",num(x.forward_pe))}${kp("Rast prihoda",pct(m.revenue_growth_yoy))}${kp("Neto marža",pct(m.net_margin))}${kp("Bruto marža",x.gross_margin!=null?pct(x.gross_margin):null)}${kp("Operativna marža",x.operating_margin!=null?pct(x.operating_margin):null)}${kp("Dug/kapital",x.debt_to_equity!=null?num(x.debt_to_equity,2):null)}${kp("Slobodni novčani tok",x.free_cash_flow!=null?big(x.free_cash_flow)+" USD":null)}${rng}</div></div>
+  <div class="card thesis"><h3>Teza</h3><div id="since"></div>${b.learned?`<div class="learned"><b>Naučeno:</b> ${esc(b.learned.instructions)} <small>(iz ${b.learned.feedback_count} ocjena)</small></div>`:""}<p>${cite(b)}</p>
+  ${feat.learning?`<div class="rate" id="rate"><span class="mut">Koliko je koristan brief?</span><button class="g" data-r="up">👍</button><button class="g" data-r="down">👎</button></div>`:""}</div>
+  <div class="card"><h3>Ključni rizici</h3><div class="cats">${Object.entries(cats).map(([c,rs])=>rs.map(r=>`<div class="risk"><small>${esc(c)}</small>${esc(r.text)}${r.detail?`<details><summary>Detalji</summary>${esc(r.detail)}<br><small>${esc(r.source)}</small></details>`:`<br><small>${esc(r.source)}</small>`}</div>`).join("")).join("")}</div></div>
+  ${ann}
+  <div class="card"><h3>Izvori</h3><ol style="margin:0;padding-left:20px">${b.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank">${esc(s.label)}</a></li>`).join("")}</ol>
+  ${b.peers&&b.peers.length?`<p class="mut">Konkurenti: ${b.peers.map(p=>`<a href="#" data-peer="${esc(p)}">${esc(p)}</a>`).join(", ")}</p>`:""}</div>`;
+ $("per").onclick=e=>{const p=e.target.dataset.p;if(!p)return;per=p;[...$("per").children].forEach(c=>c.classList.toggle("on",c.dataset.p==p));draw(b.ticker)};
+ document.querySelectorAll("[data-peer]").forEach(a=>a.onclick=e=>{e.preventDefault();run(a.dataset.peer)});
+ if($("rate"))$("rate").onclick=e=>{const r=e.target.dataset.r;if(r)rateUI(r)};
+ draw(b.ticker);since(b);paperUI()}
+async function draw(t){if(!window.LightweightCharts)return;$("chart").innerHTML="";
+ const c=LightweightCharts.createChart($("chart"),{autoSize:true,layout:{background:{color:"#121923"},textColor:"#8593a6"},grid:{vertLines:{visible:false},horzLines:{color:"#212c3a"}},rightPriceScale:{borderVisible:false},timeScale:{borderVisible:false}});
+ try{const h=await J(`/history/${t}?period=${per}`);c.addAreaSeries({lineColor:"#4c8dff",topColor:"rgba(76,141,255,.25)",bottomColor:"rgba(76,141,255,0)",lineWidth:2}).setData(h.points.map(p=>({time:p.time,value:p.close})));c.timeScale().fitContent()}catch(e){$("chart").innerHTML='<span class="err">Grafikon nije dostupan</span>'}}
+async function since(b){try{const q=await J("/quote/"+b.ticker);const d=q.change_pct;$("chg").textContent=(d>=0?"+":"")+num(d,2)+"%";$("chg").className="chg "+(d>=0?"up":"dn");
+ if(Math.abs(q.price-b.metrics.price)>.005){const ch=(q.price/b.metrics.price-1)*100;$("since").innerHTML=`<div class="since">Teza od ${esc((b.generated_at||"").slice(0,10))}: cijena tada ${usd(b.metrics.price)}, danas ${usd(q.price)} <b class="chg ${ch>=0?"up":"dn"}">(${ch>=0?"+":""}${ch.toFixed(1)}%)</b></div>`}}catch(e){}}
+function rateUI(r){$("rate").innerHTML=`<span>${r=="up"?"👍":"👎"}</span><input id="rn" placeholder="Šta ti fali / šta da bude drukčije? (nije obavezno)"><button id="rs">Pošalji</button><span id="rm" class="mut"></span>`;
+ $("rs").onclick=async()=>{try{await post("/feedback",{project_id:P,ticker:cur.ticker,brief_generated_at:cur.generated_at,rating:r,note:$("rn").value,tags:[]});$("rate").innerHTML='<span class="mut">Hvala! Sljedeći brief u ovom projektu to uzima u obzir.</span>'}catch(e){$("rm").textContent="Greška: "+e.message}}}
 async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));
- $("saved").innerHTML=l.map(b=>`<span class="chip"><input type="checkbox" value="${esc(b.ticker)}" aria-label="označi ${esc(b.ticker)}"><span onclick='openB("${esc(b.ticker)}")'>${esc(b.ticker)} <small>${esc(b.generated_at.slice(5,16).replace("T"," "))}</small></span> <a href="#" onclick="del('${esc(b.ticker)}');return false" title="obriši">×</a></span>`).join("")||"<small>Još ništa u ovom projektu.</small>"}
-async function openB(t){show((await J("/briefs?project_id="+encodeURIComponent(P))).find(b=>b.ticker==t))}
-async function del(t){await J(`/briefs/${t}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});list()}
+ $("saved").innerHTML=l.map(b=>`<span class="chip"><input type="checkbox" value="${esc(b.ticker)}" aria-label="označi ${esc(b.ticker)}"><span data-open="${esc(b.ticker)}">${esc(b.ticker)} <small>${esc((b.generated_at||"").slice(5,16).replace("T"," "))}</small></span><a href="#" data-del="${esc(b.ticker)}" title="obriši">×</a></span>`).join("")||"<small>Još ništa u ovom projektu.</small>";
+ $("saved").onclick=async e=>{const o=e.target.closest("[data-open]"),d=e.target.closest("[data-del]");
+  if(o){const bs=await J("/briefs?project_id="+encodeURIComponent(P));show(bs.find(b=>b.ticker==o.dataset.open))}
+  if(d){e.preventDefault();await J(`/briefs/${d.dataset.del}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});list()}}}
 $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:checked")].map(i=>i.value);
- if(s.length<2){$("cmpout").innerHTML='<p class="muted">Označi bar 2 briefa.</p>';return}
+ if(s.length<2){$("cmpout").innerHTML='<p class="mut">Označi bar 2 briefa.</p>';return}
  const r=await J("/compare?tickers="+s.join(","));
- $("cmpout").innerHTML=`<table><tr><th></th>${r.map(x=>`<th>${esc(x.ticker)}</th>`).join("")}</tr>`+
- [["Cijena",x=>x.price],["P/E",x=>x.pe],["Rast prihoda",x=>pct(x.revenue_growth_yoy)],["Neto marža",x=>pct(x.net_margin)]].map(([n,f])=>`<tr><td>${n}</td>${r.map(x=>`<td>${f(x)}</td>`).join("")}</tr>`).join("")+"</table>"};
+ $("cmpout").innerHTML=`<table><tr><th></th>${r.map(x=>`<th>${esc(x.ticker)}</th>`).join("")}</tr>`+[["Cijena",x=>num(x.price,2)],["P/E",x=>num(x.pe)],["Rast prih.",x=>pct(x.revenue_growth_yoy)],["Neto marža",x=>pct(x.net_margin)]].map(([n,f])=>`<tr><td>${n}</td>${r.map(x=>`<td>${f(x)}</td>`).join("")}</tr>`).join("")+"</table>"};
+async function paperUI(){if(!feat.paper)return;
+ try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));$("paper").hidden=false;
+  const t=cur?cur.ticker:"";
+  $("pf").innerHTML=`<div class="kpis" style="grid-template-columns:1fr 1fr"><div class="kpi"><small>Vrijednost</small><b>${usd(p.equity)}</b></div><div class="kpi"><small>Dobit/gubitak</small><b class="chg ${p.pnl>=0?"up":"dn"}">${usd(p.pnl)}</b></div></div><div class="note">Gotovina ${usd(p.cash)}</div>
+  ${p.positions.length?`<table><tr><th>Ticker</th><th>Kol.</th><th>Cijena</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td>${esc(x.ticker)}</td><td>${x.qty}</td><td>${num(x.price,2)}</td><td class="chg ${x.pnl>=0?"up":"dn"}">${num(x.pnl_pct,1)}%</td></tr>`).join("")}</table>`:'<p class="mut">Nema pozicija.</p>'}
+  ${t?`<div class="trade"><input id="qty" type="number" min="1" value="10" aria-label="Količina"><button class="buy" data-s="buy">Kupi ${esc(t)}</button><button class="sell" data-s="sell">Prodaj</button></div>`:""}
+  <div id="pm" class="note"></div><button class="g" id="prst" style="margin-top:8px;font-size:12px">Resetuj račun</button>`;
+  $("pf").onclick=async e=>{const s=e.target.dataset.s;
+   if(s){try{await post("/paper/orders",{project_id:P,ticker:cur.ticker,side:s,qty:+$("qty").value});paperUI()}catch(er){$("pm").innerHTML='<span class="err">'+esc(er.message)+'</span>'}}
+   if(e.target.id=="prst"&&confirm("Resetovati virtualni račun?")){await post("/paper/reset?project_id="+encodeURIComponent(P),{});paperUI()}}
+ }catch(e){$("paper").hidden=true}}
 $("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
-$("proj").onchange=()=>{P=$("proj").value;localStorage.proj=P;$("pname").textContent="· "+P;$("out").innerHTML="";$("log").innerHTML="";list()};
-$("newp").onclick=async()=>{const n=prompt("Naziv projekta");if(!n)return;P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;await projects();$("out").innerHTML="";list()};
+$("proj").onchange=()=>{P=$("proj").value;localStorage.proj=P;$("pname").textContent="· "+P;$("log").innerHTML="";list();paperUI()};
+$("newp").onclick=async()=>{const n=prompt("Naziv projekta");if(!n)return;P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;await projects();list();paperUI()};
 $("cf").onsubmit=async e=>{e.preventDefault();const q=$("q").value.trim();if(!q)return;$("q").value="";
- $("log").insertAdjacentHTML("beforeend",`<div class="me">Ti: ${esc(q)}</div><div id="pend" class="muted">…</div>`);
- try{const r=await post("/chat",{message:q,project_id:P});$("pend").outerHTML=`<div>${esc(r.answer)}</div>`}catch(e){$("pend").outerHTML=`<div>Greška: ${esc(e.message)}</div>`}};
-projects().then(list);
+ $("log").insertAdjacentHTML("beforeend",`<div class="me">Ti: ${esc(q)}</div><div id="pend" class="mut">…</div>`);
+ try{const r=await post("/chat",{message:q,project_id:P});$("pend").outerHTML=`<div>${esc(r.answer)}</div>`}catch(e){$("pend").outerHTML=`<div class="err">Greška: ${esc(e.message)}</div>`}};
+J("/features").then(f=>feat=f).catch(()=>{}).finally(()=>{projects().then(list);paperUI()});
 </script></html>

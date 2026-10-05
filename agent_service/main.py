@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MOCKS = ROOT / "contracts" / "mocks"
 STORE = ROOT / "agent_service" / "store"
 DATA_URL = os.environ.get("DATA_URL")  # npr. http://localhost:8001
+LEARNING_URL = os.environ.get("LEARNING_URL")  # npr. http://localhost:8003 (osoba A); bez njega nema učenja
 app = FastAPI(title="Finance Desk agent")
 
 class BriefReq(BaseModel):
@@ -33,7 +34,7 @@ def template_thesis(quote, fin, risks):
 
 PROMPT = """Ti si financijski analitičar. Napiši tezu (3-4 rečenice, bosanski) za {name} ({t}) ISKLJUČIVO iz podataka ispod.
 Svaku tvrdnju završi oznakom izvora [n]. Ne izmišljaj brojeve. Izvori: [1] financials/quote (Yahoo Finance), [2] {filing}.
-Podaci: {data}
+{instructions}Podaci: {data}
 Vrati samo tekst teze."""
 
 def llm(prompt: str) -> str:
@@ -53,34 +54,72 @@ def llm(prompt: str) -> str:
         raise RuntimeError(r.stderr[:200] or "claude -p prazan odgovor")
     raise RuntimeError("nema LLM-a")
 
-def write_thesis(t, quote, fin, risks):
+def write_thesis(t, quote, fin, risks, instructions=""):
     """Vraća (tekst, način): 'llm' | 'template'. Uz bilo koju grešku pada na šablon."""
-    data = json.dumps({"quote": quote, "financials": fin, "risks": risks["items"]}, ensure_ascii=False)
+    data = json.dumps({"quote": quote, "financials": {k: v for k, v in fin.items() if k not in ("annual", "meta", "summary")},
+                       "risks": [r.get("title") or r["text"] for r in risks["items"]]}, ensure_ascii=False)
+    ins = f"Upute korisnika (poštuj ih): {instructions}\n" if instructions else ""
     try:
-        return llm(PROMPT.format(name=quote["name"], t=t, filing=risks["filing"], data=data)), "llm"
+        return llm(PROMPT.format(name=quote["name"], t=t, filing=risks["filing"], data=data, instructions=ins)), "llm"
     except Exception as e:
         print("LLM nedostupan:", e)
         return template_thesis(quote, fin, risks), "template"
 
 CACHE = ROOT / "agent_service" / "demo_cache"   # unaprijed generisani briefovi za demo (commitovani)
 
-def build_brief(t: str) -> dict:
+def pick_risks(risks: dict, n: int = 5) -> list:
+    """5 ključnih rizika, raznoliko po kategorijama (ako ih A vraća), inače prvih n iz items."""
+    rich = risks.get("risks")
+    if not rich:
+        return [{**r, "text": r["text"][:350].rstrip() + ("…" if len(r["text"]) > 350 else "")} for r in risks["items"][:n]]
+    src = f"{risks['filing']}, Item 1A"
+    picked, seen = [], set()
+    for r in rich:                       # prvo po jedan iz svake kategorije
+        if r.get("category") not in seen:
+            seen.add(r.get("category")); picked.append(r)
+    picked += [r for r in rich if r not in picked]
+    return [{"text": r.get("title") or r["text"][:200], "detail": r["text"][:500], "category": r.get("category", ""), "source": src}
+            for r in picked[:n]]
+
+def extras(quote: dict, fin: dict) -> dict:
+    """Dodatna polja za UI (sva opciona; mockovi ih nemaju)."""
+    ann = sorted(fin.get("annual") or [], key=lambda a: a["fiscal_year"])[-4:]
+    keep = ("year_high", "year_low")
+    return {**{k: quote[k] for k in keep if quote.get(k) is not None},
+            **{k: fin[k] for k in ("gross_margin", "operating_margin", "debt_to_equity", "free_cash_flow", "forward_pe",
+                                    "dividend_yield", "sector", "industry") if fin.get(k) is not None},
+            "annual": [{"year": a["fiscal_year"], "revenue": a.get("revenue"), "net_income": a.get("net_income"),
+                        "free_cash_flow": a.get("free_cash_flow")} for a in ann]}
+
+def get_profile(project_id: str) -> dict:
+    if not LEARNING_URL:
+        return {}
+    try:
+        r = httpx.get(f"{LEARNING_URL}/profile", params={"project_id": project_id}, timeout=3)
+        return r.json() if r.status_code == 200 else {}
+    except Exception:
+        return {}
+
+def build_brief(t: str, project_id: str = "default") -> dict:
     quote = fetch("quote", t, f"/quote/{t}")
     fin = fetch("financials", t, f"/financials/{t}")
     risks = fetch("risk-factors", t, f"/filings/{t}/risk-factors")
-    top = [{**r, "text": r["text"][:350].rstrip() + ("…" if len(r["text"]) > 350 else "")} for r in risks["items"][:5]]
-    risks = {**risks, "items": top}           # brief nosi 5 ključnih rizika, ne cijeli Item 1A
-    thesis, mode = write_thesis(t, quote, fin, risks)
+    top = pick_risks(risks)
+    prof = get_profile(project_id)
+    thesis, mode = write_thesis(t, quote, fin, {**risks, "items": top}, prof.get("instructions", ""))
     cached = CACHE / f"{t}.json"
     if mode == "template" and cached.exists():      # nema LLM-a, a imamo puni brief iz keša
         b = json.loads(cached.read_text(encoding="utf-8")); b["mode"] = "cache"; return b
-    return {"ticker": t, "thesis": thesis, "mode": mode,
-            "metrics": {"price": quote["price"], "pe": fin["pe"],
-                        "revenue_growth_yoy": fin["revenue_growth_yoy"], "net_margin": fin["net_margin"]},
-            "risks": risks["items"], "peers": [p for p in PEERS.get(t, [])],
-            "sources": [{"label": "Yahoo Finance", "url": f"https://finance.yahoo.com/quote/{t}"},
-                        {"label": risks["filing"], "url": risks["url"]}],
-            "generated_at": dt.datetime.now(dt.timezone.utc).isoformat()}
+    b = {"ticker": t, "name": quote.get("name", t), "thesis": thesis, "mode": mode,
+         "metrics": {"price": quote["price"], "pe": fin["pe"],
+                     "revenue_growth_yoy": fin["revenue_growth_yoy"], "net_margin": fin["net_margin"]},
+         "risks": top, "peers": list(PEERS.get(t, [])), "extras": extras(quote, fin),
+         "sources": [{"label": "Yahoo Finance", "url": f"https://finance.yahoo.com/quote/{t}"},
+                     {"label": risks["filing"], "url": risks["url"]}],
+         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat()}
+    if prof.get("instructions"):
+        b["learned"] = {"instructions": prof["instructions"], "feedback_count": prof.get("feedback_count", 0)}
+    return b
 
 PEERS = {"AAPL": ["MSFT", "GOOGL"], "MSFT": ["AAPL", "GOOGL"], "GOOGL": ["MSFT", "AAPL"],
          "TSLA": ["NVDA"], "NVDA": ["MSFT", "TSLA"]}   # zamjena: A-ov /peers kad bude spreman
@@ -94,7 +133,7 @@ def project_dir(pid: str) -> Path:
 @app.post("/brief")
 def brief(req: BriefReq):
     t = req.ticker.upper().strip()
-    b = build_brief(t)
+    b = build_brief(t, req.project_id)
     (project_dir(req.project_id) / f"{t}.json").write_text(json.dumps(b, ensure_ascii=False, indent=1), encoding="utf-8")
     return b
 
@@ -146,6 +185,55 @@ def chat(req: ChatReq):
         return {"answer": llm(f"Odgovori kratko na bosanskom, ISKLJUČIVO iz ovih briefova (ne izmišljaj; ako nema u njima, reci to), uz oznake izvora gdje ih ima.\nBriefovi: {ctx}\nPitanje: {req.message}")}
     except Exception:
         return {"answer": "Chat treba AI (ANTHROPIC_API_KEY ili prijavljeni claude). Sačuvani briefovi su vidljivi iznad."}
+
+@app.get("/quote/{ticker}")
+def quote_ep(ticker: str):
+    t = ticker.upper()
+    return fetch("quote", t, f"/quote/{t}")
+
+@app.get("/features")
+def features():
+    return {"paper": bool(DATA_URL), "learning": bool(LEARNING_URL), "live_data": bool(DATA_URL)}
+
+def proxy(base, method: str, path: str, params=None, body=None):
+    """Prosljeđuje poziv A-ovim servisima (paper u data_service, učenje u learning_service). Bez URL-a: 503."""
+    if not base:
+        raise HTTPException(503, "Funkcija nije uključena (servis nije pokrenut)")
+    try:
+        r = httpx.request(method, f"{base}{path}", params=params, json=body, timeout=15)
+    except Exception as e:
+        raise HTTPException(503, f"Servis nedostupan: {e}")
+    if r.status_code >= 400:
+        raise HTTPException(r.status_code, r.text)
+    return r.json()
+
+@app.get("/paper/portfolio")
+def paper_portfolio(project_id: str = "default"):
+    return proxy(DATA_URL, "GET", "/paper/portfolio", {"project_id": project_id})
+
+@app.post("/paper/orders")
+def paper_order(body: dict):
+    return proxy(DATA_URL, "POST", "/paper/orders", body=body)
+
+@app.post("/paper/reset")
+def paper_reset(project_id: str = "default"):
+    return proxy(DATA_URL, "POST", "/paper/reset", {"project_id": project_id})
+
+@app.post("/feedback")
+def feedback_post(body: dict):
+    return proxy(LEARNING_URL, "POST", "/feedback", body=body)
+
+@app.get("/feedback")
+def feedback_list(project_id: str = "default"):
+    return proxy(LEARNING_URL, "GET", "/feedback", {"project_id": project_id})
+
+@app.get("/profile")
+def profile_get(project_id: str = "default"):
+    return proxy(LEARNING_URL, "GET", "/profile", {"project_id": project_id})
+
+@app.delete("/profile")
+def profile_del(project_id: str = "default"):
+    return proxy(LEARNING_URL, "DELETE", "/profile", {"project_id": project_id})
 
 @app.get("/history/{ticker}")
 def history(ticker: str, period: str = "1y"):

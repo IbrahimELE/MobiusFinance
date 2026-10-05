@@ -1,0 +1,1 @@
+{"project_id":"demo","instructions":"Korisnik želi kraće teze (3 rečenice). Uvijek komentariši dug i slobodni novčani tok. Manje opisa proizvoda.","focus":["debt","free_cash_flow"],"avoid":["product_details"],"style":{"length":"short"},"feedback_count":2,"updated_at":"2026-10-06T09:00:00Z","mode":"llm"}
