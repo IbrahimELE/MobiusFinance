@@ -26,3 +26,10 @@ Osoba A: dopisuj ovdje isti format kao u LOG-B.md (datum · korak · šta · za�
 - Ispravljena utrka: kad dvije ocjene stignu brzo, sporiji AI sažetak starije ocjene je mogao pregaziti noviji; sada se zastarjeli odbacuje (test + provjereno uživo).
 - Provjera: B-ov agent s `feature/b-ui-faza2` nad mojim servisima: 2 ocjene preko agenta → profil; kupovina AAPL i 409 preko agenta; brief NVDA s naučenim profilom: tačno 3 rečenice, počinje zaduženošću (D/E 0,17) i FCF-om, bez opisa proizvoda. Testovi: data_service 33, learning_service 17.
 - Za B: `proxy()` u agentu prosljeđuje grešku kao tekst (`{"detail": "{\"error\":...}"}`), pa UI prikaže sirovi JSON; predlog: `raise HTTPException(r.status_code, r.json().get("detail", r.text))` ili proslijediti JSON kakav jeste.
+
+## 2026-10-06 · Korak 4: priprema za predaju (grana `feature/a-predaja`, po dogovoru vlasnika)
+- Agent (B-ov folder, uz odobrenje vlasnika; molim pregled u PR-u): greške A-ovih servisa više ne ruše brief (500). `call()`/`upstream_error()` u `agent_service/main.py` pretvaraju `{"error","detail"}` u poruku na bosanskom (nepoznat ticker 404, nema 10-K 404, offline bez keša 503, premalo novca / dionica 409). `proxy()` koristi isto, pa UI prikazuje rečenicu, ne sirovi JSON.
+- Agent: kad podaci nisu dostupni (offline, ticker van A-ovog keša), brief pada na `agent_service/demo_cache/<T>.json` ako postoji (TSLA, GOOGL offline sada rade).
+- `run.sh`: koristi `python3` (ili `python`, ili `PYTHON=...`), ne pregazi `SEC_USER_AGENT` lažnom adresom, ispiše link.
+- Dodano: `LICENSE` (MIT), `docs/SOURCES.md` (izvori i licence za prijavu), `learning_service` u CODEOWNERS; README (pokretanje, AI ključ, šta aplikacija radi), DEMO.md (brzina AI-ja).
+- Provjereno (API, run.sh): offline AAPL/TSLA brief iz keša, XXXX → 503 s porukom; online XXXX → 404 „Nepoznat ticker…", TSM → 404 „Nema 10-K…"; paper 409 poruke. Testovi data 33, learning 17. UI nije vizuelno provjeren (preglednik na Möbius hostu se nije mogao pokrenuti) – proći TESTING.md na laptopu.

@@ -7,6 +7,7 @@ Repo: https://github.com/IbrahimELE/MobiusFinance · AI agenti: čitaju prvo `AG
 ```
 contracts/       JSON šeme + mockovi        → ZAJEDNO (promjena samo dogovorom, PR pregleda druga strana)
 data_service/    Backend 1: podaci, bez LLM → OSOBA A
+learning_service/ Učenje iz ocjena (profil) → OSOBA A
 agent_service/   Backend 2: LLM tok, brief  → OSOBA B
 frontend/        UI                         → OSOBA B
 docs/LOG-A.md    dnevnik A                  → OSOBA A
@@ -27,17 +28,21 @@ git add . && git commit -m "feat(agent): opis"
 git push -u origin HEAD     # PR u dev
 ```
 
-## Pokretanje (oba servisa jednom naredbom)
+## Pokretanje (sve jednom naredbom)
 ```
 pip install -r data_service/requirements.txt -r learning_service/requirements.txt -r agent_service/requirements.txt
 ./run.sh                      # ili: DATA_OFFLINE=1 ./run.sh  (offline demo: AAPL, MSFT, NVDA iz keša)
 ```
-Otvori http://localhost:8002/. Zasebno: data_service na 8001 (`data_service/README.md`), agent+UI na 8002 s `DATA_URL=http://localhost:8001`. Bez `DATA_URL` agent koristi mockove iz `contracts/mocks` (ilustrativni brojevi).
-Prije prvog pokretanja upiši svoj `SEC_USER_AGENT` (ime + e-mail) u `data_service/.env` (EDGAR to traži).
+Otvori http://localhost:8002/. Servisi: data_service 8001 (podaci, paper trading), learning_service 8003 (učenje iz ocjena), agent + UI 8002.
+- `run.sh` koristi `python3` (ili `python`); drugi interpreter: `PYTHON=.venv/bin/python ./run.sh`.
+- SEC traži kontakt: upiši `SEC_USER_AGENT="Ime e-mail"` u `data_service/.env` (vidi `data_service/.env.example`).
+- AI teza i chat: postavi `ANTHROPIC_API_KEY` (brzo, par sekundi) ili budi prijavljen u `claude` CLI (sporije). Bez AI-ja brief se pravi iz šablona ili iz spremljenih demo briefova.
+- Bez `DATA_URL` agent koristi mockove iz `contracts/mocks` (ilustrativni brojevi); `run.sh` ga uvijek spaja na pravi data_service.
 
-## Status varijante B (pon 5.10.)
-Urađeno: ugovori+mockovi (5 tickera), agent (/brief, /briefs, /projects, /compare, /chat, LLM teza s izvorima, keš za demo), UI (grafikon offline, kartice, projekti, usporedba, chat), docs/DEMO.md, docs/PRESENTATION.md, docs/TESTING.md.
-Čeka: pravi data_service (A) → `DATA_URL`; test na pravim podacima; snimak i prijava (pet).
+## Šta aplikacija radi
+Ticker → brief (teza s oznakama izvora, ključni brojevi, 5 rizika iz 10-K po kategorijama), grafikon s izborom perioda i cijenom uživo (15 s), sačuvani briefovi po projektima, usporedba 2–4 kompanije, chat nad briefovima, **AI koji uči od ocjena** (👍/👎 + bilješka → „Naučeno: …" i drugačiji sljedeći brief) i **paper trading** (simulacija sa 100.000 USD).
+
+Licenca: MIT (`LICENSE`); izvori podataka i licence komponenti: `docs/SOURCES.md`.
 
 ## Dnevni plan
 | Dan | A (podaci) | B (agent + UI) |

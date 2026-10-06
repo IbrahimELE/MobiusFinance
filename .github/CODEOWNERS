@@ -1,5 +1,6 @@
 # Vlasnici po modulu
 /data_service/            @IbrahimELE
+/learning_service/        @IbrahimELE
 /agent_service/           @mfehric
 /frontend/                @mfehric
 /contracts/               @IbrahimELE @mfehric

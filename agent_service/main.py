@@ -19,10 +19,41 @@ class BriefReq(BaseModel):
     ticker: str
     project_id: str = "default"
 
+# Kodovi grešaka A-ovih servisa ({"error","detail"}) -> poruka koju UI prikaže korisniku.
+ERROR_TEXT = {
+    "ticker_not_found": "Nepoznat ticker. Provjeri oznaku (npr. AAPL, MSFT, NVDA).",
+    "invalid_ticker": "Neispravna oznaka tickera.",
+    "filing_not_found": "Nema 10-K izvještaja za ovu kompaniju (strane firme podnose 20-F).",
+    "not_in_cache": "Offline mod: za ovaj ticker nema spremljenih podataka (demo tickeri: AAPL, MSFT, NVDA).",
+    "upstream_unavailable": "Izvor podataka trenutno ne odgovara. Pokušaj ponovo za par sekundi.",
+    "insufficient_cash": "Nema dovoljno novca na računu za ovaj nalog.",
+    "insufficient_position": "Nemaš toliko dionica za prodaju.",
+}
+
+def upstream_error(r: httpx.Response) -> HTTPException:
+    """Pretvara grešku A-ovog servisa u HTTPException s čitljivom porukom (isti status kod)."""
+    try:
+        body = r.json()
+    except ValueError:
+        body = {}
+    code = body.get("error") if isinstance(body, dict) else None
+    detail = body.get("detail") if isinstance(body, dict) else None
+    msg = ERROR_TEXT.get(code) or (detail if isinstance(detail, str) else None) or r.text[:200]
+    return HTTPException(r.status_code, msg)
+
+def call(method: str, url: str, **kw) -> dict:
+    try:
+        r = httpx.request(method, url, timeout=kw.pop("timeout", 20), **kw)
+    except httpx.HTTPError as e:
+        raise HTTPException(503, f"Servis nije dostupan ({url.split('/')[2]}). Je li pokrenut run.sh?") from e
+    if r.status_code >= 400:
+        raise upstream_error(r)
+    return r.json()
+
 def fetch(kind: str, ticker: str, path: str):
     """Jedna tačka za podatke: pravi data_service ili mock fajl."""
     if DATA_URL:
-        r = httpx.get(f"{DATA_URL}{path}", timeout=20); r.raise_for_status(); return r.json()
+        return call("GET", f"{DATA_URL}{path}")
     f = MOCKS / f"{kind}.{ticker}.json"
     if not f.exists(): raise HTTPException(404, f"Nema mocka za {ticker} ({kind})")
     return json.loads(f.read_text(encoding='utf-8'))
@@ -101,9 +132,15 @@ def get_profile(project_id: str) -> dict:
         return {}
 
 def build_brief(t: str, project_id: str = "default") -> dict:
-    quote = fetch("quote", t, f"/quote/{t}")
-    fin = fetch("financials", t, f"/financials/{t}")
-    risks = fetch("risk-factors", t, f"/filings/{t}/risk-factors")
+    try:
+        quote = fetch("quote", t, f"/quote/{t}")
+        fin = fetch("financials", t, f"/financials/{t}")
+        risks = fetch("risk-factors", t, f"/filings/{t}/risk-factors")
+    except HTTPException:
+        cached = CACHE / f"{t}.json"   # podaci nedostupni (npr. offline, ticker van A-ovog keša): ranije spremljen brief
+        if cached.exists():
+            b = json.loads(cached.read_text(encoding="utf-8")); b["mode"] = "cache"; return b
+        raise
     top = pick_risks(risks)
     prof = get_profile(project_id)
     thesis, mode = write_thesis(t, quote, fin, {**risks, "items": top}, prof.get("instructions", ""))
@@ -199,13 +236,7 @@ def proxy(base, method: str, path: str, params=None, body=None):
     """Prosljeđuje poziv A-ovim servisima (paper u data_service, učenje u learning_service). Bez URL-a: 503."""
     if not base:
         raise HTTPException(503, "Funkcija nije uključena (servis nije pokrenut)")
-    try:
-        r = httpx.request(method, f"{base}{path}", params=params, json=body, timeout=15)
-    except Exception as e:
-        raise HTTPException(503, f"Servis nedostupan: {e}")
-    if r.status_code >= 400:
-        raise HTTPException(r.status_code, r.text)
-    return r.json()
+    return call(method, f"{base}{path}", params=params, json=body, timeout=15)
 
 @app.get("/paper/portfolio")
 def paper_portfolio(project_id: str = "default"):
