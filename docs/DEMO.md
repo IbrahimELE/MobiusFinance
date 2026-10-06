@@ -4,7 +4,8 @@ Cilj: žiriju pokazati cijeli tok bez ovisnosti o internetu ili ključu.
 ## Priprema (prije snimanja)
 1. Pravi podaci: `./run.sh` (ili `DATA_OFFLINE=1 ./run.sh` za potpuno offline: tickeri AAPL, MSFT, NVDA), otvori http://localhost:8002/. U demou koristi ta tri tickera.
 2. Bez AI-ja servis koristi `agent_service/demo_cache/*.json` (AAPL, MSFT, TSLA, NVDA, GOOGL), pa teza je puna i na laptopu bez ključa (značka "iz keša").
-3. Napravi projekt "Hackathon demo" (+ Projekt). Isključi Wi-Fi da pokažeš offline rad.
+3. **Brzina AI-ja:** uz `ANTHROPIC_API_KEY` brief traje par sekundi; preko prijavljenog `claude` CLI-ja može trajati i preko minute. Za snimak postavi ključ, ili snimaj bez AI-ja (briefovi iz keša, značka "iz keša").
+4. Napravi projekt "Hackathon demo" (+ Projekt). Isključi Wi-Fi da pokažeš offline rad.
 
 ## Scenarij (cilj 2:00)
 | Vrijeme | Šta pokazati | Šta reći |
