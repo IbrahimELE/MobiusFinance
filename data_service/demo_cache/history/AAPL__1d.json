@@ -1,0 +1,119 @@
+{
+ "stored_at": "2026-10-08T14:29:49+00:00",
+ "payload": {
+  "ticker": "AAPL",
+  "period": "1d",
+  "points": [
+   {
+    "time": 1791466200,
+    "close": 336.42,
+    "open": 336.83,
+    "high": 337.65,
+    "low": 335.9,
+    "volume": 1219853.0
+   },
+   {
+    "time": 1791466500,
+    "close": 337.16,
+    "open": 336.39,
+    "high": 337.5676,
+    "low": 336.13,
+    "volume": 435952.0
+   },
+   {
+    "time": 1791466800,
+    "close": 336.815,
+    "open": 337.1812,
+    "high": 337.57,
+    "low": 336.5,
+    "volume": 341073.0
+   },
+   {
+    "time": 1791467100,
+    "close": 337.11,
+    "open": 336.74,
+    "high": 337.2599,
+    "low": 336.36,
+    "volume": 273181.0
+   },
+   {
+    "time": 1791467400,
+    "close": 337.315,
+    "open": 337.11,
+    "high": 337.375,
+    "low": 336.77,
+    "volume": 307175.0
+   },
+   {
+    "time": 1791467700,
+    "close": 337.27,
+    "open": 337.315,
+    "high": 337.51,
+    "low": 337.14,
+    "volume": 309923.0
+   },
+   {
+    "time": 1791468000,
+    "close": 337.325,
+    "open": 337.3,
+    "high": 337.65,
+    "low": 337.06,
+    "volume": 400716.0
+   },
+   {
+    "time": 1791468300,
+    "close": 337.11,
+    "open": 337.325,
+    "high": 337.4055,
+    "low": 336.96,
+    "volume": 298194.0
+   },
+   {
+    "time": 1791468600,
+    "close": 336.91,
+    "open": 337.085,
+    "high": 337.53,
+    "low": 336.7601,
+    "volume": 412819.0
+   },
+   {
+    "time": 1791468900,
+    "close": 336.61,
+    "open": 336.94,
+    "high": 337.04,
+    "low": 336.52,
+    "volume": 170872.0
+   },
+   {
+    "time": 1791469200,
+    "close": 337.18,
+    "open": 336.61,
+    "high": 337.57,
+    "low": 336.5693,
+    "volume": 328794.0
+   },
+   {
+    "time": 1791469500,
+    "close": 337.5538,
+    "open": 337.165,
+    "high": 337.5538,
+    "low": 337.0665,
+    "volume": 144434.0
+   }
+  ],
+  "interval": "5m",
+  "currency": "USD",
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-08T14:29:49+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance price history",
+     "url": "https://finance.yahoo.com/quote/AAPL/history"
+    }
+   ]
+  }
+ }
+}

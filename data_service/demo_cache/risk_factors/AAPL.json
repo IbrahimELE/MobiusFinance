@@ -1,5 +1,5 @@
 {
- "stored_at": "2026-10-05T13:24:04+00:00",
+ "stored_at": "2026-10-08T14:29:49+00:00",
  "payload": {
   "ticker": "AAPL",
   "filing": "10-K 2025",
@@ -260,7 +260,7 @@
   "max_chars_per_risk": 1500,
   "meta": {
    "provider": "sec_edgar",
-   "fetched_at": "2026-10-05T13:24:04+00:00",
+   "fetched_at": "2026-10-08T14:29:49+00:00",
    "cached": false,
    "stale": false,
    "sources": [

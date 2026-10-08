@@ -95,6 +95,8 @@ class YFinanceProvider:
             change=change,
             change_pct=round(change / prev * 100, 4) if change is not None else None,  # percent, per contract
             as_of=_market_time(info),
+            market_state=info.get("marketState"),
+            market_open=(info.get("marketState") == "REGULAR") if info.get("marketState") else None,
             day_high=_num(info.get("dayHigh")),
             day_low=_num(info.get("dayLow")),
             year_high=_num(info.get("fiftyTwoWeekHigh")),
@@ -117,8 +119,9 @@ class YFinanceProvider:
             o, h, l, c = (_num(r.get(k), 4) for k in ("Open", "High", "Low", "Close"))
             if None in (o, h, l, c):
                 continue
+            when = int(ts.timestamp()) if interval.endswith("m") else ts.strftime("%Y-%m-%d")
             points.append(
-                PricePoint(time=ts.strftime("%Y-%m-%d"), open=o, high=h, low=l, close=c, volume=_num(r.get("Volume")))
+                PricePoint(time=when, open=o, high=h, low=l, close=c, volume=_num(r.get("Volume")))
             )
         currency = None
         try:

@@ -1,0 +1,119 @@
+{
+ "stored_at": "2026-10-08T14:29:54+00:00",
+ "payload": {
+  "ticker": "NVDA",
+  "period": "1d",
+  "points": [
+   {
+    "time": 1791466200,
+    "close": 234.545,
+    "open": 234.93,
+    "high": 235.2,
+    "low": 233.87,
+    "volume": 6911569.0
+   },
+   {
+    "time": 1791466500,
+    "close": 234.66,
+    "open": 234.53,
+    "high": 234.69,
+    "low": 234.04,
+    "volume": 1769071.0
+   },
+   {
+    "time": 1791466800,
+    "close": 234.285,
+    "open": 234.6582,
+    "high": 234.671,
+    "low": 233.9,
+    "volume": 1758387.0
+   },
+   {
+    "time": 1791467100,
+    "close": 234.3522,
+    "open": 234.28,
+    "high": 234.39,
+    "low": 234.03,
+    "volume": 1263756.0
+   },
+   {
+    "time": 1791467400,
+    "close": 233.96,
+    "open": 234.34,
+    "high": 234.7296,
+    "low": 233.9093,
+    "volume": 1508613.0
+   },
+   {
+    "time": 1791467700,
+    "close": 234.02,
+    "open": 233.9369,
+    "high": 234.385,
+    "low": 233.71,
+    "volume": 1644139.0
+   },
+   {
+    "time": 1791468000,
+    "close": 234.86,
+    "open": 234.05,
+    "high": 234.88,
+    "low": 234.01,
+    "volume": 1164436.0
+   },
+   {
+    "time": 1791468300,
+    "close": 235.8001,
+    "open": 234.865,
+    "high": 235.87,
+    "low": 234.8066,
+    "volume": 1960719.0
+   },
+   {
+    "time": 1791468600,
+    "close": 236.0399,
+    "open": 235.8099,
+    "high": 236.1,
+    "low": 235.6,
+    "volume": 1428176.0
+   },
+   {
+    "time": 1791468900,
+    "close": 235.991,
+    "open": 236.0101,
+    "high": 236.1599,
+    "low": 235.86,
+    "volume": 1014116.0
+   },
+   {
+    "time": 1791469200,
+    "close": 236.68,
+    "open": 235.98,
+    "high": 236.8055,
+    "low": 235.98,
+    "volume": 1697310.0
+   },
+   {
+    "time": 1791469500,
+    "close": 236.947,
+    "open": 236.67,
+    "high": 237.02,
+    "low": 236.655,
+    "volume": 927363.0
+   }
+  ],
+  "interval": "5m",
+  "currency": "USD",
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-08T14:29:54+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance price history",
+     "url": "https://finance.yahoo.com/quote/NVDA/history"
+    }
+   ]
+  }
+ }
+}

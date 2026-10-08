@@ -132,3 +132,11 @@ def test_risk_factors_route(env):
     client, _ = make()
     r = client.get("/filings/aapl/risk-factors").json()
     assert r["filing"] == "10-K 2025" and r["items"][0] == {"text": "Risk.", "source": "10-K 2025, Item 1A"}
+
+
+def test_intraday_periods_use_intraday_interval(env):
+    _, make, _ = env
+    client, _ = make()
+    for period, interval in (("1d", "5m"), ("5d", "30m")):
+        r = client.get(f"/history/AAPL?period={period}")
+        assert r.status_code == 200 and r.json()["interval"] == interval

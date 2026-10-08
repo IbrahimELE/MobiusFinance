@@ -41,6 +41,8 @@ class Quote(BaseModel):
     change_pct: float | None = Field(None, description="Percent, e.g. 0.8 == +0.8 %.")
     market_cap: float | None = None
     as_of: str | None = Field(None, description="ISO datetime of the price.")
+    market_state: str | None = Field(None, description="Exchange session from Yahoo: REGULAR (open), PRE, POST, CLOSED, ...")
+    market_open: bool | None = Field(None, description="True during the regular session, i.e. the price is moving live.")
     # extras
     exchange: str | None = None
     previous_close: float | None = None
@@ -54,7 +56,7 @@ class Quote(BaseModel):
 
 
 class PricePoint(BaseModel):
-    time: str = Field(description="YYYY-MM-DD")
+    time: str | int = Field(description='"YYYY-MM-DD" for daily+ bars; UTC unix seconds for intraday (1d, 5d).')
     close: float
     open: float | None = None
     high: float | None = None

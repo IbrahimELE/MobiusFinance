@@ -16,7 +16,7 @@ from app.providers.edgar_provider import EdgarProvider
 from app.providers.yfinance_provider import YFinanceProvider
 from app.service import PERIOD_INTERVAL
 
-DEMO_PERIODS = ("1mo", "6mo", "1y", "5y")
+DEMO_PERIODS = ("1d", "5d", "1mo", "6mo", "1y", "5y")
 
 
 def main(tickers: list[str]) -> int:
