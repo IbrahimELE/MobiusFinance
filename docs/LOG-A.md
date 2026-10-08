@@ -33,3 +33,14 @@ Osoba A: dopisuj ovdje isti format kao u LOG-B.md (datum · korak · šta · za�
 - `run.sh`: koristi `python3` (ili `python`, ili `PYTHON=...`), ne pregazi `SEC_USER_AGENT` lažnom adresom, ispiše link.
 - Dodano: `LICENSE` (MIT), `docs/SOURCES.md` (izvori i licence za prijavu), `learning_service` u CODEOWNERS; README (pokretanje, AI ključ, šta aplikacija radi), DEMO.md (brzina AI-ja).
 - Provjereno (API, run.sh): offline AAPL/TSLA brief iz keša, XXXX → 503 s porukom; online XXXX → 404 „Nepoznat ticker…", TSM → 404 „Nema 10-K…"; paper 409 poruke. Testovi data 33, learning 17. UI nije vizuelno provjeren (preglednik na Möbius hostu se nije mogao pokrenuti) – proći TESTING.md na laptopu.
+
+## 2026-10-08 · Korak 5: UI/UX popravke po listi vlasnika (grana `feature/a-ui-v2`, iz `feature/a-predaja`)
+Funkcionalno:
+- Graf: `fixLeftEdge`/`fixRightEdge` – ne može se odzumirati van podataka (provjereno: 40 wheel-out i dalje pun period); wheel zumira, drag pomjera, dupli klik na osu resetuje.
+- Paper trading: novac se i ranije skidao, ali UI je krupno pokazivao ukupnu vrijednost (~100k). Sada je naslov "Cash available", plus Invested/Total/P&L/Return, procjena troška prije kupovine, toast "Cash $X → $Y", lista zadnjih naloga, Sell onemogućen bez pozicije.
+- Cijena uživo: data_service `/quote` vraća `market_state`/`market_open` (Yahoo), novi periodi `1d` (5 min) i `5d` (30 min) s kešom 60 s. UI pokazuje "Live · vrijeme" samo dok je berza otvorena, inače "Market closed" ili "Offline data"; cijena treperi pri promjeni. Izvor se mijenja ~svakih 25 s u radno vrijeme (provjereno AAPL 337.35→337.11).
+Estetika:
+- Sve na engleskom: UI, AI teza i chat (prompt), šablon, poruke grešaka, profil učenja ("Personalised: …"), demo briefovi u `agent_service/demo_cache` (regenerisani AI-jem), demo ocjene u learning_service.
+- Novi frontend: dizajn tokeni (boje, razmaci, radijusi), font Inter ugrađen (`frontend/vendor`, OFL), veći logo, pretraga s jasnim "Generate AI brief", "Workspace" umjesto nejasnog projekta, početni ekran (šta je aplikacija, šta možeš, kako radi; inspiracija naga.com), vlastiti modal i toast umjesto `confirm`/`prompt`, mobilni prikaz.
+- Provjera: Playwright screenshoti desktop + mobile (landing, brief, kupovina, modal, 1D graf, zoom-out); testovi data 34, learning 17; JS `node --check`.
+- Napomena za B: ovo dira `frontend/` i `agent_service/` (uz odobrenje vlasnika); molim pregled u PR-u.

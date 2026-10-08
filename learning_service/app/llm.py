@@ -15,17 +15,17 @@ import tempfile
 
 import httpx
 
-PROMPT = """Ti pomažeš financijskom AI analitičaru da se prilagodi korisniku.
-Ispod su ocjene koje je korisnik dao briefovima (teza o dionici) i preferencije koje su iz njih izvučene pravilima.
+PROMPT = """You help an AI equity analyst adapt to one user.
+Below are the ratings the user gave to investment briefs, and the preferences extracted from them by rules.
 
-Ocjene (najstarije prvo):
+Ratings (oldest first; notes may be in Bosnian or English):
 {feedback}
 
-Preferencije iz pravila: {rules}
+Rule-based preferences: {rules}
 
-Vrati ISKLJUČIVO JSON objekat, bez ikakvog drugog teksta:
-{{"instructions": "2-3 rečenice na bosanskom, u imperativu, upućene analitičaru: kako da piše teze za ovog korisnika. Ne izmišljaj želje koje nisu u ocjenama.",
-  "label": "najviše 80 znakova, sažetak naučenog za prikaz korisniku, npr. 'fokus na dug i FCF · kraće · bez opisa proizvoda'"}}"""
+Return ONLY a JSON object, nothing else:
+{{"instructions": "2-3 sentences in English, imperative, addressed to the analyst: how to write theses for this user. Do not invent wishes that are not in the ratings.",
+  "label": "at most 80 characters, English summary of what was learned, shown to the user, e.g. 'focus on debt and FCF · shorter · less product detail'"}}"""
 
 
 class LLMUnavailable(Exception):

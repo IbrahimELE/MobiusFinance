@@ -19,24 +19,24 @@ from dataclasses import dataclass, field
 
 # topic key -> (label for people, phrase for the agent prompt, keyword stems)
 TOPICS: dict[str, tuple[str, str, tuple[str, ...]]] = {
-    "debt": ("zaduženost", "zaduženost (debt-to-equity)", ("dug", "duga", "dugu", "duzn", "zaduz", "debt", "leverage", "kredit")),
-    "free_cash_flow": ("slobodni novčani tok", "slobodni novčani tok (FCF)", ("fcf", "novcani tok", "novcanom toku", "novcanog toka", "cash flow", "cashflow", "slobodni novac")),
-    "valuation": ("valuacija", "valuaciju (P/E, forward P/E)", ("valuacij", "p/e", " pe ", "skup", "jeftin", "multipl", "valuation", "cijena dionice")),
-    "growth": ("rast", "rast prihoda", ("rast", "growth", "prihod", "revenue")),
-    "margins": ("marže", "marže i profitabilnost", ("marz", "margin", "profitabil", "zarada")),
-    "competition": ("konkurencija", "poređenje s konkurencijom", ("konkuren", "competit", "rival", "peer", "poredj", "usporedb")),
-    "risks": ("rizici", "ključne rizike iz 10-K", ("rizik", "risk")),
-    "dividends": ("dividende", "dividende i povrat kapitala", ("dividend", "otkup dionic", "buyback")),
-    "macro": ("makro", "makro okruženje (kamate, inflacija)", ("makro", "kamat", "inflac", "macro", "fed ", "recesij")),
-    "product_details": ("opis proizvoda", "opis proizvoda", ("proizvod", "product", "iphone", "uredjaj")),
+    "debt": ("debt", "leverage (debt-to-equity)", ("dug", "duga", "dugu", "duzn", "zaduz", "debt", "leverage", "kredit")),
+    "free_cash_flow": ("free cash flow", "free cash flow (FCF)", ("fcf", "novcani tok", "novcanom toku", "novcanog toka", "cash flow", "cashflow", "slobodni novac")),
+    "valuation": ("valuation", "valuation (P/E, forward P/E)", ("valuacij", "p/e", " pe ", "skup", "jeftin", "multipl", "valuation", "cijena dionice")),
+    "growth": ("growth", "revenue growth", ("rast", "growth", "prihod", "revenue")),
+    "margins": ("margins", "margins and profitability", ("marz", "margin", "profitabil", "zarada")),
+    "competition": ("competition", "comparison with competitors", ("konkuren", "competit", "rival", "peer", "poredj", "usporedb")),
+    "risks": ("risks", "key risks from the 10-K", ("rizik", "risk")),
+    "dividends": ("dividends", "dividends and buybacks", ("dividend", "otkup dionic", "buyback")),
+    "macro": ("macro", "macro backdrop (rates, inflation)", ("makro", "kamat", "inflac", "macro", "fed ", "recesij")),
+    "product_details": ("product details", "product descriptions", ("proizvod", "product", "iphone", "uredjaj")),
 }
 
 # style key -> (value, label, prompt sentence, stems)
 STYLE_RULES: list[tuple[str, str, str, str, tuple[str, ...]]] = [
-    ("length", "short", "kraće", "Piši kratko: teza najviše 3 rečenice.", ("krace", "kratk", "sazet", "manje teksta", "previse teksta", "predug", "dugacak", "short", "brief")),
-    ("length", "long", "detaljnije", "Piši detaljnije: 5–6 rečenica s više konteksta.", ("detaljn", "duze", "vise detalja", "prekratk", "longer", "detail")),
-    ("tone", "simple", "jednostavnije", "Piši jednostavno i objasni stručne pojmove u zagradi.", ("jednostavn", "objasn", "laick", "bez zargona", "ne razumijem", "simple", "explain")),
-    ("tone", "numbers", "više brojeva", "Svaku tvrdnju potkrijepi konkretnim brojem.", ("vise brojeva", "konkretn", "brojk", "numbers")),
+    ("length", "short", "shorter", "Keep it short: at most 3 sentences.", ("krace", "kratk", "sazet", "manje teksta", "previse teksta", "predug", "dugacak", "short", "brief")),
+    ("length", "long", "more detail", "Go deeper: 5-6 sentences with more context.", ("detaljn", "duze", "vise detalja", "prekratk", "longer", "detail")),
+    ("tone", "simple", "plain language", "Use plain language and explain jargon in brackets.", ("jednostavn", "objasn", "laick", "bez zargona", "ne razumijem", "simple", "explain")),
+    ("tone", "numbers", "more numbers", "Back every claim with a concrete number.", ("vise brojeva", "konkretn", "brojk", "numbers")),
 ]
 
 TAG_TO_STYLE = {"short": ("length", "short"), "long": ("length", "long"), "simple": ("tone", "simple")}
@@ -92,22 +92,22 @@ class RuleProfile:
             if self.style.get(skey) == value:
                 out.append(sentence)
         if self.focus:
-            out.append("Obavezno komentariši: " + ", ".join(TOPICS[k][1] for k in self.focus) + ".")
+            out.append("Always cover: " + ", ".join(TOPICS[k][1] for k in self.focus) + ".")
         if self.avoid:
-            out.append("Izbjegavaj ili svedi na minimum: " + ", ".join(TOPICS[k][1] for k in self.avoid) + ".")
-        return "Korisnik je kroz ocjene pokazao šta želi. " + " ".join(out)
+            out.append("Avoid or minimise: " + ", ".join(TOPICS[k][1] for k in self.avoid) + ".")
+        return "From their ratings, the user wants: " + " ".join(out)
 
     def label(self) -> str:
         if self.empty:
             return ""
         parts = []
         if self.focus:
-            parts.append("fokus: " + ", ".join(TOPICS[k][0] for k in self.focus))
+            parts.append("focus on " + ", ".join(TOPICS[k][0] for k in self.focus))
         for skey, value, lab, _, _ in STYLE_RULES:
             if self.style.get(skey) == value:
                 parts.append(lab)
         if self.avoid:
-            parts.append("bez: " + ", ".join(TOPICS[k][0] for k in self.avoid))
+            parts.append("less " + ", ".join(TOPICS[k][0] for k in self.avoid))
         return " · ".join(parts)
 
 

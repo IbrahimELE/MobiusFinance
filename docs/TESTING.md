@@ -1,5 +1,5 @@
 # Test plan (osoba B), čet 8.10: 4–5 tickera
-Tickeri: AAPL, MSFT, TSLA, NVDA, GOOGL. Za svaki: pokreni Analiziraj, provjeri:
+Tickeri: AAPL, MSFT, TSLA, NVDA, GOOGL. Za svaki: Generate AI brief (UI je na engleskom), provjeri:
 - [ ] Brief se pojavi < 20 s (ili odmah iz keša), nema "Greška"
 - [ ] Grafikon se crta; 4 pokazatelja imaju brojeve
 - [ ] Teza ima [1]/[2] i linkovi se otvaraju

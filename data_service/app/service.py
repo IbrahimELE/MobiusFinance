@@ -35,7 +35,10 @@ TTL = {
     "risk_factors": 7 * 24 * 3600,
 }
 
-PERIOD_INTERVAL = {"1mo": "1d", "3mo": "1d", "6mo": "1d", "1y": "1d", "2y": "1d", "5y": "1wk", "max": "1mo"}
+# Intraday periods (1d, 5d) show live movement; they use a short cache so the chart keeps up.
+PERIOD_INTERVAL = {"1d": "5m", "5d": "30m", "1mo": "1d", "3mo": "1d", "6mo": "1d", "1y": "1d", "2y": "1d", "5y": "1wk", "max": "1mo"}
+
+INTRADAY_TTL = 60  # seconds
 
 TICKER_RE = re.compile(r"^[A-Z0-9][A-Z0-9.\-]{0,9}$")
 
@@ -77,7 +80,8 @@ class DataService:
         if period not in PERIOD_INTERVAL:
             raise InvalidParameter(f"period must be one of {', '.join(PERIOD_INTERVAL)}")
         interval = PERIOD_INTERVAL[period]
-        return self._get("history", t, period, History, lambda: self.market.history(t, period, interval))
+        ttl = INTRADAY_TTL if interval.endswith("m") else None
+        return self._get("history", t, period, History, lambda: self.market.history(t, period, interval), ttl)
 
     def financials(self, ticker: str) -> Financials:
         t = normalize_ticker(ticker)
@@ -88,8 +92,9 @@ class DataService:
         return self._get("risk_factors", t, None, RiskFactors, lambda: self.filings.risk_factors(t))
 
     # --- cache policy ---------------------------------------------------------
-    def _get(self, kind: str, ticker: str, variant: str | None, model: type[M], fetch: Callable[[], M]) -> M:
-        ttl = TTL[kind]
+    def _get(self, kind: str, ticker: str, variant: str | None, model: type[M], fetch: Callable[[], M],
+             ttl: int | None = None) -> M:
+        ttl = ttl or TTL[kind]
         hit = self.cache.get(kind, ticker, variant)
         if hit and hit.age_seconds() < ttl and not self.settings.offline:
             return self._from_cache(model, hit, stale=False)

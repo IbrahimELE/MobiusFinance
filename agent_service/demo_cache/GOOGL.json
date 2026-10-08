@@ -1,32 +1,43 @@
 {
  "ticker": "GOOGL",
- "thesis": "Alphabet je u fiskalnoj 2025. ostvario prihod od 402,8 mlrd USD, što je rast od 15,1% u odnosu na prethodnu godinu, uz neto dobit od 132,2 mlrd USD i neto maržu od 32,8% [1]. Razrijeđena dobit po dionici porasla je s 8,04 USD u 2024. na 10,81 USD u 2025., a omjer duga i kapitala od 0,19 ukazuje na konzervativnu bilansnu strukturu [1]. Dionica trenutno vrijedi 344,24 USD, oko 16% ispod 52-sedmičnog maksimuma od 408,61 USD, uz P/E od 17,27 i forward P/E od 22,84 [1]. Glavni rizici su velika zavisnost prihoda od oglašavanja, intenzivna konkurencija i rastuća ulaganja u nove poslove i tehnologije, koja mogu naštetiti poslovanju i rezultatima [2].",
+ "name": "Alphabet Inc.",
+ "thesis": "Alphabet trades at $350.81 with a market cap of $4.29T and a trailing P/E of 17.68 against forward P/E of 23.23, implying the market expects moderated earnings growth ahead [1]. Fiscal 2025 revenue reached $402.84B, up 15.09% YoY, with net income of $132.17B (32.81% net margin) and a strong balance sheet (debt-to-equity of 0.1886) [1]. Profitability remains robust with gross margin of 60.9% and operating margin of 34.0%, though free cash flow of $22.67B appears comparatively modest against net income, warranting monitoring [1]. Key risks include dependence on advertising revenue, reputational and liability exposure from AI development and use, and an expanding global regulatory burden, all of which could pressure the thesis [2].",
  "mode": "llm",
  "metrics": {
-  "price": 344.235,
-  "pe": 17.27,
+  "price": 350.805,
+  "pe": 17.68,
   "revenue_growth_yoy": 0.1509,
   "net_margin": 0.3281
  },
  "risks": [
   {
    "text": "We generate a significant portion of our revenues from advertising. Reduced spending by advertisers, a loss of partners, shifts in online advertising, new and evolving advertising formats, or new or existing technologies that block ads online or affect our ability to personalize ads could harm our business.",
+   "detail": "We generated more than 70% of total revenues from online advertising in 2025. Many of our advertisers, companies that distribute our products and services, digital publishers, and content providers can terminate their contracts with us at any time. These partners may not continue to do business with us if we do not create more value (such as increased numbers of users or customers, new sales leads, increased brand awareness, or more effective monetization) than their available alternatives. We b",
+   "category": "Risks Specific to our Company",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Our increasing investment in new businesses, products, services, and technologies is inherently risky, and could divert management attention and harm our business, financial condition, and operating results.",
+   "text": "Issues in the development and use of AI may result in reputational harm and increased liability exposure.",
+   "detail": "Our evolving AI-enabled products and services may give rise to risks related to harmful content, inaccuracies, discrimination, intellectual property infringement or misappropriation, violation of rights of publicity, defamation, data privacy, cybersecurity, minor protection, and other issues. As a result of these and other challenges associated with innovative technologies, our implementation of AI systems could subject us to competitive harm, regulatory action, legal liability (including under ",
+   "category": "Risks Related to our Industry",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Alphabet Inc.",
+   "text": "We are subject to a variety of new, existing, and changing laws and regulations worldwide that could harm our business, and will likely be subject to an even broader scope of laws and regulations as we continue to expand our business.",
+   "detail": "We are subject to numerous US federal and state as well as foreign laws and regulations covering a wide variety of subjects, and our introduction of new businesses, products, services, and technologies will likely continue to subject us to additional laws and regulations. In recent years, governments around the world have proposed and adopted a large number of new laws and regulations relevant to the digital economy, particularly in the areas of data privacy and security, competition, AI, and on",
+   "category": "Risks Related to Laws, Regulations, and Policies",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "We face intense competition. If we do not continue to innovate and provide products and services that are useful to users, customers, and other partners, we may not remain competitive, which could harm our business, financial condition, and operating results.",
+   "text": "We cannot guarantee that any share repurchase program or dividend program will be continuously active or fully consummated or will enhance long-term stockholder value, and share repurchases or dividends could increase the volatility of our stock prices and could diminish our cash reserves.",
+   "detail": "We engage in share repurchases of our Class A and Class C stock from time to time in accordance with authorizations from the Board of Directors of Alphabet. Our repurchase program does not have an expiration date and does not obligate Alphabet to repurchase any specific dollar amount or to acquire any specific number of shares. Our cash dividend program pays regular cash dividends to our Class A, Class B, and Class C stockholders. Any and all future cash dividends are subject to declaration by o",
+   "category": "Risks Related to Ownership of Our Stock",
    "source": "10-K 2025, Item 1A"
   },
   {
-   "text": "Alphabet Inc.",
+   "text": "Our operating results may fluctuate, which makes our results difficult to predict and could cause our results to fall short of expectations.",
+   "detail": "Our operating results have fluctuated, and may in the future fluctuate, as a result of a number of factors, many outside of our control, including the cyclical nature and seasonality in our business and geopolitical events. As a result, comparing our operating results (including our expenses as a percentage of our revenues) on a period-to-period basis may not be meaningful, and our past results should not be relied on as an indication of our future performance. Consequently, our operating result",
+   "category": "General Risks",
    "source": "10-K 2025, Item 1A"
   }
  ],
@@ -34,6 +45,44 @@
   "MSFT",
   "AAPL"
  ],
+ "extras": {
+  "year_high": 408.61,
+  "year_low": 235.84,
+  "gross_margin": 0.60897,
+  "operating_margin": 0.34033,
+  "debt_to_equity": 0.1886,
+  "free_cash_flow": 22665000960.0,
+  "forward_pe": 23.23,
+  "dividend_yield": 0.0025,
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "annual": [
+   {
+    "year": 2022,
+    "revenue": 282836000000.0,
+    "net_income": 59972000000.0,
+    "free_cash_flow": 60010000000.0
+   },
+   {
+    "year": 2023,
+    "revenue": 307394000000.0,
+    "net_income": 73795000000.0,
+    "free_cash_flow": 69495000000.0
+   },
+   {
+    "year": 2024,
+    "revenue": 350018000000.0,
+    "net_income": 100118000000.0,
+    "free_cash_flow": 72764000000.0
+   },
+   {
+    "year": 2025,
+    "revenue": 402836000000.0,
+    "net_income": 132170000000.0,
+    "free_cash_flow": 73266000000.0
+   }
+  ]
+ },
  "sources": [
   {
    "label": "Yahoo Finance",
@@ -44,5 +93,5 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
   }
  ],
- "generated_at": "2026-10-05T13:31:24.720636+00:00"
+ "generated_at": "2026-10-08T15:18:47.416144+00:00"
 }

@@ -1,38 +1,87 @@
 {
  "ticker": "TSLA",
- "thesis": "Tesla, Inc. (TSLA) zatvorila je na 370,59 USD (+4,65%), uz tržišnu kapitalizaciju od oko 1.464 milijarde USD, što je i dalje znatno ispod 52-sedmičnog maksimuma od 498,83 USD [1]. Fundamenti ne prate ovu valuaciju: prihod u 2025. pao je na 94,83 milijarde USD (−2,93% međugodišnje), a neto dobit na 3,79 milijardi USD u odnosu na 7,13 milijardi USD u 2024., uz neto maržu od samo 4% i operativnu maržu od 1,41% [1]. Uz P/E od 343,14 i forward P/E od 172,79, cijena se zasniva na očekivanjima budućeg rasta, a ne na trenutnoj profitabilnosti, iako slobodni novčani tok od 6,22 milijarde USD u 2025. i nizak omjer duga i kapitala (0,18) daju određenu finansijsku stabilnost [1]. Ključni rizici za tezu rasta su moguća kašnjenja u razvoju i povećanju proizvodnje, nemogućnost kontrole proizvodnih troškova i potreba da kompanija značajno poveća pristup baterijskim ćelijama, uključujući i vlastitu proizvodnju [2].",
+ "name": "Tesla, Inc.",
+ "thesis": "Tesla trades at $373.18, down 1.23% intraday, with a market cap of $1.47T [1], but its valuation remains extremely elevated at a trailing P/E of 345.69x and a forward P/E of 174.0x [1]. Fiscal 2025 revenue of $94.83B declined 2.93% year-over-year, while net margin was thin at 4.0% and operating margin just 1.41%, with free cash flow of only $4.84B, indicating weakening core profitability despite a low debt-to-equity ratio of 0.1837 [1]. The stock's beta of 1.916 reflects high volatility, consistent with disclosed risks including production/ramp delays, lithium-ion cell and Gigafactory manufacturing issues, dependence on government incentives, supplier delivery risk, and explicitly acknowledged stock price volatility [2]. Given shrinking revenue, compressed margins, and a valuation pricing in substantial future growth, the current risk/reward appears unfavorable at these levels.",
  "mode": "llm",
  "metrics": {
-  "price": 370.59,
-  "pe": 343.14,
+  "price": 373.18,
+  "pe": 345.69,
   "revenue_growth_yoy": -0.0293,
   "net_margin": 0.04
  },
  "risks": [
   {
    "text": "We may experience issues or delays in developing, launching and ramping the production of our products, services and features, or we may be unable to control our manufacturing costs.",
+   "detail": "We are developing new technologies and services, unique manufacturing processes and design features in our products. There is no guarantee we will be able to successfully develop or timely introduce and scale these new products, services and features, or that there will be widespread consumer adoption. We also have previously experienced and may in the future experience launch and production ramp delays. In particular, our future business depends on development of our driver assistance systems a",
+   "category": "Risks Related to Our Ability to Grow Our Business",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "We may experience issues with lithium-ion cells or other components manufactured at our Gigafactories, which may harm the production and profitability of our vehicle and energy storage products.",
+   "detail": "Our plan to grow the volume and profitability of our vehicles and energy storage products depends on significant lithium-ion battery cell production. We also produce several vehicle components at our Gigafactories, such as battery modules and packs and drive units, and manufacture energy storage products. If we are unable to or otherwise do not maintain and grow our respective operations, or if we are unable to do so cost-effectively or hire and retain highly-skilled personnel there, our ability",
+   "category": "Risks Related to Our Operations",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "Demand for our products and services may be impacted by the status of government and economic incentives supporting the development and adoption of such products.",
+   "detail": "Government and economic incentives that support the development and adoption of electric vehicles in the U.S. and abroad, including certain tax exemptions, tax credits and rebates, may be reduced, eliminated, amended or exhausted from time to time. For example, previously available incentives favoring electric vehicles in certain areas have expired or were cancelled or temporarily unavailable, and in some cases were not eventually replaced or reinstituted, which may have negatively impacted sale",
+   "category": "Risks Related to Government Laws and Regulations",
+   "source": "10-K 2025, Item 1A"
+  },
+  {
+   "text": "The trading price of our common stock is likely to continue to be volatile.",
+   "detail": "The trading price of our common stock has been highly volatile and could continue to be subject to wide fluctuations in response to various factors, some of which are beyond our control. Our common stock has experienced over the last 52 weeks an intra-day trading high of $498.83 per share and a low of $214.25 per share. The stock market in general, and the market for technology companies in particular, has experienced extreme price and volume fluctuations that have often been unrelated or dispro",
+   "category": "Risks Related to the Ownership of Our Common Stock",
    "source": "10-K 2025, Item 1A"
   },
   {
    "text": "Our suppliers may fail to deliver components according to schedules, prices, quality and volumes that are acceptable to us, or we may be unable to manage these components effectively.",
-   "source": "10-K 2025, Item 1A"
-  },
-  {
-   "text": "We may be unable to meet our projected construction timelines, costs and production ramps at new factories, or we may experience difficulties in generating and maintaining demand for products manufactured there and related services.",
-   "source": "10-K 2025, Item 1A"
-  },
-  {
-   "text": "We may be unable to grow our global product sales, delivery and installation capabilities and our servicing and vehicle charging networks, or we may be unable to accurately project and effectively manage our growth.",
-   "source": "10-K 2025, Item 1A"
-  },
-  {
-   "text": "We will need to maintain and significantly grow our access to battery cells, including through the development and manufacture of our own cells, and control our related costs.",
+   "detail": "Our products contain thousands of parts purchased globally from hundreds of suppliers, including single-source direct suppliers, which exposes us to multiple potential sources of component shortages. Unexpected changes in business conditions, materials pricing, including inflation of raw material costs, labor issues, wars, trade policies, natural disasters, health epidemics, trade and shipping disruptions, port congestions, cyberattacks and other factors beyond our or our suppliers’ control coul",
+   "category": "Risks Related to Our Ability to Grow Our Business",
    "source": "10-K 2025, Item 1A"
   }
  ],
  "peers": [
   "NVDA"
  ],
+ "extras": {
+  "year_high": 498.83,
+  "year_low": 297.38,
+  "gross_margin": 0.18852,
+  "operating_margin": 0.014099999,
+  "debt_to_equity": 0.1837,
+  "free_cash_flow": 4835999744.0,
+  "forward_pe": 174.0,
+  "dividend_yield": 0.0,
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Manufacturers",
+  "annual": [
+   {
+    "year": 2022,
+    "revenue": 81462000000.0,
+    "net_income": 12583000000.0,
+    "free_cash_flow": 7552000000.0
+   },
+   {
+    "year": 2023,
+    "revenue": 96773000000.0,
+    "net_income": 14999000000.0,
+    "free_cash_flow": 4357000000.0
+   },
+   {
+    "year": 2024,
+    "revenue": 97690000000.0,
+    "net_income": 7130000000.0,
+    "free_cash_flow": 3581000000.0
+   },
+   {
+    "year": 2025,
+    "revenue": 94827000000.0,
+    "net_income": 3794000000.0,
+    "free_cash_flow": 6220000000.0
+   }
+  ]
+ },
  "sources": [
   {
    "label": "Yahoo Finance",
@@ -43,5 +92,5 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm"
   }
  ],
- "generated_at": "2026-10-05T13:31:12.812267+00:00"
+ "generated_at": "2026-10-08T15:18:40.569980+00:00"
 }

@@ -5,6 +5,7 @@ Kod Finance Deska je pod MIT licencom (`LICENSE`). Korištene komponente i izvor
 | Šta | Za šta | Licenca / uslovi |
 |---|---|---|
 | [TradingView Lightweight Charts](https://github.com/tradingview/lightweight-charts) v4.2.0 (`frontend/vendor/`) | grafikon cijene | Apache 2.0; zaglavlje licence ostaje u fajlu, uz atribuciju TradingViewu |
+| [Inter](https://rsms.me/inter/) (`frontend/vendor/InterVariable.woff2`) | font korisničkog interfejsa (radi i offline) | SIL Open Font License 1.1 (`frontend/vendor/Inter-LICENSE.txt`) |
 | [yfinance](https://github.com/ranaroussi/yfinance) | cijene, historija, fundamentals (Yahoo Finance) | Apache 2.0 (biblioteka); podaci Yahoo Finance su za ličnu/nekomercijalnu upotrebu |
 | [SEC EDGAR](https://www.sec.gov/edgar) | 10-K izvještaji, Item 1A Risk Factors | javni podaci; poštujemo SEC fair-access pravila (User-Agent s kontaktom, ≤10 zahtjeva/s; servis drži 5/s) |
 | [FastAPI](https://fastapi.tiangolo.com/), Uvicorn, httpx, Pydantic | backend servisi | MIT / BSD |

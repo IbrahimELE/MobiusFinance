@@ -120,7 +120,7 @@ def quote(ticker: str, svc: DataService = Depends(get_service)):
 @app.get("/history/{ticker}", response_model=History, responses=ERRORS)
 def history(
     ticker: str,
-    period: Literal["1mo", "3mo", "6mo", "1y", "2y", "5y", "max"] = Query("1y"),
+    period: Literal["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "max"] = Query("1y"),
     svc: DataService = Depends(get_service),
 ):
     return svc.history(ticker, period)
