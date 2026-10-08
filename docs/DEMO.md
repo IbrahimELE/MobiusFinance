@@ -28,3 +28,4 @@ Cilj: žiriju pokazati cijeli tok bez ovisnosti o internetu ili ključu.
 - Paper trading: na briefu "Buy" → toast pokazuje gotovinu prije/poslije; "Cash available" se smanji; Reset otvara prozor aplikacije.
 - Cijena uživo: pill "Live" samo dok je berza otvorena (15:30–22:00 CET); inače "Market closed". Za živi efekat pokaži 1D graf.
 - Učenje: 👎 + "More on debt and free cash flow, shorter" → sljedeći brief ima "Personalised: …".
+- Watchlist: desno se vidi "% since brief" i dnevnik teza; klik na 🔕 postavlja alarm cijene (za demo postavi blizu trenutne cijene da se okine).

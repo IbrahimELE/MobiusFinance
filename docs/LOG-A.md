@@ -51,3 +51,9 @@ Estetika:
 - Učitavanje: graf ima loader i štiti se od zastarjelih odgovora (promjena perioda/dionice); desni panel se odmah iscrtava iz zadnjeg stanja, Buy/Sell su onemogućeni dok ne stigne živa cijena ("Getting live price…"); spremljeni brief se otvara iz već učitane liste; povratak na početnu odmah skida trade box; promjena workspacea odmah prazni stari račun; tokom naloga dugme pokazuje spinner.
 - UI osvježava cijenu i portfelj svakih 10 s.
 - Testovi: data 42 (novi test za status berze), learning 17; `node --check`.
+
+## 2026-10-08 · Korak 7: watchlist + "teza kroz vrijeme" (engagement, po izboru vlasnika)
+- Kartica "Saved briefs" je sada **Watchlist**: za svaki brief živa cijena, promjena danas i promjena od dana briefa ("% since brief"); osvježava se svakih 20 s.
+- **Dnevnik teza** iznad liste: "X of Y researched stocks are up since your brief · average … · best …".
+- **Alarm cijene** (zvonce): unos cijene → alarm "above"/"below" prema trenutnoj cijeni; kad se pređe: toast + browser notifikacija (ako je dozvoljena), alarm se briše. Čuva se lokalno po workspaceu (localStorage); radi dok je aplikacija otvorena.
+- Samo frontend (koristi postojeće `/briefs` i `/quote`); bez promjena servisa i ugovora.

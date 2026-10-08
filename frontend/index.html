@@ -141,6 +141,11 @@ td,th{padding:var(--s2) var(--s1);text-align:right;border-bottom:1px solid var(-
 .saved-row{display:flex;align-items:center;gap:var(--s2);padding:var(--s2);border-radius:var(--r-sm);cursor:pointer}
 .saved-row:hover{background:var(--surface-2)}.saved-row b{flex:1}.saved-row small{color:var(--faint)}
 .saved-row .x{color:var(--faint);border:0;background:none;cursor:pointer;font-size:16px}.saved-row .x:hover{color:var(--down)}
+.saved-row .q{display:flex;flex-direction:column;align-items:flex-end;font-size:12px;line-height:1.3;min-width:86px}
+.saved-row .q b{font-size:13px;flex:none}.saved-row .bell{border:0;background:none;cursor:pointer;font-size:15px;opacity:.45;padding:0 2px}
+.saved-row .bell.on{opacity:1}.saved-row .bell:hover{opacity:1}
+.journal{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:var(--s2) var(--s3);margin-bottom:var(--s3);font-size:13px}
+.journal b{font-size:15px}
 .chat{max-height:260px;overflow:auto;margin-bottom:var(--s3);font-size:14px}
 .chat .me{color:var(--muted)}.chat div{margin:var(--s2) 0;white-space:pre-wrap}
 .note{font-size:12px;color:var(--faint);margin-top:var(--s3)}
@@ -203,7 +208,8 @@ footer{max-width:1320px;margin:0 auto;padding:0 var(--s5) var(--s6);color:var(--
       <div id="pf"></div>
     </div>
     <div class="card">
-      <div class="card-h"><h3>Saved briefs</h3><button class="btn ghost sm" id="cmp" title="Compare the checked briefs side by side">Compare</button></div>
+      <div class="card-h"><h3>Watchlist</h3><button class="btn ghost sm" id="cmp" title="Compare the checked stocks side by side">Compare</button></div>
+      <div id="journal"></div>
       <div id="saved"></div><div id="cmpout"></div>
     </div>
     <div class="card">
@@ -236,7 +242,7 @@ function modal({title,text="",confirm="OK",cancel="Cancel",input=null,danger=fal
       ${input!==null?`<input class="input" id="mIn" placeholder="${esc(input)}">`:""}
       <div class="actions"><button class="btn ghost" data-v="0">${esc(cancel)}</button><button class="btn ${danger?"danger":"primary"}" data-v="1">${esc(confirm)}</button></div></div>`;
     const done=v=>{o.remove();res(v)};
-    o.onclick=e=>{if(e.target===o)done(null);const v=e.target.dataset.v;if(v==="0")done(null);if(v==="1")done(input!==null?(o.querySelector("#mIn").value.trim()||null):true)};
+    o.onclick=e=>{if(e.target===o)done(null);const v=e.target.dataset.v;if(v==="0")done(null);if(v==="1")done(input!==null?o.querySelector("#mIn").value.trim():true)};
     o.onkeydown=e=>{if(e.key==="Escape")done(null);if(e.key==="Enter")o.querySelector('[data-v="1"]').click()};
     document.body.appendChild(o);(o.querySelector("#mIn")||o.querySelector('[data-v="1"]')).focus();
   })}
@@ -268,7 +274,7 @@ function landing(){cur=null;series=null;lastQuote=null;renderPaper();paperUI();
   <div class="card"><div class="card-h"><h3>How it works</h3></div><div class="steps">
     <div class="step"><span class="n">1</span><div><b>Search a ticker</b><span>Any US-listed company, e.g. AAPL or NVDA.</span></div></div>
     <div class="step"><span class="n">2</span><div><b>Read the AI brief</b><span>Thesis, numbers, risks and sources on one page.</span></div></div>
-    <div class="step"><span class="n">3</span><div><b>Practise &amp; refine</b><span>Paper-trade it, rate the brief, compare companies.</span></div></div>
+    <div class="step"><span class="n">3</span><div><b>Practise &amp; follow</b><span>Paper-trade it, rate the brief, and track it on your watchlist with price alerts.</span></div></div>
   </div></div></section>`;
   document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>run(b.dataset.try));
 }
@@ -371,7 +377,8 @@ async function refreshQuote(){if(!cur)return;const b=cur;
       $("since").innerHTML=`<div class="since">Since this brief (${esc((b.generated_at||"").slice(0,10))}): ${usd(b.metrics.price)} → ${usd(q.price)} <b class="${cls(ch)}">${signed(ch,v=>v.toFixed(2))}%</b></div>`}
   }catch(e){setLive(null)}}
 const LIVE_MS=10000;
-async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI()}
+let tickN=0;
+async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch()}
 setInterval(tick,LIVE_MS);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ---------- learning ---------- */
@@ -383,12 +390,43 @@ function rateUI(r){$("rate").innerHTML=`<span>${r=="up"?"👍":"👎"}</span><in
    catch(e){toast(esc(e.message),"err")}}}
 
 /* ---------- saved briefs + compare ---------- */
-let briefsCache=[];
-async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));briefsCache=l;
-  $("saved").innerHTML=l.map(b=>`<div class="saved-row" data-open="${esc(b.ticker)}"><input type="checkbox" value="${esc(b.ticker)}" aria-label="Select ${esc(b.ticker)} to compare"><b>${esc(b.ticker)}</b><small>${esc((b.generated_at||"").slice(0,10))}</small><button class="x" data-del="${esc(b.ticker)}" title="Delete brief" aria-label="Delete ${esc(b.ticker)}">×</button></div>`).join("")||'<div class="empty">No briefs yet. Search a ticker to create your first one.</div>';
+let briefsCache=[],watchQ={};
+const alertKey=()=>"alerts:"+P,alerts=()=>JSON.parse(localStorage[alertKey()]||"{}"),saveAlerts=a=>localStorage[alertKey()]=JSON.stringify(a);
+async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));briefsCache=l;renderWatch();refreshWatch()}
+function renderWatch(){const l=briefsCache,al=alerts();
+  $("saved").innerHTML=l.map(b=>{const q=watchQ[b.ticker],since=q?(q.price/b.metrics.price-1)*100:null,a=al[b.ticker];
+    return `<div class="saved-row" data-open="${esc(b.ticker)}" title="Open the ${esc(b.ticker)} brief">
+      <input type="checkbox" value="${esc(b.ticker)}" aria-label="Select ${esc(b.ticker)} to compare">
+      <b>${esc(b.ticker)}<small style="display:block;font-weight:500">brief ${esc((b.generated_at||"").slice(5,10).replace("-","/"))}</small></b>
+      <span class="q">${q?`<b>${usd(q.price)}</b><span class="${cls(q.change_pct||0)}" title="Today">${signed(q.change_pct||0,v=>v.toFixed(2))}% today</span><span class="${cls(since)}" title="Since the brief was written at ${usd(b.metrics.price)}">${signed(since,v=>v.toFixed(1))}% since brief</span>`:'<span class="spinner" style="width:14px;height:14px;border-width:2px"></span>'}</span>
+      <button class="bell ${a?"on":""}" data-alert="${esc(b.ticker)}" title="${a?`Alert when price goes ${a.dir} ${usd(a.target)} (click to change)`:"Set a price alert"}" aria-label="Price alert for ${esc(b.ticker)}">${a?"🔔":"🔕"}</button>
+      <button class="x" data-del="${esc(b.ticker)}" title="Delete brief" aria-label="Delete ${esc(b.ticker)}">×</button></div>`}).join("")||'<div class="empty">Your watchlist is empty. Search a ticker to create your first brief.</div>';
+  // Thesis journal: how have the stocks done since you researched them?
+  const rows=l.map(b=>watchQ[b.ticker]?(watchQ[b.ticker].price/b.metrics.price-1)*100:null).filter(v=>v!=null);
+  $("journal").innerHTML=rows.length?(()=>{const up=rows.filter(v=>v>0).length,avg=rows.reduce((a,v)=>a+v,0)/rows.length,best=l.reduce((m,b)=>{const q=watchQ[b.ticker];if(!q)return m;const v=(q.price/b.metrics.price-1)*100;return !m||v>m.v?{t:b.ticker,v}:m},null);
+    return `<div class="journal">📓 <b>${up} of ${rows.length}</b> researched stocks are up since your brief · average <b class="${cls(avg)}">${signed(avg,v=>v.toFixed(1))}%</b>${best?` · best: <b>${esc(best.t)}</b> <span class="${cls(best.v)}">${signed(best.v,v=>v.toFixed(1))}%</span>`:""}</div>`})():"";
   $("saved").onclick=async e=>{if(e.target.matches("input"))return;
-    const d=e.target.closest("[data-del]");if(d){if(await modal({title:`Delete the ${d.dataset.del} brief?`,text:"It will be removed from this workspace. You can generate it again any time.",confirm:"Delete",danger:true})){await J(`/briefs/${d.dataset.del}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});list();toast(`Deleted ${esc(d.dataset.del)} brief`)}return}
+    const d=e.target.closest("[data-del]");if(d){if(await modal({title:`Delete the ${d.dataset.del} brief?`,text:"It will be removed from this workspace and your watchlist. You can generate it again any time.",confirm:"Delete",danger:true})){await J(`/briefs/${d.dataset.del}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});const a=alerts();delete a[d.dataset.del];saveAlerts(a);list();toast(`Deleted ${esc(d.dataset.del)} brief`)}return}
+    const bell=e.target.closest("[data-alert]");if(bell){setAlert(bell.dataset.alert);return}
     const o=e.target.closest("[data-open]");if(o){const b=briefsCache.find(b=>b.ticker==o.dataset.open);if(b)show(b)}}}
+async function refreshWatch(){const ts=briefsCache.map(b=>b.ticker);if(!ts.length){renderWatch();return}
+  const res=await Promise.allSettled(ts.map(t=>J("/quote/"+t)));
+  res.forEach((r,i)=>{if(r.status==="fulfilled")watchQ[ts[i]]=r.value});checkAlerts();renderWatch()}
+async function setAlert(t){const q=watchQ[t],a=alerts();
+  const v=await modal({title:`Price alert for ${t}`,text:`${q?`Now ${usd(q.price)}. `:""}We'll notify you when ${t} crosses the price you enter (while Finance Desk is open). Leave empty to remove the alert.`,input:a[t]?String(a[t].target):"e.g. "+(q?Math.round(q.price*1.02):"350"),confirm:"Save alert"});
+  if(v===null)return;   // cancelled: keep the current alert
+  const target=parseFloat(String(v||"").replace(/[^0-9.]/g,""));
+  if(!target){delete a[t];saveAlerts(a);renderWatch();toast(`Alert for ${esc(t)} removed`);return}
+  a[t]={target,dir:q&&target<q.price?"below":"above"};saveAlerts(a);renderWatch();
+  if("Notification" in window&&Notification.permission==="default")Notification.requestPermission();
+  toast(`🔔 We'll tell you when ${esc(t)} goes ${a[t].dir} ${usd(target)}`,"ok")}
+function checkAlerts(){const a=alerts();let changed=false;
+  for(const [t,al] of Object.entries(a)){const q=watchQ[t];if(!q)continue;
+    if((al.dir==="above"&&q.price>=al.target)||(al.dir==="below"&&q.price<=al.target)){
+      const msg=`${t} is ${al.dir} ${usd(al.target)} — now ${usd(q.price)}`;toast("🔔 "+esc(msg),"ok");
+      if("Notification" in window&&Notification.permission==="granted")new Notification("Finance Desk price alert",{body:msg});
+      delete a[t];changed=true}}
+  if(changed)saveAlerts(a)}
 $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:checked")].map(i=>i.value);
   if(s.length<2){toast("Tick at least two saved briefs to compare them.");return}
   const r=await J("/compare?tickers="+s.join(","));
@@ -435,7 +473,7 @@ function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=fa
 /* ---------- wiring ---------- */
 $("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
 $("home").onclick=landing;
-$("proj").onchange=()=>{P=$("proj").value;localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();toast(`Switched to workspace <b>${esc(P)}</b>`)};
+$("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();toast(`Switched to workspace <b>${esc(P)}</b>`)};
 $("newp").onclick=async()=>{const n=await modal({title:"New workspace",text:"Each workspace has its own saved briefs, paper account and learned preferences.",input:"e.g. Tech stocks",confirm:"Create"});if(!n)return;
   P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;lastPf=null;renderPaper();await projects();list();paperUI();toast(`Workspace <b>${esc(P)}</b> created`,"ok")};
 $("cf").onsubmit=async e=>{e.preventDefault();const q=$("q").value.trim();if(!q)return;$("q").value="";
