@@ -7,7 +7,9 @@ the limits. Every NaN/inf coming out of pandas is turned into None here.
 from __future__ import annotations
 
 import math
+import time
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from typing import Any
 
 import yfinance as yf
@@ -47,6 +49,26 @@ def _market_time(info: dict) -> str | None:
         return None
 
 
+_NAMES: dict[str, tuple[float, dict]] = {}
+_NY = ZoneInfo("America/New_York")
+
+
+def us_market_state(now: datetime | None = None) -> str:
+    """US equity session by the clock: PRE 4:00-9:30, REGULAR 9:30-16:00, POST 16:00-20:00 ET on
+    weekdays, else CLOSED. Exchange holidays are not modelled (they show as REGULAR)."""
+    ny = (now or datetime.now(timezone.utc)).astimezone(_NY)
+    if ny.weekday() >= 5:
+        return "CLOSED"
+    minutes = ny.hour * 60 + ny.minute
+    if 9 * 60 + 30 <= minutes < 16 * 60:
+        return "REGULAR"
+    if 4 * 60 <= minutes < 9 * 60 + 30:
+        return "PRE"
+    if 16 * 60 <= minutes < 20 * 60:
+        return "POST"
+    return "CLOSED"
+
+
 def _meta(sources: list[Source]) -> Meta:
     return Meta(provider="yfinance", fetched_at=_now(), cached=False, sources=sources)
 
@@ -79,30 +101,60 @@ class YFinanceProvider:
             raise TickerNotFound(ticker)
         return info
 
+    def _names(self, t: yf.Ticker, ticker: str) -> dict:
+        """Slow-changing fields (company name, exchange) from Yahoo's heavy quoteSummary ("info").
+
+        Cached for 6 h per ticker and optional: info is the call most often rate-limited or
+        blocked (EU cookie consent), so a live quote must never depend on it.
+        """
+        hit = _NAMES.get(ticker)
+        if hit and time.monotonic() - hit[0] < 6 * 3600:
+            return hit[1]
+        try:
+            info = t.info or {}
+            names = {"name": info.get("longName") or info.get("shortName"),
+                     "exchange": info.get("fullExchangeName") or info.get("exchange")}
+        except Exception:
+            names = {}
+        if names.get("name"):
+            _NAMES[ticker] = (time.monotonic(), names)
+        return names
+
     def quote(self, ticker: str) -> Quote:
+        """Live quote from Yahoo's light chart endpoint (fast_info): ~0.2 s, updates every few seconds
+        during market hours. Market open/closed is derived from NYSE/Nasdaq regular hours."""
         t = self._ticker(ticker)
-        info = self._info(t, ticker)
-        price = _num(info.get("currentPrice")) or _num(info.get("regularMarketPrice"))
-        prev = _num(info.get("regularMarketPreviousClose")) or _num(info.get("previousClose"))
-        change = round(price - prev, 4) if price is not None and prev else None
+        try:
+            fi = t.fast_info
+            price = _num(fi.get("lastPrice"), 4)
+        except KeyError as e:  # yfinance raises KeyError('currentTradingPeriod') for unknown symbols
+            raise TickerNotFound(ticker) from e
+        except Exception as e:
+            raise UpstreamError(f"yfinance quote failed for {ticker}: {e}") from e
+        if price is None:
+            raise TickerNotFound(ticker)
+        prev = _num(fi.get("regularMarketPreviousClose")) or _num(fi.get("previousClose"))
+        change = round(price - prev, 4) if prev else None
+        names = self._names(t, ticker)
+        state = us_market_state()
         return Quote(
             ticker=ticker,
-            name=info.get("longName") or info.get("shortName"),
-            exchange=info.get("fullExchangeName") or info.get("exchange"),
-            currency=info.get("currency"),
+            name=names.get("name"),
+            exchange=names.get("exchange") or fi.get("exchange"),
+            currency=fi.get("currency"),
             price=price,
             previous_close=prev,
             change=change,
             change_pct=round(change / prev * 100, 4) if change is not None else None,  # percent, per contract
-            as_of=_market_time(info),
-            market_state=info.get("marketState"),
-            market_open=(info.get("marketState") == "REGULAR") if info.get("marketState") else None,
-            day_high=_num(info.get("dayHigh")),
-            day_low=_num(info.get("dayLow")),
-            year_high=_num(info.get("fiftyTwoWeekHigh")),
-            year_low=_num(info.get("fiftyTwoWeekLow")),
-            volume=_num(info.get("volume")),
-            market_cap=_num(info.get("marketCap")),
+            as_of=_now(),
+            market_state=state,
+            market_open=state == "REGULAR",
+            day_high=_num(fi.get("dayHigh"), 4),
+            day_low=_num(fi.get("dayLow"), 4),
+            year_high=_num(fi.get("yearHigh"), 4),
+            year_low=_num(fi.get("yearLow"), 4),
+            volume=_num(fi.get("lastVolume")),
+            market_cap=_num(fi.get("marketCap")),
             meta=_meta([Source(label="Yahoo Finance quote", url=YAHOO.format(t=ticker))]),
         )
 

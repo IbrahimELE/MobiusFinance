@@ -97,6 +97,10 @@ header{position:sticky;top:0;z-index:20;background:rgba(7,11,20,.85);backdrop-fi
 .tabs button{height:30px;padding:0 var(--s3);border:0;border-radius:8px;background:transparent;color:var(--muted);font:600 13px var(--font);cursor:pointer}
 .tabs button.on{background:var(--surface-3);color:var(--text)}
 #chart{height:320px;position:relative}
+.chart-loading{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);color:var(--muted);font-size:14px}
+.legend{position:absolute;top:6px;left:8px;z-index:3;pointer-events:none;font-size:13px;color:var(--muted);background:rgba(14,21,35,.75);padding:2px 8px;border-radius:6px}
+.legend b{color:var(--text);font-size:15px;margin-right:6px}
+.btn .spinner{width:14px;height:14px;border-width:2px}
 .chart-note{font-size:12px;color:var(--faint);margin-top:var(--s2)}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3)}@media(max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .kpi{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:var(--s3) var(--s4)}
@@ -137,6 +141,11 @@ td,th{padding:var(--s2) var(--s1);text-align:right;border-bottom:1px solid var(-
 .saved-row{display:flex;align-items:center;gap:var(--s2);padding:var(--s2);border-radius:var(--r-sm);cursor:pointer}
 .saved-row:hover{background:var(--surface-2)}.saved-row b{flex:1}.saved-row small{color:var(--faint)}
 .saved-row .x{color:var(--faint);border:0;background:none;cursor:pointer;font-size:16px}.saved-row .x:hover{color:var(--down)}
+.saved-row .q{display:flex;flex-direction:column;align-items:flex-end;font-size:12px;line-height:1.3;min-width:86px}
+.saved-row .q b{font-size:13px;flex:none}.saved-row .bell{border:0;background:none;cursor:pointer;font-size:15px;opacity:.45;padding:0 2px}
+.saved-row .bell.on{opacity:1}.saved-row .bell:hover{opacity:1}
+.journal{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:var(--s2) var(--s3);margin-bottom:var(--s3);font-size:13px}
+.journal b{font-size:15px}
 .chat{max-height:260px;overflow:auto;margin-bottom:var(--s3);font-size:14px}
 .chat .me{color:var(--muted)}.chat div{margin:var(--s2) 0;white-space:pre-wrap}
 .note{font-size:12px;color:var(--faint);margin-top:var(--s3)}
@@ -199,7 +208,8 @@ footer{max-width:1320px;margin:0 auto;padding:0 var(--s5) var(--s6);color:var(--
       <div id="pf"></div>
     </div>
     <div class="card">
-      <div class="card-h"><h3>Saved briefs</h3><button class="btn ghost sm" id="cmp" title="Compare the checked briefs side by side">Compare</button></div>
+      <div class="card-h"><h3>Watchlist</h3><button class="btn ghost sm" id="cmp" title="Compare the checked stocks side by side">Compare</button></div>
+      <div id="journal"></div>
       <div id="saved"></div><div id="cmpout"></div>
     </div>
     <div class="card">
@@ -232,7 +242,7 @@ function modal({title,text="",confirm="OK",cancel="Cancel",input=null,danger=fal
       ${input!==null?`<input class="input" id="mIn" placeholder="${esc(input)}">`:""}
       <div class="actions"><button class="btn ghost" data-v="0">${esc(cancel)}</button><button class="btn ${danger?"danger":"primary"}" data-v="1">${esc(confirm)}</button></div></div>`;
     const done=v=>{o.remove();res(v)};
-    o.onclick=e=>{if(e.target===o)done(null);const v=e.target.dataset.v;if(v==="0")done(null);if(v==="1")done(input!==null?(o.querySelector("#mIn").value.trim()||null):true)};
+    o.onclick=e=>{if(e.target===o)done(null);const v=e.target.dataset.v;if(v==="0")done(null);if(v==="1")done(input!==null?o.querySelector("#mIn").value.trim():true)};
     o.onkeydown=e=>{if(e.key==="Escape")done(null);if(e.key==="Enter")o.querySelector('[data-v="1"]').click()};
     document.body.appendChild(o);(o.querySelector("#mIn")||o.querySelector('[data-v="1"]')).focus();
   })}
@@ -246,7 +256,7 @@ const INTRADAY={"1d":300,"5d":1800};
 const POPULAR=["AAPL","MSFT","NVDA","TSLA","GOOGL"];
 
 /* ---------- landing ---------- */
-function landing(){cur=null;series=null;
+function landing(){cur=null;series=null;lastQuote=null;renderPaper();paperUI();
   $("main").innerHTML=`<section class="landing">
   <div class="heroL">
     <div class="eyebrow">Your private research desk</div>
@@ -264,7 +274,7 @@ function landing(){cur=null;series=null;
   <div class="card"><div class="card-h"><h3>How it works</h3></div><div class="steps">
     <div class="step"><span class="n">1</span><div><b>Search a ticker</b><span>Any US-listed company, e.g. AAPL or NVDA.</span></div></div>
     <div class="step"><span class="n">2</span><div><b>Read the AI brief</b><span>Thesis, numbers, risks and sources on one page.</span></div></div>
-    <div class="step"><span class="n">3</span><div><b>Practise &amp; refine</b><span>Paper-trade it, rate the brief, compare companies.</span></div></div>
+    <div class="step"><span class="n">3</span><div><b>Practise &amp; follow</b><span>Paper-trade it, rate the brief, and track it on your watchlist with price alerts.</span></div></div>
   </div></div></section>`;
   document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>run(b.dataset.try));
 }
@@ -318,37 +328,47 @@ function show(b){cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||
   document.querySelectorAll("[data-peer]").forEach(a=>a.onclick=()=>run(a.dataset.peer));
   if($("rate"))$("rate").onclick=e=>{const r=e.target.closest("[data-r]");if(r)rateUI(r.dataset.r)};
   window.scrollTo({top:0,behavior:"smooth"});
-  draw(b.ticker);refreshQuote();paperUI()}
+  renderPaper();draw(b.ticker);refreshQuote();paperUI()}
 
 /* ---------- chart: never zooms out past the data ---------- */
-async function draw(t){if(!window.LightweightCharts)return;const el=$("chart");el.innerHTML="";series=null;
+let drawSeq=0;
+async function draw(t){if(!window.LightweightCharts)return;const el=$("chart"),seq=++drawSeq;series=null;
+  el.innerHTML='<div class="chart-loading"><div class="spinner"></div>Loading chart…</div>';$("chartnote").textContent="";
+  let h;try{h=await J(`/history/${t}?period=${per}`)}catch(e){if(seq===drawSeq)el.innerHTML=`<div class="chart-loading">Chart not available: ${esc(e.message)}</div>`;return}
+  if(seq!==drawSeq||!$("chart"))return;   // user switched period/stock meanwhile
+  el.innerHTML='<div class="legend" id="legend"></div>';
   const intraday=per in INTRADAY;
   chart=LightweightCharts.createChart(el,{autoSize:true,
     layout:{background:{color:"transparent"},textColor:"#8b97ab",fontFamily:"Inter, system-ui, sans-serif"},
     grid:{vertLines:{visible:false},horzLines:{color:"#1a2438"}},
-    rightPriceScale:{borderVisible:false},crosshair:{mode:0},
+    rightPriceScale:{borderVisible:false},
+    // Magnet: the crosshair snaps to the price line, so the value shown is the stock's close, not the mouse height
+    crosshair:{mode:LightweightCharts.CrosshairMode.Magnet,vertLine:{labelBackgroundColor:"#5b7cff"},horzLine:{labelBackgroundColor:"#5b7cff"}},
     timeScale:{borderVisible:false,timeVisible:intraday,secondsVisible:false,fixLeftEdge:true,fixRightEdge:true,lockVisibleTimeRangeOnResize:true},
     handleScroll:{mouseWheel:false,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},
     handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:false,axisDoubleClickReset:true}});
-  try{const h=await J(`/history/${t}?period=${per}`);
-    const pts=h.points.map(p=>({time:p.time,value:p.close}));
-    const upTrend=pts.length>1&&pts.at(-1).value>=pts[0].value,col=upTrend?"#22c55e":"#ef4444";
-    series=chart.addAreaSeries({lineColor:col,topColor:upTrend?"rgba(34,197,94,.22)":"rgba(239,68,68,.22)",bottomColor:"rgba(0,0,0,0)",lineWidth:2,priceLineVisible:true});
-    series.setData(pts);chart.timeScale().fitContent();
-    const ch=pts.length>1?(pts.at(-1).value/pts[0].value-1)*100:0;
-    $("chartnote").innerHTML=`${PERIODS.find(p=>p[0]==per)[1]} change: <b class="${cls(ch)}">${signed(ch,v=>v.toFixed(2))}%</b> · scroll to zoom in, drag to pan, double-click the axis to reset`;
-  }catch(e){el.innerHTML=`<div class="empty" style="padding:40px 0;text-align:center">Chart not available: ${esc(e.message)}</div>`}}
+  const pts=h.points.map(p=>({time:p.time,value:p.close}));
+  const upTrend=pts.length>1&&pts.at(-1).value>=pts[0].value,col=upTrend?"#22c55e":"#ef4444";
+  series=chart.addAreaSeries({lineColor:col,topColor:upTrend?"rgba(34,197,94,.22)":"rgba(239,68,68,.22)",bottomColor:"rgba(0,0,0,0)",lineWidth:2,priceLineVisible:true,crosshairMarkerRadius:5});
+  series.setData(pts);chart.timeScale().fitContent();
+  const fmtT=t=>typeof t==="number"?new Date(t*1000).toLocaleString("en-GB",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):new Date(t+"T00:00:00Z").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric",timeZone:"UTC"});
+  const legend=(pt)=>{const l=$("legend");if(l&&pt)l.innerHTML=`<b>${usd(pt.value)}</b>${fmtT(pt.time)}`};
+  legend(pts.at(-1));
+  chart.subscribeCrosshairMove(param=>{const d=param.time&&series?param.seriesData.get(series):null;legend(d?{time:param.time,value:d.value}:pts.at(-1))});
+  const ch=pts.length>1?(pts.at(-1).value/pts[0].value-1)*100:0;
+  $("chartnote").innerHTML=`${PERIODS.find(p=>p[0]==per)[1]} change: <b class="${cls(ch)}">${signed(ch,v=>v.toFixed(2))}%</b> · hover to see the price on any day · scroll to zoom, drag to pan, double-click the axis to reset`}
 
 /* ---------- live price + honest market status ---------- */
 function setLive(q){const el=$("live");if(!el)return;
   if(q==null){el.className="pill offline";el.innerHTML='<span class="dot"></span>No connection';return}
   if(q.meta&&q.meta.cached&&q.meta.stale){el.className="pill offline";el.innerHTML='<span class="dot"></span>Offline data';el.title="Served from saved data; the live source is unreachable";return}
-  if(q.market_open){el.className="pill live";el.innerHTML=`<span class="dot"></span>Live · ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}`;el.title="US market is open; price refreshes every 15 seconds"}
+  if(q.market_open){el.className="pill live";el.innerHTML=`<span class="dot"></span>Live · ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}`;el.title="US market is open; price refreshes every 10 seconds"}
   else{el.className="pill closed";el.innerHTML=`<span class="dot"></span>Market closed`;el.title="US market hours are 15:30–22:00 CET (Mon–Fri). Showing the last price; it updates again when the market opens."}}
-async function refreshQuote(){if(!cur)return;
-  try{const q=await J("/quote/"+cur.ticker),b=cur;
+async function refreshQuote(){if(!cur)return;const b=cur;
+  try{const q=await J("/quote/"+b.ticker);
     if(lastPx!=null&&q.price!==lastPx&&$("px")){const el=$("px");el.classList.remove("flash-up","flash-down");void el.offsetWidth;el.classList.add(q.price>lastPx?"flash-up":"flash-down");setTimeout(()=>el.classList.remove("flash-up","flash-down"),900)}
-    lastPx=q.price;lastQuote=q;if(!$("px"))return;$("px").textContent=usd(q.price);
+    if(cur!==b)return;                     // user moved on to another stock
+    const first=!lastQuote;lastPx=q.price;lastQuote=q;if(first)renderPaper();if(!$("px"))return;$("px").textContent=usd(q.price);
     const d=q.change_pct;$("chg").textContent=d==null?"":`${signed(d,v=>v.toFixed(2))}% today`;$("chg").className="chg "+cls(d||0);setLive(q);
     if(series&&q.market_open){const now=Math.floor(Date.now()/1000);
       const time=per in INTRADAY?Math.floor(now/INTRADAY[per])*INTRADAY[per]:new Date().toISOString().slice(0,10);
@@ -356,8 +376,9 @@ async function refreshQuote(){if(!cur)return;
     if(Math.abs(q.price-b.metrics.price)>.005){const ch=(q.price/b.metrics.price-1)*100;
       $("since").innerHTML=`<div class="since">Since this brief (${esc((b.generated_at||"").slice(0,10))}): ${usd(b.metrics.price)} → ${usd(q.price)} <b class="${cls(ch)}">${signed(ch,v=>v.toFixed(2))}%</b></div>`}
   }catch(e){setLive(null)}}
-const LIVE_MS=15000;
-async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI()}
+const LIVE_MS=10000;
+let tickN=0;
+async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch()}
 setInterval(tick,LIVE_MS);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ---------- learning ---------- */
@@ -369,11 +390,43 @@ function rateUI(r){$("rate").innerHTML=`<span>${r=="up"?"👍":"👎"}</span><in
    catch(e){toast(esc(e.message),"err")}}}
 
 /* ---------- saved briefs + compare ---------- */
-async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));
-  $("saved").innerHTML=l.map(b=>`<div class="saved-row" data-open="${esc(b.ticker)}"><input type="checkbox" value="${esc(b.ticker)}" aria-label="Select ${esc(b.ticker)} to compare"><b>${esc(b.ticker)}</b><small>${esc((b.generated_at||"").slice(0,10))}</small><button class="x" data-del="${esc(b.ticker)}" title="Delete brief" aria-label="Delete ${esc(b.ticker)}">×</button></div>`).join("")||'<div class="empty">No briefs yet. Search a ticker to create your first one.</div>';
+let briefsCache=[],watchQ={};
+const alertKey=()=>"alerts:"+P,alerts=()=>JSON.parse(localStorage[alertKey()]||"{}"),saveAlerts=a=>localStorage[alertKey()]=JSON.stringify(a);
+async function list(){const l=await J("/briefs?project_id="+encodeURIComponent(P));briefsCache=l;renderWatch();refreshWatch()}
+function renderWatch(){const l=briefsCache,al=alerts();
+  $("saved").innerHTML=l.map(b=>{const q=watchQ[b.ticker],since=q?(q.price/b.metrics.price-1)*100:null,a=al[b.ticker];
+    return `<div class="saved-row" data-open="${esc(b.ticker)}" title="Open the ${esc(b.ticker)} brief">
+      <input type="checkbox" value="${esc(b.ticker)}" aria-label="Select ${esc(b.ticker)} to compare">
+      <b>${esc(b.ticker)}<small style="display:block;font-weight:500">brief ${esc((b.generated_at||"").slice(5,10).replace("-","/"))}</small></b>
+      <span class="q">${q?`<b>${usd(q.price)}</b><span class="${cls(q.change_pct||0)}" title="Today">${signed(q.change_pct||0,v=>v.toFixed(2))}% today</span><span class="${cls(since)}" title="Since the brief was written at ${usd(b.metrics.price)}">${signed(since,v=>v.toFixed(1))}% since brief</span>`:'<span class="spinner" style="width:14px;height:14px;border-width:2px"></span>'}</span>
+      <button class="bell ${a?"on":""}" data-alert="${esc(b.ticker)}" title="${a?`Alert when price goes ${a.dir} ${usd(a.target)} (click to change)`:"Set a price alert"}" aria-label="Price alert for ${esc(b.ticker)}">${a?"🔔":"🔕"}</button>
+      <button class="x" data-del="${esc(b.ticker)}" title="Delete brief" aria-label="Delete ${esc(b.ticker)}">×</button></div>`}).join("")||'<div class="empty">Your watchlist is empty. Search a ticker to create your first brief.</div>';
+  // Thesis journal: how have the stocks done since you researched them?
+  const rows=l.map(b=>watchQ[b.ticker]?(watchQ[b.ticker].price/b.metrics.price-1)*100:null).filter(v=>v!=null);
+  $("journal").innerHTML=rows.length?(()=>{const up=rows.filter(v=>v>0).length,avg=rows.reduce((a,v)=>a+v,0)/rows.length,best=l.reduce((m,b)=>{const q=watchQ[b.ticker];if(!q)return m;const v=(q.price/b.metrics.price-1)*100;return !m||v>m.v?{t:b.ticker,v}:m},null);
+    return `<div class="journal">📓 <b>${up} of ${rows.length}</b> researched stocks are up since your brief · average <b class="${cls(avg)}">${signed(avg,v=>v.toFixed(1))}%</b>${best?` · best: <b>${esc(best.t)}</b> <span class="${cls(best.v)}">${signed(best.v,v=>v.toFixed(1))}%</span>`:""}</div>`})():"";
   $("saved").onclick=async e=>{if(e.target.matches("input"))return;
-    const d=e.target.closest("[data-del]");if(d){if(await modal({title:`Delete the ${d.dataset.del} brief?`,text:"It will be removed from this workspace. You can generate it again any time.",confirm:"Delete",danger:true})){await J(`/briefs/${d.dataset.del}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});list();toast(`Deleted ${esc(d.dataset.del)} brief`)}return}
-    const o=e.target.closest("[data-open]");if(o){const bs=await J("/briefs?project_id="+encodeURIComponent(P));show(bs.find(b=>b.ticker==o.dataset.open))}}}
+    const d=e.target.closest("[data-del]");if(d){if(await modal({title:`Delete the ${d.dataset.del} brief?`,text:"It will be removed from this workspace and your watchlist. You can generate it again any time.",confirm:"Delete",danger:true})){await J(`/briefs/${d.dataset.del}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});const a=alerts();delete a[d.dataset.del];saveAlerts(a);list();toast(`Deleted ${esc(d.dataset.del)} brief`)}return}
+    const bell=e.target.closest("[data-alert]");if(bell){setAlert(bell.dataset.alert);return}
+    const o=e.target.closest("[data-open]");if(o){const b=briefsCache.find(b=>b.ticker==o.dataset.open);if(b)show(b)}}}
+async function refreshWatch(){const ts=briefsCache.map(b=>b.ticker);if(!ts.length){renderWatch();return}
+  const res=await Promise.allSettled(ts.map(t=>J("/quote/"+t)));
+  res.forEach((r,i)=>{if(r.status==="fulfilled")watchQ[ts[i]]=r.value});checkAlerts();renderWatch()}
+async function setAlert(t){const q=watchQ[t],a=alerts();
+  const v=await modal({title:`Price alert for ${t}`,text:`${q?`Now ${usd(q.price)}. `:""}We'll notify you when ${t} crosses the price you enter (while Finance Desk is open). Leave empty to remove the alert.`,input:a[t]?String(a[t].target):"e.g. "+(q?Math.round(q.price*1.02):"350"),confirm:"Save alert"});
+  if(v===null)return;   // cancelled: keep the current alert
+  const target=parseFloat(String(v||"").replace(/[^0-9.]/g,""));
+  if(!target){delete a[t];saveAlerts(a);renderWatch();toast(`Alert for ${esc(t)} removed`);return}
+  a[t]={target,dir:q&&target<q.price?"below":"above"};saveAlerts(a);renderWatch();
+  if("Notification" in window&&Notification.permission==="default")Notification.requestPermission();
+  toast(`🔔 We'll tell you when ${esc(t)} goes ${a[t].dir} ${usd(target)}`,"ok")}
+function checkAlerts(){const a=alerts();let changed=false;
+  for(const [t,al] of Object.entries(a)){const q=watchQ[t];if(!q)continue;
+    if((al.dir==="above"&&q.price>=al.target)||(al.dir==="below"&&q.price<=al.target)){
+      const msg=`${t} is ${al.dir} ${usd(al.target)} — now ${usd(q.price)}`;toast("🔔 "+esc(msg),"ok");
+      if("Notification" in window&&Notification.permission==="granted")new Notification("Finance Desk price alert",{body:msg});
+      delete a[t];changed=true}}
+  if(changed)saveAlerts(a)}
 $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:checked")].map(i=>i.value);
   if(s.length<2){toast("Tick at least two saved briefs to compare them.");return}
   const r=await J("/compare?tickers="+s.join(","));
@@ -381,43 +434,48 @@ $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:c
 
 /* ---------- paper trading: cash is the headline, every order is confirmed ---------- */
 const actKey=()=>"fills:"+P,acts=()=>JSON.parse(localStorage[actKey()]||"[]");
-async function paperUI(){if(!feat.paper)return;const qv=$("qty")?$("qty").value:"10";
-  try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));$("paper").hidden=false;
-    const invested=p.positions.reduce((s,x)=>s+x.market_value,0),t=cur?cur.ticker:"",pos=p.positions.find(x=>x.ticker==t);
-    const px=lastQuote&&cur&&lastQuote.ticker==t?lastQuote.price:cur?cur.metrics.price:null;
-    $("pf").innerHTML=`<small class="muted" style="font-weight:600">Cash available</small><div class="cash" id="cashv">${usd(p.cash)}</div>
-    <div class="acct-grid"><div><small>Invested</small><b>${usd(invested)}</b></div><div><small>Total value</small><b>${usd(p.equity)}</b></div>
-      <div><small>Profit / loss</small><b class="${cls(p.pnl)}">${signed(p.pnl,usd)}</b></div><div><small>Return</small><b class="${cls(p.pnl)}">${signed(p.pnl/p.starting_cash*100||0,v=>v.toFixed(2))}%</b></div></div>
-    ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${px?usd(px)+" per share":""}${pos?` · you own ${pos.qty}`:""}</div></div>
-      <div class="row"><div class="stepper"><button data-q="-1" aria-label="Fewer shares">−</button><input id="qty" type="number" min="1" value="${esc(qv)}" aria-label="Shares"><button data-q="1" aria-label="More shares">+</button></div>
-      <button class="btn success sm" data-s="buy" style="flex:1">Buy</button><button class="btn danger sm" data-s="sell" style="flex:1" ${pos?"":"disabled"}>Sell</button></div>
-      <div class="preview" id="pv"></div></div>`:`<div class="empty" style="margin-bottom:16px">Open a stock brief to buy or sell it.</div>`}
-    <div class="eyebrow" style="margin-bottom:6px">Positions</div>
-    ${p.positions.length?`<table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td><a href="#" data-open-pos="${esc(x.ticker)}">${esc(x.ticker)}</a></td><td>${x.qty}</td><td>${usd(x.market_value)}</td><td class="${cls(x.pnl)}">${signed(x.pnl_pct,v=>v.toFixed(1))}%</td></tr>`).join("")}</table>`:'<div class="empty">No positions yet.</div>'}
-    ${acts().length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity">${acts().slice(0,5).map(a=>`<li><span><b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${a.qty} ${esc(a.ticker)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
-    <div class="row" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="note" style="margin:0">Virtual money · not investment advice</span><button class="btn ghost sm" id="prst">Reset account</button></div>`;
-    const preview=()=>{const q=+($("qty")?.value||0);if($("pv")&&px)$("pv").innerHTML=q>0?`Buying ${q} costs about <b>${usd(q*px)}</b> · cash after: <b class="${p.cash-q*px<0?"down":""}">${usd(p.cash-q*px)}</b>`:""};preview();
-    if($("qty"))$("qty").oninput=preview;
-    $("pf").onclick=async e=>{
-      const step=e.target.dataset.q;if(step){const i=$("qty");i.value=Math.max(1,(+i.value||0)+ +step);preview();return}
-      const op=e.target.closest("[data-open-pos]");if(op){e.preventDefault();run(op.dataset.openPos);return}
-      const s=e.target.dataset.s;
-      if(s){const qty=+$("qty").value,before=p.cash;if(!(qty>0)){toast("Enter how many shares.","err");return}
-        try{const r=await post("/paper/orders",{project_id:P,ticker:cur.ticker,side:s,qty});
-          const f=r.fill||{ticker:cur.ticker,side:s,qty,price:px};localStorage[actKey()]=JSON.stringify([f,...acts()].slice(0,20));
-          toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
-          await paperUI();const c=$("cashv");if(c){c.style.color=s=="buy"?"var(--down)":"var(--up)";setTimeout(()=>c.style.color="",900)}}
-        catch(er){toast(esc(er.message),"err")}}
-      if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions and order history in this workspace are cleared and your cash goes back to $100,000.",confirm:"Reset account",danger:true})){
-        await post("/paper/reset?project_id="+encodeURIComponent(P),{});localStorage.removeItem(actKey());await paperUI();toast("Paper account reset to $100,000","ok")}}}
-  }catch(e){$("paper").hidden=true}}
+let lastPf=null,pfSeq=0,qtyVal="10";
+async function paperUI(){if(!feat.paper)return;const seq=++pfSeq;
+  try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));if(seq!==pfSeq)return;lastPf=p;renderPaper()}
+  catch(e){if(seq===pfSeq&&!lastPf)$("paper").hidden=true}}
+function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=false;
+  if(!p){$("pf").innerHTML='<div class="loading"><div class="spinner"></div><span class="muted">Loading your paper account…</span></div>';return}
+  const invested=p.positions.reduce((s,x)=>s+x.market_value,0),t=cur?cur.ticker:"",pos=p.positions.find(x=>x.ticker==t);
+  const priced=!!(lastQuote&&cur&&lastQuote.ticker==t),px=priced?lastQuote.price:null;
+  $("pf").innerHTML=`<small class="muted" style="font-weight:600">Cash available</small><div class="cash" id="cashv">${usd(p.cash)}</div>
+  <div class="acct-grid"><div><small>Invested</small><b>${usd(invested)}</b></div><div><small>Total value</small><b>${usd(p.equity)}</b></div>
+    <div><small>Profit / loss</small><b class="${cls(p.pnl)}">${signed(p.pnl,usd)}</b></div><div><small>Return</small><b class="${cls(p.pnl)}">${signed(p.pnl/p.starting_cash*100||0,v=>v.toFixed(2))}%</b></div></div>
+  ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${priced?usd(px)+" per share":'<span class="loading" style="display:inline-flex;gap:6px"><span class="spinner" style="width:12px;height:12px;border-width:2px"></span>Getting live price…</span>'}${pos?` · you own ${pos.qty}`:""}</div></div>
+    <div class="row"><div class="stepper"><button data-q="-1" aria-label="Fewer shares">−</button><input id="qty" type="number" min="1" value="${esc(qtyVal)}" aria-label="Shares"><button data-q="1" aria-label="More shares">+</button></div>
+    <button class="btn success sm" data-s="buy" style="flex:1" ${priced?"":"disabled"}>Buy</button><button class="btn danger sm" data-s="sell" style="flex:1" ${priced&&pos?"":"disabled"}>Sell</button></div>
+    <div class="preview" id="pv"></div></div>`:`<div class="empty" style="margin-bottom:16px">Open a stock brief to buy or sell it.</div>`}
+  <div class="eyebrow" style="margin-bottom:6px">Positions</div>
+  ${p.positions.length?`<table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td><a href="#" data-open-pos="${esc(x.ticker)}">${esc(x.ticker)}</a></td><td>${x.qty}</td><td>${usd(x.market_value)}</td><td class="${cls(x.pnl)}">${signed(x.pnl_pct,v=>v.toFixed(1))}%</td></tr>`).join("")}</table>`:'<div class="empty">No positions yet.</div>'}
+  ${acts().length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity">${acts().slice(0,5).map(a=>`<li><span><b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${a.qty} ${esc(a.ticker)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
+  <div class="row" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="note" style="margin:0">Virtual money · not investment advice</span><button class="btn ghost sm" id="prst">Reset account</button></div>`;
+  const preview=()=>{const q=+($("qty")?.value||0);qtyVal=$("qty")?.value||qtyVal;if($("pv")&&px)$("pv").innerHTML=q>0?`Buying ${q} costs about <b>${usd(q*px)}</b> · cash after: <b class="${p.cash-q*px<0?"down":""}">${usd(p.cash-q*px)}</b>`:""};preview();
+  if($("qty"))$("qty").oninput=preview;
+  $("pf").onclick=async e=>{
+    const step=e.target.dataset.q;if(step){const i=$("qty");i.value=Math.max(1,(+i.value||0)+ +step);preview();return}
+    const op=e.target.closest("[data-open-pos]");if(op){e.preventDefault();const b=briefsCache.find(b=>b.ticker==op.dataset.openPos);b?show(b):run(op.dataset.openPos);return}
+    const btn=e.target.closest("[data-s]"),s=btn&&btn.dataset.s;
+    if(s){if(btn.disabled)return;const qty=+$("qty").value,before=p.cash;if(!(qty>0)){toast("Enter how many shares.","err");return}
+      document.querySelectorAll("#pf [data-s]").forEach(b=>b.disabled=true);btn.innerHTML='<span class="spinner"></span>';
+      try{const r=await post("/paper/orders",{project_id:P,ticker:cur.ticker,side:s,qty});
+        const f=r.fill||{ticker:cur.ticker,side:s,qty,price:px};localStorage[actKey()]=JSON.stringify([f,...acts()].slice(0,20));
+        lastPf=r;pfSeq++;renderPaper();
+        toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
+        const c=$("cashv");if(c){c.style.color=s=="buy"?"var(--down)":"var(--up)";setTimeout(()=>c.style.color="",900)}}
+      catch(er){toast(esc(er.message),"err");renderPaper()}}
+    if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions and order history in this workspace are cleared and your cash goes back to $100,000.",confirm:"Reset account",danger:true})){
+      lastPf=await post("/paper/reset?project_id="+encodeURIComponent(P),{});pfSeq++;localStorage.removeItem(actKey());renderPaper();toast("Paper account reset to $100,000","ok")}}}}
 
 /* ---------- wiring ---------- */
 $("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
 $("home").onclick=landing;
-$("proj").onchange=()=>{P=$("proj").value;localStorage.proj=P;$("log").innerHTML="";list();paperUI();toast(`Switched to workspace <b>${esc(P)}</b>`)};
+$("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();toast(`Switched to workspace <b>${esc(P)}</b>`)};
 $("newp").onclick=async()=>{const n=await modal({title:"New workspace",text:"Each workspace has its own saved briefs, paper account and learned preferences.",input:"e.g. Tech stocks",confirm:"Create"});if(!n)return;
-  P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;await projects();list();paperUI();toast(`Workspace <b>${esc(P)}</b> created`,"ok")};
+  P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;lastPf=null;renderPaper();await projects();list();paperUI();toast(`Workspace <b>${esc(P)}</b> created`,"ok")};
 $("cf").onsubmit=async e=>{e.preventDefault();const q=$("q").value.trim();if(!q)return;$("q").value="";
   $("log").insertAdjacentHTML("beforeend",`<div class="me">You: ${esc(q)}</div><div id="pend" class="muted">Thinking…</div>`);
   try{const r=await post("/chat",{message:q,project_id:P});$("pend").outerHTML=`<div>${esc(r.answer)}</div>`}catch(e){$("pend").outerHTML=`<div class="down">${esc(e.message)}</div>`}};
