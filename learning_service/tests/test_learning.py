@@ -43,7 +43,7 @@ def test_demo_feedback_gives_visible_profile():
     items = json.loads((Path(__file__).resolve().parents[1] / "demo" / "feedback.json").read_text(encoding="utf-8"))
     p = build_profile(items)
     assert p.focus == ["debt", "free_cash_flow"] and p.avoid == ["product_details"] and p.style["length"] == "short"
-    assert "zaduženost" in p.instructions() and "kraće" in p.label()
+    assert "leverage" in p.instructions() and "shorter" in p.label()
 
 
 def test_empty_feedback_means_no_instructions():
