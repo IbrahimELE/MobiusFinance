@@ -44,3 +44,10 @@ Estetika:
 - Novi frontend: dizajn tokeni (boje, razmaci, radijusi), font Inter ugrađen (`frontend/vendor`, OFL), veći logo, pretraga s jasnim "Generate AI brief", "Workspace" umjesto nejasnog projekta, početni ekran (šta je aplikacija, šta možeš, kako radi; inspiracija naga.com), vlastiti modal i toast umjesto `confirm`/`prompt`, mobilni prikaz.
 - Provjera: Playwright screenshoti desktop + mobile (landing, brief, kupovina, modal, 1D graf, zoom-out); testovi data 34, learning 17; JS `node --check`.
 - Napomena za B: ovo dira `frontend/` i `agent_service/` (uz odobrenje vlasnika); molim pregled u PR-u.
+
+## 2026-10-08 · Korak 6: ispravke nakon testiranja (grana `feature/a-ui-v2`)
+- Cijena se nije osvježavala kod vlasnika: `/quote` je zvao Yahoo "info" (quoteSummary), koji se često ograničava/blokira (EU kolačići) pa je servis tiho vraćao staru keširanu cijenu. Sada cijena ide preko laganog chart endpointa (`fast_info`, ~0,1–0,2 s), naziv firme se kešira 6 h i nije obavezan, a status berze se računa po njujorškom radnom vremenu (`us_market_state`, test). Provjereno: MSFT 531.45 → 531.43 → 531.42 u 16 s razmaka.
+- Graf: crosshair u "Magnet" modu (vrijednost = cijena dionice na tom danu, ne visina miša) + natpis s cijenom i datumom iznad grafa.
+- Učitavanje: graf ima loader i štiti se od zastarjelih odgovora (promjena perioda/dionice); desni panel se odmah iscrtava iz zadnjeg stanja, Buy/Sell su onemogućeni dok ne stigne živa cijena ("Getting live price…"); spremljeni brief se otvara iz već učitane liste; povratak na početnu odmah skida trade box; promjena workspacea odmah prazni stari račun; tokom naloga dugme pokazuje spinner.
+- UI osvježava cijenu i portfelj svakih 10 s.
+- Testovi: data 42 (novi test za status berze), learning 17; `node --check`.
