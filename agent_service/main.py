@@ -21,13 +21,13 @@ class BriefReq(BaseModel):
 
 # Kodovi grešaka A-ovih servisa ({"error","detail"}) -> poruka koju UI prikaže korisniku.
 ERROR_TEXT = {
-    "ticker_not_found": "Nepoznat ticker. Provjeri oznaku (npr. AAPL, MSFT, NVDA).",
-    "invalid_ticker": "Neispravna oznaka tickera.",
-    "filing_not_found": "Nema 10-K izvještaja za ovu kompaniju (strane firme podnose 20-F).",
-    "not_in_cache": "Offline mod: za ovaj ticker nema spremljenih podataka (demo tickeri: AAPL, MSFT, NVDA).",
-    "upstream_unavailable": "Izvor podataka trenutno ne odgovara. Pokušaj ponovo za par sekundi.",
-    "insufficient_cash": "Nema dovoljno novca na računu za ovaj nalog.",
-    "insufficient_position": "Nemaš toliko dionica za prodaju.",
+    "ticker_not_found": "Unknown ticker. Check the symbol (e.g. AAPL, MSFT, NVDA).",
+    "invalid_ticker": "That doesn't look like a ticker symbol.",
+    "filing_not_found": "No 10-K annual report for this company (foreign companies file a 20-F instead).",
+    "not_in_cache": "Offline mode: no saved data for this ticker (demo tickers: AAPL, MSFT, NVDA).",
+    "upstream_unavailable": "The data source isn't responding. Try again in a few seconds.",
+    "insufficient_cash": "Not enough cash in your paper account for this order.",
+    "insufficient_position": "You don't own that many shares to sell.",
 }
 
 def upstream_error(r: httpx.Response) -> HTTPException:
@@ -45,7 +45,7 @@ def call(method: str, url: str, **kw) -> dict:
     try:
         r = httpx.request(method, url, timeout=kw.pop("timeout", 20), **kw)
     except httpx.HTTPError as e:
-        raise HTTPException(503, f"Servis nije dostupan ({url.split('/')[2]}). Je li pokrenut run.sh?") from e
+        raise HTTPException(503, f"Service unavailable ({url.split('/')[2]}). Is run.sh running?") from e
     if r.status_code >= 400:
         raise upstream_error(r)
     return r.json()
@@ -55,18 +55,18 @@ def fetch(kind: str, ticker: str, path: str):
     if DATA_URL:
         return call("GET", f"{DATA_URL}{path}")
     f = MOCKS / f"{kind}.{ticker}.json"
-    if not f.exists(): raise HTTPException(404, f"Nema mocka za {ticker} ({kind})")
+    if not f.exists(): raise HTTPException(404, f"No mock data for {ticker} ({kind})")
     return json.loads(f.read_text(encoding='utf-8'))
 
 def template_thesis(quote, fin, risks):
     g, m = fin["revenue_growth_yoy"] * 100, fin["net_margin"] * 100
-    return (f"{quote['name']} raste {g:.1f}% godišnje uz neto maržu {m:.1f}% i P/E {fin['pe']}. "
-            f"Glavni rizik: {risks['items'][0]['text']} [2]")
+    return (f"{quote['name']} grew revenue {g:.1f}% year over year with a {m:.1f}% net margin and a P/E of {fin['pe']} [1]. "
+            f"Key risk: {risks['items'][0]['text']} [2]")
 
-PROMPT = """Ti si financijski analitičar. Napiši tezu (zadano 3-4 rečenice, bosanski; upute korisnika, ako ih ima, imaju prednost, i nad dužinom) za {name} ({t}) ISKLJUČIVO iz podataka ispod.
-Svaku tvrdnju završi oznakom izvora [n]. Ne izmišljaj brojeve. Izvori: [1] financials/quote (Yahoo Finance), [2] {filing}.
-{instructions}Podaci: {data}
-Vrati samo tekst teze."""
+PROMPT = """You are an equity research analyst. Write an investment thesis in English (default 3-4 sentences; the user's preferences below, if any, take priority, including over length) for {name} ({t}) using ONLY the data below.
+End every claim with its source tag [n]. Never invent numbers. Sources: [1] financials/quote (Yahoo Finance), [2] {filing}.
+{instructions}Data: {data}
+Return only the thesis text."""
 
 def llm(prompt: str) -> str:
     """Redoslijed: ANTHROPIC_API_KEY (API) -> `claude -p` (prijavljeni Claude, npr. u Möbiusu) -> greška."""
@@ -82,18 +82,18 @@ def llm(prompt: str) -> str:
         r = subprocess.run(["claude", "-p", prompt, "--strict-mcp-config"], capture_output=True, text=True, encoding="utf-8", timeout=120, cwd=tempfile.gettempdir())
         if r.returncode == 0 and r.stdout.strip():
             return r.stdout.strip()
-        raise RuntimeError(r.stderr[:200] or "claude -p prazan odgovor")
-    raise RuntimeError("nema LLM-a")
+        raise RuntimeError(r.stderr[:200] or "claude -p returned nothing")
+    raise RuntimeError("no LLM available")
 
 def write_thesis(t, quote, fin, risks, instructions=""):
     """Vraća (tekst, način): 'llm' | 'template'. Uz bilo koju grešku pada na šablon."""
     data = json.dumps({"quote": quote, "financials": {k: v for k, v in fin.items() if k not in ("annual", "meta", "summary")},
                        "risks": [r.get("title") or r["text"] for r in risks["items"]]}, ensure_ascii=False)
-    ins = f"Upute korisnika (poštuj ih): {instructions}\n" if instructions else ""
+    ins = f"User preferences learned from their ratings (follow them): {instructions}\n" if instructions else ""
     try:
         return llm(PROMPT.format(name=quote["name"], t=t, filing=risks["filing"], data=data, instructions=ins)), "llm"
     except Exception as e:
-        print("LLM nedostupan:", e)
+        print("LLM unavailable:", e)
         return template_thesis(quote, fin, risks), "template"
 
 CACHE = ROOT / "agent_service" / "demo_cache"   # unaprijed generisani briefovi za demo (commitovani)
@@ -216,12 +216,12 @@ def chat(req: ChatReq):
     """Pitanja o sačuvanim briefovima projekta. Odgovor samo iz briefova; bez LLM-a poruka objašnjava."""
     bs = briefs(req.project_id)
     if not bs:
-        return {"answer": "Projekt još nema briefova. Analiziraj ticker pa pitaj."}
+        return {"answer": "This project has no briefs yet. Analyze a ticker first, then ask."}
     ctx = json.dumps(bs, ensure_ascii=False)
     try:
-        return {"answer": llm(f"Odgovori kratko na bosanskom, ISKLJUČIVO iz ovih briefova (ne izmišljaj; ako nema u njima, reci to), uz oznake izvora gdje ih ima.\nBriefovi: {ctx}\nPitanje: {req.message}")}
+        return {"answer": llm(f"Answer briefly in English using ONLY these briefs (do not invent anything; if the answer is not in them, say so), keeping source tags where available.\nBriefs: {ctx}\nQuestion: {req.message}")}
     except Exception:
-        return {"answer": "Chat treba AI (ANTHROPIC_API_KEY ili prijavljeni claude). Sačuvani briefovi su vidljivi iznad."}
+        return {"answer": "Chat needs AI (set ANTHROPIC_API_KEY or log in to the claude CLI). Your saved briefs are still available."}
 
 @app.get("/quote/{ticker}")
 def quote_ep(ticker: str):
@@ -235,7 +235,7 @@ def features():
 def proxy(base, method: str, path: str, params=None, body=None):
     """Prosljeđuje poziv A-ovim servisima (paper u data_service, učenje u learning_service). Bez URL-a: 503."""
     if not base:
-        raise HTTPException(503, "Funkcija nije uključena (servis nije pokrenut)")
+        raise HTTPException(503, "This feature is off (its service is not running)")
     return call(method, f"{base}{path}", params=params, json=body, timeout=15)
 
 @app.get("/paper/portfolio")
