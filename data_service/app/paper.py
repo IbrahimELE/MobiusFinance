@@ -95,9 +95,12 @@ class PaperStore(Protocol):
 
     def save(self, project_id: str, account: dict) -> None: ...
 
+    def ids(self) -> list[str]: ...
+
 
 class JsonPaperStore:
-    """One JSON file per project: {cash, starting_cash, realized_pnl, positions{T:{qty,avg_price,last_price}}, orders[]}."""
+    """One JSON file per project: {cash, starting_cash, realized_pnl, positions{T:{qty,avg_price,last_price}}, orders[],
+    created_at, resets[]}. `created_at` and `resets` were added for the leaderboard; older files lack them."""
 
     def __init__(self, root: Path):
         self.root = Path(root)
@@ -110,6 +113,9 @@ class JsonPaperStore:
             return json.loads(self._path(project_id).read_text(encoding="utf-8"))
         except FileNotFoundError:
             return None
+
+    def ids(self) -> list[str]:
+        return sorted(p.stem for p in self.root.glob("*.json"))
 
     def save(self, project_id: str, account: dict) -> None:
         self.root.mkdir(parents=True, exist_ok=True)
@@ -131,8 +137,9 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def _new_account(starting_cash: float = STARTING_CASH) -> dict:
-    return {"cash": starting_cash, "starting_cash": starting_cash, "realized_pnl": 0.0, "positions": {}, "orders": []}
+def _new_account(starting_cash: float = STARTING_CASH, resets: list[str] | None = None) -> dict:
+    return {"cash": starting_cash, "starting_cash": starting_cash, "realized_pnl": 0.0, "positions": {}, "orders": [],
+            "created_at": _now(), "resets": resets or []}
 
 
 class PaperService:
@@ -209,5 +216,8 @@ class PaperService:
             raise InvalidParameter("starting_cash must be positive")
         pid = slug(project_id)
         with self._lock:
-            self.store.save(pid, _new_account(starting_cash))
+            # Reset wipes orders, but its time is kept: the leaderboard disqualifies a workspace
+            # for the period in which it reset, so a reset can never erase a bad result.
+            old = self.store.load(pid) or {}
+            self.store.save(pid, _new_account(starting_cash, resets=[*old.get("resets", []), _now()]))
         return self.portfolio(pid)

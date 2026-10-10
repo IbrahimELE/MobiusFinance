@@ -57,3 +57,13 @@ Estetika:
 - **Dnevnik teza** iznad liste: "X of Y researched stocks are up since your brief · average … · best …".
 - **Alarm cijene** (zvonce): unos cijene → alarm "above"/"below" prema trenutnoj cijeni; kad se pređe: toast + browser notifikacija (ako je dozvoljena), alarm se briše. Čuva se lokalno po workspaceu (localStorage); radi dok je aplikacija otvorena.
 - Samo frontend (koristi postojeće `/briefs` i `/quote`); bez promjena servisa i ugovora.
+
+## 2026-10-10 · Korak 8: lokalni leaderboard workspaceova (grana `feature/a-leaderboard`, po izboru vlasnika)
+- Zašto: vlasnik je tražio dnevni/sedmični/mjesečni leaderboard po PnL-u (%) s trajnom statistikom 1./2./3. mjesta. Dijeljena verzija među Möbius korisnicima (~10–13 h + identitet) nije stala u rok, pa je urađena lokalna: rang svih workspaceova na jednoj instalaciji. Ugovor je pisan tako da se kasnije pohrana može zamijeniti serverskom bez promjene UI-ja.
+- Ugovor: `contracts/leaderboard.md` + `mocks/leaderboard.demo.json` (novo; molim B za pregled).
+- data_service: `app/leaderboard.py` + `GET /paper/leaderboard?period=day|week|month`. Prinos se računa iz sačuvanih naloga i dnevnih cijena zatvaranja prije granice perioda (Europe/Sarajevo), bez procesa u pozadini. Zatvoreni periodi se pri prvom čitanju trajno upisuju u `paper_data/leaderboard/podiums.json` (medalje). Period bez ikakvog pomaka (vikend) nema medalja.
+- Paper: račun sada pamti `created_at` i `resets[]`; reset i dalje briše naloge, ali čuva vrijeme reseta → reset usred perioda = diskvalifikacija za taj period. Stari fajlovi bez tih polja rade (početak = prvi nalog).
+- agent_service (B-ov folder, uz odobrenje vlasnika): proxy `GET /paper/leaderboard`. frontend (B-ov folder): kartica „Leaderboard" ispod paper računa (Day/Week/Month, 🥇🥈🥉, „Reset · out", zadnji podij, tabela medalja, odbrojavanje do kraja perioda; osvježava se nakon naloga/reseta i svakih 40 s); tekst modala za reset spominje izlazak iz ranga.
+- Provjera: testovi data 55 (13 novih: granice perioda i DST, vrednovanje, rang, reset, vikend bez medalja, trajnost medalja, ugovor rute), `node --check`; uživo sa pravim yfinance cijenama i 4 probna workspacea (u privremenom DATA_PAPER_DIR), reset preko agenta → odmah „reset"; Playwright desktop 1440 i mobilni 390 bez JS grešaka.
+- Ograničenja: rang je lokalan (jedan korisnik, više workspaceova); nalozi stariji od reseta se ne mogu vratiti pa se medalje za period prije reseta upisuju samo ako je leaderboard otvoren prije reseta; offline bez istorije cijena vrednuje se po zadnjoj cijeni naloga.
+- Sljedeće: pregled B-a (frontend, agent, ugovor), PR u dev uz odobrenje vlasnika; kasnije dijeljena verzija = isti ugovor, server vodi takmičarske račune.
