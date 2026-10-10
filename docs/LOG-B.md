@@ -69,3 +69,12 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - UI osvježava cijenu, promjenu, 'teza od…' traku, zadnju tačku grafikona i paper portfelj svakih 15 s (pauza kad je tab skriven), oznaka '● uživo HH:MM:SS' ili '○ bez veze'; količina u paper panelu se čuva pri osvježavanju.
 - data_service/app/service.py (A-ov folder, jedna linija): TTL cijene 15 min → 15 s (env QUOTE_TTL, 900 vraća staro). Dogovoriti s A-om.
 - Provjereno: dva /quote poziva u razmaku 16 s daju različite cijene; u browseru #px se promijenio (33.53 → 33.49). Ograničenje: yfinance je skoro uživo (ne tick po tick), a izvan radnog vremena berze (15:30–22:00 CET) cijena stoji. Offline demo ne može biti uživo.
+
+## 2026-10-10 · Korak 14: brzi iznosi naloga (feature/b-quick-qty)
+- Šta: u "Trade" panelu ispod +/- polja dugmad 10 / 20 / 50 / 100 / Max. Klik postavlja količinu; procjena troška i "cash after" se odmah ažuriraju; aktivno dugme je označeno (oznaka nestaje kad se upiše druga količina).
+- Max = najveći broj cijelih dionica koje gotovina može kupiti (floor(cash / cijena)); onemogućen dok nema žive cijene; ako nema gotovine ni za jednu, poruka umjesto 0.
+- Zašto: brži unos za početnike, bez kucanja.
+- Testovi: `frontend/tests/` (pytest + Playwright, novi e2e okvir koji diže offline stack: data_service s DATA_OFFLINE=1 i privremenim paper računom + agent_service bez LLM-a). Pokretanje: `pip install playwright && python -m playwright install chromium`, pa `python -m pytest frontend/tests`. 3 testa prolaze (~4 s).
+- Napomena: `conftest.py` skriva `claude` CLI iz PATH-a servisa, inače brief zove LLM (do 120 s) i test visi.
+- Contracts: ne dira. Offline demo: provjeren (testovi rade upravo na DATA_OFFLINE=1).
+- Sljedeće: stavka 2 (pretraga po imenu + Browse stocks).
