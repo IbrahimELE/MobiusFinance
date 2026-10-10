@@ -78,3 +78,19 @@ Estetika:
 - Provjera: validate-app 0 grešaka; instalirano lokalno (app 10); u pregledniku: AI brief AAPL i MSFT (~15–20 s, mode „AI analyst"), kupovina 10 MSFT, leaderboard, pitanje nad briefovima, ocjena → profil „focus on debt · shorter", stanje sačuvano; desktop 1920 i telefon 390. Hladni `brief/prepare` 5–7 s (< 15 s). Testovi: mobius 6 (rute, greške, javni pozivi odbijeni), data 55.
 - Napomena za B: frontend se ne mijenja; Möbius UI se generiše iz njega. Ako mijenjaš `frontend/index.html`, pokreni `mobius/sync.sh` (javit će ako neka zamjena više ne pogađa).
 - Sljedeće: zajednički leaderboard (faza 2), objava u Store (faza 3).
+
+## 2026-10-10 · Korak 10: zajednički leaderboard među Möbius korisnicima (grana `feature/a-global-leaderboard`, iz `feature/a-mobius-app`)
+- Domaćin = `mobius-production-ddf2` (@ibrahim). Takmičarski račun po @handle (100.000 USD, bez reseta, odvojen od workspaceova); igrači šalju samo naloge, domaćin ih izvršava po svojoj cijeni i rangira (ista pravila i medalje kao lokalni leaderboard).
+- Identitet: protokol Hackaton aplikacije (kratkotrajni dokaz vezan za tačan zahtjev, @handle i domaćina; domaćin ga dohvata nazad s instance koju Möbius imenik veže za taj @handle). Ponovljeni nalog se ne izvršava dvaput (potvrde po igraču + request id).
+- data_service: `PaperService.open()` otvara račun bez reseta (+ test).
+- mobius: `fd_compete.py`, `fd_fed/` (Möbius SSRF-safe transport), rute `compete/*` + javne `proof/<key>` i `exchange`, `competition.js` (kartica „Global competition"), manifest: `identity_manage`, servis `public`, v0.2.0.
+- Provjera: testovi mobius 16 (lažni @handle, izmijenjen nalog, neregistrovana instanca, ponovljeni nalog, nalog prije pridruživanja, samo domaćin prima razmjenu, nema reseta), data 56; uživo: identitet @ibrahim, javne rute s interneta (privatne 404), siguran dohvat dokaza 0,29 s, blokirane lokalne/privatne adrese; u pregledniku pridruživanje i kupovina 10 NVDA u takmičenju.
+- Ograničenje: put igrač → domaćin s dvije različite instance testiran je simulacijom i mrežnim dijelovima zasebno; prvi stvarni drugi igrač je konačna provjera. Domaćin ne smije sam sebi slati razmjenu (Möbius serijalizuje javne zahtjeve aplikacije) pa igra lokalno.
+- Sljedeće: objava u Store (faza 3), da drugi mogu instalirati.
+
+## 2026-10-10 · Korak 11: leaderboard po osobama i zaradi (po zahtjevu vlasnika)
+- Vlasnik: leaderboard treba prikazivati osobu (ne workspace) i koliko je novca zaradila, sortirano po tome; samo top 5–10, a ako sam van toga, moje ime i mjesto ispod.
+- data_service `leaderboard.py`: novo polje `profit` (zarada u periodu, USD) u redovima i podijima; opcija `rank_by="profit"` (zadano ostaje `return_pct` za workspaceove). Ugovor i mock dopunjeni (`profit`).
+- Takmičenje rangira po zaradi; odgovor nosi top 10, `me` (moj red i mjesto) i `ranked` (broj rangiranih).
+- Möbius UI: kartica „Leaderboard" = @handle + zarada u $ (procenat sitnije), top 10, pa „···" i moj red s „#N of M, $X behind the top 10"; stari leaderboard workspaceova se u Möbius verziji ne prikazuje (`workspace_leaderboard: false`, pravilo u `port_ui.py`); web verzija nepromijenjena.
+- Provjera: data 57, mobius 17 testova (rang po zaradi, top 10 + moje mjesto); probna stranica s 23 igrača (pravi kod i stil) i živa aplikacija.

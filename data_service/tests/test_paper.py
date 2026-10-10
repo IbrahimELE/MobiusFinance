@@ -110,3 +110,11 @@ def test_responses_match_contract_mocks(paper):
     _assert_conforms(portfolio_mock, res)  # order response = portfolio + fill (contracts/paper.md)
     assert set(res["fill"]) == {"ticker", "side", "qty", "price", "at"}
     _assert_conforms(portfolio_mock, paper.portfolio("demo").model_dump(mode="json"))
+
+
+def test_open_creates_an_account_once_and_never_resets_it(paper, tmp_path):
+    paper.open("Player")
+    buy(paper, "AAPL", 10, pid="Player")
+    pf = paper.open("Player")
+    assert pf.cash == 100_000 - 2_300 and len(pf.positions) == 1
+    assert JsonPaperStore(tmp_path).load("player")["resets"] == []

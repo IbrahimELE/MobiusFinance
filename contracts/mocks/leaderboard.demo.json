@@ -4,10 +4,10 @@
   "start": "2026-10-05T00:00:00+02:00",
   "end": "2026-10-12T00:00:00+02:00",
   "standings": [
-    {"rank": 1, "project_id": "tech-stocks", "start_equity": 100000.0, "equity": 103420.5, "return_pct": 3.42, "disqualified": false, "note": null},
-    {"rank": 2, "project_id": "default", "start_equity": 101250.0, "equity": 101900.1, "return_pct": 0.64, "disqualified": false, "note": null},
-    {"rank": 3, "project_id": "dividende", "start_equity": 99800.0, "equity": 98710.0, "return_pct": -1.09, "disqualified": false, "note": null},
-    {"rank": null, "project_id": "yolo", "start_equity": 100000.0, "equity": 100000.0, "return_pct": null, "disqualified": true, "note": "reset"}
+    {"rank": 1, "project_id": "tech-stocks", "start_equity": 100000.0, "equity": 103420.5, "return_pct": 3.42, "profit": 3420.5, "disqualified": false, "note": null},
+    {"rank": 2, "project_id": "default", "start_equity": 101250.0, "equity": 101900.1, "return_pct": 0.64, "profit": 650.1, "disqualified": false, "note": null},
+    {"rank": 3, "project_id": "dividende", "start_equity": 99800.0, "equity": 98710.0, "return_pct": -1.09, "profit": -1090.0, "disqualified": false, "note": null},
+    {"rank": null, "project_id": "yolo", "start_equity": 100000.0, "equity": 100000.0, "return_pct": null, "profit": null, "disqualified": true, "note": "reset"}
   ],
   "medals": [
     {"project_id": "tech-stocks", "gold": 2, "silver": 1, "bronze": 0},
@@ -17,9 +17,9 @@
     "start": "2026-09-28T00:00:00+02:00",
     "end": "2026-10-05T00:00:00+02:00",
     "places": [
-      {"rank": 1, "project_id": "tech-stocks", "return_pct": 2.1},
-      {"rank": 2, "project_id": "default", "return_pct": 1.4},
-      {"rank": 3, "project_id": "dividende", "return_pct": -0.3}
+      {"rank": 1, "project_id": "tech-stocks", "return_pct": 2.1, "profit": 2100.0},
+      {"rank": 2, "project_id": "default", "return_pct": 1.4, "profit": 1400.0},
+      {"rank": 3, "project_id": "dividende", "return_pct": -0.3, "profit": -300.0}
     ]
   },
   "stale_prices": false,

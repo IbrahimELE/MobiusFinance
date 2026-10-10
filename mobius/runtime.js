@@ -126,7 +126,18 @@ export function makeEnv({ appId, token, state }) {
     clearTimeout(saveTimer)
   }
 
-  return { api, localStorage, Notification, cssVar, every, onVisible, dispose }
+  // JSON call to this app's service (GET without a body); errors carry the service's `detail`.
+  async function call(path, body) {
+    if (body === undefined) {
+      const res = await service(path)
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw Object.assign(new Error(data.detail || `Request failed (${res.status})`), { status: res.status })
+      return data
+    }
+    return serviceJson(path, body)
+  }
+
+  return { api, call, localStorage, Notification, cssVar, every, onVisible, dispose }
 }
 
 // Möbius chat answers are written for the chat renderer: currency dollars arrive escaped (\$, so KaTeX

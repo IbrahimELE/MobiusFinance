@@ -192,3 +192,14 @@ def test_flat_weekend_days_award_no_medals_by_name_tie_break(world):
     clock.at = datetime(2026, 10, 12, 9, 0, tzinfo=UTC)  # Monday: Sat 10. and Sun 11. are closed
     out = board.standings("day")
     assert out.medals == [] and out.last_podium is None
+
+
+def test_profit_ranking_orders_by_money_made_not_percent(world, tmp_path):
+    store, prices, clock, board = world
+    # "small" doubles a tiny stake... measured on a smaller start; "big" makes more dollars on a bigger one.
+    store.save("small", account([order("AAPL", "buy", 10, 110.0, "2026-10-10T08:00:00+00:00")], starting_cash=1_000.0))
+    store.save("big", account([order("AAPL", "buy", 100, 115.0, "2026-10-10T08:00:00+00:00")]))
+    by_profit = Leaderboard(store, board.paper, lambda t: [], tmp_path / "p2.json", clock, rank_by="profit")
+    rows = by_profit.standings("day").standings
+    assert [(r.project_id, r.profit) for r in rows] == [("big", 500.0), ("small", 100.0)]
+    assert [r.project_id for r in board.standings("day").standings] == ["small", "big"]  # default: by percent

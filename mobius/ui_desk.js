@@ -251,7 +251,7 @@ function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=fa
 /* ---------- leaderboard: workspaces ranked by return, see contracts/leaderboard.md ---------- */
 let lbPer=localStorage.lbPer||"day",lbSeq=0,lastLb=null;
 const MEDAL=["🥇","🥈","🥉"],LB_NAME={day:"days",week:"weeks",month:"months"};
-async function lbUI(){if(!feat.paper)return;const seq=++lbSeq;
+async function lbUI(){if(!feat.paper||feat.workspace_leaderboard===false)return;const seq=++lbSeq;
   try{const r=await J("/paper/leaderboard?period="+lbPer);if(seq!==lbSeq)return;lastLb=r;renderLb()}
   catch(e){if(seq===lbSeq&&!lastLb)$("lb").hidden=true}}
 function lbEnds(end){const h=Math.max(0,(new Date(end)-Date.now())/36e5);return h<1?"Closes in <1 h":h<48?`Closes in ${Math.round(h)} h`:`Closes in ${Math.round(h/24)} days`}

@@ -4,15 +4,23 @@ Routes mirror agent_service + data_service + learning_service, so the UI keeps t
 Domain logic lives in fd_data / fd_learning (copied from the repo by mobius/sync.sh) and fd_desk.
 Errors use the services' contract shape {"error", "detail"} with the same status codes.
 """
+import asyncio
 import json
 import os
 import sys
+import time
 from pathlib import Path
+from urllib.parse import quote, urlsplit
 
 # Heavy imports (pandas via yfinance) happen once per accepted revision, then each request forks.
 MOBIUS_PRELOAD = True
 
+import httpx
+
+import fd_compete
 import fd_desk
+from fd_compete import Competition, Proofs, Refused
+from fd_fed.peer_transport import federation_request
 from fd_data.config import Settings
 from fd_data.leaderboard import Leaderboard
 from fd_data.paper import InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, PaperService
@@ -55,6 +63,9 @@ class App:
         # Rules only: the learning LLM summary would outlive the 15 s request limit.
         self.learning = LearningService(LearningStore(root / "learning"), use_llm=False)
         self.desk = fd_desk.Desk(root / "briefs")
+        self.root = root
+        self.competition = Competition(root, lambda t: self.data.quote(t).price, self._closes)
+        self.proofs = Proofs(root)
 
     def _closes(self, ticker: str) -> list[tuple[str, float]]:
         try:
@@ -80,7 +91,7 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
     key = (method, parts[0] if parts else "", len(parts))
 
     if key == ("GET", "features", 1):
-        return {"paper": True, "learning": True, "live_data": True, "ai": True}
+        return {"paper": True, "learning": True, "live_data": True, "ai": True, "workspace_leaderboard": False}
     if key == ("GET", "projects", 1):
         return app.desk.projects()
     if key == ("POST", "projects", 1):
@@ -144,6 +155,14 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
                 raise Problem(422, "invalid_parameter", "period must be day, week or month")
             return _dump(app.board.standings(period))
 
+    # --- shared competition (player side; this instance may also be the host) ---
+    if key == ("GET", "compete", 2) and parts[1] == "context":
+        me = profile()
+        return {"handle": me, "host": fd_compete.HOST_DEFAULT, "me": own_host(),
+                "is_host": own_host() == fd_compete.HOST_DEFAULT}
+    if method == "POST" and parts[:1] == ["compete"] and len(parts) == 2:
+        return compete(app, parts[1], body)
+
     # --- learning ---
     if key == ("POST", "feedback", 1):
         try:
@@ -164,16 +183,120 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
     raise Problem(404, "not_found", "Unknown Finance Desk route.")
 
 
+# --- shared competition: identity and federation (protocol in fd_compete.py) ---
+
+def own_host() -> str:
+    return urlsplit(os.environ["INSTANCE_ORIGIN"]).netloc.lower()
+
+
+def platform(path: str) -> dict:
+    """This instance's own Möbius API with the app's short-lived token (identity_manage grant)."""
+    try:
+        r = httpx.get(os.environ["API_BASE_URL"].rstrip("/") + path, timeout=5,
+                      headers={"Authorization": "Bearer " + os.environ["APP_TOKEN"]})
+    except httpx.HTTPError as e:
+        raise Refused(502, "identity_unavailable", "Möbius identity is not reachable right now.") from e
+    if r.status_code == 404 and path.startswith("/api/identity/handles/"):
+        raise Refused(403, "unknown_handle", "No Möbius identity has that @handle.")
+    if r.status_code >= 400:
+        raise Refused(502, "identity_unavailable", "Möbius could not check your identity. Check your account connection.")
+    return r.json() if r.content else {}
+
+
+def profile() -> str:
+    d = platform("/api/identity")
+    p = d.get("profile") or {}
+    if d.get("account_unavailable") or not p.get("handle"):
+        raise Refused(409, "no_handle", "Connect a Möbius account with an @handle in Möbius · You to join the competition.")
+    return fd_compete.handle(p["handle"])
+
+
+def directory(root: Path, who: str) -> list:
+    """Hosts the Möbius identity directory lists for a handle; successful lookups are cached briefly."""
+    cache = root / "directory" / f"{who.lstrip('@')}.json"
+    try:
+        hit = json.loads(cache.read_text(encoding="utf-8"))
+        if hit["expires"] > time.time():
+            return hit["hosts"]
+    except (FileNotFoundError, ValueError, KeyError):
+        pass
+    d = platform("/api/identity/handles/" + quote(who.lstrip("@"), safe=""))
+    if d.get("linked") is not True or not d.get("hosts"):
+        raise Refused(409, "no_host", f"{who} has no registered Möbius installation.")
+    fd_compete._write_json(cache, {"hosts": d["hosts"], "expires": time.time() + fd_compete.DIRECTORY_TTL})
+    return d["hosts"]
+
+
+def peer(target: str, path: str, body=None) -> dict:
+    url = "https://" + fd_compete.host(target) + fd_compete.SERVICE_PATH + "/" + path
+
+    async def send():
+        return await federation_request("POST" if body is not None else "GET", url, json=body,
+                                        max_response_bytes=2_000_000, timeout_seconds=11)
+    try:
+        r = asyncio.run(send())
+        data = r.json()
+    except Exception as e:
+        raise Refused(502, "host_unreachable",
+                      "The competition host could not be reached. Nothing was traded; try again shortly.") from e
+    if r.status_code >= 400:
+        raise Refused(r.status_code, data.get("error", "host_refused"), data.get("detail", "The host refused the request."))
+    return data
+
+
+def compete(app: "App", action: str, body: dict) -> dict:
+    me, target = profile(), fd_compete.HOST_DEFAULT
+    rid = body.pop("request_id", None)
+    if own_host() == target:
+        return app.competition.execute(me, action, body, rid)
+    if own_host() not in directory(app.root, me):
+        raise Refused(409, "host_not_registered",
+                      "This Möbius is not registered to your @handle, so the host cannot verify you.")
+    command = {"action": action, "body": body, "actor": me, "request_id": rid}
+    key = app.proofs.issue(command, me, target)
+    return peer(target, "exchange", {"sender": own_host(), "proof": key, "request": command})
+
+
+def public_route(app: "App", method: str, path: str, body) -> dict:
+    """Anonymous routes: a proof lookup (player side) and the authenticated exchange (host side)."""
+    parts = [p for p in path.split("/") if p]
+    if method == "GET" and len(parts) == 2 and parts[0] == "proof":
+        return app.proofs.read(parts[1])
+    if method == "POST" and parts == ["exchange"]:
+        if own_host() != fd_compete.HOST_DEFAULT:
+            raise Refused(404, "not_found", "This Möbius does not host the Finance Desk competition.")
+        fd_compete.require(isinstance(body, dict) and set(body) == {"sender", "proof", "request"},
+                           400, "invalid_request", "Invalid competition request.")
+        sender, command = fd_compete.host(body["sender"]), body["request"]
+        # The host plays locally (see compete()). Fetching a proof from itself would also wait forever:
+        # Möbius runs one app's public requests one at a time.
+        fd_compete.require(sender != own_host(), 400, "invalid_request", "The host's own player trades locally.")
+        fd_compete.require(isinstance(command, dict) and set(command) == {"action", "body", "actor", "request_id"},
+                           400, "invalid_request", "Invalid competition command.")
+        actor = fd_compete.handle(command["actor"])
+        fd_compete.require(sender in directory(app.root, actor), 403, "wrong_host",
+                           "That host does not belong to this Möbius handle.")
+        proof = peer(sender, "proof/" + str(body["proof"]))
+        now = time.time()
+        fd_compete.require(proof.get("digest") == fd_compete.digest(command) and proof.get("actor") == actor
+                           and proof.get("target") == own_host() and isinstance(proof.get("expires"), (int, float))
+                           and now < proof["expires"] <= now + fd_compete.PROOF_TTL + 5,
+                           403, "bad_proof", "Identity proof does not match this request.")
+        return app.competition.execute(actor, command["action"], command["body"] or {}, command["request_id"])
+    raise Refused(404, "not_found", "Unknown public route.")
+
+
 def handle(req: dict, root: Path) -> tuple[int, object]:
     try:
         if not isinstance(req, dict) or req.get("schema") != 1:
             raise Problem(400, "invalid_request", "Invalid service request.")
         if req.get("public"):
-            raise Problem(404, "not_found", "Finance Desk has no public routes.")
+            return 200, public_route(App(root), str(req.get("method", "GET")).upper(), str(req.get("path", "")),
+                                     req.get("body"))
         body = route(App(root), str(req.get("method", "GET")).upper(), str(req.get("path", "")),
                      req.get("query") or {}, req.get("body"))
         return 200, body
-    except Problem as e:
+    except (Problem, Refused) as e:
         return e.status, {"error": e.error, "detail": e.detail}
     except Exception as e:
         for cls, status, code, text in ERRORS:

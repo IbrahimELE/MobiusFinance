@@ -28,3 +28,17 @@ Never edit `fd_data/`, `fd_learning/`, `ui_*.js` or `vendor/` by hand: change th
 ## Data and privacy
 Everything stays in the owner's Möbius (app storage): workspaces, briefs, paper accounts, ratings, UI state.
 Market data comes from Yahoo Finance and SEC EDGAR. Research and learning tool, not investment advice.
+
+## Global competition (all Möbius players)
+One host instance (`fd_compete.HOST_DEFAULT`, currently `mobius-production-ddf2.up.railway.app`) keeps one
+$100,000 competition account per Möbius @handle, separate from the player's private workspaces. Players send only
+orders; the host fills them at its own prices and ranks the accounts it keeps (same day/week/month rules and
+permanent medals as the local leaderboard; competition accounts have no reset).
+
+Identity uses the official Hackaton 2026 protocol: the player's instance stores a 2-minute proof (digest of the exact
+request, @handle, target host) and sends its key; the host fetches it back from the sender, which must be a host the
+Möbius identity directory lists for that @handle. Writes are replay-safe per player and request id. Public routes:
+`GET proof/<key>` (player side) and `POST exchange` (host side); everything else needs the owner's app token.
+Requirements for a player: an online Möbius registered to their @handle (managed Railway deployments are).
+`fd_fed/` holds the platform's SSRF-safe federation transport (MIT), unchanged except a local `HTTPException`.
+Note: Möbius runs one app's public requests one at a time, so the host's own owner plays locally, never via exchange.
