@@ -4,6 +4,7 @@ import { CSS } from './ui_css.js'
 import { MARKUP } from './ui_markup.js'
 import { start } from './ui_desk.js'
 import { makeEnv } from './runtime.js'
+import { startCompetition } from './competition.js'
 
 const SHELL_CSS = `
   .fd-boot { min-height: 100vh; display: grid; place-items: center; color: var(--muted); font: 15px var(--font); background: var(--bg); }
@@ -30,6 +31,7 @@ export default function App({ appId, token }) {
       setBooted(true)
       try {
         start(env)
+        startCompetition({ root: rootRef.current, call: env.call, every: env.every })
         window.mobius.signal?.('app_ready', { saved_workspace: state.proj ? 1 : 0 })
       } catch (err) {
         window.mobius.signal?.('error', { message: String(err?.message || err), source: 'start' })

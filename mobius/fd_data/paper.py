@@ -211,6 +211,15 @@ class PaperService:
             starting_cash=acc["starting_cash"], realized_pnl=acc["realized_pnl"], stale_prices=stale,
         )
 
+    def open(self, project_id: str) -> Portfolio:
+        """Create the account with starting cash if it does not exist yet; never resets an existing one.
+        Used where a reset is not allowed (the shared competition), unlike `reset`."""
+        pid = slug(project_id)
+        with self._lock:
+            if self.store.load(pid) is None:
+                self.store.save(pid, _new_account())
+        return self.portfolio(pid)
+
     def reset(self, project_id: str, starting_cash: float = STARTING_CASH) -> Portfolio:
         if starting_cash <= 0:
             raise InvalidParameter("starting_cash must be positive")
