@@ -7,6 +7,10 @@ Docs: http://localhost:8001/docs
 from __future__ import annotations
 
 import logging
+from contextlib import asynccontextmanager
+import os
+import threading
+import time
 from functools import lru_cache
 from typing import Literal
 
@@ -21,19 +25,28 @@ from .providers.base import FilingNotFound, TickerNotFound, UpstreamError
 from .providers.edgar_provider import EdgarProvider
 from .providers.yfinance_provider import YFinanceProvider
 from .leaderboard import Leaderboard, LeaderboardOut, PeriodKind
-from .paper import (InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, OrderResult, PaperService,
-                    Portfolio)
+from .paper import (InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, OrderNotFound, OrderResult,
+                    PaperService, Portfolio)
 from .service import DataService, InvalidParameter, InvalidTicker, NotInCache, normalize_ticker
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
+@asynccontextmanager
+async def _lifespan(_: FastAPI):
+    every = float(os.getenv("PAPER_CHECK_SECONDS", "10"))
+    if every > 0:
+        threading.Thread(target=_check_open_orders_forever, args=(every,), daemon=True, name="paper-orders").start()
+    yield
+
+
 app = FastAPI(
+    lifespan=_lifespan,
     title="MobiusFinance data service",
     version="0.1.0",
     description="Market data and SEC filings for the Finance Desk. No LLM, no UI.",
 )
 # The frontend and agent run on other ports during the hackathon.
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST", "DELETE"], allow_headers=["*"])
 
 
 @lru_cache
@@ -84,6 +97,11 @@ async def _no_cash(_: Request, e: InsufficientCash):
 @app.exception_handler(InsufficientPosition)
 async def _no_position(_: Request, e: InsufficientPosition):
     return _err(409, "insufficient_position", str(e))
+
+
+@app.exception_handler(OrderNotFound)
+async def _no_order(_: Request, e: OrderNotFound):
+    return _err(404, "order_not_found", str(e))
 
 
 @app.exception_handler(InvalidParameter)
@@ -158,6 +176,25 @@ def risk_factors(ticker: str, svc: DataService = Depends(get_service)):
 @app.post("/paper/orders", response_model=OrderResult, responses=ERRORS)
 def paper_order(req: OrderIn, paper: PaperService = Depends(get_paper)):
     return paper.place(req, normalize_ticker(req.ticker))
+
+
+@app.delete("/paper/orders/{order_id}", response_model=Portfolio, responses=ERRORS)
+def paper_cancel(order_id: str, project_id: str = "default", paper: PaperService = Depends(get_paper)):
+    """Cancel an open limit/stop order and release its reserved cash or shares."""
+    return paper.cancel(project_id, order_id)
+
+
+def _check_open_orders_forever(every: float) -> None:
+    """Open limit/stop orders are checked here while the service runs (contracts/paper.md)."""
+    log = logging.getLogger("paper.orders")
+    while True:
+        time.sleep(every)
+        try:
+            n = get_paper().check_all()
+            if n:
+                log.info("filled %d open order(s)", n)
+        except Exception as e:  # keep checking; a failed round is retried next time
+            log.warning("open order check failed: %s", e)
 
 
 @app.get("/paper/portfolio", response_model=Portfolio)

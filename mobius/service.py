@@ -24,7 +24,7 @@ from fd_compete import Competition, Proofs, Refused
 from fd_fed.peer_transport import federation_request
 from fd_data.config import Settings
 from fd_data.leaderboard import Leaderboard
-from fd_data.paper import InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, PaperService
+from fd_data.paper import InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, OrderNotFound, PaperService
 from fd_data.providers.base import FilingNotFound, TickerNotFound, UpstreamError
 from fd_data.providers.edgar_provider import EdgarProvider
 from fd_data.providers.yfinance_provider import YFinanceProvider
@@ -37,7 +37,8 @@ from fd_learning.store import LearningStore
 ERRORS = [
     (InvalidTicker, 422, "invalid_ticker", "That doesn't look like a ticker symbol."),
     (InsufficientCash, 409, "insufficient_cash", "Not enough cash in your paper account for this order."),
-    (InsufficientPosition, 409, "insufficient_position", "You don't own that many shares to sell."),
+    (InsufficientPosition, 409, "insufficient_position", "You don't own enough free shares (some may be locked in open orders)."),
+    (OrderNotFound, 404, "order_not_found", "That order is no longer open (it may have just filled)."),
     (InvalidParameter, 422, "invalid_parameter", None),
     (TickerNotFound, 404, "ticker_not_found", "Unknown ticker. Check the symbol (e.g. AAPL, MSFT, NVDA)."),
     (FilingNotFound, 404, "filing_not_found", "No 10-K annual report for this company (foreign companies file a 20-F instead)."),
@@ -158,7 +159,8 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
             try:
                 req = OrderIn(**body)
             except Exception as e:
-                raise Problem(422, "invalid_parameter", "Order needs ticker, side buy|sell and qty > 0.") from e
+                raise Problem(422, "invalid_parameter",
+                              "Order needs ticker, side buy|sell, qty > 0, and limit_price/stop_price for limit/stop.") from e
             return _dump(app.paper.place(req, normalize_ticker(req.ticker)))
         if op == ("POST", "reset"):
             return _dump(app.paper.reset(pid))
@@ -167,6 +169,9 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
             if period not in ("day", "week", "month"):
                 raise Problem(422, "invalid_parameter", "period must be day, week or month")
             return _dump(app.board.standings(period))
+
+    if key == ("DELETE", "paper", 3) and parts[1] == "orders":
+        return _dump(app.paper.cancel(pid, parts[2]))
 
     # --- shared competition (player side; this instance may also be the host) ---
     if key == ("GET", "compete", 2) and parts[1] == "context":

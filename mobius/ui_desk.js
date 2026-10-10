@@ -230,45 +230,73 @@ $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:c
 
 /* ---------- paper trading: cash is the headline, every order is confirmed ---------- */
 const actKey=()=>"fills:"+P,acts=()=>JSON.parse(localStorage[actKey()]||"[]");
-let lastPf=null,pfSeq=0,qtyVal="10";const QUICK=[10,20,50,100];
+let lastPf=null,pfSeq=0,qtyVal="10",otype="market",lpxVal="",lpxFor="",heldRender=false;const QUICK=[10,20,50,100];
+const OTYPES=[["market","Market"],["limit","Limit"],["stop","Stop-loss"]],TLABEL={market:"Market",limit:"Limit",stop:"Stop-loss"};
+const editing=()=>["qty","lpx"].includes(document.activeElement&&document.activeElement.id);
+function noticeFills(prev,p){/* an open order that disappeared and shows up in recent orders has filled */
+  if(!prev||prev.project_id!==p.project_id)return;const now=new Set((p.open_orders||[]).map(o=>o.id));
+  for(const o of prev.open_orders||[]){if(now.has(o.id))continue;const f=(p.recent_orders||[]).find(r=>r.ticker==o.ticker&&r.side==o.side&&r.qty==o.qty&&r.type==o.type);
+    if(f)toast(`🔔 ${TLABEL[o.type]} order filled: ${o.side=="buy"?"bought":"sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}`,"ok")}}
 async function paperUI(){if(!feat.paper)return;const seq=++pfSeq;
-  try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));if(seq!==pfSeq)return;lastPf=p;renderPaper()}
+  try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));if(seq!==pfSeq)return;noticeFills(lastPf,p);lastPf=p;renderPaper()}
   catch(e){if(seq===pfSeq&&!lastPf)$("paper").hidden=true}}
 function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=false;
+  if(editing()){heldRender=true;return}heldRender=false;   /* don't yank an input away while someone is typing in it */
   if(!p){$("pf").innerHTML='<div class="loading"><div class="spinner"></div><span class="muted">Loading your paper account…</span></div>';return}
   const invested=p.positions.reduce((s,x)=>s+x.market_value,0),t=cur?cur.ticker:"",pos=p.positions.find(x=>x.ticker==t);
-  const priced=!!(lastQuote&&cur&&lastQuote.ticker==t),px=priced?lastQuote.price:null;
+  const priced=!!(lastQuote&&cur&&lastQuote.ticker==t),px=priced?lastQuote.price:null,free=pos?pos.qty-(pos.reserved_qty||0):0;
+  if(lpxFor!==t){lpxVal=px?String(+px.toFixed(2)):"";lpxFor=px?t:""}   /* set price starts at the live price for each stock */
+  const reserved=p.reserved_cash||0,opens=p.open_orders||[],recent=p.recent_orders||acts();
   $("pf").innerHTML=`<small class="muted" style="font-weight:600">Cash available</small><div class="cash" id="cashv">${usd(p.cash)}</div>
+  ${reserved>0?`<div class="muted" style="font-size:13px;margin-top:-2px">+ ${usd(reserved)} reserved for open buy orders</div>`:""}
   <div class="acct-grid"><div><small>Invested</small><b>${usd(invested)}</b></div><div><small>Total value</small><b>${usd(p.equity)}</b></div>
     <div><small>Profit / loss</small><b class="${cls(p.pnl)}">${signed(p.pnl,usd)}</b></div><div><small>Return</small><b class="${cls(p.pnl)}">${signed(p.pnl/p.starting_cash*100||0,v=>v.toFixed(2))}%</b></div></div>
-  ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${priced?usd(px)+" per share":'<span class="loading" style="display:inline-flex;gap:6px"><span class="spinner" style="width:12px;height:12px;border-width:2px"></span>Getting live price…</span>'}${pos?` · you own ${pos.qty}`:""}</div></div>
+  ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${priced?usd(px)+" per share":'<span class="loading" style="display:inline-flex;gap:6px"><span class="spinner" style="width:12px;height:12px;border-width:2px"></span>Getting live price…</span>'}${pos?` · you own ${pos.qty}${pos.reserved_qty?` (${pos.reserved_qty} in open orders)`:""}`:""}</div></div>
+    <div class="tabs otype" role="tablist" aria-label="Order type">${OTYPES.map(([k,n])=>`<button role="tab" data-ot="${k}" class="${otype==k?"on":""}" aria-selected="${otype==k}">${n}</button>`).join("")}</div>
+    ${otype!="market"?`<label class="lpx"><span>${otype=="limit"?"Limit price":"Stop price"}</span><span class="box">$<input id="lpx" type="number" min="0.01" step="0.01" inputmode="decimal" value="${esc(lpxVal)}" aria-label="${otype=="limit"?"Limit price":"Stop price"}"></span></label>`:""}
     <div class="row"><div class="stepper"><button data-q="-1" aria-label="Fewer shares">−</button><input id="qty" type="number" min="1" value="${esc(qtyVal)}" aria-label="Shares"><button data-q="1" aria-label="More shares">+</button></div>
-    <button class="btn success sm" data-s="buy" style="flex:1" ${priced?"":"disabled"}>Buy</button><button class="btn danger sm" data-s="sell" style="flex:1" ${priced&&pos?"":"disabled"}>Sell</button></div>
-    <div class="quick" role="group" aria-label="Quick amounts">${QUICK.map(n=>`<button data-quick="${n}">${n}</button>`).join("")}<button data-quick="max" title="Most whole shares your cash can buy" ${priced?"":"disabled"}>Max</button></div>
-    <div class="preview" id="pv"></div></div>`:`<div class="empty" style="margin-bottom:16px">Open a stock brief to buy or sell it.</div>`}
+    <button class="btn success sm" data-s="buy" style="flex:1" ${priced&&otype!="stop"?"":"disabled"} ${otype=="stop"?'title="A stop-loss sells shares you own"':""}>Buy</button><button class="btn danger sm" data-s="sell" style="flex:1" ${priced&&free>0?"":"disabled"}>Sell</button></div>
+    <div class="quick" role="group" aria-label="Quick amounts">${QUICK.map(n=>`<button data-quick="${n}">${n}</button>`).join("")}<button data-quick="max" title="Most whole shares your free cash can buy" ${priced?"":"disabled"}>Max</button></div>
+    <div class="preview" id="pv"></div>
+    ${otype!="market"?`<div class="note ohint">⏱ ${otype=="limit"?"A limit order waits until the price reaches your limit, then fills at that price.":"A stop-loss sells automatically if the price falls to your stop price."} Open orders are checked every 10 seconds <b>only while Finance Desk is running</b>; nothing fills while it is closed.</div>`:""}</div>`:`<div class="empty" style="margin-bottom:16px">Open a stock brief to buy or sell it.</div>`}
+  ${opens.length?`<div class="eyebrow" style="margin-bottom:6px">Open orders</div><ul class="activity" id="opens">${opens.map(o=>`<li><span><span class="otag">${TLABEL[o.type]}</span> <b class="${o.side=="buy"?"up":"down"}">${o.side=="buy"?"Buy":"Sell"}</b> ${o.qty} ${esc(o.ticker)} ${o.type=="stop"?"if ≤ ":o.side=="buy"?"at ≤ ":"at ≥ "}${usd(o.limit_price??o.stop_price)}</span><button class="btn ghost sm" data-cancel="${esc(o.id)}" aria-label="Cancel ${TLABEL[o.type]} order for ${esc(o.ticker)}">Cancel</button></li>`).join("")}</ul>
+    <div class="note" style="margin:6px 0 16px">Orders fill only while Finance Desk is running.</div>`:""}
   <div class="eyebrow" style="margin-bottom:6px">Positions</div>
   ${p.positions.length?`<table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td><a href="#" data-open-pos="${esc(x.ticker)}">${esc(x.ticker)}</a></td><td>${x.qty}</td><td>${usd(x.market_value)}</td><td class="${cls(x.pnl)}">${signed(x.pnl_pct,v=>v.toFixed(1))}%</td></tr>`).join("")}</table>`:'<div class="empty">No positions yet.</div>'}
-  ${acts().length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity">${acts().slice(0,5).map(a=>`<li><span><b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${a.qty} ${esc(a.ticker)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
+  ${recent.length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity" id="recent">${recent.slice(0,5).map(a=>`<li><span><span class="otag">${TLABEL[a.type||"market"]}</span> <b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${a.qty} ${esc(a.ticker)} @ ${usd(a.price)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
   <div class="row" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="note" style="margin:0">Virtual money · not investment advice</span><button class="btn ghost sm" id="prst">Reset account</button></div>`;
-  const maxBuy=()=>px>0?Math.max(0,Math.floor(p.cash/px+1e-9)):0;
-  const preview=()=>{const q=+($("qty")?.value||0);qtyVal=$("qty")?.value||qtyVal;
-    document.querySelectorAll("#pf [data-quick]").forEach(b=>b.classList.toggle("on",q>0&&(b.dataset.quick=="max"?px&&q==maxBuy():q==+b.dataset.quick)));if($("pv")&&px)$("pv").innerHTML=q>0?`Buying ${q} costs about <b>${usd(q*px)}</b> · cash after: <b class="${p.cash-q*px<0?"down":""}">${usd(p.cash-q*px)}</b>`:""};preview();
-  if($("qty"))$("qty").oninput=preview;
+  const at=()=>otype=="market"?px:(+($("lpx")?.value||0)||null);
+  const maxBuy=()=>{const a=at();return a>0?Math.max(0,Math.floor(p.cash/a+1e-9)):0};
+  const preview=()=>{const q=+($("qty")?.value||0),a=at();qtyVal=$("qty")?.value||qtyVal;if($("lpx"))lpxVal=$("lpx").value;
+    document.querySelectorAll("#pf [data-quick]").forEach(b=>b.classList.toggle("on",q>0&&(b.dataset.quick=="max"?a&&q==maxBuy():q==+b.dataset.quick)));
+    if(!$("pv")||!px)return;if(!(q>0)||!a){$("pv").innerHTML=otype!="market"&&!a?"Enter a price.":"";return}
+    $("pv").innerHTML=otype=="market"?`Buying ${q} costs about <b>${usd(q*a)}</b> · cash after: <b class="${p.cash-q*a<0?"down":""}">${usd(p.cash-q*a)}</b>`
+      :otype=="limit"?`Buy ${q} at ≤ <b>${usd(a)}</b> reserves <b>${usd(q*a)}</b> · cash after: <b class="${p.cash-q*a<0?"down":""}">${usd(p.cash-q*a)}</b><br>Sell ${q} at ≥ <b>${usd(a)}</b> brings in <b>${usd(q*a)}</b>`
+      :`If ${esc(t)} falls to <b>${usd(a)}</b>, sell ${q} for <b>${usd(q*a)}</b>${a>=px?' · <span class="down">at or above today\'s price: sells now</span>':""}`};preview();
+  if($("qty"))$("qty").oninput=preview;if($("lpx"))$("lpx").oninput=preview;
+  ["qty","lpx"].forEach(id=>{if($(id))$(id).onblur=()=>setTimeout(()=>{if(heldRender&&!editing())renderPaper()},0)});
   $("pf").onclick=async e=>{
+    const ot=e.target.closest("[data-ot]");if(ot){otype=ot.dataset.ot;renderPaper();return}
     const step=e.target.dataset.q;if(step){const i=$("qty");i.value=Math.max(1,(+i.value||0)+ +step);preview();return}
     const qb=e.target.closest("[data-quick]");if(qb){if(qb.disabled)return;const v=qb.dataset.quick=="max"?maxBuy():+qb.dataset.quick;
       if(!v){toast("Not enough cash for even one share.","err");return}$("qty").value=v;preview();return}
     const op=e.target.closest("[data-open-pos]");if(op){e.preventDefault();const b=briefsCache.find(b=>b.ticker==op.dataset.openPos);b?show(b):run(op.dataset.openPos);return}
+    const cx=e.target.closest("[data-cancel]");if(cx){cx.disabled=true;
+      try{lastPf=await J(`/paper/orders/${encodeURIComponent(cx.dataset.cancel)}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});pfSeq++;renderPaper();toast("Order cancelled; its reservation is released.","ok")}
+      catch(er){toast(esc(er.message),"err");paperUI()}return}
     const btn=e.target.closest("[data-s]"),s=btn&&btn.dataset.s;
-    if(s){if(btn.disabled)return;const qty=+$("qty").value,before=p.cash;if(!(qty>0)){toast("Enter how many shares.","err");return}
+    if(s){if(btn.disabled)return;const qty=+$("qty").value,before=p.cash,a=at();if(!(qty>0)){toast("Enter how many shares.","err");return}
+      if(otype!="market"&&!(a>0)){toast(`Enter a ${otype=="limit"?"limit":"stop"} price.`,"err");return}
+      const body={project_id:P,ticker:cur.ticker,side:s,qty,type:otype};if(otype=="limit")body.limit_price=a;if(otype=="stop")body.stop_price=a;
       document.querySelectorAll("#pf [data-s]").forEach(b=>b.disabled=true);btn.innerHTML='<span class="spinner"></span>';
-      try{const r=await post("/paper/orders",{project_id:P,ticker:cur.ticker,side:s,qty});
-        const f=r.fill||{ticker:cur.ticker,side:s,qty,price:px};localStorage[actKey()]=JSON.stringify([f,...acts()].slice(0,20));
+      try{const r=await post("/paper/orders",body);
         lastPf=r;pfSeq++;renderPaper();lbUI();
-        toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
+        if(r.pending){const o=r.pending;toast(`⏳ ${TLABEL[o.type]} order placed: ${o.side=="buy"?"buy":"sell"} ${o.qty} ${esc(o.ticker)} ${o.type=="stop"?"if ≤":o.side=="buy"?"at ≤":"at ≥"} ${usd(o.limit_price??o.stop_price)}<br><span class="muted">It fills only while Finance Desk is running.</span>`,"ok");return}
+        const f=r.fill;if(!r.recent_orders)localStorage[actKey()]=JSON.stringify([{...f,type:otype},...acts()].slice(0,20));
+        toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}${otype!="market"?" (price already met)":""}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
         const c=$("cashv");if(c){c.style.color=s=="buy"?"var(--down)":"var(--up)";setTimeout(()=>c.style.color="",900)}}
       catch(er){toast(esc(er.message),"err");renderPaper()}}
-    if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions and order history in this workspace are cleared and your cash goes back to $100,000. This workspace also sits out the current leaderboard periods.",confirm:"Reset account",danger:true})){
+    if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions, open orders and order history in this workspace are cleared and your cash goes back to $100,000. This workspace also sits out the current leaderboard periods.",confirm:"Reset account",danger:true})){
       lastPf=await post("/paper/reset?project_id="+encodeURIComponent(P),{});pfSeq++;localStorage.removeItem(actKey());renderPaper();lbUI();toast("Paper account reset to $100,000","ok")}}}}
 
 /* ---------- leaderboard: workspaces ranked by return, see contracts/leaderboard.md ---------- */
