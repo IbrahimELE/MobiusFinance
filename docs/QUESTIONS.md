@@ -13,3 +13,10 @@
 - `data_service/app/main.py`: `DELETE /paper/orders/{id}`, 404 `order_not_found`, pozadinska nit preko `lifespan` (`PAPER_CHECK_SECONDS`, zadano 10; 0 isključuje); CORS dodaje DELETE.
 - Testovi: 8 novih u `data_service/tests/test_paper.py`; svih 65 prolazi. `mobius/` sinhronizovan (`sync.sh`), dodana ruta DELETE i test.
 - Takmičarski računi (`fd_compete`) koriste isti `PaperService`; tip naloga tamo nisam posebno uvodio ni ograničavao. Odluči želiš li limit/stop i u takmičenju.
+
+## 2026-10-10 · B → A: crypto (stavka 4), izmjene u `data_service` i `mobius/`, uz odobrenje vlasnika
+- `yfinance_provider.quote`: `is_crypto()` (XXX-USD) → `market_state` "REGULAR", `market_open` true, novo polje `asset_class` u `Quote` (models.py). Test u `test_market_state.py`.
+- `demo_cache/`: dodani BTC-USD i ETH-USD (quote + history) preko `scripts.warm_demo_cache`, da offline demo prikazuje i crypto. Financials za crypto namjerno nisu snimljeni (Yahoo vraća prazne).
+- `mobius/`: `fd_crypto.py` (kopija `agent_service/crypto.py` preko `sync.sh`), `service.py`: `brief/prepare` za crypto (samo cijena, bez rizika), `GET /crypto`, `/compare` bez financials za crypto; test u `mobius/tests/test_service.py`.
+- Otvoreno za vlasnika: izvor [2] za crypto (prijedlog: 10-K spot ETF-ova, IBIT za BTC, ETHA za ETH).
+- Dopuna: `data_service/demo_cache/risk_factors/` dobio IBIT.json i ETHA.json (samo risk_factors) za crypto izvor [2] offline.

@@ -1,0 +1,69 @@
+{
+ "ticker": "ETH-USD",
+ "name": "Ethereum",
+ "asset_class": "crypto",
+ "thesis": "Ethereum trades near $2,502, down about 35% over the past year and roughly 42% below its 52-week high of $4,293, though it sits well above the 52-week low of $1,507 [1]. The worst peak-to-trough drawdown over the year was about 63%, and 30-day volatility is roughly 0.45, while the 30-day return of about +2.8% suggests a modest recent stabilisation [1]. This price data shows price behaviour only and says nothing about fundamentals or adoption [1]. According to the iShares Ethereum Trust (ETHA) 10-K, ether has experienced extreme volatility and could decline further, the fund passively tracks ether's price and is affected by any general decline, and a determination that ether is a \"security\" could adversely affect its value [2].",
+ "mode": "llm",
+ "metrics": {
+  "price": 2502.1001,
+  "pe": null,
+  "revenue_growth_yoy": null,
+  "net_margin": null
+ },
+ "risks": [
+  {
+   "text": "The trading prices of many digital assets, including ether, have experienced extreme volatility in recent periods and may continue to do so. Extreme volatility in the future, including further declines in the trading prices of ether, could have a material adverse effect on the value of the Shares and the Shares could lose all or substantially all of their value.",
+   "detail": "The trading prices of many digital assets, including ether, have experienced extreme volatility in recent periods and may continue to do so. For instance, there were steep increases in the value of certain digital assets, including ether, over the course of 2021, and multiple market observers asserted that digital assets were experiencing a “bubble.” These increases were followed by steep drawdowns throughout 2022 in digital asset trading prices, including for ether. These episodes of rapid pric",
+   "category": "Risk Factors Related to Digital Assets",
+   "source": "iShares Ethereum Trust (ETHA) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "The value of the Shares relates directly to the value of ether, the value of which may be highly volatile and subject to fluctuations due to a number of factors.",
+   "detail": "The value of the Shares relates directly to the value of the ether held by the Trust and fluctuations in the price of ether could adversely affect the value of the Shares. The market price of ether may be highly volatile, and subject to a number of factors, including: ● an increase in the global ether supply or a decrease in global ether demand; ● market conditions of, and overall sentiment towards, the digital assets and blockchain technology industry; ● trading activity on digital asset platfo",
+   "category": "Risk Factors Related to the Digital Asset Markets",
+   "source": "iShares Ethereum Trust (ETHA) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of ether. The Trust is not actively managed and will be affected by a general decline in the price of ether.",
+   "detail": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of ether. The Sponsor does not actively manage the ether held by the Trust. This means that the Sponsor does not speculatively sell ether at times when its price is high or speculatively acquire ether at low prices in the expectation of future price increases. It also means the Trust will not utilize leverage, derivatives or any similar arrangements in seeking to meet its investment objecti",
+   "category": "Risk Factors Related to the Trust and the Shares",
+   "source": "iShares Ethereum Trust (ETHA) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "A determination that ether or any other digital asset is a “ security ” may adversely affect the value of ether and the value of the Shares, and result in potentially extraordinary, nonrecurring expenses to, or termination of, the Trust.",
+   "detail": "Depending on its characteristics, a digital asset may be considered a “security” under the federal securities laws. The test for determining whether a particular digital asset is a “security” is complex and difficult to apply, and the outcome is difficult to predict. Public, though non-binding, statements made in the past by senior officials at the SEC and endorsed by its previous Chairman in a letter to a member of Congress appeared to indicate that the SEC did not consider ether to be a securi",
+   "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+   "source": "iShares Ethereum Trust (ETHA) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "The value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of ether as a digital asset, including the fact that digital assets are bearer instruments and loss, theft, destruction, or compromise of the associated private keys could result in permanent loss of the asset, and the capabilities and development of blockchain technologies such as the Ethereum blockchain.",
+   "detail": "Digital assets such as ether were only introduced within the past decade, and the medium-to-long term value of the Shares is subject to a number of factors relating to the capabilities and development of blockchain technologies, such as the recentness of their development, their dependence on the internet and other technologies, their dependence on the role played by users, developers and validators and the potential for malicious activity. For example, the realization of one or more of the foll",
+   "category": "Risk Factors Related to Digital Assets",
+   "source": "iShares Ethereum Trust (ETHA) 10-K 2025, Item 1A"
+  }
+ ],
+ "peers": [
+  "BTC-USD",
+  "SOL-USD"
+ ],
+ "extras": {
+  "year_high": 4292.8457,
+  "year_low": 1506.5057,
+  "volume": 5117722112.0,
+  "return_1y": -0.3482,
+  "return_30d": 0.0278,
+  "volatility_30d": 0.4484,
+  "max_drawdown_1y": -0.6314
+ },
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/ETH-USD"
+  },
+  {
+   "label": "iShares Ethereum Trust (ETHA) 10-K 2025, Item 1A",
+   "url": "https://www.sec.gov/Archives/edgar/data/2000638/000143774926006054/etha20251231_10k.htm"
+  }
+ ],
+ "generated_at": "2026-10-10T17:01:43.965522+00:00"
+}

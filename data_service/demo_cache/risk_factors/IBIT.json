@@ -1,0 +1,760 @@
+{
+ "stored_at": "2026-10-10T16:59:32+00:00",
+ "payload": {
+  "ticker": "IBIT",
+  "filing": "10-K 2025",
+  "url": "https://www.sec.gov/Archives/edgar/data/1980994/000143774926006058/bit20251231_10k.htm",
+  "items": [
+   {
+    "text": "The trading prices of many digital assets, including bitcoin, have experienced extreme volatility in recent periods and may continue to do so. Extreme volatility in the future, including further declines in the trading prices of bitcoin, could have a material adverse effect on the value of the Shares and the Shares could lose all or substantially all of their value.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of bitcoin as a digital asset, including the fact that digital assets are bearer instruments and loss, theft, or compromise of the associated private keys could result in permanent loss of the asset, and the capabilities and development of blockchain technologies such as the Bitcoin blockchain.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital assets represent a new and rapidly evolving industry, and the value of the Shares depends on the acceptance of bitcoin.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Changes in the governance of a digital asset network may not receive sufficient support from users and miners, which may negatively affect that digital asset network ’ s ability to grow and respond to challenges.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Potential amendments to the Bitcoin network ’ s protocols and software could, if accepted and authorized by the Bitcoin network community, adversely affect an investment in the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The open-source structure of the Bitcoin network protocol means that the core developers and other contributors are generally not directly compensated for their contributions in maintaining and developing the Bitcoin network protocol. A failure to properly monitor and upgrade the Bitcoin network protocol could damage the Bitcoin network and an investment in the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital asset networks face significant scaling challenges and efforts to increase the volume and speed of transactions may not be successful.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital assets may have concentrated ownership and large sales or distributions by holders of such digital assets could have an adverse effect on the market price of such digital assets.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If the digital asset award for mining blocks and transaction fees for recording transactions on the Bitcoin network are not sufficiently high to incentivize miners, or if certain jurisdictions continue to limit mining activities, miners may cease expanding processing power or demand high transaction fees, which could negatively impact the value of bitcoin and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If a malicious actor or botnet obtains control of more than 50% of the processing power on the Bitcoin network, or otherwise obtains control over the Bitcoin network through its influence over core developers or otherwise, such actor or botnet could manipulate the Bitcoin blockchain to adversely affect the value of the Shares or the ability of the Trust to operate.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A temporary or permanent “ fork ” could adversely affect the value of the Shares. In addition, Shareholders will not receive the benefits of any Incidental Rights and any IR Digital Asset, including any forked or airdropped assets.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "In the event of a hard fork of the Bitcoin network, the Sponsor will, if permitted by the terms of the Trust Agreement, use its discretion to determine which network should be considered the appropriate network for the Trust ’ s purposes, and in doing so may adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A hard fork could change the source code to the Bitcoin network, including the 21 million bitcoin supply cap.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Any name change and any associated rebranding initiative by the core developers, users or miners of bitcoin or the Bitcoin network may not be favorably received by the digital asset community, which could negatively impact the value of bitcoin and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Disruptions or other problems in the supply chain for bitcoin mining hardware and difficulties in obtaining new hardware could cause harm to the Bitcoin network.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares relates directly to the value of bitcoin, the value of which may be highly volatile and subject to fluctuations due to a number of factors.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Because the Trust holds only bitcoin and cash, an investment in the Trust may be more volatile than an investment in a more broadly diversified portfolio.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Due to the unregulated nature and lack of transparency surrounding the operations of digital asset platforms, which may experience fraud, manipulation, security failures or operational problems, as well as the wider bitcoin market, the value of bitcoin and, consequently, the value of the Shares may be adversely affected, causing losses to Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index has a limited performance history, the Index price could fail to track the global bitcoin price, and a failure of the Index price could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index price used to calculate the value of the Trust ’ s bitcoin may be volatile, adversely affecting the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index Administrator could experience system failures or errors.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index price being used to determine the net asset value of the Trust may not be consistent with GAAP. To the extent that the Trust ’ s financial statements are determined using a different pricing source that is consistent with GAAP, the net asset value reported in the Trust ’ s periodic financial statements may differ, in some cases significantly, from the Trust ’ s net asset value determined using the Index pricing.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Competition from central bank digital currencies ( “ CBDCs ” ) and emerging payments initiatives involving financial institutions could adversely affect the value of bitcoin and other digital assets.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Prices of bitcoin may be affected due to stablecoins (including Tether and USDC), the activities of stablecoin issuers and their regulatory treatment.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Competition from the emergence or growth of other digital assets or methods of investing in bitcoin could have a negative impact on the price of bitcoin and adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust may be negatively impacted by the effects of the spread of illnesses or other public health emergencies on the global economy and the markets and service providers relevant to the performance of the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust relies on the information and technology systems of the Custodian, the Trustee, the Sponsor, the Authorized Participants, the Bitcoin Trading Counterparties, the listing exchange, and the Trust ’ s other service providers and counterparties (referred to herein as the “ Service Providers ” ), each of which could be directly or indirectly adversely affected by information systems interruptions, cybersecurity incidents or other disruptions, which in turn could have a material adverse effect on the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The amount of the Trust ’ s assets represented by each Share will decline over time as the Trust pays the Sponsor’s Fee and additional expenses born by the Trust, and as a result, the value of the Shares may decrease over time.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of bitcoin. The Trust is not actively managed and will be affected by a general decline in the price of bitcoin.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares may be influenced by a variety of factors unrelated to the value of bitcoin.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The liquidity of the Shares may also be affected by the withdrawal from participation of Authorized Participants or Bitcoin Trading Counterparties.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "There may be situations where an Authorized Participant is unable to redeem a Basket of Shares. To the extent the value of bitcoin decreases, these delays may result in a decrease in the amount the Authorized Participant will receive when the redemption occurs, as well as a reduction in liquidity for all Shareholders in the secondary market.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The lack of an active trading market for the Shares may result in losses on your investment at the time of disposition of your Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The limited ability to facilitate in-kind creations and redemptions of Shares could have adverse consequences for the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If the process of creation and redemption of Baskets encounters any unanticipated difficulties, the possibility for arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of bitcoin may not exist and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The use of cash creations and redemptions, as opposed to in-kind creations and redemptions, may adversely affect the arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of bitcoin and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "As an owner of Shares, you will not have the rights normally associated with ownership of other types of shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Sponsor and the Trustee may agree to amend the Trust Agreement without the consent of the Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders do not have the protections associated with ownership of shares in an investment company registered under the Investment Company Act or the protections afforded by the CEA.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "As the Sponsor and its management have limited history of operating investment vehicles like the Trust, their experience may be inadequate or unsuitable to manage the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Security threats to the Trust ’ s account at the Bitcoin Custodian could result in the halting of Trust operations and a loss of Trust assets or damage to the reputation of the Trust, each of which could result in a reduction in the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Bitcoin transactions are irrevocable and stolen or incorrectly transferred bitcoin may be irretrievable. As a result, any incorrectly executed bitcoin transactions could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The lack of full insurance and Shareholders ’ limited rights of legal recourse against the Trust, the Delaware Trustee, the Sponsor, the Trust Administrator, the Cash Custodian, the Prime Execution Agent, the Bitcoin Custodian and if operationalized, the Additional Bitcoin Custodian, expose the Trust and its Shareholders to the risk of loss of the Trust’s bitcoin for which no person or entity is liable.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If the Trade Credits are not available or become exhausted, the Trust may face delays in buying or selling bitcoin that may adversely impact Shareholders; if the Trust does not repay the Trade Credits on time, its assets may be liquidated by the Trade Credit Lender and its affiliates.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Loss of a critical banking relationship for, or the failure of a bank used by, the Prime Execution Agent could adversely impact the Trust ’ s ability to create or redeem Baskets or could cause losses to the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Prime Execution Agent routes orders through Connected Trading Venues in connection with trading services under the Prime Execution Agent Agreement. The loss or failure of any such Connected Trading Venues may adversely affect the Prime Execution Agent ’ s business and cause losses for the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust may be required, or the Sponsor may deem it appropriate, to terminate and liquidate at a time that is disadvantageous to Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust Agreement includes provisions that limit Shareholders ’ voting rights and restrict Shareholders ’ right to bring a derivative action.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The non-exclusive jurisdiction for certain types of actions and proceedings and waiver of trial by jury clauses set forth in the Trust Agreement may have the effect of limiting a Shareholder ’ s rights to bring legal action against the Trust and could limit a purchaser ’ s ability to obtain a favorable judicial forum for disputes with the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Sponsor is solely responsible for determining the value of the net asset value of the Trust and NAV, and any errors, discontinuance or changes in such valuation calculations may have an adverse effect on the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Extraordinary expenses resulting from unanticipated events may become payable by the Trust, adversely affecting the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust ’ s delivery or sale of bitcoin to pay expenses or other operations of the Trust could result in Shareholders incurring tax liability without an associated distribution from the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares will be adversely affected if the Trust is required to indemnify the Sponsor, the Trustee, the Delaware Trustee, the Trust Administrator, the Bitcoin Custodian or the Cash Custodian under the Trust Documents.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Intellectual property rights claims may adversely affect the Trust and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Shares may trade at a price that is at, above or below the Trust ’ s NAV as a result of the non-current trading hours between NASDAQ and the digital asset market.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital asset markets in the United States exist in a state of regulatory uncertainty, and adverse legislative or regulatory developments could significantly harm the value of bitcoin or the Shares, such as by banning, restricting or imposing onerous conditions or prohibitions on the use of bitcoin, mining activity, digital wallets, the provision of services related to trading and providing custody services for bitcoin, the operation of the Bitcoin network, or the digital asset markets generally.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A determination that bitcoin or any other digital asset is a “ security ” may adversely affect the value of bitcoin and the value of the Shares, and result in potentially extraordinary, nonrecurring expenses to, or termination of, the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Competing industries may have more influence with policymakers than the digital asset industry, which could lead to the adoption of laws and regulations that are harmful to the digital asset industry.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Regulatory changes or actions in foreign jurisdictions may affect the value of the Shares or restrict the use of one or more digital assets, mining activity or the operation of their networks or the digital asset platform market in a manner that adversely affects the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If regulators or public utilities take actions that restrict or otherwise impact mining activities, there may be a significant decline in such activities, which could adversely affect the Bitcoin network and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If regulators subject the Trust, the Trustee, the Sponsor, Authorized Participants or Bitcoin Trading Counterparties to regulation as a money services business or money transmitter, this could result in extraordinary expenses to the Trust, the Trustee, the Sponsor or the Bitcoin Trading Counterparties and also result in decreased liquidity for the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Anonymity and illicit financing risk.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Regulatory changes or interpretations could obligate the Trust, the Trustee or the Sponsor to register and comply with new regulations, resulting in potentially extraordinary, nonrecurring expenses to the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The treatment of the Trust for U.S. federal income tax purposes is uncertain.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The treatment of digital assets for U.S. federal income tax purposes is uncertain.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Future developments regarding the treatment of digital assets for U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Future developments in the treatment of digital currency for tax purposes other than U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A U.S. Tax-Exempt Shareholder may recognize “ unrelated business taxable income ” as a consequence of an investment in Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders could incur a tax liability without an associated distribution of the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A hard “ fork ” of the Bitcoin blockchain could result in Shareholders incurring a tax liability.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Potential conflicts of interest may arise among the Sponsor or its affiliates and the Trust. The Sponsor and its affiliates have no fiduciary duties to the Trust and its Shareholders other than as provided in the Trust Agreement, which may permit them to favor their own interests to the detriment of the Trust and its Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Investment vehicles advised or managed by affiliates of the Sponsor hold a minority interest in Coinbase Global, the parent of Coinbase Inc., which serves as the Trust ’ s Prime Execution Agent and operates one of the digital asset platforms included in the Index price and is the parent of the Bitcoin Custodian.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders cannot be assured of the Sponsor ’ s continued services, the discontinuance of which may be detrimental to the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Although the Bitcoin Custodian is a fiduciary with respect to the Trust ’ s assets, it could resign or be removed by the Sponsor, which may trigger early dissolution of the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Coinbase serves as the bitcoin custodian and the prime execution agent for several competing exchange-traded bitcoin products, which could adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust ’ s Authorized Participants act in similar or identical capacities for several competing exchange-traded bitcoin products which may impact the ability or willingness of one or more Authorized Participants to participate in the creation and redemption process, adversely affect the Trust ’ s ability to create or redeem Baskets and adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders may be adversely affected by the lack of independent advisers representing investors in the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders and Authorized Participants lack the right under the Custodian Agreement to assert claims directly against the Bitcoin Custodian, which significantly limits their options for recourse.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "There is no guarantee that every employee, officer, director, or similar person associated with the Sponsor, Trustee, or the BlackRock Affiliates will comply with the Policies, duties and training and refrain from engaging in insider trading in violation of their duties to the Trust and Sponsor.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "In General.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Seed Capital Investor.",
+    "source": "10-K 2025, Item 1A"
+   }
+  ],
+  "company": "iShares Bitcoin Trust ETF",
+  "cik": "0001980994",
+  "form": "10-K",
+  "filing_date": "2026-02-27",
+  "report_date": "2025-12-31",
+  "accession_number": "0001437749-26-006058",
+  "risks": [
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "The trading prices of many digital assets, including bitcoin, have experienced extreme volatility in recent periods and may continue to do so. Extreme volatility in the future, including further declines in the trading prices of bitcoin, could have a material adverse effect on the value of the Shares and the Shares could lose all or substantially all of their value.",
+    "text": "The trading prices of many digital assets, including bitcoin, have experienced extreme volatility in recent periods and may continue to do so. The average annualized one-year trailing volatility of bitcoin over the past ten years to date remains elevated at 65%. Over the course of 2021, there were steep increases in the value of certain digital assets, including bitcoin, and multiple market observers asserted that digital assets were experiencing a “bubble.” These increases were followed by steep drawdowns throughout 2022 in digital asset trading prices, including for bitcoin. In the 2021-2022 cycle, the price of bitcoin peaked at $67,734 and bottomed at $15,632, marking a steep 77% drawdown. These episodes of rapid price appreciation followed by steep drawdowns have occurred multiple times throughout bitcoin’s history, including in 2011, 2013-2014, and 2017-2018, before repeating again in 2021-2022 and 2024. Bitcoin has continued to experience significant volatility into late 2025 and early 2026. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "The value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of bitcoin as a digital asset, including the fact that digital assets are bearer instruments and loss, theft, or compromise of the associated private keys could result in permanent loss of the asset, and the capabilities and development of blockchain technologies such as the Bitcoin blockchain.",
+    "text": "Digital assets such as bitcoin were only introduced within the past 16 years, and the value of the Shares is subject to a number of factors relating to the capabilities and development of blockchain technologies over time, such as the recentness of their development, their dependence on the internet and other technologies, their dependence on the role played by users, developers and miners and the potential for malicious activity. For example, the realization of one or more of the following risks could materially adversely affect the value of the Shares: ● Digital asset networks, including the Bitcoin network, and the software used to operate them are in the early stages of development. Given the recentness of the development of digital asset networks, digital assets may not function as intended and parties may be unwilling to use digital assets, which would dampen the growth, if any, of digital asset networks. Because bitcoin is a digital asset, the value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of digital assets, including the fact that digital assets are bearer instruments and loss, theft, compromise, or destruction of the associated private keys could result in permanent loss of the asset. ● Digital assets, including bitcoin, are controllable only by the possessor of both the unique public key and private key or keys relating to the Bitcoin network address, or “wallet,” at which the digital asset is held. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Digital assets represent a new and rapidly evolving industry, and the value of the Shares depends on the acceptance of bitcoin.",
+    "text": "The Bitcoin network was first launched in 2009, and bitcoin was the first cryptographic digital asset created to gain global adoption and critical mass. Although the Bitcoin network is the most established digital asset network, the Bitcoin network and other cryptographic and algorithmic protocols governing the issuance of digital assets represent a new and rapidly evolving industry that is subject to a variety of factors that are difficult to evaluate. For example, the realization of one or more of the following risks could materially adversely affect the value of the Shares: ● Bitcoin have only recently become selectively accepted as a means of payment by retail and commercial outlets, and use of bitcoin by consumers to pay such retail and commercial outlets remains limited. Banks and other established financial institutions may refuse to process funds for bitcoin transactions; process wire transfers to or from digital asset platforms, bitcoin-related companies or service providers; or maintain accounts for persons or entities transacting in bitcoin. As a result, the prices of bitcoin may be influenced to a significant extent by speculators and miners, thus contributing to price volatility that makes retailers less likely to accept it as a form of payment in the future. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Changes in the governance of a digital asset network may not receive sufficient support from users and miners, which may negatively affect that digital asset network ’ s ability to grow and respond to challenges.",
+    "text": "The governance of decentralized networks, such as the Bitcoin network, is by voluntary consensus and open competition. As a result, there may be a lack of consensus or clarity on the governance of any particular decentralized digital asset network, which may stymie such network’s utility and ability to grow and face challenges. The foregoing notwithstanding, the protocols for some decentralized networks, such as the Bitcoin network, are informally managed by a group of core developers that propose amendments to the relevant network’s source code. Core developers’ roles evolve over time, largely based on self-determined participation. If a significant majority of users and miners adopt amendments to a decentralized network based on the proposals of such core developers, such network will be subject to new protocols that may adversely affect the value of the relevant digital asset. As a result of the foregoing, it may be difficult to find solutions or marshal sufficient effort to overcome any future problems, especially long-term problems, on digital asset networks."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Potential amendments to the Bitcoin network ’ s protocols and software could, if accepted and authorized by the Bitcoin network community, adversely affect an investment in the Trust.",
+    "text": "The Bitcoin network uses a cryptographic protocol to govern the interactions within the Bitcoin network. A loose community known as the core developers has evolved to informally manage the source code for the protocol. Membership in the community of core developers evolve over time, largely based on self‑determined participation in the resource section dedicated to bitcoin on Github.com. The core developers can propose amendments to the Bitcoin network’s source code that, if accepted by miners and users, could alter the protocols and software of the Bitcoin network and the properties of bitcoin. These alterations would occur through software upgrades, and could potentially include changes to the irreversibility of transactions and limitations on the mining of new bitcoin, which could undermine the appeal and market value of bitcoin. Alternatively, software upgrades and other changes to the protocols of the Bitcoin network could fail to work as intended or could introduce bugs, security risks, or otherwise adversely affect, the speed, security, usability, or value of the Bitcoin network or bitcoin. As a result, the Bitcoin network could be subject to changes to its protocols and software in the future that may adversely affect an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "The open-source structure of the Bitcoin network protocol means that the core developers and other contributors are generally not directly compensated for their contributions in maintaining and developing the Bitcoin network protocol. A failure to properly monitor and upgrade the Bitcoin network protocol could damage the Bitcoin network and an investment in the Trust.",
+    "text": "The Bitcoin network operates based on an open-source protocol maintained by the core developers and other contributors, largely on the GitHub resource section dedicated to bitcoin network development. As bitcoin are rewarded solely for mining activity and are not sold to raise capital for the Bitcoin network, and the Bitcoin network protocol itself is made available for free rather than sold or made available subject to licensing or subscription fees and its use does not generate revenues for its development team, the core developers are generally not compensated for maintaining and updating the source code for the Bitcoin network protocol. Consequently, there is a lack of financial incentive for developers to maintain or develop the Bitcoin network and the core developers may lack the resources to adequately address emerging issues with the Bitcoin network protocol. Although the Bitcoin network is currently supported by the core developers, there can be no guarantee that such support will continue or be sufficient in the future. For example, there have been reports that the number of core developers who have the authority to make amendments to the Bitcoin network’s source code in the GitHub repository is relatively small, although there are believed to be a larger number of developers who contribute to the overall development of the source code of the Bitcoin network. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Digital asset networks face significant scaling challenges and efforts to increase the volume and speed of transactions may not be successful.",
+    "text": "Many digital asset networks, including the Bitcoin network, face significant scaling challenges due to the fact that public blockchains generally face a tradeoff between security and scalability. One means through which public blockchains achieve security is decentralization, meaning that no intermediary is responsible for securing and maintaining these systems. For example, a greater degree of decentralization generally means a given digital asset network is less susceptible to manipulation or capture. A digital asset network may be limited in the number of transactions it can process by the capabilities of each single fully participating node. As corresponding increases in throughput lag behind growth in the use of digital asset networks, average fees and settlement times may increase considerably. For example, the Bitcoin network has been, at times, at capacity, which has led to increased transaction fees. Since January 1, 2019, bitcoin transaction fees have increased from $0.18 per-bitcoin transaction, on average, to a high of $60.95 per transaction, on average, on April 20, 2021. As of December 31, 2025, bitcoin transaction fees were $1.18 per transaction, on average, over a one-year trailing basis (according to Coin Metrics). Increased fees and decreased settlement speeds could preclude certain uses for bitcoin (e.g., micropayments), and could reduce demand for, and the price of, bitcoin, which could adversely impact the value of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Digital assets may have concentrated ownership and large sales or distributions by holders of such digital assets could have an adverse effect on the market price of such digital assets.",
+    "text": "The largest bitcoin wallets are believed to hold, in aggregate, a significant percentage of the bitcoin in circulation. Moreover, it is possible that other persons or entities control multiple wallets that collectively hold a significant number of bitcoin, even if they individually only hold a small amount, and it is possible that some of these wallets are controlled by the same person or entity. As a result of this concentration of ownership, large sales or distributions by such holders could have an adverse effect on the market price of bitcoin."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "If the digital asset award for mining blocks and transaction fees for recording transactions on the Bitcoin network are not sufficiently high to incentivize miners, or if certain jurisdictions continue to limit mining activities, miners may cease expanding processing power or demand high transaction fees, which could negatively impact the value of bitcoin and the value of the Shares.",
+    "text": "If the digital asset awards for mining blocks or the transaction fees for recording transactions on the Bitcoin network are not sufficiently high to incentivize miners, or if certain jurisdictions continue to limit mining activities, miners may cease expending processing power to mine blocks and confirmations of transactions on the Bitcoin blockchain could be slowed. For example, the realization of one or more of the following risks could materially adversely affect the value of the Shares: ● Over the past several years, digital asset mining operations, including those mining bitcoin, have evolved from individual users mining with computer processors, graphics processing units and first-generation application specific integrated circuit (“ASIC”) machines to “professionalized” mining operations using proprietary hardware or sophisticated machines. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "If a malicious actor or botnet obtains control of more than 50% of the processing power on the Bitcoin network, or otherwise obtains control over the Bitcoin network through its influence over core developers or otherwise, such actor or botnet could manipulate the Bitcoin blockchain to adversely affect the value of the Shares or the ability of the Trust to operate.",
+    "text": "If a malicious actor or botnet (a volunteer or hacked collection of computers controlled by networked software coordinating the actions of the computers) obtains control of more than 50% of the processing power dedicated to mining on the Bitcoin network, it may be able to alter the Bitcoin blockchain on which transactions in bitcoin rely by constructing fraudulent blocks or preventing certain transactions from completing in a timely manner, or at all. The malicious actor or botnet could also control, exclude or modify the ordering of transactions. Although the malicious actor or botnet would not be able to generate new tokens or transactions using such control, it could “double-spend” its own tokens (i.e., spend the same tokens in more than one transaction) and prevent the confirmation of other users’ transactions for so long as it maintained control. To the extent that such malicious actor or botnet did not yield its control of the processing power on the Bitcoin network or the Bitcoin community did not reject the fraudulent blocks as malicious, reversing any changes made to the Bitcoin blockchain may not be possible. Further, a malicious actor or botnet could create a flood of transactions in order to slow down the Bitcoin network. For example, in August 2020, the Ethereum Classic network was the target of two double-spend attacks by an unknown actor or actors that gained more than 50% of the processing power of the Ethereum Classic network. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "A temporary or permanent “ fork ” could adversely affect the value of the Shares. In addition, Shareholders will not receive the benefits of any Incidental Rights and any IR Digital Asset, including any forked or airdropped assets.",
+    "text": "The Bitcoin network operates using open-source protocols, meaning that any user can download the software, modify it and then propose that the users and miners of bitcoin adopt the modification. When a modification is introduced and a substantial majority of users and miners consent to the modification, the change is implemented and the network remains uninterrupted. However, if less than a substantial majority of users and miners consent to the proposed modification, and the modification is not compatible with the software prior to its modification, the consequence would be what is known as a “hard fork” of the Bitcoin network, with one group running the pre-modified software and the other running the modified software. The effect of such a fork would be the existence of two versions of bitcoin running in parallel on separate networks using separate blockchain ledgers, yet lacking interchangeability. For example, in August 2017, bitcoin “forked” into bitcoin and a new digital asset, Bitcoin Cash, as a result of a several-year dispute over how to increase the rate of transactions that the Bitcoin network can process. There have been other contentious disputes over changes to the Bitcoin network’s source code, though these have not led to hard forks. For example, the predominant software implementation used to access the Bitcoin network is Bitcoin Core. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "In the event of a hard fork of the Bitcoin network, the Sponsor will, if permitted by the terms of the Trust Agreement, use its discretion to determine which network should be considered the appropriate network for the Trust ’ s purposes, and in doing so may adversely affect the value of the Shares.",
+    "text": "In the event of a hard fork of the Bitcoin network, the Sponsor will, as permitted by the terms of the Trust Agreement, use its sole discretion to determine, in good faith, which peer-to-peer network, among a group of incompatible forks of the Bitcoin network, is generally accepted as the Bitcoin network and should therefore be considered the appropriate network for the Trust’s purposes. The Sponsor will base its determination on whatever factors it deems relevant, including but not limited to, the Sponsor’s beliefs regarding expectations of the core developers of bitcoin, users, services, businesses, miners and other constituencies, as well as the actual continued acceptance of, mining power on, and community engagement with, the Bitcoin network, or whatever other factors it deems relevant. There is no guarantee that the Sponsor will choose the digital asset that is ultimately the most valuable fork, and the Sponsor’s decision may adversely affect the value of the Shares as a result. The Sponsor may also disagree with Shareholders, the Bitcoin Custodian, other service providers, the Index Administrator, crypto asset platforms, or other market participants on what is generally accepted as bitcoin and should therefore be considered “bitcoin” for the Trust’s purposes, which may also adversely affect the value of the Shares as a result."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "A hard fork could change the source code to the Bitcoin network, including the 21 million bitcoin supply cap.",
+    "text": "In principle a hard fork could change the source code for the Bitcoin network, including the source code which limits the supply of bitcoin to 21 million. Although many observers believe this is unlikely at present, there is no guarantee that the current 21 million supply cap for outstanding bitcoin, which is estimated to be reached by approximately the year 2140, will not be changed. If a hard fork changing the 21 million supply cap is widely adopted, the limit on the supply of bitcoin could be lifted, which could have an adverse impact on the value of bitcoin and the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Any name change and any associated rebranding initiative by the core developers, users or miners of bitcoin or the Bitcoin network may not be favorably received by the digital asset community, which could negatively impact the value of bitcoin and the value of the Shares.",
+    "text": "From time to time, digital assets may undergo name changes and associated rebranding initiatives. For example, Bitcoin Cash may sometimes be referred to as Bitcoin ABC in an effort to differentiate itself from any Bitcoin Cash hard forks, such as Bitcoin Satoshi’s Vision, and in the third quarter of 2018, the team behind Zen rebranded and changed the name of ZenCash to “Horizen.” The Sponsor cannot predict the impact of any name change and any associated rebranding initiative on bitcoin. After a name change and an associated rebranding initiative, a digital asset may not be able to achieve or maintain brand name recognition or status that is comparable to the recognition and status previously enjoyed by such digital asset. The failure of any name change and any associated rebranding initiative by a digital asset may result in such digital asset not realizing some or all of the anticipated benefits contemplated by the name change and associated rebranding initiative, and could negatively impact the value of bitcoin and the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Disruptions or other problems in the supply chain for bitcoin mining hardware and difficulties in obtaining new hardware could cause harm to the Bitcoin network.",
+    "text": "Manufacture, assembly and delivery of hardware and components for mining operations can be complex and protracted processes, during the course of which various problems could arise, including disruptions or delays in the supply chain, product quality control issues, as well as other external factors. Mining operations can ordinarily only be profitable if the costs associated with bitcoin mining, including hardware costs, are lower than the price of bitcoin itself. During the course of the normal operation of bitcoin mining facilities, miners and other critical equipment and materials related to data center construction and maintenance, such as containers, switch gears, transformers and cables, will experience ordinary wear and tear and may also face more significant malfunctions. Declines in the condition of miners and other hardware will require bitcoin miners, over time, to repair or replace those miners. Additionally, as the technology evolves, miners may be required to acquire newer models of mining hardware and machines to remain competitive in the market. Any upgrading process may require substantial capital investment, and miners may face challenges in doing so on a timely and cost-effective basis. The business of bitcoin miners will be subject to limitations inherent within the supply chain of their mining hardware equipment and components, including competitive, governmental, and legal limitations, and other events. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The value of the Shares relates directly to the value of bitcoin, the value of which may be highly volatile and subject to fluctuations due to a number of factors.",
+    "text": "The value of the Shares relates directly to the value of the bitcoin held by the Trust and fluctuations in the price of bitcoin could adversely affect the value of the Shares. The market price of bitcoin may be highly volatile, and subject to a number of factors, including: ● an increase in the global bitcoin supply or a decrease in global bitcoin demand; ● market conditions of, and overall sentiment towards, the digital assets and blockchain technology industry; ● trading activity on digital asset platforms, which, in many cases, are largely unregulated or may be subject to manipulation; ● the adoption of bitcoin as a medium of exchange, store-of-value or other consumptive asset and the maintenance and development of the open‑source software protocol of the Bitcoin network, and their ability to meet user demands; ● manipulative trading activity on digital asset platforms, which, in many cases, are largely unregulated; ● forks in the Bitcoin network; ● investors’ expectations with respect to interest rates, the rates of inflation of fiat currencies or bitcoin, and digital asset exchange rates; ● consumer preferences and perceptions of bitcoin specifically and digital assets generally; ● negative events, publicity, and social media coverage relating to the digital assets and blockchain technology industry; ● fiat currency withdrawal and deposit policies on digital asset platforms; ● the liquidity of digital asset markets and any increase or decrease in trading volume or market …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Because the Trust holds only bitcoin and cash, an investment in the Trust may be more volatile than an investment in a more broadly diversified portfolio.",
+    "text": "The Trust holds only bitcoin and cash. As a result, the Trust’s holdings are not diversified. Accordingly, the Trust’s net asset value may be more volatile than another investment vehicle with a more broadly diversified portfolio and may fluctuate substantially over short or long periods of time. Fluctuations in the price of bitcoin are expected to have a direct impact on the value of the Shares. An investment in the Trust may be deemed speculative and is not intended as a complete investment program. An investment in Shares should be considered only by persons financially able to maintain their investment and who can bear the risk of total loss associated with an investment in the Trust. Investors should review closely the objective and strategy of the Trust and redemption rights, as discussed herein, and familiarize themselves with the risks associated with an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Due to the unregulated nature and lack of transparency surrounding the operations of digital asset platforms, which may experience fraud, manipulation, security failures or operational problems, as well as the wider bitcoin market, the value of bitcoin and, consequently, the value of the Shares may be adversely affected, causing losses to Shareholders.",
+    "text": "Digital asset platforms are relatively new and, in some cases, unregulated. Many operate outside the United States. Furthermore, while many prominent digital asset platforms provide the public with significant information regarding their ownership structure, management teams, corporate practices and regulatory compliance, many digital asset platforms do not provide this information. Digital asset platforms may not be subject to, or may not comply with, regulation in a similar manner as other regulated trading platforms, such as national securities exchanges or designated contract markets. As a result, the marketplace may lose confidence in digital asset platforms, including prominent platforms that handle a significant volume of bitcoin trading. Many digital asset platforms are unlicensed, may be unregulated, may be subject to regulation in a relevant jurisdiction, but may or may not be in compliance therewith, may operate without extensive supervision by governmental authorities, and do not provide the public with significant information regarding their ownership structure, management team, corporate practices, cybersecurity, and regulatory compliance. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index has a limited performance history, the Index price could fail to track the global bitcoin price, and a failure of the Index price could adversely affect the value of the Shares.",
+    "text": "The CF Benchmarks Index was developed by the Index Administrator and has a limited performance history. Although the Index is based on materially the same methodology (except calculation time) as the Index Administrator’s BRR, which was first introduced in November 2016, the Index itself has only been in operation since February 2022. The Index price is a composite CF Benchmarks Index calculated using volume-weighted trading price data from various Constituent Platforms. The Index has only featured its current list of Constituent Platforms since March 2025. A longer history of actual performance through various economic and market conditions would provide greater and more reliable information for an investor to assess the Index’s performance. The Constituent Platforms chosen by the Index Administrator could also change over time. The Index Administrator may remove or add Constituent Platforms to the CF Benchmark Index in the future at its discretion. Although the Index is intended to accurately capture the market price of bitcoin, third parties may be able to purchase and sell bitcoin on public or private markets not included among the Constituent Platforms, and such transactions may take place at prices materially higher or lower than the Index price. Moreover, there may be variances in the prices of bitcoin on the various Constituent Platforms, including as a result of differences in fee structures or administrative procedures on different Constituent Platforms. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index price used to calculate the value of the Trust ’ s bitcoin may be volatile, adversely affecting the value of the Shares.",
+    "text": "The price of bitcoin on public digital asset platforms has a limited history, and during this history, bitcoin prices on the digital asset markets more generally, and on digital asset platforms individually, have been volatile and subject to influence by many factors, including operational interruptions. While the Index is designed to limit exposure to the interruption of individual digital asset platforms, the Index price, and the price of bitcoin generally, remains subject to volatility experienced by digital asset platforms, and such volatility could adversely affect the value of the Shares. Furthermore, because the number of liquid and credible digital asset platforms is limited, the Index will necessarily be composed of a limited number of digital asset platforms. If a digital asset platform were subjected to regulatory, volatility or other pricing issues, in the case of the CF Benchmarks Index, the Index Administrator would have limited ability to remove such digital asset platform from the Index, which could skew the price of Bitcoin as represented by the Index. Trading on a limited number of digital asset platforms may result in less favorable prices and decreased liquidity of bitcoin and, therefore, could have an adverse effect on the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index Administrator could experience system failures or errors.",
+    "text": "If the computers or other facilities of the Index Administrator, data providers and/or relevant Constituent Platforms malfunction for any reason, calculation and dissemination of the CF Benchmarks Index may be delayed. Errors in the CF Benchmarks Index data, the CF Benchmarks Index computations and/or construction may occur from time to time and may not be identified and/or corrected for a period of time or at all, which may have an adverse impact on the Trust and the Shareholders. Any of the foregoing may lead to the errors in the CF Benchmarks Index, which may lead to a different investment outcome for the Trust and the Shareholders than would have been the case had such events not occurred. The CF Benchmarks Index is used to determine the net asset value of the Trust and the NAV. Consequently, losses or costs associated with the CF Benchmarks Index’s errors or other risks described above will generally be borne by the Trust and the Shareholders and neither the Sponsor nor its affiliates or agents make any representations or warranties regarding the foregoing. If the CF Benchmarks Index is not available or the Sponsor in its sole discretion determines the CF Benchmarks Index is unreliable as the Index and therefore determines not to use the CF Benchmarks Index the Trust’s holdings may be fair valued on a temporary basis in accordance with the fair value policies approved by the Trustee. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index price being used to determine the net asset value of the Trust may not be consistent with GAAP. To the extent that the Trust ’ s financial statements are determined using a different pricing source that is consistent with GAAP, the net asset value reported in the Trust ’ s periodic financial statements may differ, in some cases significantly, from the Trust ’ s net asset value determined using the Index pricing.",
+    "text": "The Trust will determine the net asset value of the Trust on each Business Day based on the value of bitcoin as reflected by the Index. The methodology used to calculate the Index price to value bitcoin in determining the net asset value of the Trust may not be deemed consistent with GAAP. To the extent the methodology used to calculate the Index is deemed inconsistent with GAAP, the Trust will utilize an alternative GAAP-consistent pricing source for purposes of the Trust’s periodic financial statements. Creation and redemption of Baskets, the Sponsor’s Fee and other expenses borne by the Trust will be determined using the Trust’s net asset value determined daily based on the Index. Such net asset value of the Trust determined using the Index Price may differ, in some cases significantly, from the net asset value reported in the Trust’s periodic financial statements."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Competition from central bank digital currencies ( “ CBDCs ” ) and emerging payments initiatives involving financial institutions could adversely affect the value of bitcoin and other digital assets.",
+    "text": "Central banks in various countries have introduced digital forms of legal tender (CBDCs). Whether or not they incorporate blockchain or similar technology, CBDCs, as legal tender in the issuing jurisdiction, could have an advantage in competing with, or replace, bitcoin and other digital assets as a medium of exchange or store of value. Central banks and other governmental entities have also announced cooperative initiatives and consortia with private sector entities, with the goal of leveraging blockchain and other technology to reduce friction in cross-border and interbank payments and settlement, and commercial banks and other financial institutions have also recently announced a number of initiatives of their own to incorporate new technologies, including blockchain and similar technologies, into their payments and settlement activities, which could compete with, or reduce the demand for, bitcoin. As a result of any of the foregoing factors, the value of bitcoin could decrease, which could adversely affect an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Prices of bitcoin may be affected due to stablecoins (including Tether and USDC), the activities of stablecoin issuers and their regulatory treatment.",
+    "text": "While the Trust does not invest in stablecoins, it may nonetheless be exposed to risks that stablecoins pose for the bitcoin market and other digital asset markets. Stablecoins are digital assets designed to have a stable value over time as compared to typically volatile digital assets and are typically marketed as being pegged to a fiat currency, such as the U.S. dollar, at a certain value. Although the prices of stablecoins are intended to be stable, their market value may fluctuate. This volatility has in the past apparently impacted the price of bitcoin. Stablecoins are a relatively new phenomenon, and it is impossible to know all of the risks that they could pose to participants in the bitcoin market. Like CBDCs, stablecoins could compete with or replace bitcoin and other digital assets as a medium of exchange or store of value. In addition, some have argued that some stablecoins, particularly Tether, are improperly issued without sufficient backing in a way that, when the stablecoin is used to pay for bitcoin, could cause artificial rather than genuine demand for bitcoin, artificially inflating the price of bitcoin, and also argue that those associated with certain stablecoins may be involved in laundering money. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Competition from the emergence or growth of other digital assets or methods of investing in bitcoin could have a negative impact on the price of bitcoin and adversely affect the value of the Shares.",
+    "text": "Bitcoin was the first digital asset to gain global adoption and critical mass, and as a result, it has a “first to market” advantage over other digital assets. As of the date of this report, bitcoin was the largest digital asset by market capitalization and had the largest combined mining power. Despite this first to market advantage, there were over 17,000 alternative digital assets tracked by CoinGecko.com, having a total market capitalization of approximately $3.0 trillion (including the approximately $1.8 trillion market capitalization of bitcoin), as calculated using market prices and total available supply of each digital asset. In addition, many consortiums and financial institutions are also researching and investing resources into private or permissioned smart contract platforms rather than open platforms like the Bitcoin network. Competition from the emergence or growth of alternative digital assets and smart contracts platforms, such as Ethereum, Solana, Avalanche, Polkadot, or Cardano, as well as many others, could have a negative impact on the demand for, and price of, bitcoin and thereby adversely affect the value of the Shares. In addition, some digital asset networks, including the Bitcoin network, may be the target of ill will from users of other digital asset networks. For example, Litecoin is the result of a hard fork of bitcoin. Some users of the Bitcoin network may harbor ill will toward the Litecoin network, and vice versa. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust may be negatively impacted by the effects of the spread of illnesses or other public health emergencies on the global economy and the markets and service providers relevant to the performance of the Trust.",
+    "text": "A public health emergency, could adversely affect the economics of many nations and could have serious negative effects on social, economic and financial systems, including significant uncertainty and volatility in the digital asset markets. For example, digital asset prices, including bitcoin, decreased significantly in the first quarter of 2020 amidst broader market declines as a result of the novel coronavirus outbreak. Future public health emergencies could result in an increase of the costs of the Trust and affect liquidity in the digital asset market, as well as the correlation between the price of the Shares and the net asset value of the Trust, any of which could adversely affect the value of the Shares. In addition, future public health emergencies could impair the information technology and other operational systems upon which the Trust’s service providers, including the Sponsor, the Trustee, the Delaware Trustee and the Custodians, rely, and could otherwise disrupt the ability of employees of the Trust’s service providers to perform essential tasks on behalf of the Trust. Governmental and quasi-governmental authorities and regulators throughout the world have at times responded to major economic disruptions with a variety of fiscal and monetary policy changes, including, but not limited to, direct capital infusions into companies and other issuers, new monetary tools and lower interest rates. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust relies on the information and technology systems of the Custodian, the Trustee, the Sponsor, the Authorized Participants, the Bitcoin Trading Counterparties, the listing exchange, and the Trust ’ s other service providers and counterparties (referred to herein as the “ Service Providers ” ), each of which could be directly or indirectly adversely affected by information systems interruptions, cybersecurity incidents or other disruptions, which in turn could have a material adverse effect on the Trust.",
+    "text": "The Trust and the Service Providers are susceptible to operational, information security and related cybersecurity risks both directly and through their own service providers. Cyber incidents can result from deliberate attacks or unintentional events. They include, but are not limited to, gaining unauthorized access to systems, corrupting or destroying data, and causing operational disruption. Geopolitical tensions may increase the scale and sophistication of deliberate attacks, particularly those from nation-states or from entities with nation-state backing. Cybersecurity incidents may cause disruptions and impact business operations. They may result in any of the following: financial losses (including loss or theft of Trust assets), interference with the Trust’s ability to calculate its NAV, disclosure of confidential information, impediments to trading, submission of erroneous trades or erroneous creation or redemption orders or bitcoin price movements, the inability of the Trust or the Service Providers to transact business, violations of applicable privacy and other laws, regulatory fines, penalties, reputational damage, reimbursement or other compensation costs, and other legal and compliance costs. In addition, cyber incidents may render records of Trust assets and transactions, Shareholder ownership of the Shares, and other data integral to the functioning of the Trust inaccessible, inaccurate or incomplete. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The amount of the Trust ’ s assets represented by each Share will decline over time as the Trust pays the Sponsor’s Fee and additional expenses born by the Trust, and as a result, the value of the Shares may decrease over time.",
+    "text": "The amount of bitcoin represented by each Share will decrease over the life of the Trust due to the sales of bitcoin necessary to pay the Sponsor’s Fee and other Trust expenses. Without increases in the price of bitcoin sufficient to compensate for that decrease, the price of the Shares will also decline and you will lose money on your investment in Shares. Although the Sponsor has agreed to assume all organizational and certain ordinary administrative and marketing expenses incurred by the Trust, not all Trust expenses have been assumed by the Sponsor. For example, any taxes and other governmental charges that may be imposed on the Trust’s property will not be paid by the Sponsor. As part of its agreement to assume some of the Trust’s ordinary administrative expenses, the Sponsor has agreed to pay ordinary legal fees and expenses of the Trust not in excess of $500,000 per annum. Any legal fees and expenses in excess of the amount required under the Trust Agreement are the responsibility of the Trust. Because the Trust does not have any income, it needs to sell bitcoin to cover the Sponsor’s Fee and expenses not assumed by the Sponsor. The Trust may also be subject to other liabilities (for example, as a result of litigation) that have also not been assumed by the Sponsor. The only source of funds to cover those liabilities are sales of bitcoin held by the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of bitcoin. The Trust is not actively managed and will be affected by a general decline in the price of bitcoin.",
+    "text": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of bitcoin. The Sponsor does not actively manage the bitcoin held by the Trust. This means the Sponsor does not speculatively sell bitcoin at times when its price is high or speculatively acquire bitcoin at low prices in the expectation of future price increases. It also means the Trust will not utilize leverage, derivatives or any similar arrangements in seeking to meet its investment objective. Any losses sustained by the Trust will adversely affect the value of your Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The value of the Shares may be influenced by a variety of factors unrelated to the value of bitcoin.",
+    "text": "The value of the Shares may be influenced by a variety of factors unrelated to the price of bitcoin and the digital asset platforms included in the Index that may have an adverse effect on the value of the Shares. These factors include the following factors: ● unanticipated problems or issues with respect to the mechanics of the Trust’s operations and the trading of the Shares may arise, in particular due to the fact that the mechanisms and procedures governing the creation and redemption of the Shares in exchange for bitcoin or cash, offering of the Shares and storage of bitcoin have been developed specifically for this product; ● the Trust could experience difficulties in operating and maintaining its technical infrastructure, including in connection with expansions or updates to such infrastructure, which are likely to be complex and could lead to unanticipated delays, unforeseen expenses and security vulnerabilities; ● the Trust could experience unforeseen issues relating to the performance and effectiveness of the security procedures used to protect the Trust’s account with the Bitcoin Custodian, or the security procedures may not protect against all errors, software flaws or other vulnerabilities in the Trust’s technical infrastructure, which could result in theft, loss or damage of its assets; ● service providers may default on or fail to perform their obligations or deliver services under their contractual agreements with the Trust, or decide to terminate their relati …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The liquidity of the Shares may also be affected by the withdrawal from participation of Authorized Participants or Bitcoin Trading Counterparties.",
+    "text": "In the event that one or more Authorized Participants or Bitcoin Trading Counterparties withdraw from or cease participation in creation and redemption activity or bitcoin transactions with the Trust for any reason, the liquidity of the Shares will likely decrease, which could adversely affect the market price of the Shares and result in your incurring a loss on your investment in Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "There may be situations where an Authorized Participant is unable to redeem a Basket of Shares. To the extent the value of bitcoin decreases, these delays may result in a decrease in the amount the Authorized Participant will receive when the redemption occurs, as well as a reduction in liquidity for all Shareholders in the secondary market.",
+    "text": "Although Shares surrendered by Authorized Participants in Basket-size aggregations are redeemable in exchange for the underlying amount of bitcoin or cash proceeds from selling the underlying amount of bitcoin, redemptions may be suspended (i) during any period in which regular trading on NASDAQ is suspended or restricted, or the exchange is closed (other than scheduled holiday or weekend closings), or (ii) during a period when the Sponsor determines that delivery, disposal or evaluation of bitcoin is not reasonably practicable (for example, as a result of an interruption in services or availability of the Prime Execution Agent, the Bitcoin Custodian, the Cash Custodian, the Administrator, the Bitcoin Trading Counterparties, or other service providers to the Trust, act of God, catastrophe, civil disturbance, government prohibition, war, terrorism, strike or other labor dispute, fire, force majeure, interruption in telecommunications, iShares order entry system, Internet services, or network provider services, unavailability of Fedwire, SWIFT or banks’ payment processes, significant technical failure, bug, error, disruption or fork of the Bitcoin network, hacking, cybersecurity breach, or power, Internet, or Bitcoin network outage, or similar event). …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The lack of an active trading market for the Shares may result in losses on your investment at the time of disposition of your Shares.",
+    "text": "Although Shares are listed for trading on NASDAQ, you should not assume that an active trading market for the Shares will be maintained. If you need to sell your Shares at a time when no active market for them exists, such lack of an active market will most likely adversely affect the price you receive for your Shares (assuming you are able to sell them)."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The limited ability to facilitate in-kind creations and redemptions of Shares could have adverse consequences for the Trust.",
+    "text": "Authorized Participants must be registered broker-dealers. Registered broker-dealers are subject to various requirements of the federal securities laws and rules, including financial responsibility rules such as the customer protection rule, the net capital rule and recordkeeping requirements. On May 15, 2025, the Division of Trading and Markets of the SEC and the Office of General Counsel of FINRA stated that broker-dealers are permitted to facilitate in-kind creations and redemptions in connection with spot crypto exchange-traded products; however, there has yet to be definitive regulatory guidance on the specific details of how registered broker-dealers can comply with SEC rules with regard to transacting in or holding spot bitcoin. Until further regulatory clarity emerges regarding whether registered broker-dealers can hold and deal in bitcoin under such rules, there is a risk that registered broker-dealers participating in the in-kind creation or redemption of Shares for bitcoin may be unable to demonstrate compliance with such requirements. While compliance with rules such as the customer protection rule, the net capital rule and recordkeeping requirements would be the broker-dealer’s responsibility, a national securities exchange is required to enforce compliance by its member broker-dealers with applicable federal securities laws and rules. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "If the process of creation and redemption of Baskets encounters any unanticipated difficulties, the possibility for arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of bitcoin may not exist and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "text": "If the processes of creation and redemption of Shares (which depend on timely transfers of bitcoin to and by the Bitcoin Custodian and Prime Execution Agent) encounter any unanticipated difficulties due to, for example, the price volatility of bitcoin, the insolvency, business failure or interruption, default, failure to perform, security breach, or other problems affecting the Prime Execution Agent, Bitcoin Custodian, the Authorized Participants or the Bitcoin Trading Counterparties, the closing of bitcoin trading platforms due to fraud, failures, security breaches or otherwise, or network outages or congestion, spikes in transaction fees demanded by miners, or other problems or disruptions affecting the Bitcoin network, then potential market participants, such as the Authorized Participants and their customers, who would otherwise be willing to purchase or redeem Baskets (in the case of Authorized Participants) to take advantage of any arbitrage opportunity arising from discrepancies between the price of the Shares and the price of the underlying bitcoin or to engage in bitcoin transactions (in the case of Bitcoin Trading Counterparties or transactions facilitated by the Prime Execution Agent) may not take the risk that, as a result of those difficulties, they may not be able to realize the profit they expect. In certain such cases, the Trustee may, and upon the direction of the Sponsor shall, suspend the process of creation and redemption of Baskets. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The use of cash creations and redemptions, as opposed to in-kind creations and redemptions, may adversely affect the arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of bitcoin and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "text": "The use of cash creations and redemptions, as opposed to in-kind creations and redemptions, could cause delays in trade execution due to potential operational issues arising from implementing a cash creation and redemption model, which involves greater operational steps (and therefore execution risk) than the originally contemplated in-kind creation and redemption model, or the potential unavailability or exhaustion of the Trade Credits, which the Trust would not be able to use in connection with in-kind creations and redemptions. Such delays could cause the execution price associated with such trades to materially deviate from the Index price used to determine the NAV. In addition, Bitcoin Trading Counterparties must settle bitcoin transactions with the Trust within a contractually specified time period, subject to customary exceptions. If the Bitcoin Trading Counterparty fails to perform its obligations within the contractually specified time period, the Trust would seek to use the Prime Execution Agent’s Coinbase Prime service or an alternate Bitcoin Trading Counterparty to execute the bitcoin transaction. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "As an owner of Shares, you will not have the rights normally associated with ownership of other types of shares.",
+    "text": "Shares are not entitled to the same rights as shares issued by a corporation. By acquiring Shares, you are not acquiring the right to elect directors, to receive dividends, to vote on certain matters regarding the issuer of your Shares or to take other actions normally associated with the ownership of shares. You will only have the limited rights contained in the Trust Agreement."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Sponsor and the Trustee may agree to amend the Trust Agreement without the consent of the Shareholders.",
+    "text": "The Sponsor and the Trustee may agree to amend the Trust Agreement, including to increase the Sponsor’s Fee, without Shareholder consent. The Sponsor shall determine the contents and manner of delivery of any notice of any Trust Agreement amendment. If an amendment imposes new fees and charges or increases existing fees or charges, including the Sponsor’s Fee (except for taxes and other governmental charges, registration fees or other such expenses), or prejudices a substantial right of Shareholders, it will become effective for outstanding Shares 30 days after notice of such amendment is given to registered owners. Shareholders that are not registered owners (which most shareholders will not be) may not receive specific notice of a fee increase other than through an amendment to the prospectus. Moreover, at the time an amendment becomes effective, by continuing to hold Shares, Shareholders are deemed to agree to the amendment and to be bound by the Trust Agreement as amended without specific agreement to such increase (other than through the “negative consent” procedure described above)."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Shareholders do not have the protections associated with ownership of shares in an investment company registered under the Investment Company Act or the protections afforded by the CEA.",
+    "text": "The Investment Company Act is designed to protect investors by preventing insiders from managing investment companies to their benefit and to the detriment of public investors, such as: the issuance of securities having inequitable or discriminatory provisions; the management of investment companies by irresponsible persons; the use of unsound or misleading methods of computing earnings and asset value; changes in the character of investment companies without the consent of investors; and investment companies engaging in excessive leveraging. To accomplish these ends, the Investment Company Act requires the safekeeping and proper valuation of fund assets, restricts greatly transactions with affiliates, limits leveraging, and imposes governance requirements as a check on fund management. The Trust is not a registered investment company under the Investment Company Act, and the Sponsor believes that the Trust is not required to register under such act. Consequently, Shareholders do not have the regulatory protections provided to investors in investment companies. The Trust will not hold or trade in commodity interests (as currently defined) regulated by the CEA, as administered by the CFTC. Furthermore, the Sponsor believes that the Trust is not a commodity pool for purposes of the CEA, and that neither the Sponsor nor the Trustee is subject to regulation by the CFTC as a commodity pool operator or a commodity trading adviser in connection with the operation of the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "As the Sponsor and its management have limited history of operating investment vehicles like the Trust, their experience may be inadequate or unsuitable to manage the Trust.",
+    "text": "The Sponsor and its management team have a limited track record in operating investment vehicles that specifically deal with crypto assets such as the Trust. This limited experience poses several potential risks to the effective management and operation of the Trust. Crypto assets, such as bitcoin, are known for their high volatility, unique technical, legal and regulatory challenges, and rapidly evolving market dynamics. The Sponsor’s limited experience in this specific field may not fully equip them to navigate these complexities effectively. The past performances of the Sponsor’s management in other investment vehicles are no indication of their ability to manage an investment vehicle such as the Trust. The unique nature of crypto assets makes past performance an unreliable indicator of future success in this area. The crypto asset market is technology-driven and requires a deep understanding of the underlying blockchain technology and security considerations. The Sponsor’s limited experience may not fully encompass the technical expertise required to mitigate risks such as cyber threats, technological failures, or operational errors related to crypto asset transactions and custody. Should the Sponsor and its management team’s experience prove inadequate or unsuitable for managing a crypto asset-based investment vehicle like the Trust, it could result in suboptimal decision-making, increased operational risks, and potential legal or regulatory non-compliance. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Security threats to the Trust ’ s account at the Bitcoin Custodian could result in the halting of Trust operations and a loss of Trust assets or damage to the reputation of the Trust, each of which could result in a reduction in the value of the Shares.",
+    "text": "Security breaches, computer malware and computer hacking attacks have been a prevalent concern in relation to digital assets. The Sponsor believes that the Trust’s bitcoin held in the Trust’s account at the Bitcoin Custodian or Trading Balance held with the Prime Execution Agent will be an appealing target to hackers or malware distributors seeking to destroy, damage or steal the Trust’s bitcoin and will only become more appealing as the Trust’s assets grow. To the extent that the Trust, the Sponsor, the Bitcoin Custodian, or the Prime Execution Agent is unable to identify and mitigate or stop new security threats or otherwise adapt to technological changes in the digital asset industry, the Trust’s bitcoin may be subject to theft, loss, destruction or other attack. The Sponsor believes that the security procedures in place for the Trust, including but not limited to, offline storage, or cold storage, multiple encrypted private key “shards,” and other measures, are reasonably designed to safeguard the Trust’s bitcoin. Nevertheless, the security procedures cannot guarantee the prevention of any loss due to a security breach, software defect or act of God that may be borne by the Trust and the security procedures may not protect against all errors, software flaws or other vulnerabilities in the Trust’s technical infrastructure, which could result in theft, loss or damage of its assets. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Bitcoin transactions are irrevocable and stolen or incorrectly transferred bitcoin may be irretrievable. As a result, any incorrectly executed bitcoin transactions could adversely affect the value of the Shares.",
+    "text": "Bitcoin transactions are typically not reversible without the consent and active participation of the recipient of the transaction. Once a transaction has been verified and recorded in a block that is added to the Bitcoin blockchain, an incorrect transfer or theft of bitcoin generally will not be reversible and the Trust may not be capable of seeking compensation for any such transfer or theft. Although the Trust’s transfers of bitcoin will regularly be made to or from the Trust’s account at the Bitcoin Custodian, it is possible that, through computer or human error, or through theft or criminal action, the Trust’s bitcoin could be transferred from the Trust’s account at the Bitcoin Custodian in incorrect amounts or to unauthorized third parties, or to uncontrolled accounts. Such events have occurred in connection with digital assets in the past. For example, in September 2014, the Chinese digital asset platform Huobi announced that it had sent approximately 900 bitcoin and 8,000 Litecoins (worth approximately $400,000 at the prevailing market prices at the time) to the wrong customers. To the extent that the Trust is unable to seek a corrective transaction with such third party or is incapable of identifying the third party which has received the Trust’s bitcoin through error or theft, the Trust will be unable to revert or otherwise recover incorrectly transferred bitcoin. The Trust will also be unable to convert or recover its bitcoin transferred to uncontrolled accounts. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The lack of full insurance and Shareholders ’ limited rights of legal recourse against the Trust, the Delaware Trustee, the Sponsor, the Trust Administrator, the Cash Custodian, the Prime Execution Agent, the Bitcoin Custodian and if operationalized, the Additional Bitcoin Custodian, expose the Trust and its Shareholders to the risk of loss of the Trust’s bitcoin for which no person or entity is liable.",
+    "text": "The Trust is not a banking institution or otherwise a member of the FDIC or Securities Investor Protection Corporation (“SIPC”) and, therefore, deposits held with or assets held by the Trust are not subject to the protections enjoyed by depositors with FDIC or SIPC member institutions. In addition, neither the Trust nor the Sponsor insure the Trust’s bitcoin. Coinbase Global has informed the Sponsor that it maintains an a commercial crime insurance policy, which is intended to cover the loss of client assets held by Coinbase Global and all of its subsidiaries, including the Bitcoin Custodian and the Prime Execution Agent (collectively, Coinbase Global and its subsidiaries are referred to as the “Coinbase Insureds”), including from employee collusion or fraud, physical loss including theft, damage of key material, security breach or hack, and fraudulent transfer. The insurance maintained by Coinbase Global is shared among all of Coinbase Insureds’ customers, is not specific to the Trust or to customers holding bitcoin with the Bitcoin Custodian or the Prime Execution Agent and may not be available or sufficient to protect the Trust from all possible losses or sources of losses. Coinbase Global’s insurance may not cover the type of losses experienced by the Trust. Alternatively, the Trust may be forced to share such insurance proceeds with other clients or customers of the Coinbase Insureds, which could reduce the amount of such proceeds that are available to the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "If the Trade Credits are not available or become exhausted, the Trust may face delays in buying or selling bitcoin that may adversely impact Shareholders; if the Trust does not repay the Trade Credits on time, its assets may be liquidated by the Trade Credit Lender and its affiliates.",
+    "text": "To avoid having to pre-fund purchases or sales of bitcoin in connection with cash creations and redemptions and sales of bitcoin to pay the Sponsor’s Fee and any other Trust expenses not assumed by the Sponsor, to the extent applicable, the Trust may borrow bitcoin or cash as trade credit (“Trade Credit”) from Coinbase Credit, Inc. (the “Trade Credit Lender”) on a short-term basis pursuant to the Coinbase Credit Committed Trade Financing Agreement (the “Trade Financing Agreement”). The Trade Credit Lender is only required to extend Trade Credits to the Trust to the extent such bitcoin or cash is actually available to the Trade Credit Lender. To the extent that Trade Credits are not available or become exhausted (1) there may be delays in the buying and selling of bitcoin related to cash creations and redemptions or the selling of bitcoin related to paying the Sponsor’s Fee and any other Trust expenses, to the extent applicable, (2) Trust assets may be held in the Trading Balance for a longer duration than if Trade Credits were available, and (3) the execution price associated with such trades may deviate significantly from the Index price used to determine the net asset value of the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Loss of a critical banking relationship for, or the failure of a bank used by, the Prime Execution Agent could adversely impact the Trust ’ s ability to create or redeem Baskets or could cause losses to the Trust.",
+    "text": "The Prime Execution Agent facilitates the buying and selling or settlement of bitcoin by the Trust in connection with cash creations and redemptions between the Trust and the Authorized Participants, and the sale of bitcoin to pay the Sponsor’s Fee, any other Trust expenses, to the extent applicable, and in extraordinary circumstances, to effect the liquidation of the Trust’s bitcoin. The Prime Execution Agent relies on bank accounts to provide its trading platform services and including temporarily holding any cash related to a customer’s purchase or sale of bitcoin. In particular, the Prime Execution Agent has disclosed that customer cash held by the Prime Execution Agent, including the cash associated with the Trust’s Trading Balance, is held in one or more banks’ accounts for the benefit of the Prime Execution Agent’s customers, or in Money Market Funds in compliance with Rule 2a-7 under the Investment Company Act and rated “AAA” by S&P (or the equivalent from any eligible rating service), provided that such investments are held in accounts in Coinbase’s name for the benefit of customers and are permitted and held in accordance with state money transmitter laws (“Money Market Funds”). The Prime Execution Agent has represented to the Sponsor that it has implemented the following policy with respect to the cash associated with the Trust’s Trading Balance. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Prime Execution Agent routes orders through Connected Trading Venues in connection with trading services under the Prime Execution Agent Agreement. The loss or failure of any such Connected Trading Venues may adversely affect the Prime Execution Agent ’ s business and cause losses for the Trust.",
+    "text": "In connection with trading services under the Prime Execution Agent Agreement, the Prime Execution Agent routinely routes customer orders to Connected Trading Venues, which are third-party platforms or other trading venues (including the trading venue operated by the Prime Execution Agent). In connection with these activities, the Prime Execution Agent may hold bitcoin with such Connected Trading Venues in order to effect customer orders, including the Trust’s orders. However, the Prime Execution Agent has represented to the Sponsor that no customer cash is held at Connected Trading Venues. If the Prime Execution Agent were to experience a disruption in the Prime Execution Agent’s access to these Connected Trading Venues, the Prime Execution Agent’s trading services under the Prime Execution Agent Agreement could be adversely affected to the extent that the Prime Execution Agent is limited in its ability to execute order flow for its customers, including the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust may be required, or the Sponsor may deem it appropriate, to terminate and liquidate at a time that is disadvantageous to Shareholders.",
+    "text": "Pursuant to the terms of the Trust Agreement, the Trust is required to dissolve under certain circumstances. In addition, the Sponsor may, in its sole discretion, dissolve the Trust for a number of reasons, including if the Sponsor determines, in its sole discretion, that it is desirable or advisable for any reason to discontinue the affairs of the Trust. If the Trust is required to terminate and liquidate, or the Sponsor determines in accordance with the terms of the Trust Agreement that it is appropriate to terminate and liquidate the Trust, such termination and liquidation could occur at a time that is disadvantageous to Shareholders, such as when the actual exchange rate of bitcoin at such time is lower than the Index was at the time when Shareholders purchased their Shares. In such a case, when the Trust’s bitcoin are sold as part of its liquidation, the resulting proceeds distributed to Shareholders will be less than if the actual exchange rate at such time were higher at the time of sale."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust Agreement includes provisions that limit Shareholders ’ voting rights and restrict Shareholders ’ right to bring a derivative action.",
+    "text": "Under the Trust Agreement, Shareholders generally have no voting rights and the Trust will not have regular Shareholder meetings. Shareholders take no part in the management or control of the Trust. Accordingly, Shareholders do not have the right to authorize actions, appoint service providers or take other actions as may be taken by shareholders of other trusts or companies where shares carry such rights. The shareholders’ limited voting rights give almost all control under the Trust Agreement to the Sponsor and the Trustee. The Sponsor may take actions in the operation of the Trust that may be adverse to the interests of Shareholders and may adversely affect the value of the Shares. Moreover, pursuant to the terms of the Trust Agreement, Shareholders’ statutory right under Delaware law to bring a derivative action (i.e., to initiate a lawsuit in the name of the Trust in order to assert a claim belonging to the Trust against a fiduciary of the Trust or against a third party when the Trust’s management has refused to do so) is restricted. Under Delaware law, a shareholder may bring a derivative action if the shareholder is a shareholder at the time the action is brought and either (i) was a shareholder at the time of the transaction at issue or (ii) acquired the status of shareholder by operation of law or the Trust’s governing instrument from a person who was a shareholder at the time of the transaction at issue. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The non-exclusive jurisdiction for certain types of actions and proceedings and waiver of trial by jury clauses set forth in the Trust Agreement may have the effect of limiting a Shareholder ’ s rights to bring legal action against the Trust and could limit a purchaser ’ s ability to obtain a favorable judicial forum for disputes with the Trust.",
+    "text": "The Trust Agreement provides that the courts of the state of Delaware and any federal courts located in Wilmington, Delaware will be the non-exclusive jurisdiction for any claims, suits, actions or proceedings, provided that causes of actions for violations of the Exchange Act or the Securities Act will not be governed by the non-exclusive jurisdiction provision of the Trust Agreement. By purchasing Shares in the Trust, Shareholders waive certain claims that the courts of the state of Delaware and any federal courts located in Wilmington, Delaware is an inconvenient venue or is otherwise inappropriate. As such, Shareholder could be required to litigate a matter relating to the Trust in a Delaware court, even if that court may otherwise be inconvenient for the Shareholder. The Trust Agreement also waives the right to trial by jury in any such claim, suit, action or proceeding, provided that causes of actions for violations of the Exchange Act or the Securities Act will not be governed by the waiver of the right to trial by jury provision of the Trust Agreement. If a lawsuit is brought against the Trust, it may be heard only by a judge or justice of the applicable trial court, which would be conducted according to different civil procedures and may result in different outcomes than a trial by jury would have, including results that could be less favorable to the plaintiffs in any such action. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Sponsor is solely responsible for determining the value of the net asset value of the Trust and NAV, and any errors, discontinuance or changes in such valuation calculations may have an adverse effect on the value of the Shares.",
+    "text": "The Sponsor has the exclusive authority to determine the net asset value of the Trust and the NAV, which it has delegated to the Trustee under the Trust Agreement. The Trustee has delegated to the Trust Administrator the responsibility to calculate the net asset value of the Trust and the NAV, based on a pricing source selected by the Trustee. The Trust Administrator determines the net asset value of the Trust and NAV as of 4:00 p.m. ET, on each Business Day, as soon as practicable after that time. The Trust Administrator’s determination is made utilizing data from the operations of the Trust and the Index, calculated at 4:00 p.m. ET, on such day. If the Trustee determines in good faith that the Index does not reflect an accurate bitcoin price, then the Trustee will instruct the Trust Administrator to employ an alternative method to determine the fair value of the Trust’s assets. There are no predefined criteria to make a good faith assessment as to which of the rules the Sponsor will apply and the Sponsor may make this determination in its sole discretion. The Trust Administrator may calculate the Index in a manner that ultimately inaccurately reflects the price of bitcoin. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Extraordinary expenses resulting from unanticipated events may become payable by the Trust, adversely affecting the value of the Shares.",
+    "text": "In consideration for the Sponsor’s Fee, the Sponsor has contractually assumed ordinary course operational and periodic expenses of the Trust, with certain exceptions. Expenses incurred by the Trust but not assumed by the Sponsor, such as, among others, taxes and governmental charges; expenses and costs of any extraordinary services performed by the Sponsor (or any other service provider) on behalf of the Trust to protect the Trust or the interests of Shareholders; or extraordinary legal fees and expenses are not assumed by the Sponsor and are borne by the Trust. The Sponsor will cause the Trust to either (i) sell bitcoin held by the Trust or (ii) deliver bitcoin in-kind to the Sponsor to pay Trust expenses not assumed by the Sponsor on an as-needed basis. Accordingly, the Trust may be required to sell or otherwise dispose of bitcoin at a time when the trading prices for those assets are depressed. The sale or other disposition of assets of the Trust in order to pay extraordinary expenses could have a negative impact on the value of the Shares for several reasons. These include the following factors: ● The Trust is not actively managed and no attempt will be made to protect against or to take advantage of fluctuations in the prices of bitcoin. Consequently, if the Trust incurs expenses in U.S. dollars, the Trust’s bitcoin may be sold at a time when the values of the disposed assets are low, resulting in a negative impact on the value of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust ’ s delivery or sale of bitcoin to pay expenses or other operations of the Trust could result in Shareholders incurring tax liability without an associated distribution from the Trust.",
+    "text": "Assuming that the Trust is treated as a grantor trust for U.S. federal income tax purposes, each delivery of bitcoin by the Trust to pay the Sponsor’s Fee or other expenses and each sale of bitcoin by the Trust to pay Trust expenses not assumed by the Sponsor will be a taxable event to beneficial owners of Shares. Thus, the Trust’s payment of expenses could result in beneficial owners of Shares incurring tax liability without an associated distribution from the Trust. Any such tax liability could adversely affect an investment in the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The value of the Shares will be adversely affected if the Trust is required to indemnify the Sponsor, the Trustee, the Delaware Trustee, the Trust Administrator, the Bitcoin Custodian or the Cash Custodian under the Trust Documents.",
+    "text": "Under the Trust Agreement and the Trust agreements with its service providers (“Trust Documents”) each of the Sponsor, the Trustee, the Delaware Trustee, the Trust Administrator and the Custodians has a right to be indemnified by the Trust for certain liabilities or expenses that it incurs without, depending on the applicable Trust Document, gross negligence, bad faith or willful misconduct on its part. Therefore, the Sponsor, Delaware Trustee, the Trust Administrator, or the Custodians may require that the assets of the Trust be sold in order to cover losses or liability suffered by it. Any sale of that kind would reduce the digital asset holdings of the Trust and the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Intellectual property rights claims may adversely affect the Trust and the value of the Shares.",
+    "text": "The Sponsor is not aware of any intellectual property rights claims that may prevent the Trust from operating and holding bitcoin. However, third parties may assert intellectual property rights claims relating to the operation of the Trust and the mechanics instituted for the investment in, holding of and transfer of bitcoin. Regardless of the merit of an intellectual property or other legal action, any legal expenses to defend or payments to settle such claims would be extraordinary expenses that would be borne by the Trust through the sale or transfer of its bitcoin. Additionally, a meritorious intellectual property rights claim could prevent the Trust from operating and force the Sponsor to terminate the Trust and liquidate its bitcoin. As a result, an intellectual property rights claim against the Trust could adversely affect the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Shares may trade at a price that is at, above or below the Trust ’ s NAV as a result of the non-current trading hours between NASDAQ and the digital asset market.",
+    "text": "The Trust’s NAV will fluctuate with changes in the market value of bitcoin and its securities, and the Sponsor expects the trading price of the Shares to fluctuate in accordance with changes in the Trust’s NAV, as well as market supply and demand. However, the Shares may trade on NASDAQ at a price that is at, above or below the Trust’s NAV for a variety of reasons. For example, NASDAQ is open for trading in the Shares for a limited period each day, but the digital asset market is a 24-hour marketplace. During periods when NASDAQ is closed but constituent trading platforms are open, significant changes in the price of bitcoin on the digital asset market could result in a difference in performance between the value of bitcoin as measured by IBIT shares or the Bitcoin Index and the most recent NAV or closing trading price. For example, if the price of bitcoin on the digital asset market, and the value bitcoin as measured by the Bitcoin Index, move significantly in a negative direction after the close of NASDAQ, the trading price of the Shares may “gap” down to the full extent of such negative price shift when NASDAQ reopens. If the price of bitcoin on the digital asset market drops significantly during hours NASDAQ is closed, shareholders may not be able to sell their Shares until after the “gap” down has been fully realized, resulting in an inability to mitigate losses in a negative market. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Digital asset markets in the United States exist in a state of regulatory uncertainty, and adverse legislative or regulatory developments could significantly harm the value of bitcoin or the Shares, such as by banning, restricting or imposing onerous conditions or prohibitions on the use of bitcoin, mining activity, digital wallets, the provision of services related to trading and providing custody services for bitcoin, the operation of the Bitcoin network, or the digital asset markets generally.",
+    "text": "There is a lack of consensus regarding the regulation of digital assets, including bitcoin, and their markets. As a result of the growth in the size of the digital asset market, as well as the 2022 Events, the U.S. Congress and a number of U.S. federal and state agencies (including FinCEN, SEC, Office of the Comptroller of the Currency (the “OCC”), CFTC, FINRA, the Consumer Financial Protection Bureau (“CFPB”), the DOJ, the Department of Homeland Security, the Federal Bureau of Investigation, the Internal Revenue Service (“IRS”), state financial institution regulators, and others) have been examining the operations of digital asset networks, digital asset users and the digital asset markets. Many of these state and federal agencies have brought enforcement actions or issued consumer advisories regarding the risks posed by digital assets to investors. Ongoing and future regulatory actions with respect to digital assets generally or bitcoin in particular may alter, perhaps to a materially adverse extent, the nature of an investment in the Shares or the ability of the Trust to continue to operate. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "A determination that bitcoin or any other digital asset is a “ security ” may adversely affect the value of bitcoin and the value of the Shares, and result in potentially extraordinary, nonrecurring expenses to, or termination of, the Trust.",
+    "text": "Depending on its characteristics, a digital asset may be considered a “security” under the federal securities laws. The test for determining whether a particular digital asset is a “security” is complex and difficult to apply, and the outcome is difficult to predict. Public, though non-binding, statements made in the past by senior officials at the SEC and endorsed by its previous Chairman in a letter to a member of Congress appeared to indicate that the SEC did not consider bitcoin to be a security, at least currently, and the staff has provided informal assurances to a handful of promoters that their digital assets are not securities. On the other hand, the SEC has brought enforcement actions against the promoters of several other digital assets on the basis that the digital assets in question are securities. Whether a digital asset is a security under the federal securities laws depends on whether it is included in the lists of instruments making up the definition of “security” in the Securities Act, the Exchange Act and the Investment Company Act. Digital assets as such do not appear in any of these lists, although each list includes the terms “investment contract” and “note,” and the SEC has typically analyzed whether a particular digital asset is a security by reference to whether it meets the tests developed by the federal courts interpreting these terms, known as the Howey and Reves tests, respectively. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Competing industries may have more influence with policymakers than the digital asset industry, which could lead to the adoption of laws and regulations that are harmful to the digital asset industry.",
+    "text": "The digital asset industry is relatively new and does not have the same access to policymakers and lobbying organizations in many jurisdictions compared to industries with which digital assets may be seen to compete, such as banking, payments and consumer finance. Competitors from other, more established industries may have greater access to and influence with governmental officials and regulators and may be successful in persuading these policymakers that digital assets require heightened levels of regulation compared to the regulation of traditional financial services. As a result, new laws and regulations may be proposed and adopted in the United States and elsewhere, or existing laws and regulations may be interpreted in new ways, that disfavor or impose compliance burdens on the digital asset industry or digital asset platforms, which could adversely impact the value of bitcoin and therefore the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Regulatory changes or actions in foreign jurisdictions may affect the value of the Shares or restrict the use of one or more digital assets, mining activity or the operation of their networks or the digital asset platform market in a manner that adversely affects the value of the Shares.",
+    "text": "Various foreign jurisdictions have, and may continue to adopt laws, regulations or directives that affect digital asset networks (including the Bitcoin network), the digital asset markets (including the bitcoin market), and their users, particularly digital asset platforms and service providers that fall within such jurisdictions’ regulatory scope. For example, if China or other foreign jurisdictions were to ban or otherwise restrict manufacturers’ ability to produce or sell semiconductors or hard drives in connection with bitcoin mining, it would have a material adverse effect on digital asset networks (including the Bitcoin network), the digital asset market, and as a result, impact the value of the Shares. A number of foreign jurisdictions have recently taken regulatory action aimed at digital asset activities. China has made transacting in crypto assets illegal for Chinese citizens in mainland China, and additional restrictions may follow. Both China and South Korea have banned initial coin offerings entirely and regulators in other jurisdictions, including Canada, Singapore and Hong Kong, have opined that initial coin offerings may constitute securities offerings subject to local securities regulations. In May 2021, the Chinese government announced renewed efforts to restrict crypto asset trading and mining activities. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "If regulators or public utilities take actions that restrict or otherwise impact mining activities, there may be a significant decline in such activities, which could adversely affect the Bitcoin network and the value of the Shares.",
+    "text": "Concerns have been raised about the electricity required to secure and maintain digital asset networks. For example, as of December 31, 2025, approximately 980 million tera hashes were performed every second in connection with mining on the Bitcoin network (according to Coin Metrics). Although measuring the electricity consumed by this process is difficult because these operations are performed by various machines with varying levels of efficiency, the process consumes a significant amount of energy. The operations of the Bitcoin network and other digital asset networks may also consume significant amounts of energy. Further, in addition to the direct energy costs of performing calculations on any given digital asset network, there are indirect costs that impact a network’s total energy consumption, including the costs of cooling the machines that perform these calculations. Driven by concerns around energy consumption and the impact on public utility companies, various states and cities have implemented, or are considering implementing, moratoriums on mining activity in their jurisdictions. A significant reduction in mining activity as a result of such actions could adversely affect the security of the Bitcoin network by making it easier for a malicious actor or botnet to manipulate the relevant blockchain. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "If regulators subject the Trust, the Trustee, the Sponsor, Authorized Participants or Bitcoin Trading Counterparties to regulation as a money services business or money transmitter, this could result in extraordinary expenses to the Trust, the Trustee, the Sponsor or the Bitcoin Trading Counterparties and also result in decreased liquidity for the Shares.",
+    "text": "To the extent that the activities of the Trust, the Trustee, the Sponsor, Authorized Participants or Bitcoin Trading Counterparties cause it to be deemed an MSB under the regulations promulgated by FinCEN, the Trust, the Trustee, the Sponsor, Authorized Participants or the Bitcoin Trading Counterparties may be required to comply with FinCEN regulations, make certain reports to FinCEN and maintain certain records. Similarly, the activities of the Trust, the Trustee, the Sponsor, Authorized Participants or Bitcoin Trading Counterparties may require it to be licensed as a money transmitter or as a digital asset business, such as under the New York State Department of Financial Services’ BitLicense regulation. Such additional regulatory obligations may cause the Trust, the Trustee, the Sponsor, Authorized Participants or Bitcoin Trading Counterparties to incur extraordinary expenses. If the Trust, the Trustee, the Sponsor, Authorized Participants or Bitcoin Trading Counterparties decided to seek the required licenses, there is no guarantee that they will timely receive them. The Trustee may decide to discontinue and wind up the Trust. A dissolution of the Trust in response to the changed regulatory circumstances may be at a time that is disadvantageous to the Shareholders. A Bitcoin Trading Counterparty may also instead decide to terminate its role as a Bitcoin Trading Counterparty of the Trust, which may decrease the liquidity of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Anonymity and illicit financing risk.",
+    "text": "Although transaction details of peer-to-peer transactions are recorded on the Bitcoin blockchain, a buyer or seller of digital assets on a peer-to-peer basis directly on the Bitcoin network may never know to whom the public key belongs or the true identity of the party with whom it is transacting. Public key addresses are randomized sequences of alphanumeric characters that, standing alone, do not provide sufficient information to identify users. In addition, certain technologies may obscure the origin or chain of custody of digital assets. In May 2022, OFAC banned all U.S. persons from using Blender.io, a digital asset mixing application that operates on the Bitcoin blockchain to obfuscate the origin, destination and counterparties of blockchain transactions, by adding certain digital asset wallet addresses associated with Blender.io to its Specially Designated Nationals list. Blender.io receives a variety of transactions and mixes them together before transmitting them to their ultimate destinations. On March 23, 2022, Lazarus Group, a state-sponsored cyber hacking group associated with North Korea, carried out a major virtual currency heist from a blockchain project linked to the online game Axie Infinity; Blender.io was used in processing some of the illicit proceeds. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Regulatory changes or interpretations could obligate the Trust, the Trustee or the Sponsor to register and comply with new regulations, resulting in potentially extraordinary, nonrecurring expenses to the Trust.",
+    "text": "Current and future federal or state legislation, CFTC and SEC rulemaking and other regulatory developments may impact the manner in which bitcoin is treated. In particular, bitcoin may be classified by the CFTC as a “commodity interest” under the CEA or may be classified by the SEC as a “security” under U.S. federal securities laws. The Sponsor, the Trustee and the Trust cannot be certain as to how future regulatory developments will impact the treatment of bitcoin under the law. In the face of such developments, the required registrations and compliance steps may result in extraordinary, nonrecurring expenses to the Trust. If the Trustee decides to terminate the Trust in response to the changed regulatory circumstances, the Trust may be dissolved or liquidated at a time that is disadvantageous to Shareholders. To the extent that bitcoin is deemed to fall within the definition of a “commodity interest” under the CEA, the Trust, the Trustee and the Sponsor may be subject to additional regulation under the CEA and CFTC regulations. The Sponsor or the Trustee may be required to register as a commodity pool operator or commodity trading adviser with the CFTC and become a member of the National Futures Association (“NFA”) and may be subject to additional regulatory requirements with respect to the Trust, including disclosure and reporting requirements. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "The treatment of the Trust for U.S. federal income tax purposes is uncertain.",
+    "text": "The Sponsor intends to take the position that the Trust is properly treated as a grantor trust for U.S. federal income tax purposes. Assuming that the Trust is a grantor trust, the Trust will not be subject to U.S. federal income tax. Rather, if the Trust is a grantor trust, each beneficial owner of Shares will be treated as directly owning its pro rata share of the Trust’s assets and a pro rata portion of the Trust’s income, gain, losses and deductions will “flow through” to each beneficial owner of Shares. The Trust may take certain positions with respect to the tax consequences of Incidental Rights and its receipt of IR Digital Asset. If the IRS were to disagree with, and successfully challenge any of these positions, the Trust might not qualify as a grantor trust. In addition, the Sponsor has committed to cause the Trust to irrevocably abandon any Incidental Rights and IR Digital Asset to which the Trust may become entitled in the future. However, there can be no assurance that these abandonments would be treated as effective for U.S. federal income tax purposes, or that the Sponsor will continue to cause the Trust to irrevocably abandon any Incidental Rights and IR Digital Asset if there are future regulatory developments that would make it feasible for the Trust to retain those assets. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "The treatment of digital assets for U.S. federal income tax purposes is uncertain.",
+    "text": "Assuming that the Trust is properly treated as a grantor trust for U.S. federal income tax purposes, each beneficial owner of Shares will be treated for U.S. federal income tax purposes as the owner of an undivided interest in the bitcoin held in the Trust. Due to the new and evolving nature of digital assets and the absence of comprehensive guidance with respect to digital assets, many significant aspects of the U.S. federal income tax treatment of digital assets (including digital currencies) are uncertain. In 2014, the IRS released a notice (the “Notice”) discussing certain aspects of “convertible virtual currency” (that is, digital currency that has an equivalent value in fiat currency or that acts as a substitute for fiat currency) for U.S. federal income tax purposes and, in particular, stating that such digital currency (i) is “property” (ii) is not “currency” for purposes of the rules relating to foreign currency gain or loss and (iii) may be held as a capital asset. In 2019, the IRS released a revenue ruling and a set of “Frequently Asked Questions” (the “Ruling & FAQs”) that provide some additional guidance, including guidance to the effect that, under certain circumstances, hard forks of digital currencies are taxable events giving rise to ordinary income and guidance with respect to the determination of the tax basis of digital currency. However, the Notice and the Ruling & FAQs do not address other significant aspects of the U.S. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Future developments regarding the treatment of digital assets for U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "text": "As discussed above, many significant aspects of the U.S. federal income tax treatment of digital assets, such as bitcoin, are uncertain, and it is unclear what guidance on the treatment of digital currency for U.S. federal income tax purposes may be issued in the future. It is possible that any such guidance would have an adverse effect on the prices of digital assets, including on the price of bitcoin in digital asset platforms, and therefore may have an adverse effect on the value of the Shares. Because of the evolving nature of digital assets, it is not possible to predict potential future developments that may arise with respect to digital assets, including forks, airdrops and similar occurrences. Such developments may increase the uncertainty with respect to the treatment of digital assets for U.S. federal income tax purposes. Moreover, certain future developments could render it impossible, or impracticable, for the Trust to continue to be treated as a grantor trust for U.S. federal income tax purposes."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Future developments in the treatment of digital currency for tax purposes other than U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "text": "The taxing authorities of certain states, including New York, (i) have announced that they will follow the Notice with respect to the treatment of digital currencies for state income tax purposes and/or (ii) have issued guidance exempting the purchase and/or sale of digital currencies for fiat currency from state sales tax. Other states have not issued any guidance on these points, and could take different positions (e.g., imposing sales taxes on purchases and sales of digital assets for fiat currency), and states that have issued guidance on their tax treatment of digital currencies (or other digital assets) could update or change their tax treatment of digital currencies (or other digital assets). It is unclear what further guidance on the treatment of digital currencies, for state or local tax purposes may be issued in the future. A state or local government authority’s treatment of bitcoin may have negative consequences, including the imposition of a greater tax burden on investors in bitcoin or the imposition of a greater cost on the acquisition and disposition of bitcoin generally. The treatment of digital currencies for tax purposes by non-U.S. jurisdictions may differ from the treatment of digital currencies for U.S. federal, state or local tax purposes. It is possible, for example, that a non-U.S. jurisdiction would impose sales tax or value-added tax on purchases and sales of digital currencies for fiat currency. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "A U.S. Tax-Exempt Shareholder may recognize “ unrelated business taxable income ” as a consequence of an investment in Shares.",
+    "text": "Under the guidance provided in the Ruling & FAQs, hard forks, airdrops and similar occurrences with respect to digital currencies will under certain circumstances be treated as taxable events giving rise to ordinary income. In the absence of guidance to the contrary, it is possible that any such income recognized by a U.S. Tax-Exempt Shareholder would constitute “unrelated business taxable income” (“UBTI”). Tax-exempt Shareholders should consult their tax advisers regarding whether such Shareholder may recognize UBTI as a consequence of an investment in Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Shareholders could incur a tax liability without an associated distribution of the Trust.",
+    "text": "In the normal course of business, it is possible that the Trust could incur a taxable gain in connection with the sale of bitcoin (such as sales of bitcoin to obtain fiat currency with which to pay the Sponsor’s Fee or Trust expenses, and including deemed sales of bitcoin as a result of the Trust using bitcoin to pay the Sponsor’s Fee or its expenses) that is otherwise not associated with a distribution to Shareholders. Accordingly, Shareholders may be subject to tax due to the grantor trust status of the Trust even though there is not a corresponding distribution from the Trust."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "A hard “ fork ” of the Bitcoin blockchain could result in Shareholders incurring a tax liability.",
+    "text": "If a hard fork occurs in the Bitcoin blockchain, the Trust could hold both the original bitcoin and the alternative new bitcoin. The IRS has held that a hard fork resulting in the creation of new units of crypto assets is a taxable event giving rise to ordinary income. Moreover, if such an event occurs, the Trust Agreement provides that the Sponsor shall have the discretion to determine whether the original or the alternative asset shall constitute bitcoin. The Trust shall treat whichever asset the Sponsor determines is not bitcoin as Incidental Rights or IR Digital Asset, which it has committed to irrevocably abandon. The Ruling & FAQs do not address whether income recognized by a non-U.S. person as a result of a fork, airdrop or similar occurrence could be subject to the 30% withholding tax imposed on U.S.-source “fixed or determinable annual or periodical” income. Non-U.S. Shareholders should assume that, in the absence of guidance, a withholding agent (including the Sponsor) is likely to withhold 30% of any such income recognized by a Non-U.S. Shareholder in respect of its Shares, including by deducting such withheld amounts from proceeds that such Non-U.S. Shareholder would otherwise be entitled to receive in connection with a distribution of Incidental Rights or IR Digital Asset. The Sponsor has committed to cause the Trust to irrevocably abandon any Incidental Rights and IR Digital Asset to which the Trust may become entitled in the future. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Potential conflicts of interest may arise among the Sponsor or its affiliates and the Trust. The Sponsor and its affiliates have no fiduciary duties to the Trust and its Shareholders other than as provided in the Trust Agreement, which may permit them to favor their own interests to the detriment of the Trust and its Shareholders.",
+    "text": "The Sponsor will manage the affairs of the Trust. Conflicts of interest may arise among the Sponsor and its affiliates, on the one hand, and the Trust and its Shareholders, on the other hand. As a result of these conflicts, the Sponsor may favor its own interests and the interests of its affiliates over the Trust and its Shareholders. These potential conflicts include, among others, the following: ● the Sponsor has no fiduciary duties to, and is allowed to take into account the interests of parties other than, the Trust and its Shareholders in resolving conflicts of interest, provided the Sponsor does not act in bad faith; ● the Trust has agreed to indemnify the Sponsor, the Delaware Trustee, the Trustee and their respective affiliates pursuant to the Trust Agreement; ● the Sponsor is responsible for allocating its own limited resources among different clients and potential future business ventures, to each of which it may owe fiduciary duties; ● the Sponsor and its staff also service affiliates of the Sponsor, and may also service other digital asset investment vehicles, and their respective clients and cannot devote all of its, or their, respective time or resources to the management of the affairs of the Trust; ● the Sponsor, its affiliates and their officers and employees are not prohibited from engaging in other businesses or activities, including those that might be in direct competition with the Trust; ● affiliates of the Sponsor may start to have substantial direct in …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Investment vehicles advised or managed by affiliates of the Sponsor hold a minority interest in Coinbase Global, the parent of Coinbase Inc., which serves as the Trust ’ s Prime Execution Agent and operates one of the digital asset platforms included in the Index price and is the parent of the Bitcoin Custodian.",
+    "text": "Investment vehicles advised or managed by affiliates of the Sponsor own shares in many public companies listed in the United States, including Coinbase Global, the parent of Coinbase Inc. which operates the Coinbase platform and serves as the Trust’s Prime Execution Agent. The Trust values its digital assets by reference to the Index price. Coinbase is one of the digital asset platforms included in the Index. The Sponsor values its digital assets by reference to the Index price. Coinbase is one of the digital asset platforms included in the Index. Although neither the Sponsor nor any affiliates of the Sponsor nor any investment vehicles managed or advised by any of them exercise control over Coinbase, it is possible that positions of investment vehicles managed by affiliates of the Sponsor in Coinbase may present risks to Shareholders to the extent affiliates of the Sponsor cause the Sponsor to favor Coinbase’s interests over the interests of the Trust or its Shareholders with respect to, for example, fees charged, and the quality of service provided by Coinbase as Prime Execution Agent. Similarly, investors could have concerns that the Sponsor or affiliates of the Sponsor could influence market data provided by Coinbase in a way that benefits the Sponsor, for example by artificially inflating the values of bitcoin in order to increase the Sponsor’s fees. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Shareholders cannot be assured of the Sponsor ’ s continued services, the discontinuance of which may be detrimental to the Trust.",
+    "text": "Shareholders cannot be assured that the Sponsor will be willing or able to continue to serve as sponsor to the Trust for any length of time. If the Sponsor discontinues its activities on behalf of the Trust and a substitute sponsor is not appointed, the Trust will terminate and liquidate its bitcoin. Appointment of a substitute sponsor will not guarantee the Trust’s continued operation, successful or otherwise. Because a substitute sponsor may have no experience managing a digital asset financial vehicle, a substitute sponsor may not have the experience, knowledge or expertise required to ensure that the Trust will operate successfully or continue to operate at all. Therefore, the appointment of a substitute sponsor may not necessarily be beneficial to the Trust and the Trust may terminate."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Although the Bitcoin Custodian is a fiduciary with respect to the Trust ’ s assets, it could resign or be removed by the Sponsor, which may trigger early dissolution of the Trust.",
+    "text": "The Bitcoin Custodian has represented that it is a fiduciary under § 100 of the New York Banking Law. Further, the Bitcoin Custodian is a qualified custodian for purposes of Rule 206(4)-2(d)(6) under the Advisers Act and is licensed to custody the Trust’s bitcoin in trust on the Trust’s behalf. However, the Bitcoin Custodian may terminate the Custodian Agreement for cause at any time upon providing the applicable notice provided under the Custodian Agreement. If the Bitcoin Custodian resigns, is removed, or is prohibited by applicable law or regulation to act as custodian, and no successor custodian has been employed and/or operationalized, the Sponsor may dissolve the Trust in accordance with the terms of the Trust Agreement."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Coinbase serves as the bitcoin custodian and the prime execution agent for several competing exchange-traded bitcoin products, which could adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "text": "The Prime Execution Agent and the Bitcoin Custodian are both affiliates of Coinbase Global. As of the date hereof, Coinbase Global is the largest publicly traded crypto asset company in the world by market capitalization and is also one of the largest crypto asset custodians in the world by assets under custody. By virtue of its leading market position and capabilities, and the relatively limited number of institutionally-capable providers of crypto asset brokerage and custody services, Coinbase serves as the bitcoin custodian and prime execution agent for several competing exchange-traded bitcoin products as well as other companies in the digital asset industry, such as digital asset treasury companies. Similarly, the Additional Bitcoin Custodian serves as the custodian for several competing exchange-traded bitcoin products and other companies in the digital asset industry. Therefore, Coinbase and Anchorage have a critical role in supporting the U.S. spot bitcoin exchange-traded product ecosystem and the digital assets industry generally, and their size and market share creates the risk that they may fail to properly resource its operations to adequately support all such products that use their services that could harm the Trust, the Shareholders and the value of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "The Trust ’ s Authorized Participants act in similar or identical capacities for several competing exchange-traded bitcoin products which may impact the ability or willingness of one or more Authorized Participants to participate in the creation and redemption process, adversely affect the Trust ’ s ability to create or redeem Baskets and adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "text": "Many of the Trust’s Authorized Participants, now or in the future, act or may act in the same capacity for several competing exchange-traded bitcoin products. Each Authorized Participant has limited balance sheet capacity, which means that, particularly during times of heightened market trading activity or market volatility or turmoil, Authorized Participants may not be able or willing to submit creation or redemption orders with the Trust or may do so in limited capacities. The inability or unwillingness of Authorized Participants to do so could lead to the potential for the Shares to trade at premiums or discounts to the NAV, and such premiums or discounts could be substantial. Furthermore, if creations or redemptions are unavailable due to the inability or unwillingness of one or more of the Trust’s Authorized Participants to submit creation or redemption orders with the Trust (or do so in a limited capacity), the arbitrage mechanism may fail to function as efficiently as it otherwise would or be unavailable. This could result in impaired liquidity for the Shares, wider bid/ask spreads in the secondary trading of the Shares and greater costs to investors and other market participants, all of which could cause the Sponsor to halt or suspend the creation or redemption of Shares during such times, among other consequences."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Shareholders may be adversely affected by the lack of independent advisers representing investors in the Trust.",
+    "text": "The Sponsor has consulted with counsel, accountants and other advisers regarding the formation and operation of the Trust. No counsel was appointed to represent investors in connection with the formation of the Trust or the establishment of the terms of the Trust Agreement and the Shares. Moreover, no counsel has been appointed to represent an investor in connection with the offering of the Shares. Accordingly, an investor should consult his, her or its own legal, tax and financial advisers regarding the desirability of the value of the Shares. Lack of such consultation may lead to an undesirable investment decision with respect to investment in the Shares."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Shareholders and Authorized Participants lack the right under the Custodian Agreement to assert claims directly against the Bitcoin Custodian, which significantly limits their options for recourse.",
+    "text": "Neither the Shareholders nor any Authorized Participant have a right under the Custodian Agreement to assert a claim against the Bitcoin Custodian. Claims under the Custodian Agreement may only be asserted by the Trustee on behalf of the Trust."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "There is no guarantee that every employee, officer, director, or similar person associated with the Sponsor, Trustee, or the BlackRock Affiliates will comply with the Policies, duties and training and refrain from engaging in insider trading in violation of their duties to the Trust and Sponsor.",
+    "text": "While the Sponsor has adopted and implemented the policies and procedures that are reasonably designed to ensure compliance with applicable law, including a Compliance Manual and Code of Business Conduct and Ethics, which address conflicts of interest (together, the “Policies”) and will adopt standard operating practices requiring that certain applicable personnel pre-clear personal trading activity in which bitcoin is the referenced asset, there is no way to guarantee that every employee, officer, director, or similar person associated the Sponsor, Trustee, or the BlackRock affiliates will comply at all times with such Policies, duties and training and refrain from engaging in insider trading in violation of their duties to the Trust and Sponsor. This risk is present in traditional financial markets and is not unique to bitcoin. If such employees or others affiliated with the Trust, Sponsor, Trustee, or Affiliates respectively do engage in illegal conduct or conduct which fails to meet applicable regulatory standards, the Trust, Sponsor, Trustee or relevant Affiliate respectively could be the target of civil or criminal fines, penalties, punishments, or other regulatory or other sanctions or lawsuits or could be the target of an investigation, whether directly or indirectly, such as on a failure to diligently supervise theory. Any of these outcomes could cause the Trust and Shareholders to suffer harm. …"
+   },
+   {
+    "category": "Risk Factors Related to ERISA",
+    "title": "In General.",
+    "text": "Notwithstanding the commercially reasonable efforts of the Sponsor, it is possible that the underlying assets of the Trust will be deemed to include “plan assets” for the purposes of Part 4 of Subtitle B of Title I of ERISA or Section 4975 of the Code. A determination that the assets of the Trust were “plan assets” could result in, among other things, (i) the application of the prudence and other fiduciary standards of ERISA to investments made by the Trust and (ii) the possibility that certain transactions in which the Trust might otherwise seek to engage in the ordinary course of its business and operation could constitute non-exempt “prohibited transactions” under Section 406 of ERISA and/or Section 4975 of the Code, which could restrict the Trust from entering into an otherwise desirable investment or from entering into an otherwise favorable transaction. In addition, fiduciaries who decide to invest in the Trust could, under certain circumstances, be liable for “prohibited transactions” or other violations as a result of their investment in the Trust or as co-fiduciaries for actions taken by or on behalf of the Trust or the Sponsor. There may be other similar laws that also apply to an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to ERISA",
+    "title": "Seed Capital Investor.",
+    "text": "The Sponsor or one or more of its affiliates may be a party in interest or a disqualified person with respect to one or more Plans considering an investment in the Trust. Given the Sponsor’s or an affiliate’s expected initial ownership interest of 50% or more of the Trust, the Trust would be a party in interest to any Plans with respect to which the Sponsor or an affiliate is a party in interest or a disqualified person. Therefore, the purchase by any such Plans in the Trust would be prohibited under ERISA and/or Section 4975 of the Code absent an exemption. Fiduciaries of Plans should consider whether a purchase of interests constitutes a non-exempt prohibited transaction under ERISA and/or Section 4975 of the Code. Available exemptions from the prohibited transaction rules of ERISA and the Code include PTCE 84-14, PTCE 90-1, PTCE 91-38, PTCE 95-60, PTCE 96-23, and Section 408(b)(17) of ERISA (and the corresponding provisions of Section 4975(d)(20) of the Code). The application of ERISA (including the corresponding provisions of the Code and other relevant laws) may be complex and dependent upon the particular facts and circumstances of the Trust and of each Plan, and it is the responsibility of the appropriate fiduciary of each investing Plan to ensure that any investment in the Trust by such Plan is consistent with all applicable requirements. …"
+   }
+  ],
+  "max_chars_per_risk": 1500,
+  "meta": {
+   "provider": "sec_edgar",
+   "fetched_at": "2026-10-10T16:59:32+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "SEC EDGAR 10-K 2025, Item 1A",
+     "url": "https://www.sec.gov/Archives/edgar/data/1980994/000143774926006058/bit20251231_10k.htm"
+    }
+   ]
+  }
+ }
+}

@@ -9,6 +9,11 @@ Mrežni pozivi su u malim funkcijama (_fetch_*) da ih testovi mogu zamijeniti.
 import datetime as dt, json, os, threading, time
 from pathlib import Path
 
+try:
+    import crypto
+except ImportError:  # Möbius package: the same module is copied as fd_crypto.py
+    import fd_crypto as crypto
+
 HERE = Path(__file__).resolve().parent
 CACHE_DIR = Path(os.environ.get("CATALOG_CACHE_DIR", HERE / "cache"))
 SNAPSHOT_DIR = HERE / "catalog"
@@ -176,11 +181,21 @@ def search(q: str, limit: int = 8) -> dict:
         else:
             continue
         scored.append((s, t, name, cik))
-    scored.sort()
+    for t, name in crypto.COINS:   # "bitcoin", "btc", "BTC-USD"
+        sym, nl = t.split("-")[0], name.lower()
+        if qu in (t, sym):
+            s = -1
+        elif nl.startswith(ql) and len(ql) >= 2:
+            s = 10
+        else:
+            continue
+        scored.append((s, t, name, None))
+    scored.sort(key=lambda x: x[:2])
     if scored:
         known = _known()
         return {"query": q, "source": "sec",
-                "results": [{"ticker": t, "name": known.get(t, (None, n))[1], "sector": known.get(t, (None,))[0], "cik": c}
+                "results": [{"ticker": t, "name": known.get(t, (None, n))[1],
+                             "sector": "Crypto" if crypto.is_crypto(t) else known.get(t, (None,))[0], "cik": c}
                             for _, t, n, c in scored[:limit]]}
     if not offline():
         try:
@@ -238,3 +253,34 @@ def markets() -> dict:
     out = {k: v for k, v in data.items() if k != "sectors_at"}
     out["live"] = bool(fresh and not offline())
     return out
+
+
+# ---------------- crypto ----------------
+CRYPTO_TTL = int(os.environ.get("CRYPTO_TTL", "60"))
+_cr = {"data": None, "mtime": 0}
+
+
+def crypto_market() -> dict:
+    """The Crypto tab: COINS with last price and daily change; cached, offline -> last cache/snapshot."""
+    with _mk_lock:
+        if _cr["data"] is None:
+            _cr["data"], _cr["mtime"] = _read("crypto.json")
+        fresh = time.time() - _cr["mtime"] < CRYPTO_TTL
+        if not fresh and not offline():
+            try:
+                prices = _fetch_prices([t for t, _ in crypto.COINS])
+                if not prices:
+                    raise RuntimeError("no crypto prices")
+                data = {"as_of": _now(), "coins": [{"ticker": t, "name": n, "price": prices.get(t, (None, None))[0],
+                                                    "change_pct": prices.get(t, (None, None))[1]} for t, n in crypto.COINS]}
+                _write("crypto.json", data)
+                _cr.update(data=data, mtime=time.time())
+                fresh = True
+            except Exception as e:
+                print("crypto refresh failed:", e)
+                fresh = False
+        data = _cr["data"]
+    if not data:
+        return {"as_of": None, "live": False, "coins": [{"ticker": t, "name": n, "price": None, "change_pct": None}
+                                                        for t, n in crypto.COINS]}
+    return {**data, "live": bool(fresh and not offline())}
