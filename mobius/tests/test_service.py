@@ -82,3 +82,11 @@ def test_unknown_routes_and_public_calls_are_not_found(call):
     assert call("GET", "nope")[0] == 404
     status, _ = service.handle({"schema": 1, "public": True, "method": "GET", "path": "features"}, Path("/tmp"))
     assert status == 404
+
+
+def test_search_and_markets_come_from_the_catalog_offline(call, monkeypatch):
+    monkeypatch.setenv("DATA_OFFLINE", "1")    # committed snapshots only, no network
+    status, r = call("GET", "/search", q="nvidia")
+    assert status == 200 and r["results"][0]["ticker"] == "NVDA"
+    status, m = call("GET", "/markets")
+    assert status == 200 and m["live"] is False and len(m["sectors"]) == 11

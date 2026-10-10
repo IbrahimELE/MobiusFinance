@@ -14,6 +14,7 @@ CACHE_DIR = Path(os.environ.get("CATALOG_CACHE_DIR", HERE / "cache"))
 SNAPSHOT_DIR = HERE / "catalog"
 SEC_URL = "https://www.sec.gov/files/company_tickers.json"
 SEC_TTL = 24 * 3600
+BACKGROUND_REFRESH = True   # False where a process serves one request (Möbius package): refresh inline instead
 MARKETS_TTL = int(os.environ.get("MARKETS_TTL", "300"))
 SECTORS_TTL = 24 * 3600
 PER_SECTOR = 8
@@ -134,11 +135,11 @@ def sec_rows(block: bool = False) -> list:
             start = not _sec["refreshing"]
             _sec["refreshing"] = True
         if start:
-            if block:
+            if block or not BACKGROUND_REFRESH:
                 _refresh_sec()
             else:
                 threading.Thread(target=_refresh_sec, daemon=True).start()
-    return _sec["rows"] if block else rows
+    return _sec["rows"] if (block or not BACKGROUND_REFRESH) else rows
 
 
 def is_supported(ticker: str) -> bool:

@@ -90,3 +90,4 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Ograničenja: sektor u prijedlozima je poznat samo za dionice iz Markets lista (SEC lista nema sektor). Offline brief i dalje radi samo za keširane tickere (AAPL, MSFT, NVDA); ostale iz Browse liste offline daju jasnu grešku.
 - Grana sadrži i commit iz PR #16 (test okvir); nakon spajanja #16 rebase na dev ga sam izbaci.
 - Sljedeće: stavka 3 (limit i stop nalozi).
+- Dopuna (isti PR): provjera s A-ovim radom pokazala je da Möbius paket (`mobius/`) ima vlastite rute pa /search i /markets tamo ne bi radili. Dodano u `mobius/sync.sh` i `mobius/service.py` (vidi docs/QUESTIONS.md), uz odobrenje vlasnika; `ui_*.js` regenerisani. Möbius testovi: 18 prolazi (`cd mobius && python -m pytest tests`).

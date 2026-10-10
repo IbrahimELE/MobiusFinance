@@ -34,13 +34,13 @@ const INTRADAY={"1d":300,"5d":1800};
 const POPULAR=["AAPL","MSFT","NVDA","TSLA","GOOGL"];
 
 /* ---------- landing ---------- */
-function landing(){cur=null;series=null;lastQuote=null;renderPaper();paperUI();
+function landing(){leaveMarkets();cur=null;series=null;lastQuote=null;renderPaper();paperUI();
   $("main").innerHTML=`<section class="landing">
   <div class="heroL">
     <div class="eyebrow">Your private research desk</div>
     <h1 style="margin-top:12px">Understand any stock in <em>under a minute</em>.</h1>
     <p class="lead">Type a ticker and Finance Desk pulls the live price, the financials and the risk section of the company's latest annual report (10-K). An AI analyst turns it into a short, sourced brief, and you can practise trading it with <b>$100,000 of virtual money</b>.</p>
-    <div class="try"><span class="muted" style="margin-right:4px">Try one:</span>${POPULAR.map(t=>`<button class="chipT" data-try="${t}">${t}</button>`).join("")}</div>
+    <div class="try"><span class="muted" style="margin-right:4px">Try one:</span>${POPULAR.map(t=>`<button class="chipT" data-try="${t}">${t}</button>`).join("")}<button class="chipT" id="browse" title="See stocks by sector with live prices">Don't know a ticker? Browse stocks →</button></div>
     <div class="stats"><div><b>10-K</b><span>risk factors, straight from SEC filings</span></div><div><b>[1] [2]</b><span>every claim links to its source</span></div><div><b>$100K</b><span>virtual cash to practise with</span></div></div>
   </div>
   <div class="features">
@@ -54,22 +54,40 @@ function landing(){cur=null;series=null;lastQuote=null;renderPaper();paperUI();
     <div class="step"><span class="n">2</span><div><b>Read the AI brief</b><span>Thesis, numbers, risks and sources on one page.</span></div></div>
     <div class="step"><span class="n">3</span><div><b>Practise &amp; follow</b><span>Paper-trade it, rate the brief, and track it on your watchlist with price alerts.</span></div></div>
   </div></div></section>`;
-  document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>run(b.dataset.try));
+  document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>run(b.dataset.try));$("browse").onclick=marketsView;
 }
+
+/* ---------- markets: browse stocks by sector and today's movers (contracts/catalog.md) ---------- */
+let mkOpen=false,mkData=null;
+const MK_LISTS=[["most_actives","Most active"],["day_gainers","Top gainers"],["day_losers","Top losers"]];
+const mrow=r=>`<div class="mrow" data-open="${esc(r.ticker)}" role="button" tabindex="0" title="Open the brief for ${esc(r.name)}"><span class="tk"><b>${esc(r.ticker)}</b><span class="nm">${esc(r.name)}</span></span><span class="mpx">${usd(r.price)}</span><span class="mch ${cls((r.change_pct??0)/100)}">${r.change_pct==null?"–":signed(r.change_pct,v=>v.toFixed(2))+"%"}</span></div>`;
+function leaveMarkets(){mkOpen=false;$("main").onclick=$("main").onkeydown=null}
+function renderMarkets(){if(!mkOpen)return;const m=mkData;
+  const when=m&&m.as_of?new Date(m.as_of).toLocaleString([],{dateStyle:"medium",timeStyle:"short"}):"";
+  const status=!m?"":m.live?`<span class="pill" title="Prices refresh every few minutes">● Live · ${esc(when)}</span>`:`<span class="pill" title="No connection to market data; showing the last saved prices">○ Saved prices · ${esc(when)}</span>`;
+  $("main").innerHTML=`<section id="markets"><div class="card"><div class="card-h"><div><div class="eyebrow">Markets</div><h2 style="margin-top:6px">Browse stocks</h2></div>${status}</div>
+    <p class="muted" style="margin:0">Don't know the ticker? Pick a company below, or type its name in the search box (e.g. <i>nvidia</i>). Click any stock to open its brief.</p></div>
+    ${!m?'<div class="card"><div class="loading"><div class="spinner"></div><span class="muted">Loading markets…</span></div></div>':
+      `<div class="eyebrow" style="margin:8px 0 10px">Today</div><div class="mk-grid">${MK_LISTS.map(([k,n])=>`<div class="card"><div class="card-h" style="margin-bottom:8px"><h3>${n}</h3></div>${(m.lists[k]||[]).map(mrow).join("")||'<div class="empty">Nothing here right now.</div>'}</div>`).join("")}</div>
+      <div class="eyebrow" style="margin:24px 0 10px">By sector</div>${m.sectors.length?`<div class="mk-grid">${m.sectors.map(s=>`<div class="card" data-sector="${esc(s.key)}"><div class="card-h" style="margin-bottom:8px"><h3>${esc(s.name)}</h3></div>${s.stocks.map(mrow).join("")}</div>`).join("")}</div>`:'<div class="empty">Sector lists are not available offline yet.</div>'}`}</section>`;
+  $("main").onclick=e=>{const r=e.target.closest("[data-open]");if(r)run(r.dataset.open)};
+  $("main").onkeydown=e=>{const r=e.target.closest("[data-open]");if(r&&e.key=="Enter")run(r.dataset.open)}}
+async function loadMarkets(){try{const m=await J("/markets");if(mkOpen){mkData=m;renderMarkets()}}catch(e){if(mkOpen&&!mkData)$("main").innerHTML=`<div class="card errbox"><h3>Couldn't load markets</h3><p class="muted">${esc(e.message)}</p></div>`}}
+function marketsView(){cur=null;series=null;lastQuote=null;mkOpen=true;renderMarkets();renderPaper();loadMarkets()}
 
 /* ---------- workspaces ---------- */
 async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(P);
   $("proj").innerHTML=l.map(x=>`<option value="${esc(x)}" ${x==P?"selected":""}>${esc(x)}</option>`).join("")}
 
 /* ---------- brief ---------- */
-async function run(t){if(!t)return;$("t").value=t;
+async function run(t){if(!t)return;leaveMarkets();closeAc();$("t").value=t;
   $("main").innerHTML=`<div class="card"><div class="loading"><div class="spinner"></div><div><b>Researching ${esc(t)}…</b><div class="muted" style="font-size:14px">Fetching price, financials and the 10-K risk section, then writing the brief. This can take up to a minute.</div></div></div><div class="skel" style="width:60%;margin-top:20px"></div><div class="skel"></div><div class="skel" style="width:80%"></div></div>`;
   try{show(await post("/brief",{ticker:t,project_id:P}));list()}
   catch(e){$("main").innerHTML=`<div class="card errbox"><h3 style="margin-bottom:8px">Couldn't build a brief for ${esc(t)}</h3><p class="muted" style="margin:0 0 16px">${esc(e.message)}</p><button class="btn ghost" id="back">Back to start</button></div>`;$("back").onclick=landing}}
 function bars(vals,labels,color){const mx=Math.max(...vals.map(v=>Math.abs(v||0)),1),w=100/vals.length;
   return `<svg viewBox="0 0 100 60" preserveAspectRatio="none">${vals.map((v,i)=>{const h=Math.abs(v||0)/mx*46;return `<rect x="${i*w+w*.2}" y="${52-h}" width="${w*.6}" height="${h}" fill="${color}" rx="1.5"/><text x="${i*w+w/2}" y="59" font-size="5" text-anchor="middle" fill="#8b97ab">${labels[i]}</text>`}).join("")}</svg>`}
 function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a class="src" title="${esc(s.label)}" href="${esc(s.url)}" target="_blank" rel="noopener">${n}</a>`:m})}
-function show(b){cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||{};
+function show(b){leaveMarkets();cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||{};
   const kp=(l,v,tip="")=>v==null||v==="–"?"":`<div class="kpi" title="${esc(tip)}"><small>${l}</small><b>${v}</b></div>`;
   const rng=x.year_low!=null&&x.year_high!=null?`<div class="kpi wide"><small>52-week range</small><div class="range"><i style="left:calc(${Math.min(100,Math.max(0,(m.price-x.year_low)/(x.year_high-x.year_low)*100))}% - 2px)"></i></div><div class="range-ends"><span>Low ${usd(x.year_low)}</span><span>High ${usd(x.year_high)}</span></div></div>`:"";
   const cats={};b.risks.forEach(r=>(cats[r.category||"Risks"]??=[]).push(r));
@@ -156,7 +174,7 @@ async function refreshQuote(){if(!cur)return;const b=cur;
   }catch(e){setLive(null)}}
 const LIVE_MS=10000;
 let tickN=0;
-async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI()}
+async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI();if(mkOpen&&tickN%6===0)loadMarkets()}
 every(tick,LIVE_MS);onVisible(()=>{if(!document.hidden)tick()});
 
 /* ---------- learning ---------- */
@@ -212,7 +230,7 @@ $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:c
 
 /* ---------- paper trading: cash is the headline, every order is confirmed ---------- */
 const actKey=()=>"fills:"+P,acts=()=>JSON.parse(localStorage[actKey()]||"[]");
-let lastPf=null,pfSeq=0,qtyVal="10";
+let lastPf=null,pfSeq=0,qtyVal="10";const QUICK=[10,20,50,100];
 async function paperUI(){if(!feat.paper)return;const seq=++pfSeq;
   try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));if(seq!==pfSeq)return;lastPf=p;renderPaper()}
   catch(e){if(seq===pfSeq&&!lastPf)$("paper").hidden=true}}
@@ -226,15 +244,20 @@ function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=fa
   ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${priced?usd(px)+" per share":'<span class="loading" style="display:inline-flex;gap:6px"><span class="spinner" style="width:12px;height:12px;border-width:2px"></span>Getting live price…</span>'}${pos?` · you own ${pos.qty}`:""}</div></div>
     <div class="row"><div class="stepper"><button data-q="-1" aria-label="Fewer shares">−</button><input id="qty" type="number" min="1" value="${esc(qtyVal)}" aria-label="Shares"><button data-q="1" aria-label="More shares">+</button></div>
     <button class="btn success sm" data-s="buy" style="flex:1" ${priced?"":"disabled"}>Buy</button><button class="btn danger sm" data-s="sell" style="flex:1" ${priced&&pos?"":"disabled"}>Sell</button></div>
+    <div class="quick" role="group" aria-label="Quick amounts">${QUICK.map(n=>`<button data-quick="${n}">${n}</button>`).join("")}<button data-quick="max" title="Most whole shares your cash can buy" ${priced?"":"disabled"}>Max</button></div>
     <div class="preview" id="pv"></div></div>`:`<div class="empty" style="margin-bottom:16px">Open a stock brief to buy or sell it.</div>`}
   <div class="eyebrow" style="margin-bottom:6px">Positions</div>
   ${p.positions.length?`<table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td><a href="#" data-open-pos="${esc(x.ticker)}">${esc(x.ticker)}</a></td><td>${x.qty}</td><td>${usd(x.market_value)}</td><td class="${cls(x.pnl)}">${signed(x.pnl_pct,v=>v.toFixed(1))}%</td></tr>`).join("")}</table>`:'<div class="empty">No positions yet.</div>'}
   ${acts().length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity">${acts().slice(0,5).map(a=>`<li><span><b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${a.qty} ${esc(a.ticker)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
   <div class="row" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="note" style="margin:0">Virtual money · not investment advice</span><button class="btn ghost sm" id="prst">Reset account</button></div>`;
-  const preview=()=>{const q=+($("qty")?.value||0);qtyVal=$("qty")?.value||qtyVal;if($("pv")&&px)$("pv").innerHTML=q>0?`Buying ${q} costs about <b>${usd(q*px)}</b> · cash after: <b class="${p.cash-q*px<0?"down":""}">${usd(p.cash-q*px)}</b>`:""};preview();
+  const maxBuy=()=>px>0?Math.max(0,Math.floor(p.cash/px+1e-9)):0;
+  const preview=()=>{const q=+($("qty")?.value||0);qtyVal=$("qty")?.value||qtyVal;
+    document.querySelectorAll("#pf [data-quick]").forEach(b=>b.classList.toggle("on",q>0&&(b.dataset.quick=="max"?px&&q==maxBuy():q==+b.dataset.quick)));if($("pv")&&px)$("pv").innerHTML=q>0?`Buying ${q} costs about <b>${usd(q*px)}</b> · cash after: <b class="${p.cash-q*px<0?"down":""}">${usd(p.cash-q*px)}</b>`:""};preview();
   if($("qty"))$("qty").oninput=preview;
   $("pf").onclick=async e=>{
     const step=e.target.dataset.q;if(step){const i=$("qty");i.value=Math.max(1,(+i.value||0)+ +step);preview();return}
+    const qb=e.target.closest("[data-quick]");if(qb){if(qb.disabled)return;const v=qb.dataset.quick=="max"?maxBuy():+qb.dataset.quick;
+      if(!v){toast("Not enough cash for even one share.","err");return}$("qty").value=v;preview();return}
     const op=e.target.closest("[data-open-pos]");if(op){e.preventDefault();const b=briefsCache.find(b=>b.ticker==op.dataset.openPos);b?show(b):run(op.dataset.openPos);return}
     const btn=e.target.closest("[data-s]"),s=btn&&btn.dataset.s;
     if(s){if(btn.disabled)return;const qty=+$("qty").value,before=p.cash;if(!(qty>0)){toast("Enter how many shares.","err");return}
@@ -272,7 +295,23 @@ function renderLb(){const r=lastLb;$("lb").hidden=false;
 $("lbtabs").onclick=e=>{const b=e.target.closest("[data-lp]");if(!b||b.dataset.lp==lbPer)return;lbPer=localStorage.lbPer=b.dataset.lp;renderLb();lbUI()};
 
 /* ---------- wiring ---------- */
-$("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
+/* ---------- search: ticker or company name, with suggestions (contracts/catalog.md) ---------- */
+let acItems=[],acIdx=-1,acSeq=0,acTimer=0;
+function closeAc(){acItems=[];acIdx=-1;$("ac").hidden=true;$("t").setAttribute("aria-expanded","false");$("t").removeAttribute("aria-activedescendant")}
+function drawAc(q){const ul=$("ac");if(!q){closeAc();return}
+  ul.innerHTML=acItems.length?acItems.map((r,i)=>`<li role="option" id="ac${i}" data-i="${i}" class="${i==acIdx?"on":""}" aria-selected="${i==acIdx}"><b>${esc(r.ticker)}</b><span class="nm">${esc(r.name)}</span><small>${esc(r.sector||"")}</small></li>`).join(""):`<li class="hint">No matching company. Press Enter to try "${esc(q.toUpperCase())}" as a ticker.</li>`;
+  ul.hidden=false;$("t").setAttribute("aria-expanded","true");if(acIdx>=0)$("t").setAttribute("aria-activedescendant","ac"+acIdx);else $("t").removeAttribute("aria-activedescendant")}
+async function suggest(q){const seq=++acSeq;try{const r=await J("/search?q="+encodeURIComponent(q));if(seq!==acSeq||$("t").value.trim()!==q)return;acItems=r.results;acIdx=-1;drawAc(q)}catch(e){}}
+async function resolve(q){/* Enter: highlighted suggestion > exact ticker > best name match > typed text as ticker */
+  if(acIdx>=0&&acItems[acIdx])return acItems[acIdx].ticker;
+  try{const r=await J("/search?q="+encodeURIComponent(q));const ex=r.results.find(x=>x.ticker==q.toUpperCase());return ex?ex.ticker:r.results[0]?r.results[0].ticker:q.toUpperCase()}catch(e){return q.toUpperCase()}}
+$("t").oninput=()=>{const q=$("t").value.trim();clearTimeout(acTimer);if(!q){acSeq++;closeAc();return}acTimer=setTimeout(()=>suggest(q),150)};
+$("t").onkeydown=e=>{if(e.key=="Escape"){closeAc();return}if($("ac").hidden||!acItems.length)return;
+  if(e.key=="ArrowDown"||e.key=="ArrowUp"){e.preventDefault();const n=acItems.length+1;acIdx=(acIdx+1+(e.key=="ArrowDown"?1:-1)+n)%n-1;drawAc($("t").value.trim())}};
+$("ac").onmousedown=e=>{const li=e.target.closest("li[data-i]");if(!li)return;e.preventDefault();run(acItems[+li.dataset.i].ticker)};
+$("t").onblur=()=>setTimeout(closeAc,120);
+$("f").onsubmit=async e=>{e.preventDefault();const q=$("t").value.trim();if(!q)return;clearTimeout(acTimer);acSeq++;run(await resolve(q))};
+$("mkt").onclick=marketsView;
 $("home").onclick=landing;
 $("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();if(lastLb)renderLb();toast(`Switched to workspace <b>${esc(P)}</b>`)};
 $("newp").onclick=async()=>{const n=await modal({title:"New workspace",text:"Each workspace has its own saved briefs, paper account and learned preferences.",input:"e.g. Tech stocks",confirm:"Create"});if(!n)return;
