@@ -6,7 +6,7 @@ Lokalna simulacija, bez Alpace. Početni kapital 100.000 USD. Tržišni nalozi p
 - `POST /paper/reset?project_id=` → prazan portfelj s 100000 USD
 Pohrana je jedan modul (danas fajl po projektu), da se kasnije može zamijeniti.
 
-## Limit i stop nalozi (prijedlog B, 2026-10-10; čeka pregled A)
+## Limit i stop nalozi (B, 2026-10-10, uz odobrenje vlasnika; čeka pregled A)
 Dodatak, kompatibilan unazad: nalog bez `type` je i dalje tržišni.
 
 **POST /paper/orders** dodatna polja:
@@ -41,3 +41,4 @@ Odgovor na POST:
 **DELETE /paper/orders/{id}?project_id=** otkazuje otvoreni nalog i oslobađa rezervaciju → portfelj. 404 `order_not_found`.
 
 **Provjera naloga:** data_service u pozadini svakih 10 s (`PAPER_CHECK_SECONDS`) provjerava otvorene naloge svih projekata po zadnjoj cijeni (`/quote` keš), a i pri svakom GET /paper/portfolio. Nalozi se izvršavaju **samo dok servis radi**; nakon ponovnog pokretanja se provjeravaju po tadašnjoj cijeni (nema izvršenja "unazad"). Reset briše i otvorene naloge.
+Möbius paket (`mobius/service.py`) radi jedan proces po zahtjevu i nema pozadinsku nit: tamo se nalozi provjeravaju pri svakom GET /paper/portfolio (UI ga zove svakih 10 s), dakle samo dok je aplikacija otvorena.
