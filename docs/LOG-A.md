@@ -94,3 +94,9 @@ Estetika:
 - Takmičenje rangira po zaradi; odgovor nosi top 10, `me` (moj red i mjesto) i `ranked` (broj rangiranih).
 - Möbius UI: kartica „Leaderboard" = @handle + zarada u $ (procenat sitnije), top 10, pa „···" i moj red s „#N of M, $X behind the top 10"; stari leaderboard workspaceova se u Möbius verziji ne prikazuje (`workspace_leaderboard: false`, pravilo u `port_ui.py`); web verzija nepromijenjena.
 - Provjera: data 57, mobius 17 testova (rang po zaradi, top 10 + moje mjesto); probna stranica s 23 igrača (pravi kod i stil) i živa aplikacija.
+
+## 2026-10-10 · Korak 12: Möbius App Store opis i grana za objavu (grana `feature/a-store-listing`, iz `d2e7a49`)
+- Zašto: Store prima samo javni repo i tačan commit čiji je `mobius.json` u korijenu, s opisom za Store (slogan, opis, 1–5 slika iz `static/store/`).
+- `mobius/mobius.json`: sekcija `store` (slogan, opis, 2 slike: početna i Markets s leaderboardom), opis ažuriran na zajednički leaderboard, v0.2.1. Slike: `mobius/static/store/home.png`, `markets.png` (1920×953, snimljene iz žive aplikacije).
+- Grana `feature/a-store-release`: commit bez roditelja u kojem je sadržaj `mobius/` (bez testova, `sync.sh`, `port_ui.py`, `requirements.in`) u korijenu repoa. Taj commit se upisuje u Store formu („List a GitHub release"). NIKAD je ne mergeati u `dev`.
+- Novo izdanje: ponovo napraviti commit iz `mobius/` (isti postupak) s prethodnim release commitom kao roditeljem.
