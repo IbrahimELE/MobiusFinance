@@ -108,3 +108,4 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Möbius paket: iste rute (vidi docs/QUESTIONS.md).
 - Testovi: agent+UI 29 (6 unit + 3 e2e novih), Möbius 20, data_service 66. Vizualno provjereno sa živim podacima.
 - Izvor [2]: postoji stvarni prijedlog (10-K spot ETF-ova IBIT/ETHA, Item 1A o rizicima bitcoina/ethera), čeka odluku vlasnika; do tada brief bez rizika.
+- Dopuna (isti PR, odluka vlasnika): izvor [2] za BTC i ETH = Item 1A iz 10-K spot ETF-a koji drži coin (IBIT, ETHA), jasno označeno ("Key risks (from a spot ETF's 10-K)", izvor "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"). Prednost imaju rizici o coinu (volatilnost, regulativa, status vrijednosnog papira), a ne o upravljanju fondom (skrbnik, sponzor, sukob interesa). Ostali coinovi i nedostupan 10-K: bez sekcije rizika. Offline: IBIT/ETHA risk_factors u data_service demo kešu; BTC/ETH demo briefovi regenerisani s [2].

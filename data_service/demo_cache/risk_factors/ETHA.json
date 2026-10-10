@@ -1,0 +1,832 @@
+{
+ "stored_at": "2026-10-10T16:59:34+00:00",
+ "payload": {
+  "ticker": "ETHA",
+  "filing": "10-K 2025",
+  "url": "https://www.sec.gov/Archives/edgar/data/2000638/000143774926006054/etha20251231_10k.htm",
+  "items": [
+   {
+    "text": "The trading prices of many digital assets, including ether, have experienced extreme volatility in recent periods and may continue to do so. Extreme volatility in the future, including further declines in the trading prices of ether, could have a material adverse effect on the value of the Shares and the Shares could lose all or substantially all of their value.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of ether as a digital asset, including the fact that digital assets are bearer instruments and loss, theft, destruction, or compromise of the associated private keys could result in permanent loss of the asset, and the capabilities and development of blockchain technologies such as the Ethereum blockchain.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital assets represent a new and rapidly evolving industry, and the value of the Shares depends on the acceptance of ether.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Changes in the governance of a digital asset network may not receive sufficient support from users and validators, which may negatively affect that digital asset network ’ s ability to grow and respond to challenges.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Potential amendments to the Ethereum network ’ s protocols and software could, if accepted and authorized by the Ethereum network community, adversely affect an investment in the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The open-source structure of the Ethereum network protocol means that the core developers and other contributors are generally not directly compensated for their contributions in maintaining and developing the Ethereum network protocol. A failure to properly monitor and upgrade the Ethereum network protocol could damage the Ethereum network and an investment in the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital asset networks face significant scaling challenges and efforts to increase the volume and speed of transactions may not be successful.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital assets may have concentrated ownership and large sales or distributions by holders of such digital assets could have an adverse effect on the market price of such digital assets.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If the digital asset award or transaction fees for recording transactions on the Ethereum network are not sufficiently high to incentivize validators, or if certain jurisdictions continue to limit or otherwise regulate validating activities, validators may cease expanding validating power or demand high transaction fees, which could negatively impact the value of ether and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If a malicious actor or botnet obtains control of more than 33% of the validating stake on the Ethereum network, or otherwise obtains control over the Ethereum network through its influence over core developers or otherwise, such actor or botnet could delay or manipulate the Ethereum blockchain in the short term, which could adversely affect the value of the Shares or the ability of the Trust to operate.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Liquid staking applications pose centralization concerns.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A temporary or permanent “ fork ” could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders will not receive the benefits of any Incidental Rights and any IR Digital Asset, including any forked or airdropped assets.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "In the event of a hard fork of the Ethereum network, the Sponsor will, if permitted by the terms of the Trust Agreement, use its discretion to determine which network should be considered the appropriate network for the Trust ’ s purposes, and in doing so may adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Any name change and any associated rebranding initiative by the core developers of ether may not be favorably received by the digital asset community, which could negatively impact the value of ether and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Smart contracts, including those relating to DeFi applications, are a new technology and their ongoing development and operation may result in problems, which could reduce the demand for ether or cause a wider loss of confidence in the Ethereum network, either of which could have an adverse impact on the value of ether.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Validators may suffer losses due to staking, or staking may prove unattractive to validators, which could make the Ethereum network less attractive.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Proof-of-stake blockchains are a relatively recent innovation and have not been subject to as widespread use or adoption over as long of a period of time as traditional proof-of-work blockchains.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Unlike some digital assets, which have a limit on outstanding supply, there is no limit on ether supply.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares relates directly to the value of ether, the value of which may be highly volatile and subject to fluctuations due to a number of factors.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Because the Trust holds only ether and cash, an investment in the Trust may be more volatile than an investment in a more broadly diversified portfolio.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Due to the unregulated nature and lack of transparency surrounding the operations of digital asset platforms, which may experience fraud, manipulation, security failures or operational problems, as well as the wider ether market, the value of ether and, consequently, the value of the Shares may be adversely affected, causing losses to Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index has a limited performance history, the Index price could fail to track the global ether price, and a failure of the Index price could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index price used to calculate the value of the Trust ’ s ether may be volatile, adversely affecting the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index Administrator could experience system failures or errors.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Index price being used to determine the net asset value of the Trust may not be consistent with GAAP. To the extent that the Trust ’ s financial statements are determined using a different pricing source that is consistent with GAAP, the net asset value reported in the Trust ’ s periodic financial statements may differ, in some cases significantly, from the Trust ’ s net asset value determined using the Index pricing.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Competition from central bank digital currencies ( “ CBDCs ” ) and emerging payments initiatives involving financial institutions could adversely affect the value of ether and other digital assets.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Prices of ether may be affected due to stablecoins (including Tether and USDC), the activities of stablecoin issuers and their regulatory treatment.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Competition from the emergence or growth of other digital assets or methods of investing in ether could have a negative impact on the price of ether and adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Digital asset treasury companies risk.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Operational cost may exceed the award for validating transaction, and increased transaction fees may adversely affect the usage of the Ethereum network.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If regulators or public utilities take actions that restrict or otherwise impact mining activities, such actions could result in decreased security of a digital asset network, including the Ethereum network, which could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust may be negatively impacted by the effects of the spread of illnesses or other public health emergencies on the global economy and the markets and service providers relevant to the performance of the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust relies on the information and technology systems of the Custodians, the Trustee, the Sponsor, the Authorized Participants, the Ether Trading Counterparties, the listing exchange, and the Trust ’ s other service providers and counterparties (referred to herein as the “ Service Providers ” ), each of which could be directly or indirectly adversely affected by information systems interruptions, cybersecurity incidents or other disruptions, which in turn could have a material adverse effect on the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The amount of the Trust ’ s assets represented by each Share will decline over time as the Trust pays the Sponsor’s Fee and additional expenses born by the Trust, and as a result, the value of the Shares may decrease over time.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of ether. The Trust is not actively managed and will be affected by a general decline in the price of ether.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "An investment in the Shares deviates from a direct investment in ether.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust is not permitted to engage in Staking Activities, which could negatively affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares may be influenced by a variety of factors unrelated to the value of ether.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The liquidity of the Shares may also be affected by the withdrawal from participation of Authorized Participants or Ether Trading Counterparties.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "There may be situations where an Authorized Participant is unable to redeem a Basket of Shares. To the extent the value of ether decreases, these delays may result in a decrease in the amount the Authorized Participant will receive when the redemption occurs, as well as a reduction in liquidity for all Shareholders in the secondary market.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust is an “ emerging growth company ” and it cannot be certain if the reduced disclosure requirements applicable to emerging growth companies will make the Shares less attractive to investors.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The lack of an active trading market for the Shares may result in losses on your investment at the time of disposition of your Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The limited ability to facilitate in-kind creations and redemptions of Shares could have adverse consequences for the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If the process of creation and redemption of Baskets encounters any unanticipated difficulties, the possibility for arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of ether may not exist and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The use of cash creations and redemptions, as opposed to in-kind creations and redemptions, may adversely affect the arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of ether and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "As an owner of Shares, you will not have the rights normally associated with ownership of other types of shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Sponsor and the Trustee may agree to amend the Trust Agreement without the consent of the Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders do not have the protections associated with ownership of shares in an investment company registered under the Investment Company Act or the protections afforded by the CEA.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "As the Sponsor and its management have limited history of operating investment vehicles like the Trust, their experience may be inadequate or unsuitable to manage the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Security threats to the Trust ’ s account at the Ether Custodian could result in the halting of Trust operations and a loss of Trust assets or damage to the reputation of the Trust, each of which could result in a reduction in the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Ether transactions are irrevocable and stolen or incorrectly transferred ether may be irretrievable. As a result, any incorrectly executed ether transactions could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The lack of full insurance and Shareholders ’ limited rights of legal recourse against the Trust, Delaware Trustee, Sponsor, Trust Administrator, Cash Custodian, Prime Execution Agent, the Ether Custodian, if operationalized, the Additional Ether Custodian expose the Trust and its Shareholders to the risk of loss of the Trust ’ s ether for which no person or entity is liable.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If the Trade Credits are not available or become exhausted, the Trust may face delays in buying or selling ether that may adversely impact Shareholders; if the Trust does not repay the Trade Credits on time, its assets may be liquidated by the Trade Credit Lender and its affiliates.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Loss of a critical banking relationship for, or the failure of a bank used by, the Prime Execution Agent could adversely impact the Trust ’ s ability to create or redeem Baskets, or could cause losses to the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Prime Execution Agent routes orders through Connected Trading Venues in connection with trading services under the Prime Execution Agent Agreement. The loss or failure of any such Connected Trading Venues may adversely affect the Prime Execution Agent ’ s business and cause losses for the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust may be required, or the Sponsor may deem it appropriate, to terminate and liquidate at a time that is disadvantageous to Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust Agreement includes provisions that limit Shareholders ’ voting rights and restrict Shareholders ’ right to bring a derivative action.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The non-exclusive jurisdiction for certain types of actions and proceedings and waiver of trial by jury clauses set forth in the Trust Agreement may have the effect of limiting a Shareholder ’ s rights to bring legal action against the Trust and could limit a purchaser ’ s ability to obtain a favorable judicial forum for disputes with the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Sponsor is solely responsible for determining the value of the net asset value of the Trust and NAV, and any errors, discontinuance or changes in such valuation calculations may have an adverse effect on the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Extraordinary expenses resulting from unanticipated events may become payable by the Trust, adversely affecting the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust ’ s delivery or sale of ether to pay expenses or other operations of the Trust could result in Shareholders incurring tax liability without an associated distribution from the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The value of the Shares will be adversely affected if the Trust is required to indemnify the Sponsor, the Trustee, the Delaware Trustee, the Trust Administrator, the Ether Custodian or the Cash Custodian under the Trust Documents.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Intellectual property rights claims may adversely affect the Trust and the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Shares may trade at a price that is at, above or below the Trust ’ s NAV as a result of the non-current trading hours between NASDAQ and the digital asset market.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A determination that ether or any other digital asset is a “ security ” may adversely affect the value of ether and the value of the Shares, and result in potentially extraordinary, nonrecurring expenses to, or termination of, the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Competing industries may have more influence with policymakers than the digital asset industry, which could lead to the adoption of laws and regulations that are harmful to the digital asset industry.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Regulatory changes or actions in foreign jurisdictions may affect the value of the Shares or restrict the use of one or more digital assets, validating activity or the operation of their networks or the digital asset platform market in a manner that adversely affects the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "If regulators subject the Trust, the Trustee, the Sponsor, Authorized Participants or Ether Trading Counterparties to regulation as a money services business or money transmitter, this could result in extraordinary expenses to the Trust, the Trustee, the Sponsor or the Ether Trading Counterparties and also result in decreased liquidity for the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Anonymity and illicit financing risk.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Regulatory changes or interpretations could obligate the Trust, the Trustee or the Sponsor to register and comply with new regulations, resulting in potentially extraordinary, nonrecurring expenses to the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The treatment of the Trust for U.S. federal income tax purposes is uncertain.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The treatment of digital assets for U.S. federal income tax purposes is uncertain.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Future developments regarding the treatment of digital assets for U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Future developments in the treatment of digital currency for tax purposes other than U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A U.S. Tax-Exempt Shareholder may recognize “ unrelated business taxable income ” as a consequence of an investment in Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders could incur a tax liability without an associated distribution of the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "A hard “ fork ” of the Ethereum blockchain could result in Shareholders incurring a tax liability.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Potential conflicts of interest may arise among the Sponsor or its affiliates and the Trust. The Sponsor and its affiliates have no fiduciary duties to the Trust and its Shareholders other than as provided in the Trust Agreement, which may permit them to favor their own interests to the detriment of the Trust and its Shareholders.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Investment vehicles advised or managed by affiliates of the Sponsor hold a minority interest in Coinbase Global, the parent of Coinbase Inc., which serves as the Trust’s Prime Execution Agent and operates one of the digital asset platforms included in the Index price and is the parent of the Ether Custodian.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders cannot be assured of the Sponsor ’ s continued services, the discontinuance of which may be detrimental to the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Although the Ether Custodian is a fiduciary with respect to the Trust ’ s assets, it could resign or be removed by the Sponsor, which may trigger early dissolution of the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Coinbase serves as the ether custodian and the prime execution agent for several competing exchange-traded Ethereum products, which could adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "The Trust ’ s Authorized Participants act in similar or identical capacities for several competing exchange-traded ether products which may impact the ability or willingness of one or more Authorized Participants to participate in the creation and redemption process, adversely affect the Trust ’ s ability to create or redeem Baskets and adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders may be adversely affected by the lack of independent advisers representing investors in the Trust.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Shareholders and Authorized Participants lack the right under the Custodian Agreement to assert claims directly against the Ether Custodian, which significantly limits their options for recourse.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "There is no guarantee that every employee, officer, director, or similar person associated with the Sponsor, Trustee, or the BlackRock Affiliates will comply with the Policies, duties and training and refrain from engaging in insider trading in violation of their duties to the Trust and Sponsor.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "In General.",
+    "source": "10-K 2025, Item 1A"
+   },
+   {
+    "text": "Seed Capital Investor.",
+    "source": "10-K 2025, Item 1A"
+   }
+  ],
+  "company": "iShares Ethereum Trust ETF",
+  "cik": "0002000638",
+  "form": "10-K",
+  "filing_date": "2026-02-27",
+  "report_date": "2025-12-31",
+  "accession_number": "0001437749-26-006054",
+  "risks": [
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "The trading prices of many digital assets, including ether, have experienced extreme volatility in recent periods and may continue to do so. Extreme volatility in the future, including further declines in the trading prices of ether, could have a material adverse effect on the value of the Shares and the Shares could lose all or substantially all of their value.",
+    "text": "The trading prices of many digital assets, including ether, have experienced extreme volatility in recent periods and may continue to do so. For instance, there were steep increases in the value of certain digital assets, including ether, over the course of 2021, and multiple market observers asserted that digital assets were experiencing a “bubble.” These increases were followed by steep drawdowns throughout 2022 in digital asset trading prices, including for ether. These episodes of rapid price appreciation followed by steep drawdowns have occurred multiple times throughout ether’s history, including in 2021-2025. For example, ether lost approximately 12.2% of its value according to some sources in mid-October 2025 as part of wider digital asset market turmoil, widely attributed to global trade tensions, which triggered a number of dislocations in the digital asset market (the “October 2025 Flash Crash”), including liquidations of up to $20 billion in collateral in the form of various digital assets (including, but not limited to, ether) securing trades (particularly perpetual futures contracts and various forms of financing transactions), along with reported service interruptions, halted orders, forced unwinding of trades, and other issues, across centralized and decentralized exchanges. As of the date of this report, digital asset prices have continued to fluctuate in 2026. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "The value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of ether as a digital asset, including the fact that digital assets are bearer instruments and loss, theft, destruction, or compromise of the associated private keys could result in permanent loss of the asset, and the capabilities and development of blockchain technologies such as the Ethereum blockchain.",
+    "text": "Digital assets such as ether were only introduced within the past decade, and the medium-to-long term value of the Shares is subject to a number of factors relating to the capabilities and development of blockchain technologies, such as the recentness of their development, their dependence on the internet and other technologies, their dependence on the role played by users, developers and validators and the potential for malicious activity. For example, the realization of one or more of the following risks could materially adversely affect the value of the Shares: ● Digital asset networks, including the Ethereum peer-to-peer network and associated blockchain ledger (such blockchain, the “Ethereum blockchain” and together with the peer-to-peer network, the “Ethereum network” or “Layer 1 Ethereum network”), and the software used to operate them are in the early stages of development. Given the recentness of the development of digital asset networks, digital assets may not function as intended and parties may be unwilling to use digital assets, which would dampen the growth, if any, of digital asset networks. Because ether is a digital asset, the value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of digital assets, including the fact that digital assets are bearer instruments and loss, theft, compromise, or destruction of the associated private keys could result in permanent loss of the asset. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Digital assets represent a new and rapidly evolving industry, and the value of the Shares depends on the acceptance of ether.",
+    "text": "The first digital asset, bitcoin, was launched in 2009. The Ethereum network launched in 2015 (though some ether was sold in a pre-mine in 2014). Ether, along with bitcoin, was one of the first cryptographic digital assets to gain global adoption and critical mass. In general, digital asset networks, including the Ethereum network and other cryptographic and algorithmic protocols governing the issuance of digital assets represent a new and rapidly evolving industry that is subject to a variety of factors that are difficult to evaluate. For example, the realization of one or more of the following risks could materially adversely affect the value of the Shares: ● Ether is only selectively accepted as a means of payment by retail and commercial outlets, and use of ether by consumers to pay such retail and commercial outlets remains limited. Banks and other established financial institutions may refuse to process funds for ether transactions; process wire transfers to or from digital asset platforms, ether-related companies or service providers; or maintain accounts for persons or entities transacting in ether. As a result, the prices of ether may be influenced to a significant extent by speculators, thus contributing to price volatility that makes retailers less likely to accept ether in the future. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Changes in the governance of a digital asset network may not receive sufficient support from users and validators, which may negatively affect that digital asset network ’ s ability to grow and respond to challenges.",
+    "text": "The governance of decentralized networks, such as the Ethereum network, is by voluntary consensus and open competition. As a result, there may be a lack of consensus or clarity on the governance of any particular decentralized digital asset network, which may stymie such network’s utility and ability to grow and face challenges. The foregoing notwithstanding, the protocols for some decentralized networks, such as the Ethereum network, are informally managed by a group of core developers that propose amendments to the relevant network’s source code. Core developers’ roles evolve over time, largely based on self-determined participation. If a significant majority of nodes, users and validators adopt amendments to a decentralized network based on the proposals of such core developers, such network will be subject to new protocols that may adversely affect the value of the relevant digital asset. As a result of the foregoing, it may be difficult to find solutions or marshal sufficient effort to overcome any future problems, especially long-term problems, on digital asset networks."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Potential amendments to the Ethereum network ’ s protocols and software could, if accepted and authorized by the Ethereum network community, adversely affect an investment in the Trust.",
+    "text": "The Ethereum network uses cryptographic protocols to govern the interactions within the Ethereum network. A loose community known as the core developers has evolved to informally manage the source code for the protocol. Membership in the community of core developers evolves over time, largely based on self-determined participation in the resource section dedicated to Ethereum on Github.com. The core developers can propose amendments to the Ethereum network’s source code that, if accepted by nodes, validators and users, could alter the protocols and software of the Ethereum network and the properties of ether. These alterations would occur through software upgrades, and could potentially include changes to the irreversibility of transactions and limitations on the issuance of new ether or changes to the ether supply, which could undermine the appeal and market value of ether. Alternatively, software upgrades and other changes to the protocols of the Ethereum network could fail to work as intended or could introduce bugs, coding defects or flaws, security risks, or otherwise adversely affect, the speed, security, usability, or value of the Ethereum network or ether. As a result, the Ethereum network could be subject to changes to its protocols and software in the future that may adversely affect an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "The open-source structure of the Ethereum network protocol means that the core developers and other contributors are generally not directly compensated for their contributions in maintaining and developing the Ethereum network protocol. A failure to properly monitor and upgrade the Ethereum network protocol could damage the Ethereum network and an investment in the Trust.",
+    "text": "The Ethereum network operates based on an open-source protocol maintained by the core developers and other contributors, largely on the GitHub resource section dedicated to Ethereum network development. As new ether are rewarded solely for validator activity (other than the 2014 pre-mine) and are not sold on an ongoing basis to generate revenue to support development activity, and the Ethereum network protocol itself is made available for free rather than sold or made available subject to licensing or subscription fees and its use does not generate revenues for its development team, the core developers are generally not compensated for maintaining and updating the source code for the Ethereum network protocol. Consequently, there is a lack of financial incentive for developers to maintain or develop the Ethereum network and the core developers may lack the resources to adequately address emerging issues with the Ethereum network protocol. Although the Ethereum network is currently supported by the core developers, there can be no guarantee that such support will continue or be sufficient in the future. For example, there have been recent reports that the number of core developers who have the authority to make amendments to the Ethereum network’s source code in the GitHub repository is relatively small, although there are believed to be a larger number of developers who contribute to the overall development of the source code of the Ethereum network. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Digital asset networks face significant scaling challenges and efforts to increase the volume and speed of transactions may not be successful.",
+    "text": "Many digital asset networks, including the Ethereum network, face significant scaling challenges due to the fact that public blockchains generally face a tradeoff between security and scalability. One means through which public blockchains achieve security is decentralization, meaning that no intermediary is responsible for securing and maintaining these systems. For example, a greater degree of decentralization generally means a given digital asset network is less susceptible to manipulation or capture. In practice, this typically means that every single validator on a given digital asset network is responsible for securing the system by processing every transaction and every single full node is responsible for maintaining a copy of the entire state of the network. As a result, a digital asset network may be limited in the number of transactions it can process by the fact that all validators participate in validating in each block and the capabilities of each single fully participating node. As of December 31, 2025, the Ethereum network handled approximately 25 transactions per second (according to Coin Metrics). In an effort to increase the volume of transactions that can be processed on a given digital asset network, many digital assets are being upgraded with various features to increase the speed and throughput of digital asset transactions. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Digital assets may have concentrated ownership and large sales or distributions by holders of such digital assets could have an adverse effect on the market price of such digital assets.",
+    "text": "The largest ether wallets are believed to hold, in aggregate, a significant percentage of the ether in circulation. Moreover, it is possible that other persons or entities control multiple wallets that collectively hold a significant number of ether, even if they individually only hold a small amount, and it is possible that some of these wallets are controlled by the same person or entity. As a result of this concentration of ownership, large sales or distributions by such holders could have an adverse effect on the market price of ether."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "If the digital asset award or transaction fees for recording transactions on the Ethereum network are not sufficiently high to incentivize validators, or if certain jurisdictions continue to limit or otherwise regulate validating activities, validators may cease expanding validating power or demand high transaction fees, which could negatively impact the value of ether and the value of the Shares.",
+    "text": "In 2021, the Ethereum network implemented the EIP-1559 upgrade. EIP-1559 changed the methodology used to calculate transaction fees paid to ether validators in such a manner that reduced the total net issuance of ether fees paid to validators. If the digital asset awards for validating blocks or the transaction fees for recording transactions on the Ethereum network are not sufficiently high to incentivize validators, or if certain jurisdictions continue to limit or otherwise regulate validating activities, validators may cease expending validating power to validate blocks and confirmations of transactions on the Ethereum blockchain could be slowed. For example, the realization of one or more of the following risks could materially adversely affect the value of the Shares: ● A reduction in the processing power expended by validators on the Ethereum network could increase the likelihood of a malicious actor or botnet (a volunteer or hacked collection of computers controlled by networked software coordinating the actions of the computers) obtaining control. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "If a malicious actor or botnet obtains control of more than 33% of the validating stake on the Ethereum network, or otherwise obtains control over the Ethereum network through its influence over core developers or otherwise, such actor or botnet could delay or manipulate the Ethereum blockchain in the short term, which could adversely affect the value of the Shares or the ability of the Trust to operate.",
+    "text": "Following the Merge and the switch to proof-of-stake validation, the Ethereum network is currently vulnerable to several types of attacks, including: ● “>33% attack” where, if a validator or group of validators were to gain control of more than 33% of the total staked ether on the Ethereum network, a malicious actor could temporarily impede or delay block confirmation or even cause a temporary fork in the blockchain. This is believed to be temporary, as the Ethereum network’s inactivity leak would be expected to eventually penalize the attacker enough for the chain to finalize again (i.e., the honest majority would be expected to reclaim 2/3rd stake as the attacker’s stake is penalized). However, it is not believed that with 33% control, a malicious actor could engage in double-spending or fraudulent block propagation. ● “>50% attack” where, if a validator or group of validators acting in concert were to gain control of more than 50% of the total staked ether on the Ethereum network, a malicious actor would be able to gain full control of the Ethereum network and the ability to manipulate future transactions on the blockchain, including censoring transactions, double-spending and fraudulent block propagation, potentially for an extended period or even permanently. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Liquid staking applications pose centralization concerns.",
+    "text": "Validators must deposit 32 ether to activate a unique validator key pair that is used to sign block proposals and attestations on behalf of its stake (i.e., vote on its view of the chain). For every 32 ether deposits staked, a unique validator key pair is generated. An application built on the Ethereum network, or a single node operator, can manage many validator key pairs. For example, Lido, an application that provides a so-called “liquid staking” solution which permits holders of ether to deposit them with Lido, which stakes the ether while issuing the holder a transferrable token, is reported by some sources to have or have had up to 275,000 validator key pairs (each representing 32 staked ether) divided across over 30 node operators. At times, Lido has reportedly controlled around or in excess of 33% of the total staked ether on the Ethereum network. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "A temporary or permanent “ fork ” could adversely affect the value of the Shares.",
+    "text": "The Ethereum network operates using open-source protocols, meaning that any user can become a node by downloading the Ethereum Client and participating in the Ethereum network, and no permission of a central authority or body is needed to do so. In addition, anyone can propose a modification to the Ethereum network’s source code and then propose that the Ethereum network community support the modification. These proposed modifications to the Ethereum network’s source code, if adopted, could lead to forks (referred to as “planned forksˮ because they take place through a formal process). In the case of planned forks, the core developers, including those associated with or funded by the Ethereum Foundation, are able to access and alter the Ethereum network source code and, as a result, they are typically responsible for proposing quasi-official or widely publicized releases of updates and other changes to the Ethereum network’s source code (“EIPs”). Any user can propose an idea for modifying the Ethereum network’s source code, and the core developers are responsible for merging the proposed idea into the EIP repository on GitHub, where it formally becomes an EIP. However, the release of proposed updates to the Ethereum network’s source code by core developers does not guarantee that the updates will be automatically adopted. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Shareholders will not receive the benefits of any Incidental Rights and any IR Digital Asset, including any forked or airdropped assets.",
+    "text": "In addition to forks, a digital asset may become subject to a similar occurrence known as an “airdrop.” In an airdrop, the promotors of a new digital asset announce to holders of another digital asset that such holders will be entitled to claim a certain amount of the new digital asset for free, based on the fact that they hold such other digital asset. For example, in March 2017 the promoters of Stellar Lumens announced that anyone that owned bitcoin as of June 26, 2017 could claim, until August 27, 2017, a certain amount of Stellar Lumens. Airdrops could create operational, security, legal or regulatory, or other risks for the Trust, the Sponsor, the Ether Custodian, Authorized Participants, or other entities. We refer to the right to receive any such benefit as an “Incidental Right” and any such digital asset (other than ether) acquired through an Incidental Right as an “IR Digital Asset.” With respect to a fork, airdrop or similar event, the Sponsor will cause the Trust to irrevocably abandon the Incidental Rights and any IR Digital Asset associated with such event. As such, Shareholders will not receive the benefits of any Incidental Rights or any IR Digital Asset. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "In the event of a hard fork of the Ethereum network, the Sponsor will, if permitted by the terms of the Trust Agreement, use its discretion to determine which network should be considered the appropriate network for the Trust ’ s purposes, and in doing so may adversely affect the value of the Shares.",
+    "text": "In the event of a hard fork of the Ethereum network, the Sponsor will, as permitted by the terms of the Trust Agreement, use its discretion to determine, in good faith, which peer-to-peer network, among a group of incompatible forks of the Ethereum network, is generally accepted as the Ethereum network and should therefore be considered the appropriate network for the Trust’s purposes. The Sponsor will base its determination on whatever factors it deems relevant, including, but not limited to, the Sponsor’s beliefs regarding expectations of the core developers of ether, users, services, businesses, validators and other constituencies, as well as the actual continued acceptance of, validating power on, and community engagement with, the Ethereum network, or whatever other factors it deems relevant. There is no guarantee that the Sponsor will choose the digital asset that is ultimately the most valuable, and the Sponsor’s decision may adversely affect the value of the Shares as a result. The Sponsor may also disagree with Shareholders, the Ether Custodian, other service providers, the Index Administrator, crypto asset platforms, or other market participants on what is generally accepted as ether and should therefore be considered “ether” for the Trust’s purposes, which may also adversely affect the value of the Shares as a result."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Any name change and any associated rebranding initiative by the core developers of ether may not be favorably received by the digital asset community, which could negatively impact the value of ether and the value of the Shares.",
+    "text": "From time to time, digital assets may undergo name changes and associated rebranding initiatives. For example, Bitcoin Cash may sometimes be referred to as Bitcoin ABC in an effort to differentiate itself from any Bitcoin Cash hard forks, such as Bitcoin Satoshi’s Vision, and in the third quarter of 2018, the team behind ZEN rebranded and changed the name of ZenCash to “Horizen.” The Sponsor cannot predict the impact of any name change and any associated rebranding initiative on ether. After a name change and associated rebranding initiative, a digital asset may not be able to achieve or maintain brand-name recognition or status that is comparable to the recognition and status previously enjoyed by such digital asset. The failure of any name change and associated rebranding initiative by ether could result in ether not realizing some or all of the anticipated benefits contemplated by the name change and associated rebranding initiative, and could negatively impact the value of ether and the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Smart contracts, including those relating to DeFi applications, are a new technology and their ongoing development and operation may result in problems, which could reduce the demand for ether or cause a wider loss of confidence in the Ethereum network, either of which could have an adverse impact on the value of ether.",
+    "text": "Smart contracts are programs that run on the Ethereum blockchain that execute automatically when certain conditions are met. Because smart contracts typically cannot be stopped or reversed, vulnerabilities in their programming can have damaging effects. For example, in June 2016, a vulnerability in the smart contracts underlying The DAO allowed an attack by a hacker to syphon approximately $60 million worth of ether from The DAO’s accounts into a segregated account. In the aftermath of the theft, certain core developers and contributors pursued a “hard fork” of the Ethereum network in order to erase any record of the theft. Despite these efforts, the price of ether reportedly dropped approximately 35% in the aftermath of the attack and subsequent hard fork. In addition, in July 2017, a vulnerability in a smart contract for a multi-signature wallet software developed by Parity reportedly led to a $30 million theft of ether, and in November 2017, a new vulnerability in Parity’s wallet software reportedly led to roughly $160 million worth of ether being indefinitely frozen in an account. Furthermore, in April 2018, a batch overflow bug was found in many Ethereum-based ERC20-compatible smart contract tokens that allowed hackers to create a large number of smart contract tokens, causing multiple crypto asset platforms worldwide to shutdown ERC20-compatible token trading. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Validators may suffer losses due to staking, or staking may prove unattractive to validators, which could make the Ethereum network less attractive.",
+    "text": "Validation on the Ethereum network requires ether to be transferred into smart contracts on the underlying blockchain networks that are not under the Trust’s or anyone else’s control. If the Ethereum network source code or protocol fail to behave as expected, suffer cybersecurity attacks or hacks, experience security issues, or encounter other problems, such assets may be irretrievably lost. The Ethereum network imposes three types of sanctions for validator misbehavior or inactivity, which would result in a portion of their staked ether being destroyed or “burned”: penalties, slashing and inactivity leaks. A validator may face penalties if it fails to take certain actions, such as providing a timely attestation to a block proposed by another validator. Under this scenario, a validator’s staked ether could be burned in an amount equal to the reward to which it would have been entitled for performing the actions. A more severe sanction, known as “slashing,” may be imposed if a validator engages in malicious behavior, such as proposing or attesting to blocks containing invalid transactions. Slashing can result in the immediate forfeiture, withdrawal, or burning of a portion of the validator’s staked ether by the network, resulting in losses to the validator. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Proof-of-stake blockchains are a relatively recent innovation and have not been subject to as widespread use or adoption over as long of a period of time as traditional proof-of-work blockchains.",
+    "text": "Certain digital assets, such as bitcoin, use a “proof-of-work” consensus algorithm. The genesis block on the bitcoin blockchain was mined in 2009, and Bitcoin’s blockchain has been in operation since then. Many newer blockchains enabling smart contract functionality, including the current Ethereum network following the completion of the Merge in 2022, use a newer consensus algorithm known as “proof-of stake.” While their proponents believe that they may have certain advantages, the “proof-of-stake” consensus mechanisms and governance systems underlying many newer blockchain protocols, including the Ethereum network following the Merge, and their associated digital assets – including the ether held by the Trust – have not been tested at scale over as long of a period of time or subject to as widespread use or adoption as, for example, Bitcoin’s proof-of-work consensus mechanism has. …"
+   },
+   {
+    "category": "Risk Factors Related to Digital Assets",
+    "title": "Unlike some digital assets, which have a limit on outstanding supply, there is no limit on ether supply.",
+    "text": "Some digital assets have a limit (“hard cap”) on the supply of outstanding digital assets. There is no hard cap on the supply of ether, which will continue to be issued as a reward to validators for new blocks. The prices of many digital assets like ether are heavily influenced by supply and demand. If the supply of ether is inflationary, then in the absence of deflationary forces, ether could lose value, assuming the same amount of demand."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The value of the Shares relates directly to the value of ether, the value of which may be highly volatile and subject to fluctuations due to a number of factors.",
+    "text": "The value of the Shares relates directly to the value of the ether held by the Trust and fluctuations in the price of ether could adversely affect the value of the Shares. The market price of ether may be highly volatile, and subject to a number of factors, including: ● an increase in the global ether supply or a decrease in global ether demand; ● market conditions of, and overall sentiment towards, the digital assets and blockchain technology industry; ● trading activity on digital asset platforms, which, in many cases, is largely unregulated or may be subject to manipulation; ● the adoption of ether as a medium of exchange, store of value or other consumptive asset and the maintenance and development of the open‑source software protocol of the Ethereum network, and its ability to meet user demands; ● manipulative trading activity on digital asset platforms, which, in many cases, are largely unregulated; ● the lack of a hard cap on ether supply; ● forks in the Ethereum network; ● changes or instability in the leadership of the Ethereum Foundation; ● investors’ expectations with respect to interest rates, the rates of inflation of fiat currencies or ether, and digital asset exchange rates; ● consumer preferences and perceptions of ether specifically and digital assets generally; ● negative events, publicity, and social media coverage relating to the digital assets and blockchain technology industry; ● fiat currency withdrawal and deposit policies on digital asset platforms; ● …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Because the Trust holds only ether and cash, an investment in the Trust may be more volatile than an investment in a more broadly diversified portfolio.",
+    "text": "The Trust holds only ether and cash. As a result, the Trust’s holdings are not diversified. Accordingly, the Trust’s net asset value may be more volatile than another investment vehicle with a more broadly diversified portfolio and may fluctuate substantially over short or long periods of time. Fluctuations in the price of ether are expected to have a direct impact on the value of the Shares. An investment in the Trust may be deemed speculative and is not intended as a complete investment program. An investment in Shares should be considered only by persons financially able to maintain their investment and who can bear the risk of total loss associated with an investment in the Trust. Investors should review closely the objective and strategy of the Trust and redemption rights, as discussed herein, and familiarize themselves with the risks associated with an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Due to the unregulated nature and lack of transparency surrounding the operations of digital asset platforms, which may experience fraud, manipulation, security failures or operational problems, as well as the wider ether market, the value of ether and, consequently, the value of the Shares may be adversely affected, causing losses to Shareholders.",
+    "text": "Digital asset platforms are relatively new and, in some cases, unregulated. Many operate outside the United States. Furthermore, while many prominent digital asset platforms provide the public with significant information regarding their ownership structure, management teams, corporate practices and regulatory compliance, many digital asset platforms do not provide this information. Digital asset platforms may not be subject to, or may not comply with, regulation in a similar manner as other regulated trading platforms, such as national securities exchanges or designated contract markets. As a result, the marketplace may lose confidence in digital asset platforms, including prominent platforms that handle a significant volume of ether trading. Many digital asset platforms are unlicensed, may be unregulated, may be subject to regulation in a relevant jurisdiction, but may or may not be incompliance therewith, may operate without extensive supervision by governmental authorities, and do not provide the public with significant information regarding their ownership structure, management team, corporate practices, cybersecurity, and regulatory compliance. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index has a limited performance history, the Index price could fail to track the global ether price, and a failure of the Index price could adversely affect the value of the Shares.",
+    "text": "The CF Benchmarks Index was developed by the Index Administrator and has a limited performance history. Although the Index is based on materially the same methodology (except calculation time) as the ETHUSD_RR which was first introduced in May 2018, the Index itself has only been in operation since February 2022. The Index price is a composite CF Benchmarks Index calculated using volume-weighted trading price data from various Constituent Platforms. The Index has only featured its current list of Constituent Platforms since March 2025. A longer history of actual performance through various economic and market conditions would provide greater and more reliable information for an investor to assess the Index’s performance. The Constituent Platforms chosen by the Index Administrator could also change over time. The Index Administrator may remove or add Constituent Platforms to the CF Benchmarks Index in the future at its discretion. For more information on the inclusion criteria for Constituent Platforms in the CF Benchmarks Index. Although the Index is intended to accurately capture the market price of ether, third parties may be able to purchase and sell ether on public or private markets not included among the Constituent Platforms, and such transactions may take place at prices materially higher or lower than the Index price. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index price used to calculate the value of the Trust ’ s ether may be volatile, adversely affecting the value of the Shares.",
+    "text": "The price of ether on public digital asset platforms has a limited history, and during this history, ether prices on the digital asset markets more generally, and on digital asset platforms individually, have been volatile and subject to influence by many factors, including operational interruptions. While the Index is designed to limit exposure to the interruption of individual digital asset platforms, the Index price, and the price of ether generally, remains subject to volatility experienced by digital asset platforms, and such volatility could adversely affect the value of the Shares. Furthermore, because the number of liquid and credible digital asset platforms is limited, the Index will necessarily be composed of a limited number of digital asset platforms. If a digital asset platform was subjected to regulatory, volatility or other pricing issues, in the case of the CF Benchmarks Index, the Index Administrator would have limited ability to remove such digital asset platform from the Index, which could skew the price of ether as represented by the Index. Trading on a limited number of digital asset platforms may result in less favorable prices and decreased liquidity of ether and, therefore, could have an adverse effect on the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index Administrator could experience system failures or errors.",
+    "text": "If the computers or other facilities of the Index Administrator, data providers and/or relevant Constituent Platforms malfunction for any reason, calculation and dissemination of the CF Benchmarks Index may be delayed. Errors in the CF Benchmarks Index data, the CF Benchmarks Index computations and/or construction may occur from time to time and may not be identified and/or corrected for a period of time or at all, which may have an adverse impact on the Trust and the Shareholders. Any of the foregoing may lead to the errors in the CF Benchmarks Index, which may lead to a different investment outcome for the Trust and the Shareholders than would have been the case had such events not occurred. The CF Benchmarks Index is used to determine the net asset value of the Trust and the NAV. Consequently, losses or costs associated with the CF Benchmarks Index’s errors or other risks described above will generally be borne by the Trust and the Shareholders and neither the Sponsor nor its affiliates or agents make any representations or warranties regarding the foregoing. If the CF Benchmarks Index is not available or the Sponsor in its sole discretion determines the CF Benchmarks Index is unreliable as the Index and therefore determines not to use the CF Benchmarks Index the Trust’s holdings may be fair valued on a temporary basis in accordance with the fair value policies approved by the Trustee. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "The Index price being used to determine the net asset value of the Trust may not be consistent with GAAP. To the extent that the Trust ’ s financial statements are determined using a different pricing source that is consistent with GAAP, the net asset value reported in the Trust ’ s periodic financial statements may differ, in some cases significantly, from the Trust ’ s net asset value determined using the Index pricing.",
+    "text": "The Trust will determine the net asset value of the Trust on each Business Day based on the value of ether as reflected by the Index. The methodology used to calculate the Index price to value ether in determining the net asset value of the Trust may not be deemed consistent with GAAP. To the extent the methodology used to calculate the Index is deemed inconsistent with GAAP, the Trust will utilize an alternative GAAP-consistent pricing source for purposes of the Trust’s periodic financial statements. Creation and redemption of Baskets, the Sponsor’s Fee and other expenses borne by the Trust will be determined using the Trust’s net asset value determined daily based on the Index. Such net asset value of the Trust determined using the Index Price may differ, in some cases significantly, from the net asset value reported in the Trust’s periodic financial statements."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Competition from central bank digital currencies ( “ CBDCs ” ) and emerging payments initiatives involving financial institutions could adversely affect the value of ether and other digital assets.",
+    "text": "Central banks in various countries have introduced digital forms of legal tender (CBDCs). Whether or not they incorporate blockchain or similar technology, CBDCs, as legal tender in the issuing jurisdiction, could have an advantage in competing with, or replace, ether and other crypto assets as a medium of exchange or store of value. Central banks and other governmental entities have also announced cooperative initiatives and consortia with private sector entities, with the goal of leveraging blockchain and other technology to reduce friction in cross-border and interbank payments and settlement, and commercial banks and other financial institutions have also recently announced a number of initiatives of their own to incorporate new technologies, including blockchain and similar technologies, into their payments and settlement activities, which could compete with, or reduce the demand for, ether. As a result of any of the foregoing factors, the value of ether could decrease, which could adversely affect an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Prices of ether may be affected due to stablecoins (including Tether and USDC), the activities of stablecoin issuers and their regulatory treatment.",
+    "text": "While the Trust does not invest in stablecoins, it may nonetheless be exposed to risks that stablecoins pose for the ether market and other digital asset markets. Stablecoins are digital assets designed to have a stable value over time as compared to typically volatile digital assets and are typically marketed as being pegged to a fiat currency, such as the U.S. dollar, at a certain value. Although the prices of stablecoins are intended to be stable, their market value may fluctuate. This volatility has in the past apparently impacted the price of ether. Stablecoins are a relatively new phenomenon, and it is impossible to know all of the risks that they could pose to participants in the ether market. In addition, some have argued that some stablecoins, particularly Tether, are improperly issued without sufficient backing in a way that, when the stablecoin is used to pay for bitcoin, could cause artificial rather than genuine demand for bitcoin, artificially inflating the price of bitcoin, and if true, there is no assurance similar dynamics would not be at work in the market for ether. There have been reports that those associated with certain stablecoins may be involved in laundering money. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Competition from the emergence or growth of other digital assets or methods of investing in ether could have a negative impact on the price of ether and adversely affect the value of the Shares.",
+    "text": "As of December 31, 2025, ether was the second largest digital asset by market capitalization as tracked by CoinGecko.com. There are over 17,000 alternative digital assets tracked by CoinGecko.com, having a total market capitalization of approximately $3.0 trillion (including the approximately $359 billion market capitalization of ether), as calculated using market prices and total available supply of each digital asset. In addition, many consortiums and financial institutions are also researching and investing resources into private or permissioned smart contracts platforms rather than open platforms like the Ethereum network. Competition from the emergence or growth of alternative digital assets and smart contract platforms, such as Solana, Avalanche, Tron, BNB Coin, Polkadot, or Cardano, among many others, could have a negative impact on the demand for, and price of, ether and thereby adversely affect the value of the Shares. In addition, some digital asset networks, including the Ethereum network, may be the target of ill will from users of other digital asset networks. For example, in July 2016, the Ethereum network underwent a contentious hard fork that resulted in the creation of a new digital asset network called Ethereum Classic. As a result, some users of the Ethereum Classic network may harbor ill will toward the Ethereum network. These users may attempt to negatively impact the use or adoption of the Ethereum network. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Digital asset treasury companies risk.",
+    "text": "In recent times, a number of companies engaged in businesses outside the digital asset industry have begun to hold their corporate treasuries in digital assets instead of in fiat currency (“digital asset treasury companies”). In some cases, these companies have raised funds through financing or securities offerings and applied the proceeds to purchase digital assets, including ether. Digital asset treasury companies are a relatively new phenomenon and it is difficult to predict their long-term sustainability, and therefore their impact to digital asset markets, and to the Trust. Digital asset treasury companies may increase procyclical dynamics in the market because they may purchase digital assets, such as ether, when prices are rising and they may in certain circumstances be forced to sell such assets when prices are decreasing, potentially causing downward pressure on ether prices in a falling market (causing prices to fall faster than they otherwise would). Digital asset treasury companies could cause greater volatility in digital asset markets, including markets for ether. Negative events or sentiment surrounding digital asset treasury companies could affect the market for ether. The increase of consolidated positions in ether held by digital asset treasury companies could affect the operation of the Ethereum blockchain. One digital asset treasury company, BitMine Immersion Technology Inc. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "Operational cost may exceed the award for validating transaction, and increased transaction fees may adversely affect the usage of the Ethereum network.",
+    "text": "If transaction confirmation fees become too high, the marketplace may be reluctant to use ether. This may result in decreased usage and limit expansion of the Ethereum network in the retail, commercial and payments space, adversely impacting investment in the Trust. Conversely, if the reward for validators or the value of the transaction fees is insufficient to motivate validators, they may cease to validate transactions. Ultimately, if the awards of new ether costs of validating transactions grow disproportionately, validators may operate at a loss, transition to other networks, or cease operations altogether. Each of these outcomes could, in turn, slow transaction validation and usage, which could have a negative impact on the Ethereum network and could adversely affect the value of the ether held by the Trust. As a result of Ethereum’s fee burning mechanism, the incentives for validators to validate transactions with higher gas fees may be reduced, since fee burning changes the gas fee split between users, validators, and token holders. An acute cessation of validator operations would reduce the collective processing power on the Ethereum network, which would adversely affect the transaction verification process by temporarily decreasing the speed at which blocks are added to the blockchain and make the blockchain more vulnerable to a malicious actor obtaining control in excess of 50% of the processing power on the blockchain. …"
+   },
+   {
+    "category": "Risk Factors Related to the Digital Asset Markets",
+    "title": "If regulators or public utilities take actions that restrict or otherwise impact mining activities, such actions could result in decreased security of a digital asset network, including the Ethereum network, which could adversely affect the value of the Shares.",
+    "text": "Concerns have been raised about the electricity required to secure and maintain digital asset networks. Although measuring the electricity consumed by the process of securing and maintaining digital asset networks is difficult because these operations are performed by various machines with varying levels of efficiency, the process consumes a significant amount of energy. Driven by concerns around energy consumption and the impact on public utility companies, various states and cities have implemented, or are considering implementing, moratoriums on mining activity in their jurisdictions. Ethereum uses a system called proof-of-stake to validate transaction information. Anyone that owns the specific proof-of-stake digital asset can participate in staking, subject to certain minimum amounts as determined by the applicable proof-of-stake digital asset. Generally, the higher the amount staked by any actor, the higher the chances of being chosen by the applicable blockchain to act as validator and reaping validator rewards; in other words, the higher the stake, the higher the chances of earning a staking reward. This has led to the creation of staking pools, where third parties combine smaller stakes into large pools, which leads to higher returns for owners of small stakes, in return for a fee collected by the third parties. Other digital asset networks may use a system called proof-of-work to validate transaction information. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust may be negatively impacted by the effects of the spread of illnesses or other public health emergencies on the global economy and the markets and service providers relevant to the performance of the Trust.",
+    "text": "A public health emergency could adversely affect the economics of many nations and could have serious negative effects on social, economic and financial systems, including significant uncertainty and volatility in the digital asset markets. For example, digital asset prices, including ether decreased significantly in the first quarter of 2020 amidst broader market declines as a result of the COVID-19 outbreak. Future public health emergencies could result in an increase of the costs of the Trust and affect liquidity in the digital asset market, as well as the correlation between the price of the Shares and the net asset value of the Trust, any of which could adversely affect the value of the Shares. In addition, future public health emergencies could impair the information technology and other operational systems upon which the Trust’s service providers, including the Sponsor, the Trustee, the Delaware Trustee and the Custodians, rely, and could otherwise disrupt the ability of employees of the Trust’s service providers to perform essential tasks on behalf of the Trust. Governmental and quasi-governmental authorities and regulators throughout the world have at times responded to major economic disruptions with a variety of fiscal and monetary policy changes, including, but not limited to, direct capital infusions into companies and other issuers, new monetary tools and lower interest rates. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust relies on the information and technology systems of the Custodians, the Trustee, the Sponsor, the Authorized Participants, the Ether Trading Counterparties, the listing exchange, and the Trust ’ s other service providers and counterparties (referred to herein as the “ Service Providers ” ), each of which could be directly or indirectly adversely affected by information systems interruptions, cybersecurity incidents or other disruptions, which in turn could have a material adverse effect on the Trust.",
+    "text": "The Trust and the Service Providers are susceptible to operational, information security and related cybersecurity risks both directly and through their own service providers. Cyber incidents can result from deliberate attacks or unintentional events. They include, but are not limited to, gaining unauthorized access to systems, corrupting or destroying data, and causing operational disruption. Geopolitical tensions may increase the scale and sophistication of deliberate attacks, particularly those from nation-states or from entities with nation-state backing. Cybersecurity incidents may cause disruptions and impact business operations. They may result in any of the following: financial losses (including loss or theft of Trust assets), interference with the Trust’s ability to calculate its NAV, disclosure of confidential information, impediments to trading, submission of erroneous trades or erroneous creation or redemption orders or ether price movements, the inability of the Trust or the Service Providers to transact business, violations of applicable privacy and other laws, regulatory fines, penalties, reputational damage, reimbursement or other compensation costs, and other legal and compliance costs. In addition, cyber incidents may render records of Trust assets and transactions, Shareholder ownership of the Shares, and other data integral to the functioning of the Trust inaccessible, inaccurate or incomplete. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The amount of the Trust ’ s assets represented by each Share will decline over time as the Trust pays the Sponsor’s Fee and additional expenses born by the Trust, and as a result, the value of the Shares may decrease over time.",
+    "text": "The amount of ether represented by each Share will decrease over the life of the Trust due to the sales of ether necessary to pay the Sponsor’s Fee and other Trust expenses. Without increases in the price of ether sufficient to compensate for that decrease, the price of the Shares will also decline and you will lose money on your investment in Shares. Although the Sponsor has agreed to assume all organizational and certain ordinary administrative and marketing expenses incurred by the Trust, not all Trust expenses have been assumed by the Sponsor. For example, any taxes and other governmental charges that may be imposed on the Trust’s property will not be paid by the Sponsor. As part of its agreement to assume some of the Trust’s ordinary administrative expenses, the Sponsor has agreed to pay ordinary legal fees and expenses of the Trust not in excess of $500,000 per annum. Any legal fees and expenses in excess of the amount required under the Trust Agreement are the responsibility of the Trust. Because the Trust does not have any income, it needs to sell ether to cover the Sponsor’s Fee and expenses not assumed by the Sponsor. The Trust may also be subject to other liabilities (for example, as a result of litigation) that have also not been assumed by the Sponsor. The only source of funds to cover those liabilities are sales of ether held by the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of ether. The Trust is not actively managed and will be affected by a general decline in the price of ether.",
+    "text": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of ether. The Sponsor does not actively manage the ether held by the Trust. This means that the Sponsor does not speculatively sell ether at times when its price is high or speculatively acquire ether at low prices in the expectation of future price increases. It also means the Trust will not utilize leverage, derivatives or any similar arrangements in seeking to meet its investment objective. Any losses sustained by the Trust will adversely affect the value of your Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "An investment in the Shares deviates from a direct investment in ether.",
+    "text": "The market value of the Shares may not have a direct relationship with the prevailing price of ether, and changes in the prevailing price of ether similarly will not necessarily result in a comparable change in the market value of the Shares. The performance of the Trust will not reflect the specific return an investor would realize if the investor actually held or purchased ether directly. The differences in performance may be due to factors such as fees, transaction costs, operating hours of NASDAQ and index tracking risk. Investors will also forgo certain rights conferred by owning ether directly, such as the right to claim airdrops, or to participate in Staking Activities. For more information, see “–The Trust is not permitted to engage in Staking Activities, which could negatively affect the value of the Shares.”"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust is not permitted to engage in Staking Activities, which could negatively affect the value of the Shares.",
+    "text": "Staking Activities refer to employing ether in actions where any portion of the Trust’s ether becomes subject to the Ethereum proof-of-stake validation or is used to earn additional ether or generate income or other earnings. Neither the Trust, nor the Sponsor, nor the Ether Custodian, nor any other person associated with the Trust will, directly or indirectly, employ the Trust’s ether in Staking Activities. Accordingly, the Trust will not earn any form of staking rewards, or income of any kind, from Staking Activities. The inability of the Trust to participate in Staking Activities and receive such rewards could place the Shares at a comparative disadvantage relative to an investment in ether directly or through a vehicle that is not subject to such a prohibition, which could negatively affect the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The value of the Shares may be influenced by a variety of factors unrelated to the value of ether.",
+    "text": "The value of the Shares may be influenced by a variety of factors unrelated to the price of ether and the digital asset platforms included in the Index that may have an adverse effect on the value of the Shares. These factors include the following factors: ● unanticipated problems or issues with respect to the mechanics of the Trust’s operations and the trading of the Shares may arise, in particular due to the fact that the mechanisms and procedures governing the creation and redemption of the Shares in exchange for cash, offering of the Shares and storage of ether have been developed specifically for this product; ● the Trust could experience difficulties in operating and maintaining its technical infrastructure, including in connection with expansions or updates to such infrastructure, which are likely to be complex and could lead to unanticipated delays, unforeseen expenses and security vulnerabilities; ● the Trust could experience unforeseen issues relating to the performance and effectiveness of the security procedures used to protect the Trust’s account with the Ether Custodian, or the security procedures may not protect against all errors, software flaws or other vulnerabilities in the Trust’s technical infrastructure, which could result in theft, loss or damage of its assets; ● service providers may default on or fail to perform their obligations or deliver services under their contractual agreements with the Trust, or decide to terminate their relationships with the …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The liquidity of the Shares may also be affected by the withdrawal from participation of Authorized Participants or Ether Trading Counterparties.",
+    "text": "In the event that one or more Authorized Participants or Ether Trading Counterparties withdraw from or cease participation in creation and redemption activity or ether transactions with the Trust for any reason, the liquidity of the Shares will likely decrease, which could adversely affect the market price of the Shares and result in your incurring a loss on your investment in Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "There may be situations where an Authorized Participant is unable to redeem a Basket of Shares. To the extent the value of ether decreases, these delays may result in a decrease in the amount the Authorized Participant will receive when the redemption occurs, as well as a reduction in liquidity for all Shareholders in the secondary market.",
+    "text": "Although Shares surrendered by Authorized Participants in Basket-size aggregations are redeemable in exchange for the underlying amount of ether or cash proceeds from selling the underlying amount of ether, redemptions may be suspended (i) during any period in which regular trading on NASDAQ is suspended or restricted, or the exchange is closed (other than scheduled holiday or weekend closings) or (ii) during a period when the Sponsor determines that delivery, disposal or evaluation of ether is not reasonably practicable (for example, as a result of an interruption in services or availability of the Prime Execution Agent, the Ether Custodian, the Cash Custodian, the Trust Administrator, the Ether Trading Counterparties, or other service providers to the Trust, act of God, catastrophe, civil disturbance, government prohibition, war, terrorism, strike or other labor dispute, fire, force majeure, interruption in telecommunications, iShares order entry system, Internet services, or network provider services, unavailability of Fedwire, SWIFT or banks’ payment processes, significant technical failure, bug, error, disruption or fork of the Ethereum network, hacking, cybersecurity breach, or power, internet, or Ethereum network outage, or similar event). …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust is an “ emerging growth company ” and it cannot be certain if the reduced disclosure requirements applicable to emerging growth companies will make the Shares less attractive to investors.",
+    "text": "The Trust is an “emerging growth company” as defined in the JOBS Act. For as long as the Trust continues to be an emerging growth company it may choose to take advantage of certain exemptions from various reporting requirements applicable to other public companies but not to emerging public companies, which include, among other things: ● exemption from the auditor attestation requirements under Section 404(b) of the Sarbanes-Oxley Act; ● reduced disclosure obligations regarding executive compensation in the Trust’s periodic reports and audited financial statements in this report; ● exemptions from the requirements of holding advisory “say-on-pay” votes on executive compensation and shareholder advisory votes on “golden parachute” compensation; and ● exemption from any rules requiring mandatory audit firm rotation and auditor discussion and analysis and, unless otherwise determined by the SEC, any new audit rules adopted by the Public Company Accounting Oversight Board. The Trust could be an emerging growth company until the last day of the fiscal year following the fifth anniversary after its initial public offering, or until the earliest of (1) the last day of the fiscal year in which it has annual gross revenue of $1.235 billion or more, (2) the date on which it has, during the previous three year period, issued more than $1 billion in non-convertible debt or (3) the date on which it is deemed to be a large accelerated filer under the federal securities laws. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The lack of an active trading market for the Shares may result in losses on your investment at the time of disposition of your Shares.",
+    "text": "Although Shares are listed for trading on NASDAQ, you should not assume that an active trading market for the Shares will be maintained. If you need to sell your Shares at a time when no active market for them exists, such lack of an active market will most likely adversely affect the price you receive for your Shares (assuming you are able to sell them)."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The limited ability to facilitate in-kind creations and redemptions of Shares could have adverse consequences for the Trust.",
+    "text": "Authorized Participants must be registered broker-dealers. Registered broker-dealers are subject to various requirements of the federal securities laws and rules, including financial responsibility rules such as the customer protection rule, the net capital rule and recordkeeping requirements. On May 15, 2025, the Division of Trading and Markets of the SEC and the Office of General Counsel of the Financial Industry Regulatory Authority (“FINRA”) stated that broker-dealers are permitted to facilitate in-kind creations and redemptions in connection with spot crypto exchange-traded products; however, there has yet to be definitive regulatory guidance on and the specific details of how registered broker-dealers can comply with SEC rules with regard to transacting in or holding spot ether. Until further regulatory clarity emerges regarding whether registered broker-dealers can hold and deal in ether under such rules, there is a risk that registered broker-dealers participating in the in-kind creation or redemption of Shares for ether may be unable to demonstrate compliance with such requirements. While compliance with rules such as the customer protection rule, the net capital rule and recordkeeping requirements would be the broker-dealer’s responsibility, a national securities exchange is required to enforce compliance by its member broker-dealers with applicable federal securities law and rules. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "If the process of creation and redemption of Baskets encounters any unanticipated difficulties, the possibility for arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of ether may not exist and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "text": "If the processes of creation and redemption of Shares (which depend on timely transfers of ether to and by the Authorized Participant or its designated agent or client, the Ether Custodian and the Prime Execution Agent) encounter any unanticipated difficulties due to, for example, the price volatility of ether, the insolvency, business failure or interruption, default, failure to perform, security breach, or other problems affecting the Prime Execution Agent, Ether Custodian, Authorized Participants or Ether Trading Counterparties, the closing of ether trading platforms due to fraud, failures, security breaches or otherwise, or network outages or congestion, spikes in transaction fees demanded by miners, or other problems or disruptions affecting the Ethereum network, then potential market participants, such as the Authorized Participants and their customers, who would otherwise be willing to purchase or redeem Baskets (in the case of Authorized Participants) to take advantage of any arbitrage opportunity arising from discrepancies between the price of the Shares and the price of the underlying ether or to engage in ether transactions (in the case of Ether Trading Counterparties or transactions facilitated by the Prime Execution Agent) may not take the risk that, as a result of those difficulties, they may not be able to realize the profit they expect. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The use of cash creations and redemptions, as opposed to in-kind creations and redemptions, may adversely affect the arbitrage transactions by Authorized Participants intended to keep the price of the Shares closely linked to the price of ether and, as a result, the price of the Shares may fall or otherwise diverge from NAV.",
+    "text": "Baskets may be created or redeemed in exchange for ether or cash. However, only certain Authorized Participants, at present, have the ability to also, through their affiliates, support in-kind creation and redemption activity. The use of cash creations and redemptions, as opposed to in-kind creations and redemptions, could cause delays in trade execution due to potential operational issues arising from implementing a cash creation and redemption model, which involves greater operational steps (and therefore execution risk) than the originally contemplated in-kind creation and redemption model, or the potential unavailability or exhaustion of the Trade Credits, which the Trust would not be able to use in connection with in-kind creations and redemptions. Such delays could cause the execution price associated with such trades to materially deviate from the Index price used to determine the NAV. In addition, Ether Trading Counterparties must settle ether transactions with the Trust within a contractually specified time period, subject to customary exceptions. If the Ether Trading Counterparty fails to perform its obligations within the contractually specified time period, the Trust would seek to use the Prime Execution Agent’s Coinbase Prime service or an alternate Ether Trading Counterparty to execute the ether transaction. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "As an owner of Shares, you will not have the rights normally associated with ownership of other types of shares.",
+    "text": "Shares are not entitled to the same rights as shares issued by a corporation. By acquiring Shares, you are not acquiring the right to elect directors, to receive dividends, to vote on certain matters regarding the issuer of your Shares or to take other actions normally associated with the ownership of shares. You will only have the limited rights contained in the Trust Agreement."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Sponsor and the Trustee may agree to amend the Trust Agreement without the consent of the Shareholders.",
+    "text": "The Sponsor and the Trustee may agree to amend the Trust Agreement, including to increase the Sponsor’s Fee, without Shareholder consent. The Sponsor shall determine the contents and manner of delivery of any notice of any Trust Agreement amendment. If an amendment imposes new fees and charges or increases existing fees or charges, including the Sponsor’s Fee (except for taxes and other governmental charges, registration fees or other such expenses), or prejudices a substantial right of Shareholders, it will become effective for outstanding Shares 30 days after notice of such amendment is given to registered owners. Shareholders that are not registered owners (which most shareholders will not be) may not receive specific notice of a fee increase other than through an amendment to the prospectus. Moreover, at the time an amendment becomes effective, by continuing to hold Shares, Shareholders are deemed to agree to the amendment and to be bound by the Trust Agreement as amended without specific agreement to such increase (other than through the “negative consent” procedure described above)."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Shareholders do not have the protections associated with ownership of shares in an investment company registered under the Investment Company Act or the protections afforded by the CEA.",
+    "text": "The Investment Company Act is designed to protect investors by preventing insiders from managing investment companies to their benefit and to the detriment of public investors, such as: the issuance of securities having inequitable or discriminatory provisions; the management of investment companies by irresponsible persons; the use of unsound or misleading methods of computing earnings and asset value; changes in the character of investment companies without the consent of investors; and investment companies engaging in excessive leveraging. To accomplish these ends, the Investment Company Act requires the safekeeping and proper valuation of fund assets, greatly restricts transactions with affiliates, limits leveraging, and imposes governance requirements as a check on fund management. The Trust is not a registered investment company under the Investment Company Act, and the Sponsor believes that the Trust is not required to register under such act. Consequently, Shareholders do not have the regulatory protections provided to investors in investment companies. The Trust will not hold or trade in commodity interests regulated by the CEA, as administered by the CFTC. Furthermore, the Sponsor believes that the Trust is not a commodity pool for purposes of the CEA, and that neither the Sponsor nor the Trustee is subject to regulation by the CFTC as a commodity pool operator or a commodity trading adviser in connection with the operation of the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "As the Sponsor and its management have limited history of operating investment vehicles like the Trust, their experience may be inadequate or unsuitable to manage the Trust.",
+    "text": "The Sponsor and its management team have a limited track record in operating investment vehicles, such as the Trust, that specifically deal with crypto assets. This limited experience poses several potential risks to the effective management and operation of the Trust. Crypto assets, such as ether, are known for their high volatility, unique technical, legal and regulatory challenges, and rapidly evolving market dynamics. The Sponsor’s limited experience in this specific field may not fully equip it to navigate these complexities effectively. The past performances of the Sponsor’s management in other investment vehicles are no indication of their ability to manage an investment vehicle such as the Trust. The unique nature of crypto assets makes past performance an unreliable indicator of future success in this area. The crypto asset market is technology-driven and requires a deep understanding of the underlying blockchain technology and security considerations. The Sponsor’s limited experience may not fully encompass the technical expertise required to mitigate risks such as cyber threats, technological failures, or operational errors related to crypto asset transactions and custody. Should the Sponsor and its management team’s experience prove inadequate or unsuitable for managing a crypto asset-based investment vehicle like the Trust, it could result in suboptimal decision-making, increased operational risks, and potential legal or regulatory non-compliance. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Security threats to the Trust ’ s account at the Ether Custodian could result in the halting of Trust operations and a loss of Trust assets or damage to the reputation of the Trust, each of which could result in a reduction in the value of the Shares.",
+    "text": "Security breaches, computer malware and computer hacking attacks have been a prevalent concern in relation to digital assets. The Sponsor believes that the Trust’s ether held in the Trust’s account at the Ether Custodian or Trading Balance held with the Prime Execution Agent will be an appealing target to hackers or malware distributors seeking to destroy, damage or steal the Trust’s ether and will only become more appealing as the Trust’s assets grow. To the extent that the Trust, the Sponsor or the Ether Custodian or Prime Execution Agent is unable to identify and mitigate or stop new security threats or otherwise adapt to technological changes in the digital asset industry, the Trust’s ether may be subject to theft, loss, destruction or other attack. The Sponsor believes that the security procedures in place for the Trust, including, but not limited to, offline storage, or cold storage, multiple encrypted private key “shards,” and other measures, are reasonably designed to safeguard the Trust’s ether. Nevertheless, the security procedures cannot guarantee the prevention of any loss due to a security breach, software defect or act of God that may be borne by the Trust and the security procedures may not protect against all errors, software flaws or other vulnerabilities in the Trust’s technical infrastructure, which could result in theft, loss or damage of its assets. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Ether transactions are irrevocable and stolen or incorrectly transferred ether may be irretrievable. As a result, any incorrectly executed ether transactions could adversely affect the value of the Shares.",
+    "text": "Ether transactions are typically not reversible without the consent and active participation of the recipient of the transaction. Once a transaction has been verified and recorded in a block that is added to the Ethereum blockchain, an incorrect transfer or theft of ether generally will not be reversible and the Trust may not be capable of seeking compensation for any such transfer or theft. Although the Trust’s transfers of ether will regularly be made to or from the Trust’s account at the Ether Custodian, it is possible that, through computer or human error, or through theft or criminal action, the Trust’s ether could be transferred from the Trust’s account at the Ether Custodian in incorrect amounts or to unauthorized third parties, or to uncontrolled accounts. Such events have occurred in connection with digital assets in the past. For example, in September 2014, the Chinese digital asset platform Huobi announced that it had sent approximately 900 bitcoins and 8,000 Litecoins (worth approximately $400,000 at the prevailing market prices at the time) to the wrong customers. To the extent that the Trust is unable to seek a corrective transaction with such third party or is incapable of identifying the third party which has received the Trust’s ether through error or theft, the Trust will be unable to revert or otherwise recover incorrectly transferred ether. The Trust will also be unable to convert or recover its ether transferred to uncontrolled accounts. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The lack of full insurance and Shareholders ’ limited rights of legal recourse against the Trust, Delaware Trustee, Sponsor, Trust Administrator, Cash Custodian, Prime Execution Agent, the Ether Custodian, if operationalized, the Additional Ether Custodian expose the Trust and its Shareholders to the risk of loss of the Trust ’ s ether for which no person or entity is liable.",
+    "text": "The Trust is not a banking institution or otherwise a member of the FDIC or Securities Investor Protection Corporation (“SIPC”) and, therefore, deposits held with or assets held by the Trust are not subject to the protections enjoyed by depositors with FDIC or SIPC member institutions. In addition, neither the Trust nor the Sponsor insure the Trust’s ether. Coinbase Global has informed the Sponsor that it maintains a commercial crime insurance policy, which is intended to cover the loss of client assets held by Coinbase Global and all of its subsidiaries, including the Ether Custodian and the Prime Execution Agent (collectively, Coinbase Global and its subsidiaries are referred to as the “Coinbase Insureds”), including from employee collusion or fraud, physical loss including theft, damage of key material, security breach or hack, and fraudulent transfer. The insurance maintained by Coinbase Global is shared among all of Coinbase’s customers, is not specific to the Trust or to customers holding ether with the Ether Custodian or Prime Execution Agent and may not be available or sufficient to protect the Trust from all possible losses or sources of losses. Coinbase Global’s insurance may not cover the type of losses experienced by the Trust. Alternatively, the Trust may be forced to share such insurance proceeds with other clients or customers of the Coinbase Insureds, which could reduce the amount of such proceeds that are available to the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "If the Trade Credits are not available or become exhausted, the Trust may face delays in buying or selling ether that may adversely impact Shareholders; if the Trust does not repay the Trade Credits on time, its assets may be liquidated by the Trade Credit Lender and its affiliates.",
+    "text": "To avoid having to pre-fund purchases or sales of ether in connection with cash creations and redemptions and sales of ether to pay the Sponsor’s Fee and any other Trust expenses not assumed by the Sponsor, to the extent applicable, the Trust may borrow ether or cash as Trade Credit from the Trade Credit Lender on a short-term basis pursuant to the Trade Financing Agreement. The Trade Credit Lender is only required to extend Trade Credits to the Trust to the extent such ether or cash is actually available to the Trade Credit Lender. To the extent that Trade Credits are not available or become exhausted or the Trust decides to pre-fund purchases or sales of ether in connection with cash creations and redemptions, (1) there may be delays in the buying and selling of ether related to cash creations and redemptions or the selling of ether related to paying the Sponsor’s Fee and any other Trust expenses, to the extent applicable, (2) Trust assets may be held in the Trading Balance for a longer duration than if Trade Credits were available, and (3) the execution price associated with such trades may deviate significantly from the Index price used to determine the net asset value of the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Loss of a critical banking relationship for, or the failure of a bank used by, the Prime Execution Agent could adversely impact the Trust ’ s ability to create or redeem Baskets, or could cause losses to the Trust.",
+    "text": "The Prime Execution Agent facilitates the buying and selling or settlement of ether by the Trust in connection with cash creations and redemptions between the Trust and the Authorized Participants, and the sale of ether to pay the Sponsor’s Fee, any other Trust expenses, to the extent applicable, and in extraordinary circumstances, to effect the liquidation of the Trust’s ether. The Prime Execution Agent relies on bank accounts to provide its trading platform services and including temporarily holding any cash related to a customer’s purchase or sale of ether. In particular, the Prime Execution Agent has disclosed that customer cash held by the Prime Execution Agent, including the cash associated with the Trust’s Trading Balance, is held in one or more banks’ accounts for the benefit of the Prime Execution Agent’s customers, or in money market funds in compliance with Rule 2a-7 under the Investment Company Act and rated “AAA” by S&P (or the equivalent from any eligible rating service) (“Money Market Funds”), provided that such investments are held in accounts in Coinbase’s name for the benefit of customers and are permitted and held in accordance with state money transmitter laws. The Prime Execution Agent has represented to the Sponsor that it has implemented the following policy with respect to the cash associated with the Trust’s Trading Balance. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Prime Execution Agent routes orders through Connected Trading Venues in connection with trading services under the Prime Execution Agent Agreement. The loss or failure of any such Connected Trading Venues may adversely affect the Prime Execution Agent ’ s business and cause losses for the Trust.",
+    "text": "In connection with trading services under the Prime Execution Agent Agreement, the Prime Execution Agent routinely routes customer orders to Connected Trading Venues, which are third-party platforms or other trading venues (including the trading venue operated by the Prime Execution Agent). In connection with these activities, the Prime Execution Agent may hold ether with such Connected Trading Venues in order to effect customer orders, including the Trust’s orders. However, the Prime Execution Agent has represented to the Sponsor that no customer cash is held at Connected Trading Venues. If the Prime Execution Agent were to experience a disruption in the Prime Execution Agent’s access to these Connected Trading Venues, the Prime Execution Agent’s trading services under the Prime Execution Agent Agreement could be adversely affected to the extent that the Prime Execution Agent is limited in its ability to execute order flow for its customers, including the Trust. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust may be required, or the Sponsor may deem it appropriate, to terminate and liquidate at a time that is disadvantageous to Shareholders.",
+    "text": "Pursuant to the terms of the Trust Agreement, the Trust is required to dissolve under certain circumstances. In addition, the Sponsor may, in its sole discretion, dissolve the Trust for a number of reasons, including if the Sponsor determines, in its sole discretion, that it is desirable or advisable for any reason to discontinue the affairs of the Trust. If the Trust is required to terminate and liquidate, or the Sponsor determines in accordance with the terms of the Trust Agreement that it is appropriate to terminate and liquidate the Trust, such termination and liquidation could occur at a time that is disadvantageous to Shareholders, such as when the actual exchange rate of ether at such time is lower than the Index was at the time when Shareholders purchased their Shares. In such a case, when the Trust’s ether is sold as part of its liquidation, the resulting proceeds distributed to Shareholders will be less than if the actual exchange rate at such time were higher at the time of sale."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust Agreement includes provisions that limit Shareholders ’ voting rights and restrict Shareholders ’ right to bring a derivative action.",
+    "text": "Under the Trust Agreement, Shareholders generally have no voting rights, and the Trust will not have regular Shareholder meetings. Shareholders take no part in the management or control of the Trust. Accordingly, Shareholders do not have the right to authorize actions, appoint service providers or take other actions as may be taken by shareholders of other trusts or companies where shares carry such rights. The shareholders’ limited voting rights give almost all control under the Trust Agreement to the Sponsor and the Trustee. The Sponsor may take actions in the operation of the Trust that may be adverse to the interests of Shareholders and may adversely affect the value of the Shares. Moreover, pursuant to the terms of the Trust Agreement, Shareholders’ statutory right under Delaware law to bring a derivative action (i.e., to initiate a lawsuit in the name of the Trust in order to assert a claim belonging to the Trust against a fiduciary of the Trust or against a third party when the Trust’s management has refused to do so) is restricted. Under Delaware law, a shareholder may bring a derivative action if the shareholder is a shareholder at the time the action is brought and either (i) was a shareholder at the time of the transaction at issue or (ii) acquired the status of shareholder by operation of law or the Trust’s governing instrument from a person who was a shareholder at the time of the transaction at issue. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The non-exclusive jurisdiction for certain types of actions and proceedings and waiver of trial by jury clauses set forth in the Trust Agreement may have the effect of limiting a Shareholder ’ s rights to bring legal action against the Trust and could limit a purchaser ’ s ability to obtain a favorable judicial forum for disputes with the Trust.",
+    "text": "The Trust Agreement provides that the courts of the state of Delaware and any federal courts located in Wilmington, Delaware will be the non-exclusive jurisdiction for any claims, suits, actions or proceedings, provided that causes of actions for violations of the Exchange Act or the Securities Act will not be governed by the non-exclusive jurisdiction provision of the Trust Agreement. By purchasing Shares in the Trust, Shareholders waive certain claims that the courts of the state of Delaware and any federal courts located in Wilmington, Delaware is an inconvenient venue or is otherwise inappropriate. As such, Shareholder could be required to litigate a matter relating to the Trust in a Delaware court, even if that court may otherwise be inconvenient for the Shareholder. The Trust Agreement also waives the right to trial by jury in any such claim, suit, action or proceeding, provided that causes of actions for violations of the Exchange Act or the Securities Act will not be governed by the waiver of the right to trial by jury provision of the Trust Agreement. If a lawsuit is brought against the Trust, it may be heard only by a judge or justice of the applicable trial court, which would be conducted according to different civil procedures and may result in different outcomes than a trial by jury would have, including results that could be less favorable to the plaintiffs in any such action. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Sponsor is solely responsible for determining the value of the net asset value of the Trust and NAV, and any errors, discontinuance or changes in such valuation calculations may have an adverse effect on the value of the Shares.",
+    "text": "The Sponsor has the exclusive authority to determine the net asset value of the Trust and the NAV, which it has delegated to the Trustee under the Trust Agreement. The Trustee has delegated to the Trust Administrator the responsibility to calculate the net asset value of the Trust and the NAV, based on a pricing source selected by the Trustee. The Trust Administrator determines the net asset value of the Trust and NAV as of 4:00 p.m. ET, on each Business Day, as soon as practicable after that time. The Trust Administrator’s determination is made utilizing data from the operations of the Trust and the Index, calculated at 4:00 p.m. ET, on such day. If the Trustee determines in good faith that the Index does not reflect an accurate ether price, then the Trustee will instruct the Trust Administrator to employ an alternative method to determine the fair value of the Trust’s assets. There are no predefined criteria to make a good faith assessment as to which of the rules the Sponsor will apply, and the Sponsor may make this determination in its sole discretion. The Trust Administrator may calculate the Index in a manner that ultimately inaccurately reflects the price of ether. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Extraordinary expenses resulting from unanticipated events may become payable by the Trust, adversely affecting the value of the Shares.",
+    "text": "In consideration for the Sponsor’s Fee, the Sponsor has contractually assumed ordinary course operational and periodic expenses of the Trust, with certain exceptions. Expenses incurred by the Trust but not assumed by the Sponsor, such as, among others, taxes and governmental charges; expenses and costs of any extraordinary services performed by the Sponsor (or any other service provider) on behalf of the Trust to protect the Trust or the interests of Shareholders; or extraordinary legal fees and expenses are not assumed by the Sponsor and are borne by the Trust. The Sponsor will cause the Trust to either (i) sell ether held by the Trust or (ii) deliver ether in-kind to the Sponsor to pay Trust expenses not assumed by the Sponsor on an as-needed basis. Accordingly, the Trust may be required to sell or otherwise dispose of ether at a time when the trading prices for those assets are depressed. The sale or other disposition of assets of the Trust in order to pay extraordinary expenses could have a negative impact on the value of the Shares for several reasons. These include the following factors: ● The Trust is not actively managed and no attempt will be made to protect against or to take advantage of fluctuations in the prices of ether. Consequently, if the Trust incurs expenses in U.S. dollars, the Trust’s ether may be sold at a time when the values of the disposed assets are low, resulting in a negative impact on the value of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Trust ’ s delivery or sale of ether to pay expenses or other operations of the Trust could result in Shareholders incurring tax liability without an associated distribution from the Trust.",
+    "text": "Assuming that the Trust is treated as a grantor trust for U.S. federal income tax purposes, each delivery of ether by the Trust to pay the Sponsor’s Fee or other expenses and each sale of ether by the Trust to pay Trust expenses not assumed by the Sponsor will be a taxable event to beneficial owners of Shares. Thus, the Trust’s payment of expenses could result in beneficial owners of Shares incurring tax liability without an associated distribution from the Trust. Any such tax liability could adversely affect an investment in the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The value of the Shares will be adversely affected if the Trust is required to indemnify the Sponsor, the Trustee, the Delaware Trustee, the Trust Administrator, the Ether Custodian or the Cash Custodian under the Trust Documents.",
+    "text": "Under the Trust Agreement and the Trust agreements with its service providers (“Trust Documents”) each of the Sponsor, the Trustee, the Delaware Trustee, the Trust Administrator and the Custodians has a right to be indemnified by the Trust for certain liabilities or expenses that it incurs without, depending on the applicable Trust Document, gross negligence, bad faith or willful misconduct on its part. Therefore, the Sponsor, Delaware Trustee, the Trust Administrator, or the Custodians may require that the assets of the Trust be sold in order to cover losses or liability suffered by it. Any sale of that kind would reduce the ether holdings of the Trust and the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "Intellectual property rights claims may adversely affect the Trust and the value of the Shares.",
+    "text": "The Sponsor is not aware of any intellectual property rights claims that may prevent the Trust from operating and holding ether. However, third parties may assert intellectual property rights claims relating to the operation of the Trust and the mechanics instituted for the investment in, holding of and transfer of ether. Regardless of the merit of an intellectual property or other legal action, any legal expenses to defend or payments to settle such claims would be extraordinary expenses that would be borne by the Trust through the sale or transfer of its ether. Additionally, a meritorious intellectual property rights claim could prevent the Trust from operating and force the Sponsor to terminate the Trust and liquidate its ether. As a result, an intellectual property rights claim against the Trust could adversely affect the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Trust and the Shares",
+    "title": "The Shares may trade at a price that is at, above or below the Trust ’ s NAV as a result of the non-current trading hours between NASDAQ and the digital asset market.",
+    "text": "The Trust’s NAV will fluctuate with changes in the market value of ether, and the Sponsor expects the trading price of the Shares to fluctuate in accordance with changes in the Trust’s NAV, as well as market supply and demand. However, the Shares may trade on NASDAQ at a price that is at, above or below the Trust’s NAV for a variety of reasons. For example, NASDAQ is open for trading in the Shares for a limited period each day, but the digital asset market is a 24-hour marketplace. During periods when NASDAQ is closed but constituent trading platforms are open, significant changes in the price of ether on the digital asset market could result in a difference in performance between the value of ether as measured by the Index and the most recent NAV or closing trading price. For example, if the price of ether on the digital asset market, and the value ether as measured by the Index, move significantly in a negative direction after the close of NASDAQ, the trading price of the Shares may “gap” down to the full extent of such negative price shift when the Exchange reopens. If the price of ether on the digital asset market drops significantly during hours the NASDAQ is closed, Shareholders may not be able to sell their Shares until after the “gap” down has been fully realized, resulting in an inability to mitigate losses in a negative market. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "A determination that ether or any other digital asset is a “ security ” may adversely affect the value of ether and the value of the Shares, and result in potentially extraordinary, nonrecurring expenses to, or termination of, the Trust.",
+    "text": "Depending on its characteristics, a digital asset may be considered a “security” under the federal securities laws. The test for determining whether a particular digital asset is a “security” is complex and difficult to apply, and the outcome is difficult to predict. Public, though non-binding, statements made in the past by senior officials at the SEC and endorsed by its previous Chairman in a letter to a member of Congress appeared to indicate that the SEC did not consider ether to be a security at that time. However, a recent federal court decision ruled that the SEC has not to date issued a definitive statement of its position on whether ether is a security for purposes of federal law. HODL Law, PLLC v. Securities and Exchange Commission, Case No. 22‑cv‑1832‑LJLB, 2023 WL 4852322 (Jul. 28, 2023), at *6. The SEC staff has reportedly provided informal assurances in the past to a handful of promoters that their digital assets are not securities. On the other hand, the SEC has brought enforcement actions against the issuers and promoters of several other digital assets on the basis that the digital assets in question are securities. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Competing industries may have more influence with policymakers than the digital asset industry, which could lead to the adoption of laws and regulations that are harmful to the digital asset industry.",
+    "text": "The digital asset industry is relatively new and does not have the same access to policymakers and lobbying organizations in many jurisdictions compared to industries with which digital assets may be seen to compete, such as banking, payments and consumer finance. Competitors from other, more established industries may have greater access to and influence with governmental officials and regulators and may be successful in persuading these policymakers that digital assets require heightened levels of regulation compared to the regulation of traditional financial services. As a result, new laws and regulations may be proposed and adopted in the United States and elsewhere, or existing laws and regulations may be interpreted in new ways, that disfavor or impose compliance burdens on the digital asset industry or digital asset platforms, which could adversely impact the value of ether and therefore the value of the Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Regulatory changes or actions in foreign jurisdictions may affect the value of the Shares or restrict the use of one or more digital assets, validating activity or the operation of their networks or the digital asset platform market in a manner that adversely affects the value of the Shares.",
+    "text": "Various foreign jurisdictions have, and may continue to adopt laws, regulations or directives that affect digital asset networks (including the Ethereum network), the digital asset markets (including the ether market), and their users, particularly digital asset platforms and service providers that fall within such jurisdictions’ regulatory scope. For example, if China or other foreign jurisdictions were to ban or otherwise restrict manufacturers’ ability to produce or sell semiconductors or hard drives in connection with ether validating, it would have a material adverse effect on digital asset networks (including the Ethereum network), the digital asset market, and as a result, impact the value of the Shares. A number of foreign jurisdictions have recently taken regulatory action aimed at digital asset activities. China has made transacting in crypto assets illegal for Chinese citizens in mainland China, and additional restrictions may follow. Both China and South Korea have banned initial coin offerings entirely and regulators in other jurisdictions, including Canada, Singapore and Hong Kong, have opined that initial coin offerings may constitute securities offerings subject to local securities regulations. In May 2021, the Chinese government announced renewed efforts to restrict crypto asset trading and mining activities. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "If regulators subject the Trust, the Trustee, the Sponsor, Authorized Participants or Ether Trading Counterparties to regulation as a money services business or money transmitter, this could result in extraordinary expenses to the Trust, the Trustee, the Sponsor or the Ether Trading Counterparties and also result in decreased liquidity for the Shares.",
+    "text": "To the extent that the activities of the Trust, the Trustee, the Sponsor, Authorized Participants or Ether Trading Counterparties cause it to be deemed an MSB under the regulations promulgated by FinCEN, the Trust, the Trustee, the Sponsor, Authorized Participants or the Ether Trading Counterparties may be required to comply with FinCEN regulations, make certain reports to FinCEN and maintain certain records. Similarly, the activities of the Trust, the Trustee, the Sponsor, Authorized Participants or Ether Trading Counterparties may require it to be licensed as a money transmitter or as a digital asset business, such as under the New York State Department of Financial Services’ BitLicense regulation. Such additional regulatory obligations may cause the Trust, the Trustee, the Sponsor, Authorized Participants or Ether Trading Counterparties to incur extraordinary expenses. If the Trust, the Trustee, the Sponsor, Authorized Participants or the Ether Trading Counterparties decided to seek the required licenses, there is no guarantee that they will timely receive them. The Trustee may decide to discontinue and wind up the Trust. A dissolution of the Trust in response to the changed regulatory circumstances may be at a time that is disadvantageous to the Shareholders. An Ether Trading Counterparty may also instead decide to terminate its role as an Ether Trading Counterparty of the Trust, which may decrease the liquidity of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Anonymity and illicit financing risk.",
+    "text": "Although transaction details of peer-to-peer transactions are recorded on the Ethereum blockchain, a buyer or seller of digital assets on a peer-to-peer basis directly on the Ethereum network may never know to whom the public key belongs or the true identity of the party with whom it is transacting. Public key addresses are randomized sequences of alphanumeric characters that, standing alone, do not provide sufficient information to identify users. In addition, certain technologies may obscure the origin or chain of custody of digital assets. In August 2022, OFAC banned all U.S. citizens from using Tornado Cash, a digital asset mixing application consisting of a website, user interface and smart contracts designed to obfuscate blockchain transactions, by adding certain Ethereum wallet addresses associated with the protocol to its Specially Designated Nationals list. On October 19, 2023, FinCEN published a proposed rulemaking under authorities in Section 311 of the USA PATRIOT Act that would impose requirements on financial institutions that engage in CVC transactions that involve CVC mixing within or involving a jurisdiction outside the United States. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Regulatory changes or interpretations could obligate the Trust, the Trustee or the Sponsor to register and comply with new regulations, resulting in potentially extraordinary, nonrecurring expenses to the Trust.",
+    "text": "Current and future federal or state legislation, CFTC and SEC rulemaking and other regulatory developments may impact the manner in which ether is treated. In particular, ether may be classified by the CFTC as a “commodity interest” under the CEA or may be classified by the SEC as a “security” under U.S. federal securities laws. The Sponsor, the Trustee and the Trust cannot be certain as to how future regulatory developments will impact the treatment of ether under the law. In the face of such developments, the required registrations and compliance steps may result in extraordinary, nonrecurring expenses to the Trust. If the Trustee decides to terminate the Trust in response to the changed regulatory circumstances, the Trust may be dissolved or liquidated at a time that is disadvantageous to Shareholders. To the extent that ether is deemed to fall within the definition of a “commodity interest” under the CEA, the Trust, the Trustee and the Sponsor may be subject to additional regulation under the CEA and CFTC regulations. The Sponsor or the Trustee may be required to register as a commodity pool operator or commodity trading adviser with the CFTC and become a member of the National Futures Association (“NFA”) and may be subject to additional regulatory requirements with respect to the Trust, including disclosure and reporting requirements. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "The treatment of the Trust for U.S. federal income tax purposes is uncertain.",
+    "text": "The Sponsor intends to take the position that the Trust is properly treated as a grantor trust for U.S. federal income tax purposes. Assuming that the Trust is a grantor trust, the Trust will not be subject to U.S. federal income tax. Rather, if the Trust is a grantor trust, each beneficial owner of Shares will be treated as directly owning its pro rata share of the Trust’s assets and a pro rata portion of the Trust’s income, gain, losses and deductions will “flow through” to each beneficial owner of Shares. The Trust may take certain positions with respect to the tax consequences of Incidental Rights and its receipt of IR Digital Asset. If the IRS were to disagree with, and successfully challenge any of these positions, the Trust might not qualify as a grantor trust. In addition, the Sponsor has committed to cause the Trust to irrevocably abandon any Incidental Rights and IR Digital Asset to which the Trust may become entitled in the future. However, there can be no assurance that these abandonments would be treated as effective for U.S. federal income tax purposes, or that the Sponsor will continue to cause the Trust to irrevocably abandon any Incidental Rights and IR Digital Asset if there are future regulatory developments that would make it feasible for the Trust to retain those assets. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "The treatment of digital assets for U.S. federal income tax purposes is uncertain.",
+    "text": "Assuming that the Trust is properly treated as a grantor trust for U.S. federal income tax purposes, each beneficial owner of Shares will be treated for U.S. federal income tax purposes as the owner of an undivided interest in the ether held in the Trust. Due to the new and evolving nature of digital assets and the absence of comprehensive guidance with respect to digital assets, many significant aspects of the U.S. federal income tax treatment of digital assets (including digital currencies) are uncertain. In 2014, the IRS released a notice (the “Notice”) discussing certain aspects of “convertible virtual currency” (that is, digital currency that has an equivalent value in fiat currency or that acts as a substitute for fiat currency) for U.S. federal income tax purposes and, in particular, stating that such digital currency (i) is “property” (ii) is not “currency” for purposes of the rules relating to foreign currency gain or loss and (iii) may be held as a capital asset. In 2019, the IRS released a revenue ruling and a set of “Frequently Asked Questions” (the “Ruling & FAQs”) that provide some additional guidance, including guidance to the effect that, under certain circumstances, hard forks of digital currencies are taxable events giving rise to ordinary income and guidance with respect to the determination of the tax basis of digital currency. However, the Notice and the Ruling & FAQs do not address other significant aspects of the U.S. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Future developments regarding the treatment of digital assets for U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "text": "As discussed above, many significant aspects of the U.S. federal income tax treatment of digital assets, such as ether, are uncertain, and it is unclear what guidance on the treatment of digital currency for U.S. federal income tax purposes may be issued in the future. It is possible that any such guidance would have an adverse effect on the prices of digital assets, including on the price of ether in digital asset platforms, and therefore may have an adverse effect on the value of the Shares. Because of the evolving nature of digital assets, it is not possible to predict potential future developments that may arise with respect to digital assets, including forks, airdrops and similar occurrences. Such developments may increase the uncertainty with respect to the treatment of digital assets for U.S. federal income tax purposes. Moreover, certain future developments could render it impossible, or impracticable, for the Trust to continue to be treated as a grantor trust for U.S. federal income tax purposes."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Future developments in the treatment of digital currency for tax purposes other than U.S. federal income tax purposes could adversely affect the value of the Shares.",
+    "text": "The taxing authorities of certain states, including New York, (i) have announced that they will follow the Notice with respect to the treatment of digital currencies for state income tax purposes and/or (ii) have issued guidance exempting the purchase and/or sale of digital assets for fiat currency from state sales tax. Other states have not issued any guidance on these points, and could take different positions (e.g., imposing sales taxes on purchases and sales of digital currencies for fiat currency), and states that have issued guidance on their tax treatment of digital currencies (or other digital assets) could update or change their tax treatment of digital currencies. It is unclear what further guidance on the treatment of digital currencies for state or local tax purposes may be issued in the future. A state or local government authority’s treatment of ether may have negative consequences, including the imposition of a greater tax burden on investors in ether or the imposition of a greater cost on the acquisition and disposition of ether generally. The treatment of digital currencies for tax purposes by non-U.S. jurisdictions may differ from the treatment of digital currencies for U.S. federal, state or local tax purposes. It is possible, for example, that a non-U.S. jurisdiction would impose sales tax or value-added tax on purchases and sales of digital currencies for fiat currency. …"
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "A U.S. Tax-Exempt Shareholder may recognize “ unrelated business taxable income ” as a consequence of an investment in Shares.",
+    "text": "Under the guidance provided in the Ruling & FAQs, hard forks, airdrops and similar occurrences with respect to digital currencies will under certain circumstances be treated as taxable events giving rise to ordinary income. In the absence of guidance to the contrary, it is possible that any such income recognized by a U.S. Tax-Exempt Shareholder would constitute “unrelated business taxable income” (“UBTI”). Tax-exempt Shareholders should consult their tax advisers regarding whether such Shareholder may recognize UBTI as a consequence of an investment in Shares."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "Shareholders could incur a tax liability without an associated distribution of the Trust.",
+    "text": "In the normal course of business, it is possible that the Trust could incur a taxable gain in connection with the sale of ether (such as sales of ether to obtain fiat currency with which to pay the Sponsor’s Fee or Trust expenses, and including deemed sales of ether as a result of the Trust using ether to pay the Sponsor’s Fee or its expenses) that is otherwise not associated with a distribution to Shareholders. Accordingly, Shareholders may be subject to tax due to the grantor trust status of the Trust even though there is not a corresponding distribution from the Trust."
+   },
+   {
+    "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+    "title": "A hard “ fork ” of the Ethereum blockchain could result in Shareholders incurring a tax liability.",
+    "text": "If a hard fork occurs in the Ethereum blockchain, the Trust could hold both the original ether and the alternative new ether. The IRS has held that a hard fork resulting in the creation of new units of crypto assets is a taxable event giving rise to ordinary income. Moreover, if such an event occurs, the Trust Agreement provides that the Sponsor shall have the discretion to determine whether the original or the alternative asset shall constitute ether. The Trust shall treat whichever asset the Sponsor determines is not ether as Incidental Rights or IR Digital Asset, which it has committed to irrevocably abandon. The Ruling & FAQs do not address whether income recognized by a non-U.S. person as a result of a fork, airdrop or similar occurrence could be subject to the 30% withholding tax imposed on U.S.-source “fixed or determinable annual or periodical” income. Non-U.S. Shareholders should assume that, in the absence of guidance, a withholding agent (including the Sponsor) is likely to withhold 30% of any such income recognized by a Non-U.S. Shareholder in respect of its Shares, including by deducting such withheld amounts from proceeds that such Non-U.S. Shareholder would otherwise be entitled to receive in connection with a distribution of Incidental Rights or IR Digital Asset. The Sponsor has committed to cause the Trust to irrevocably abandon any Incidental Rights and IR Digital Asset to which the Trust may become entitled in the future. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Potential conflicts of interest may arise among the Sponsor or its affiliates and the Trust. The Sponsor and its affiliates have no fiduciary duties to the Trust and its Shareholders other than as provided in the Trust Agreement, which may permit them to favor their own interests to the detriment of the Trust and its Shareholders.",
+    "text": "The Sponsor will manage the affairs of the Trust. Conflicts of interest may arise among the Sponsor and its affiliates, on the one hand, and the Trust and its Shareholders, on the other hand. As a result of these conflicts, the Sponsor may favor its own interests and the interests of its affiliates over the Trust and its Shareholders. These potential conflicts include, among others, the following: ● the Sponsor has no fiduciary duties to, and is allowed to take into account the interests of parties other than, the Trust and its Shareholders in resolving conflicts of interest, provided the Sponsor does not act in bad faith; ● the Trust has agreed to indemnify the Sponsor, the Delaware Trustee, the Trustee and their respective affiliates pursuant to the Trust Agreement; ● the Sponsor is responsible for allocating its own limited resources among different clients and potential future business ventures, to each of which it may owe fiduciary duties; ● the Sponsor and its staff also service affiliates of the Sponsor, and may also service other digital asset investment vehicles, and their respective clients and cannot devote all of its, or their, respective time or resources to the management of the affairs of the Trust; ● the Sponsor, its affiliates and their officers and employees are not prohibited from engaging in other businesses or activities, including those that might be in direct competition with the Trust; ● affiliates of the Sponsor may start to have substantial direct in …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Investment vehicles advised or managed by affiliates of the Sponsor hold a minority interest in Coinbase Global, the parent of Coinbase Inc., which serves as the Trust’s Prime Execution Agent and operates one of the digital asset platforms included in the Index price and is the parent of the Ether Custodian.",
+    "text": "Investment vehicles advised or managed by affiliates of the Sponsor own shares in many public companies listed in the United States, including Coinbase Global, the parent of Coinbase Inc. which operates the Coinbase platform and serves as the Trust’s Prime Execution Agent. The Trust values its digital assets by reference to the Index price. Coinbase is one of the digital asset platforms included in the Index. The Sponsor values its digital assets by reference to the Index price. Coinbase is one of the digital asset platforms included in the Index. Although neither the Sponsor nor any affiliates of the Sponsor nor any investment vehicles managed or advised by any of them exercise control over Coinbase, it is possible that positions of investment vehicles managed by affiliates of the Sponsor in Coinbase may present risks to Shareholders to the extent affiliates of the Sponsor cause the Sponsor to favor Coinbase’s interests over the interests of the Trust or its Shareholders with respect to, for example, fees charged, and the quality of service provided by Coinbase as Prime Execution Agent. Similarly, investors could have concerns that the Sponsor or affiliates of the Sponsor could influence market data provided by Coinbase in a way that benefits the Sponsor, for example by artificially inflating the values of ether in order to increase the Sponsor’s Fee. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Shareholders cannot be assured of the Sponsor ’ s continued services, the discontinuance of which may be detrimental to the Trust.",
+    "text": "Shareholders cannot be assured that the Sponsor will be willing or able to continue to serve as sponsor to the Trust for any length of time. If the Sponsor discontinues its activities on behalf of the Trust and a substitute sponsor is not appointed, the Trust will terminate and liquidate its ether. Appointment of a substitute sponsor will not guarantee the Trust’s continued operation, successful or otherwise. Because a substitute sponsor may have no experience managing a digital asset financial vehicle, a substitute sponsor may not have the experience, knowledge or expertise required to ensure that the Trust will operate successfully or continue to operate at all. Therefore, the appointment of a substitute sponsor may not necessarily be beneficial to the Trust and the Trust may terminate."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Although the Ether Custodian is a fiduciary with respect to the Trust ’ s assets, it could resign or be removed by the Sponsor, which may trigger early dissolution of the Trust.",
+    "text": "The Ether Custodian has represented that it is a fiduciary under § 100 of the New York Banking Law. Further, the Ether Custodian is a qualified custodian for purposes of Rule 206(4)-2(d)(6) under the Advisers Act and is licensed to custody the Trust’s ether in trust on the Trust’s behalf. However, the Ether Custodian may terminate the Custodian Agreement for cause at any time upon providing the applicable notice provided under the Custodian Agreement. If the Ether Custodian resigns, is removed, or is prohibited by applicable law or regulation to act as custodian, and no successor custodian has been employed and operationalized, the Sponsor may dissolve the Trust in accordance with the terms of the Trust Agreement."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Coinbase serves as the ether custodian and the prime execution agent for several competing exchange-traded Ethereum products, which could adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "text": "The Prime Execution Agent and the Ether Custodian are both affiliates of Coinbase Global. As of the date hereof, Coinbase Global is one of the largest publicly traded crypto asset company in the world by market capitalization and is also the largest crypto asset custodian in the world by assets under custody. By virtue of its leading market position and capabilities, and the relatively limited number of institutionally-capable providers of crypto asset brokerage and custody services, Coinbase serves as the ether custodian and prime execution agent for several competing exchange-traded ether products, as well as other companies in the digital asset industry, such as digital asset treasury companies. Similarly, the Additional Ether Custodian serves as the custodian for several competing exchange-traded ether products and other companies in the digital assets industry. Therefore, Coinbase and Anchorage have a critical role in supporting the U.S. spot ether exchange-traded product ecosystem and the digital assets industry generally, and their size and market share creates the risk that they may fail to properly resource its operations to adequately support all such products that use their services that could harm the Trust, the Shareholders and the value of the Shares. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "The Trust ’ s Authorized Participants act in similar or identical capacities for several competing exchange-traded ether products which may impact the ability or willingness of one or more Authorized Participants to participate in the creation and redemption process, adversely affect the Trust ’ s ability to create or redeem Baskets and adversely affect the Trust ’ s operations and ultimately the value of the Shares.",
+    "text": "Many of the Trust’s Authorized Participants now or in the future, act or may act in the same capacity for several competing exchange-traded ether products. Each Authorized Participant and Ether Trading Counterparty has limited balance sheet capacity, which means that, particularly during times of heightened market trading activity or market volatility or turmoil, Authorized Participants may not be able or willing to submit creation or redemption orders, and Ether Trading Counterparties may not be able or willing to engage in ether purchases or sales with the Trust or may do so in limited capacities. The inability or unwillingness of Authorized Participants or Ether Trading Counterparties to do so could lead to the potential for the Shares to trade at premiums or discounts to the NAV, and such premiums or discounts could be substantial. Furthermore, if creations or redemptions are unavailable due to the inability or unwillingness of one or more of the Trust’s Authorized Participants to submit creation or redemption orders with the Trust (or do so in a limited capacity), the arbitrage mechanism may fail to function as efficiently as it otherwise would or be unavailable. …"
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Shareholders may be adversely affected by the lack of independent advisers representing investors in the Trust.",
+    "text": "The Sponsor has consulted with counsel, accountants and other advisers regarding the formation and operation of the Trust. No counsel was appointed to represent investors in connection with the formation of the Trust or the establishment of the terms of the Trust Agreement and the Shares. Moreover, no counsel has been appointed to represent an investor in connection with the offering of the Shares. Accordingly, an investor should consult his, her or its own legal, tax and financial advisers regarding the desirability of the value of the Shares. Lack of such consultation may lead to an undesirable investment decision with respect to investment in the Shares."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "Shareholders and Authorized Participants lack the right under the Custodian Agreement to assert claims directly against the Ether Custodian, which significantly limits their options for recourse.",
+    "text": "Neither the Shareholders nor any Authorized Participant have a right under the Custodian Agreement to assert a claim against the Ether Custodian. Claims under the Custodian Agreement may only be asserted by the Trustee on behalf of the Trust."
+   },
+   {
+    "category": "Risk Factors Related to Potential Conflicts of Interest",
+    "title": "There is no guarantee that every employee, officer, director, or similar person associated with the Sponsor, Trustee, or the BlackRock Affiliates will comply with the Policies, duties and training and refrain from engaging in insider trading in violation of their duties to the Trust and Sponsor.",
+    "text": "While the Sponsor has adopted and implemented the policies and procedures that are reasonably designed to ensure compliance with applicable law, including a Compliance Manual and Code of Business Conduct and Ethics, which address conflicts of interest (together, the “Policies”) and will adopt standard operating practices requiring that certain applicable personnel pre-clear personal trading activity in which ether is the referenced asset, there is no way to guarantee that every employee, officer, director, or similar person associated with the Sponsor, Trustee, or the BlackRock affiliates will comply at all times with such Policies, duties and training and refrain from engaging in insider trading in violation of their duties to the Trust and Sponsor. This risk is present in traditional financial markets and is not unique to ether. If such employees or others affiliated with the Trust, Sponsor, Trustee, or Affiliates respectively do engage in illegal conduct or conduct which fails to meet applicable regulatory standards, the Trust, Sponsor, Trustee or relevant Affiliate respectively could be the target of civil or criminal fines, penalties, punishments, or other regulatory or other sanctions or lawsuits or could be the target of an investigation, whether directly or indirectly, such as on a failure to diligently supervise theory. Any of these outcomes could cause the Trust and Shareholders to suffer harm. …"
+   },
+   {
+    "category": "Risk Factors Related to ERISA",
+    "title": "In General.",
+    "text": "Notwithstanding the commercially reasonable efforts of the Sponsor, it is possible that the underlying assets of the Trust will be deemed to include “plan assets” for the purposes of Part 4 of Subtitle B of Title I of ERISA or Section 4975 of the Code. A determination that the assets of the Trust were “plan assets” could result in, among other things, (i) the application of the prudence and other fiduciary standards of ERISA to investments made by the Trust and (ii) the possibility that certain transactions in which the Trust might otherwise seek to engage in the ordinary course of its business and operation could constitute non-exempt “prohibited transactions” under Section 406 of ERISA and/or Section 4975 of the Code, which could restrict the Trust from entering into an otherwise desirable investment or from entering into an otherwise favorable transaction. In addition, fiduciaries who decide to invest in the Trust could, under certain circumstances, be liable for “prohibited transactions” or other violations as a result of their investment in the Trust or as co-fiduciaries for actions taken by or on behalf of the Trust or the Sponsor. There may be other similar laws that also apply to an investment in the Trust."
+   },
+   {
+    "category": "Risk Factors Related to ERISA",
+    "title": "Seed Capital Investor.",
+    "text": "The Sponsor or one or more of its affiliates may be a party in interest or a disqualified person with respect to one or more Plans considering an investment in the Trust. Given the Sponsor’s or an affiliate’s expected initial ownership interest of 50% or more of the Trust, the Trust would be a party in interest to any Plans with respect to which the Sponsor or an affiliate is a party in interest or a disqualified person. Therefore, the purchase by any such Plans in the Trust would be prohibited under ERISA and/or Section 4975 of the Code absent an exemption. Fiduciaries of Plans should consider whether a purchase of interests constitutes a non-exempt prohibited transaction under ERISA and/or Section 4975 of the Code. Available exemptions from the prohibited transaction rules of ERISA and the Code include PTCE 84-14, PTCE 90-1, PTCE 91-38, PTCE 95-60, PTCE 96-23, and Section 408(b)(17) of ERISA (and the corresponding provisions of Section 4975(d)(20) of the Code). The application of ERISA (including the corresponding provisions of the Code and other relevant laws) may be complex and dependent upon the particular facts and circumstances of the Trust and of each Plan, and it is the responsibility of the appropriate fiduciary of each investing Plan to ensure that any investment in the Trust by such Plan is consistent with all applicable requirements. …"
+   }
+  ],
+  "max_chars_per_risk": 1500,
+  "meta": {
+   "provider": "sec_edgar",
+   "fetched_at": "2026-10-10T16:59:34+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "SEC EDGAR 10-K 2025, Item 1A",
+     "url": "https://www.sec.gov/Archives/edgar/data/2000638/000143774926006054/etha20251231_10k.htm"
+    }
+   ]
+  }
+ }
+}

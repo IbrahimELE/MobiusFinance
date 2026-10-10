@@ -19,3 +19,4 @@
 - `demo_cache/`: dodani BTC-USD i ETH-USD (quote + history) preko `scripts.warm_demo_cache`, da offline demo prikazuje i crypto. Financials za crypto namjerno nisu snimljeni (Yahoo vraća prazne).
 - `mobius/`: `fd_crypto.py` (kopija `agent_service/crypto.py` preko `sync.sh`), `service.py`: `brief/prepare` za crypto (samo cijena, bez rizika), `GET /crypto`, `/compare` bez financials za crypto; test u `mobius/tests/test_service.py`.
 - Otvoreno za vlasnika: izvor [2] za crypto (prijedlog: 10-K spot ETF-ova, IBIT za BTC, ETHA za ETH).
+- Dopuna: `data_service/demo_cache/risk_factors/` dobio IBIT.json i ETHA.json (samo risk_factors) za crypto izvor [2] offline.

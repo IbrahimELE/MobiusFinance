@@ -145,15 +145,26 @@ def build_crypto_brief(t: str, project_id: str = "default") -> dict:
             b = json.loads(cached.read_text(encoding="utf-8")); b["mode"] = "cache"; return b
         raise
     st, name, prof = crypto.stats(points), crypto.display_name(t, quote.get("name")), get_profile(project_id)
+    risks, filing = [], None
+    if crypto.risk_source(t):   # [2]: Item 1A of a spot ETF that holds the coin (BTC: IBIT, ETH: ETHA)
+        etf = crypto.risk_source(t)[0]
+        try:
+            filing = fetch("risk-factors", etf, f"/filings/{etf}/risk-factors")
+            risks = crypto.label_risks(t, pick_risks(crypto.coin_risks(t, filing)), filing["filing"])
+        except (HTTPException, KeyError, TypeError) as e:
+            print(f"No ETF risk factors for {t} ({etf}):", e)   # brief stays without a risk section
+            risks, filing = [], None
     try:
-        thesis, mode = llm(crypto.prompt(t, name, quote, st, prof.get("instructions", ""))), "llm"
+        thesis, mode = llm(crypto.prompt(t, name, quote, st, prof.get("instructions", ""), risks)), "llm"
     except Exception as e:
         print("LLM unavailable:", e)
         cached = CACHE / f"{t}.json"
         if cached.exists():
             b = json.loads(cached.read_text(encoding="utf-8")); b["mode"] = "cache"; return b
         thesis, mode = crypto.template_thesis(name, t, quote, st), "template"
-    b = crypto.brief(t, quote, st, thesis, mode)
+        if risks:
+            thesis += crypto.template_risk_line(t, risks)
+    b = crypto.brief(t, quote, st, thesis, mode, risks, filing)
     if prof.get("instructions"):
         b["learned"] = {"instructions": prof["instructions"], "label": prof.get("label", ""), "feedback_count": prof.get("feedback_count", 0)}
     return b

@@ -113,11 +113,19 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
             st = fd_crypto.stats(_dump(app.data.history(t, "1y")).get("points", []))
             prof = _dump(app.learning.profile(body.get("project_id") or pid))
             name = fd_crypto.display_name(t, q.get("name"))
-            b = fd_crypto.brief(t, q, st, fd_crypto.template_thesis(name, t, q, st), "template")
+            risks, filing = [], None
+            if fd_crypto.risk_source(t):  # [2]: Item 1A of a spot ETF that holds the coin
+                try:
+                    filing = _dump(app.data.risk_factors(fd_crypto.risk_source(t)[0]))
+                    risks = fd_crypto.label_risks(t, fd_desk.pick_risks(fd_crypto.coin_risks(t, filing)), filing["filing"])
+                except Exception:
+                    risks, filing = [], None  # no ETF filing: the brief stays without a risk section
+            thesis = fd_crypto.template_thesis(name, t, q, st) + (fd_crypto.template_risk_line(t, risks) if risks else "")
+            b = fd_crypto.brief(t, q, st, thesis, "template", risks, filing)
             ins = prof.get("instructions") if prof.get("feedback_count") else ""
             if ins:
                 b["learned"] = {"instructions": ins, "label": prof.get("label", ""), "feedback_count": prof["feedback_count"]}
-            return {"brief": b, "prompt": fd_crypto.prompt(t, name, q, st, ins or "")}
+            return {"brief": b, "prompt": fd_crypto.prompt(t, name, q, st, ins or "", risks)}
         q, f, r = app.data.quote(t), app.data.financials(t), app.data.risk_factors(t)
         prof = _dump(app.learning.profile(body.get("project_id") or pid))
         return fd_desk.prepare(t, _dump(q), _dump(f), _dump(r), prof)

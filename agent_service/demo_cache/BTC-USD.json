@@ -2,15 +2,46 @@
  "ticker": "BTC-USD",
  "name": "Bitcoin",
  "asset_class": "crypto",
- "thesis": "Bitcoin trades at about $82,960, up 0.50% on the day and 8.35% over the last 30 days, but it remains 26.72% lower over one year [1]. Price sits well below the 52-week high of $116,273 and about 44% above the low of $57,748, and the maximum drawdown over the year was 49.2% [1]. Annualized 30-day volatility of 38.02% shows sizeable price swings even during the recent rebound [1]. This data shows price behaviour only, so the short-term recovery within a weaker one-year trend is the extent of what it supports [1].",
+ "thesis": "Bitcoin trades near $82,932, up 0.47% on the day and 8.35% over the past 30 days, yet it remains down 26.72% over one year and well below its 52-week high of $116,273 (the low was $57,748) [1]. Over the past year it suffered a maximum drawdown of 49.2%, and 30-day volatility is 38.02%, so recent gains sit within a very turbulent range [1]. This price data shows price behaviour only, and it says nothing about fundamentals. The iShares Bitcoin Trust 10-K warns that bitcoin prices have shown extreme volatility, that the shares could lose all or substantially all of their value, and that regulatory uncertainty in U.S. digital asset markets could significantly harm the value of bitcoin or the shares [2].",
  "mode": "llm",
  "metrics": {
-  "price": 82960.1328,
+  "price": 82932.4375,
   "pe": null,
   "revenue_growth_yoy": null,
   "net_margin": null
  },
- "risks": [],
+ "risks": [
+  {
+   "text": "The trading prices of many digital assets, including bitcoin, have experienced extreme volatility in recent periods and may continue to do so. Extreme volatility in the future, including further declines in the trading prices of bitcoin, could have a material adverse effect on the value of the Shares and the Shares could lose all or substantially all of their value.",
+   "detail": "The trading prices of many digital assets, including bitcoin, have experienced extreme volatility in recent periods and may continue to do so. The average annualized one-year trailing volatility of bitcoin over the past ten years to date remains elevated at 65%. Over the course of 2021, there were steep increases in the value of certain digital assets, including bitcoin, and multiple market observers asserted that digital assets were experiencing a “bubble.” These increases were followed by stee",
+   "category": "Risk Factors Related to Digital Assets",
+   "source": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "The value of the Shares relates directly to the value of bitcoin, the value of which may be highly volatile and subject to fluctuations due to a number of factors.",
+   "detail": "The value of the Shares relates directly to the value of the bitcoin held by the Trust and fluctuations in the price of bitcoin could adversely affect the value of the Shares. The market price of bitcoin may be highly volatile, and subject to a number of factors, including: ● an increase in the global bitcoin supply or a decrease in global bitcoin demand; ● market conditions of, and overall sentiment towards, the digital assets and blockchain technology industry; ● trading activity on digital as",
+   "category": "Risk Factors Related to the Digital Asset Markets",
+   "source": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of bitcoin. The Trust is not actively managed and will be affected by a general decline in the price of bitcoin.",
+   "detail": "The Trust is a passive investment vehicle that does not seek to generate returns beyond tracking the price of bitcoin. The Sponsor does not actively manage the bitcoin held by the Trust. This means the Sponsor does not speculatively sell bitcoin at times when its price is high or speculatively acquire bitcoin at low prices in the expectation of future price increases. It also means the Trust will not utilize leverage, derivatives or any similar arrangements in seeking to meet its investment obje",
+   "category": "Risk Factors Related to the Trust and the Shares",
+   "source": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "Digital asset markets in the United States exist in a state of regulatory uncertainty, and adverse legislative or regulatory developments could significantly harm the value of bitcoin or the Shares, such as by banning, restricting or imposing onerous conditions or prohibitions on the use of bitcoin, mining activity, digital wallets, the provision of services related to trading and providing custody services for bitcoin, the operation of the Bitcoin network, or the digital asset markets generally.",
+   "detail": "There is a lack of consensus regarding the regulation of digital assets, including bitcoin, and their markets. As a result of the growth in the size of the digital asset market, as well as the 2022 Events, the U.S. Congress and a number of U.S. federal and state agencies (including FinCEN, SEC, Office of the Comptroller of the Currency (the “OCC”), CFTC, FINRA, the Consumer Financial Protection Bureau (“CFPB”), the DOJ, the Department of Homeland Security, the Federal Bureau of Investigation, th",
+   "category": "Risk Factors Related to the Regulation of the Trust and the Shares",
+   "source": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"
+  },
+  {
+   "text": "The value of the Shares is subject to a number of factors relating to the fundamental investment characteristics of bitcoin as a digital asset, including the fact that digital assets are bearer instruments and loss, theft, or compromise of the associated private keys could result in permanent loss of the asset, and the capabilities and development of blockchain technologies such as the Bitcoin blockchain.",
+   "detail": "Digital assets such as bitcoin were only introduced within the past 16 years, and the value of the Shares is subject to a number of factors relating to the capabilities and development of blockchain technologies over time, such as the recentness of their development, their dependence on the internet and other technologies, their dependence on the role played by users, developers and miners and the potential for malicious activity. For example, the realization of one or more of the following risk",
+   "category": "Risk Factors Related to Digital Assets",
+   "source": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"
+  }
+ ],
  "peers": [
   "ETH-USD",
   "SOL-USD"
@@ -18,7 +49,7 @@
  "extras": {
   "year_high": 116273.3125,
   "year_low": 57747.7656,
-  "volume": 14777873408.0,
+  "volume": 14739087360.0,
   "return_1y": -0.2672,
   "return_30d": 0.0835,
   "volatility_30d": 0.3802,
@@ -28,7 +59,11 @@
   {
    "label": "Yahoo Finance",
    "url": "https://finance.yahoo.com/quote/BTC-USD"
+  },
+  {
+   "label": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A",
+   "url": "https://www.sec.gov/Archives/edgar/data/1980994/000143774926006058/bit20251231_10k.htm"
   }
  ],
- "generated_at": "2026-10-10T16:46:56.861395+00:00"
+ "generated_at": "2026-10-10T17:01:39.452351+00:00"
 }

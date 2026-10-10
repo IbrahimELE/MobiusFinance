@@ -37,7 +37,7 @@ def test_agent_builds_crypto_brief_without_llm(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "CACHE", tmp_path)
     monkeypatch.setattr(main, "fetch", lambda kind, t, path: QUOTE if kind == "quote" else {"points": POINTS})
     monkeypatch.setattr(main, "llm", lambda p: (_ for _ in ()).throw(RuntimeError("no LLM")))
-    b = main.build_brief("BTC-USD")
+    b = main.build_brief("BTC-USD")       # ETF filing answer is malformed here: still a brief, without risks
     assert b["mode"] == "template" and b["risks"] == [] and b["thesis"].count("[1]") >= 2
 
 
@@ -67,3 +67,36 @@ def test_crypto_list_is_cached_and_offline_safe(cat, monkeypatch):
     cat.crypto_market(); assert len(calls) == 1
     monkeypatch.setenv("DATA_OFFLINE", "1"); cat._cr["mtime"] = 0
     assert cat.crypto_market()["live"] is False and len(calls) == 1
+
+
+ETF_RISKS = {"ticker": "IBIT", "filing": "10-K 2025", "url": "https://www.sec.gov/ibit-10k",
+             "items": [{"text": "Bitcoin prices are highly volatile.", "source": "10-K 2025, Item 1A"}]}
+
+
+def test_btc_cites_spot_etf_10k_as_source_2(monkeypatch, tmp_path):
+    import main
+    monkeypatch.setattr(main, "CACHE", tmp_path)
+    data = {"quote": QUOTE, "history": {"points": POINTS}, "risk-factors": ETF_RISKS}
+    seen = []
+    monkeypatch.setattr(main, "fetch", lambda kind, t, path: seen.append(t) or data[kind])
+    monkeypatch.setattr(main, "llm", lambda p: (_ for _ in ()).throw(RuntimeError("no LLM")))
+    b = main.build_brief("BTC-USD")
+    assert "IBIT" in seen and b["risks"][0]["source"] == "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A"
+    assert b["sources"][1] == {"label": "iShares Bitcoin Trust (IBIT) 10-K 2025, Item 1A", "url": "https://www.sec.gov/ibit-10k"}
+    assert "[2]" in b["thesis"] and "iShares Bitcoin Trust" in b["thesis"]
+    assert "not to Bitcoin itself" in crypto.prompt("BTC-USD", "Bitcoin", QUOTE, {}, "", b["risks"])
+
+
+def test_coin_without_etf_source_or_missing_filing_has_no_risks(monkeypatch, tmp_path):
+    import main
+    from fastapi import HTTPException
+    monkeypatch.setattr(main, "CACHE", tmp_path)
+    monkeypatch.setattr(main, "llm", lambda p: (_ for _ in ()).throw(RuntimeError("no LLM")))
+    def fetch(kind, t, path):
+        if kind == "risk-factors":
+            raise HTTPException(503, "offline")
+        return {**QUOTE, "ticker": t} if kind == "quote" else {"points": POINTS}
+    monkeypatch.setattr(main, "fetch", fetch)
+    for t in ("SOL-USD", "ETH-USD"):          # SOL: no ETF source; ETH: filing unavailable
+        b = main.build_brief(t)
+        assert b["risks"] == [] and len(b["sources"]) == 1 and "[2]" not in b["thesis"]

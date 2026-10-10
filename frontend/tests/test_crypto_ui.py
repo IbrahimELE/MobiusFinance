@@ -1,6 +1,6 @@
 """Item 4: Crypto tab, price-only crypto brief and fractional paper trading (offline stack, demo snapshots)."""
 
-def test_crypto_tab_lists_coins_and_opens_a_brief_without_risks(page):
+def test_crypto_tab_lists_coins_and_btc_brief_cites_the_etf_10k(page):
     page.click("#cry")
     page.wait_for_selector('#crypto [data-open="BTC-USD"]')
     assert "Saved prices" in page.inner_text("#crypto")             # offline: last snapshot, clearly labelled
@@ -8,7 +8,7 @@ def test_crypto_tab_lists_coins_and_opens_a_brief_without_risks(page):
     page.wait_for_selector("#pf .trade button[data-s=buy]:not([disabled])", timeout=30000)
     main = page.inner_text("#main")
     assert "Cryptocurrency · trades 24/7" in main and "1-year return" in main
-    assert "Key risks" not in main and "no risk section" in main and "P/E" not in main
+    assert "Key risks (from a spot ETF's 10-K)" in main and "iShares Bitcoin Trust (IBIT)" in main and "P/E" not in main
 
 def test_search_by_coin_name(page):
     page.fill("#t", "bitcoin")
