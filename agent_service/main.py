@@ -7,6 +7,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import httpx
+import catalog
 
 ROOT = Path(__file__).resolve().parent.parent
 MOCKS = ROOT / "contracts" / "mocks"
@@ -270,6 +271,16 @@ def profile_get(project_id: str = "default"):
 @app.delete("/profile")
 def profile_del(project_id: str = "default"):
     return proxy(LEARNING_URL, "DELETE", "/profile", {"project_id": slug(project_id)})
+
+@app.get("/search")
+def search_ep(q: str = "", limit: int = 8):
+    """Pretraga po tickeru ili imenu kompanije (contracts/catalog.md)."""
+    return catalog.search(q, max(1, min(limit, 20)))
+
+@app.get("/markets")
+def markets_ep():
+    """Browse stocks: most actives/gainers/losers i dionice po sektorima (contracts/catalog.md)."""
+    return catalog.markets()
 
 @app.get("/history/{ticker}")
 def history(ticker: str, period: str = "1y"):

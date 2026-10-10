@@ -17,6 +17,7 @@ MOBIUS_PRELOAD = True
 
 import httpx
 
+import fd_catalog
 import fd_compete
 import fd_desk
 from fd_compete import Competition, Proofs, Refused
@@ -66,6 +67,8 @@ class App:
         self.root = root
         self.competition = Competition(root, lambda t: self.data.quote(t).price, self._closes)
         self.proofs = Proofs(root)
+        fd_catalog.CACHE_DIR = root / "catalog"     # SEC list + markets cache live in the app's storage
+        fd_catalog.BACKGROUND_REFRESH = False       # one request per process: no thread would outlive it
 
     def _closes(self, ticker: str) -> list[tuple[str, float]]:
         try:
@@ -129,6 +132,16 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
             rows.append({"ticker": t, "name": q.name, "price": q.price, "pe": f.pe,
                          "revenue_growth_yoy": f.revenue_growth_yoy, "net_margin": f.net_margin})
         return rows
+
+    # --- stock catalog: search by name, browse stocks (contracts/catalog.md) ---
+    if key == ("GET", "search", 1):
+        try:
+            limit = max(1, min(int(_one(query, "limit", 8)), 20))
+        except ValueError:
+            limit = 8
+        return fd_catalog.search(_one(query, "q", "") or "", limit)
+    if key == ("GET", "markets", 1):
+        return fd_catalog.markets()
 
     # --- market data ---
     if key == ("GET", "quote", 2):

@@ -78,3 +78,16 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Napomena: `conftest.py` skriva `claude` CLI iz PATH-a servisa, inače brief zove LLM (do 120 s) i test visi.
 - Contracts: ne dira. Offline demo: provjeren (testovi rade upravo na DATA_OFFLINE=1).
 - Sljedeće: stavka 2 (pretraga po imenu + Browse stocks).
+
+## 2026-10-10 · Korak 15: pretraga po imenu + Markets / Browse stocks (feature/b-browse-stocks)
+- Provjereno prije kodiranja (yfinance 1.7.0): `yf.Search`, `yf.screen` (predefinisani `most_actives`, `day_gainers`, `day_losers`), `yf.Sector` (11 sektora, `top_companies`) postoje. `EquityQuery` ne filtrira po tickeru, pa cijene po sektorima idu jednim `yf.download` pozivom (~5 s za ~90 tickera, keširano).
+- Ugovor prvo: `contracts/catalog.md` (GET /search, GET /markets).
+- Agent (`agent_service/catalog.py`): SEC `company_tickers.json` (~10 400 kompanija, User-Agent iz `SEC_USER_AGENT`) keš na disku `agent_service/cache/` (gitignored), osvježava se najviše jednom dnevno u pozadini; bez mreže ili s `DATA_OFFLINE=1` zadnji keš, a za prvi offline start commitovani snimci `agent_service/catalog/*.snapshot.json`.
+  /search: prvo SEC lista (tačan ticker > početak tickera > riječ imena > sadrži), sektor i lijepo ime iz tržišnih podataka; bez pogotka yfinance Search (samo EQUITY). /markets: screeneri + sektori, samo tickeri iz SEC liste, keš 5 min (`MARKETS_TTL`), sastav sektora 1 dan; offline/greška → zadnji keš s `live:false`.
+- UI: polje "Company or ticker" s listom prijedloga (ticker, ime, sektor; strelice, Enter, Esc). Enter bez odabira: tačan ticker > najbolji pogodak po imenu ("nvidia" → NVDA). Dugme "Markets" u zaglavlju i "Browse stocks →" na početnoj: Most active / Top gainers / Top losers + 11 sektora s cijenom i dnevnom promjenom, oznaka "● Live" ili "○ Saved prices"; klik otvara brief; osvježava se svake minute dok je otvoreno.
+- Testovi: `agent_service/tests/test_catalog.py` (9, bez mreže) + `frontend/tests/test_search_markets.py` (5 e2e, offline iz snimka). Ukupno 17 prolazi: `python -m pytest frontend/tests agent_service/tests`.
+- Vizualno provjereno (Playwright 1280 i 390, živi podaci): ispravljen sudar klase `.px` s velikom cijenom u briefu; ime kompanije ispod tickera.
+- Ograničenja: sektor u prijedlozima je poznat samo za dionice iz Markets lista (SEC lista nema sektor). Offline brief i dalje radi samo za keširane tickere (AAPL, MSFT, NVDA); ostale iz Browse liste offline daju jasnu grešku.
+- Grana sadrži i commit iz PR #16 (test okvir); nakon spajanja #16 rebase na dev ga sam izbaci.
+- Sljedeće: stavka 3 (limit i stop nalozi).
+- Dopuna (isti PR): provjera s A-ovim radom pokazala je da Möbius paket (`mobius/`) ima vlastite rute pa /search i /markets tamo ne bi radili. Dodano u `mobius/sync.sh` i `mobius/service.py` (vidi docs/QUESTIONS.md), uz odobrenje vlasnika; `ui_*.js` regenerisani. Möbius testovi: 18 prolazi (`cd mobius && python -m pytest tests`).

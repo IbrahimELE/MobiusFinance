@@ -35,7 +35,9 @@ def stack(tmp_path_factory):
     try:
         _wait(f"http://127.0.0.1:{dport}/docs", procs[0])
         procs.append(subprocess.Popen([sys.executable, "-m", "uvicorn", "main:app", "--port", str(aport)], cwd=ROOT / "agent_service",
-                                      env={**env, "DATA_URL": f"http://127.0.0.1:{dport}"}, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
+                                      env={**env, "DATA_URL": f"http://127.0.0.1:{dport}", "DATA_OFFLINE": "1",
+                                           "CATALOG_CACHE_DIR": str(tmp / "catalog")},   # offline: catalog from committed snapshots
+                                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
         _wait(f"http://127.0.0.1:{aport}/features", procs[1])
         yield f"http://127.0.0.1:{aport}"
     finally:

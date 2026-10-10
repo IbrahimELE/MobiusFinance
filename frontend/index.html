@@ -60,6 +60,17 @@ header{position:sticky;top:0;z-index:20;background:rgba(7,11,20,.85);backdrop-fi
 .search .box{flex:1;position:relative}.search .box svg{position:absolute;left:12px;top:11px;width:18px;height:18px;color:var(--muted)}
 .search .input{width:100%;padding-left:38px;height:44px;font-size:15px}
 .search .btn{height:44px}
+.ac{position:absolute;left:0;right:0;top:48px;z-index:30;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:0 16px 40px rgba(0,0,0,.45);overflow:hidden;list-style:none;margin:0;padding:4px}
+.ac li{display:flex;align-items:center;gap:var(--s3);padding:8px 10px;border-radius:8px;cursor:pointer}
+.ac li.on,.ac li:hover{background:var(--surface-3)}.ac b{min-width:58px;font-size:14px}
+.ac .nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}.ac small{color:var(--faint);font-size:12px;white-space:nowrap}
+.ac .hint{color:var(--faint);font-size:12px;padding:6px 10px;cursor:default}.ac .hint:hover{background:none}
+.navb{height:44px}
+.mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--s4)}
+.mk-grid .card{margin:0;padding:var(--s4)}
+.mrow{display:flex;align-items:center;gap:var(--s3);padding:7px 6px;border-radius:8px;cursor:pointer;font-size:14px}
+.mrow:hover{background:var(--surface-2)}.mrow .tk{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}.mrow .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:12px}
+.mrow .mpx{text-align:right;min-width:72px}.mrow .mch{text-align:right;min-width:62px;font-weight:600}
 .ws{display:flex;align-items:center;gap:var(--s2);margin-left:auto}
 .ws .input{height:36px;min-width:150px}
 .ws-label{font-size:12px;color:var(--muted);font-weight:600}
@@ -203,9 +214,10 @@ footer{max-width:1320px;margin:0 auto;padding:0 var(--s5) var(--s6);color:var(--
   </div>
   <form class="search" id="f" role="search">
     <div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input class="input" id="t" placeholder="Ticker, e.g. AAPL, MSFT, NVDA" aria-label="Stock ticker" autocomplete="off" spellcheck="false"></div>
+      <input class="input" id="t" placeholder="Company or ticker, e.g. Nvidia, AAPL" aria-label="Search a company or ticker" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="ac" aria-expanded="false"><ul class="ac" id="ac" role="listbox" hidden></ul></div>
     <button class="btn primary" title="Pull live data and the latest 10-K, then let the AI write a sourced brief"><span class="long">Generate AI brief</span><span class="short">AI brief</span></button>
   </form>
+  <button class="btn ghost navb" id="mkt" title="Browse stocks by sector and today's movers">Markets</button>
   <div class="ws"><span class="ws-label">Workspace</span>
     <select class="input" id="proj" aria-label="Workspace"></select>
     <button class="btn ghost sm" id="newp" title="Create a separate workspace with its own briefs, paper account and learned preferences">+ New workspace</button>
@@ -273,13 +285,13 @@ const INTRADAY={"1d":300,"5d":1800};
 const POPULAR=["AAPL","MSFT","NVDA","TSLA","GOOGL"];
 
 /* ---------- landing ---------- */
-function landing(){cur=null;series=null;lastQuote=null;renderPaper();paperUI();
+function landing(){leaveMarkets();cur=null;series=null;lastQuote=null;renderPaper();paperUI();
   $("main").innerHTML=`<section class="landing">
   <div class="heroL">
     <div class="eyebrow">Your private research desk</div>
     <h1 style="margin-top:12px">Understand any stock in <em>under a minute</em>.</h1>
     <p class="lead">Type a ticker and Finance Desk pulls the live price, the financials and the risk section of the company's latest annual report (10-K). An AI analyst turns it into a short, sourced brief, and you can practise trading it with <b>$100,000 of virtual money</b>.</p>
-    <div class="try"><span class="muted" style="margin-right:4px">Try one:</span>${POPULAR.map(t=>`<button class="chipT" data-try="${t}">${t}</button>`).join("")}</div>
+    <div class="try"><span class="muted" style="margin-right:4px">Try one:</span>${POPULAR.map(t=>`<button class="chipT" data-try="${t}">${t}</button>`).join("")}<button class="chipT" id="browse" title="See stocks by sector with live prices">Don't know a ticker? Browse stocks →</button></div>
     <div class="stats"><div><b>10-K</b><span>risk factors, straight from SEC filings</span></div><div><b>[1] [2]</b><span>every claim links to its source</span></div><div><b>$100K</b><span>virtual cash to practise with</span></div></div>
   </div>
   <div class="features">
@@ -293,22 +305,40 @@ function landing(){cur=null;series=null;lastQuote=null;renderPaper();paperUI();
     <div class="step"><span class="n">2</span><div><b>Read the AI brief</b><span>Thesis, numbers, risks and sources on one page.</span></div></div>
     <div class="step"><span class="n">3</span><div><b>Practise &amp; follow</b><span>Paper-trade it, rate the brief, and track it on your watchlist with price alerts.</span></div></div>
   </div></div></section>`;
-  document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>run(b.dataset.try));
+  document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>run(b.dataset.try));$("browse").onclick=marketsView;
 }
+
+/* ---------- markets: browse stocks by sector and today's movers (contracts/catalog.md) ---------- */
+let mkOpen=false,mkData=null;
+const MK_LISTS=[["most_actives","Most active"],["day_gainers","Top gainers"],["day_losers","Top losers"]];
+const mrow=r=>`<div class="mrow" data-open="${esc(r.ticker)}" role="button" tabindex="0" title="Open the brief for ${esc(r.name)}"><span class="tk"><b>${esc(r.ticker)}</b><span class="nm">${esc(r.name)}</span></span><span class="mpx">${usd(r.price)}</span><span class="mch ${cls((r.change_pct??0)/100)}">${r.change_pct==null?"–":signed(r.change_pct,v=>v.toFixed(2))+"%"}</span></div>`;
+function leaveMarkets(){mkOpen=false;$("main").onclick=$("main").onkeydown=null}
+function renderMarkets(){if(!mkOpen)return;const m=mkData;
+  const when=m&&m.as_of?new Date(m.as_of).toLocaleString([],{dateStyle:"medium",timeStyle:"short"}):"";
+  const status=!m?"":m.live?`<span class="pill" title="Prices refresh every few minutes">● Live · ${esc(when)}</span>`:`<span class="pill" title="No connection to market data; showing the last saved prices">○ Saved prices · ${esc(when)}</span>`;
+  $("main").innerHTML=`<section id="markets"><div class="card"><div class="card-h"><div><div class="eyebrow">Markets</div><h2 style="margin-top:6px">Browse stocks</h2></div>${status}</div>
+    <p class="muted" style="margin:0">Don't know the ticker? Pick a company below, or type its name in the search box (e.g. <i>nvidia</i>). Click any stock to open its brief.</p></div>
+    ${!m?'<div class="card"><div class="loading"><div class="spinner"></div><span class="muted">Loading markets…</span></div></div>':
+      `<div class="eyebrow" style="margin:8px 0 10px">Today</div><div class="mk-grid">${MK_LISTS.map(([k,n])=>`<div class="card"><div class="card-h" style="margin-bottom:8px"><h3>${n}</h3></div>${(m.lists[k]||[]).map(mrow).join("")||'<div class="empty">Nothing here right now.</div>'}</div>`).join("")}</div>
+      <div class="eyebrow" style="margin:24px 0 10px">By sector</div>${m.sectors.length?`<div class="mk-grid">${m.sectors.map(s=>`<div class="card" data-sector="${esc(s.key)}"><div class="card-h" style="margin-bottom:8px"><h3>${esc(s.name)}</h3></div>${s.stocks.map(mrow).join("")}</div>`).join("")}</div>`:'<div class="empty">Sector lists are not available offline yet.</div>'}`}</section>`;
+  $("main").onclick=e=>{const r=e.target.closest("[data-open]");if(r)run(r.dataset.open)};
+  $("main").onkeydown=e=>{const r=e.target.closest("[data-open]");if(r&&e.key=="Enter")run(r.dataset.open)}}
+async function loadMarkets(){try{const m=await J("/markets");if(mkOpen){mkData=m;renderMarkets()}}catch(e){if(mkOpen&&!mkData)$("main").innerHTML=`<div class="card errbox"><h3>Couldn't load markets</h3><p class="muted">${esc(e.message)}</p></div>`}}
+function marketsView(){cur=null;series=null;lastQuote=null;mkOpen=true;renderMarkets();renderPaper();loadMarkets()}
 
 /* ---------- workspaces ---------- */
 async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(P);
   $("proj").innerHTML=l.map(x=>`<option value="${esc(x)}" ${x==P?"selected":""}>${esc(x)}</option>`).join("")}
 
 /* ---------- brief ---------- */
-async function run(t){if(!t)return;$("t").value=t;
+async function run(t){if(!t)return;leaveMarkets();closeAc();$("t").value=t;
   $("main").innerHTML=`<div class="card"><div class="loading"><div class="spinner"></div><div><b>Researching ${esc(t)}…</b><div class="muted" style="font-size:14px">Fetching price, financials and the 10-K risk section, then writing the brief. This can take up to a minute.</div></div></div><div class="skel" style="width:60%;margin-top:20px"></div><div class="skel"></div><div class="skel" style="width:80%"></div></div>`;
   try{show(await post("/brief",{ticker:t,project_id:P}));list()}
   catch(e){$("main").innerHTML=`<div class="card errbox"><h3 style="margin-bottom:8px">Couldn't build a brief for ${esc(t)}</h3><p class="muted" style="margin:0 0 16px">${esc(e.message)}</p><button class="btn ghost" id="back">Back to start</button></div>`;$("back").onclick=landing}}
 function bars(vals,labels,color){const mx=Math.max(...vals.map(v=>Math.abs(v||0)),1),w=100/vals.length;
   return `<svg viewBox="0 0 100 60" preserveAspectRatio="none">${vals.map((v,i)=>{const h=Math.abs(v||0)/mx*46;return `<rect x="${i*w+w*.2}" y="${52-h}" width="${w*.6}" height="${h}" fill="${color}" rx="1.5"/><text x="${i*w+w/2}" y="59" font-size="5" text-anchor="middle" fill="#8b97ab">${labels[i]}</text>`}).join("")}</svg>`}
 function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a class="src" title="${esc(s.label)}" href="${esc(s.url)}" target="_blank" rel="noopener">${n}</a>`:m})}
-function show(b){cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||{};
+function show(b){leaveMarkets();cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||{};
   const kp=(l,v,tip="")=>v==null||v==="–"?"":`<div class="kpi" title="${esc(tip)}"><small>${l}</small><b>${v}</b></div>`;
   const rng=x.year_low!=null&&x.year_high!=null?`<div class="kpi wide"><small>52-week range</small><div class="range"><i style="left:calc(${Math.min(100,Math.max(0,(m.price-x.year_low)/(x.year_high-x.year_low)*100))}% - 2px)"></i></div><div class="range-ends"><span>Low ${usd(x.year_low)}</span><span>High ${usd(x.year_high)}</span></div></div>`:"";
   const cats={};b.risks.forEach(r=>(cats[r.category||"Risks"]??=[]).push(r));
@@ -395,7 +425,7 @@ async function refreshQuote(){if(!cur)return;const b=cur;
   }catch(e){setLive(null)}}
 const LIVE_MS=10000;
 let tickN=0;
-async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI()}
+async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI();if(mkOpen&&tickN%6===0)loadMarkets()}
 setInterval(tick,LIVE_MS);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ---------- learning ---------- */
@@ -516,7 +546,23 @@ function renderLb(){const r=lastLb;$("lb").hidden=false;
 $("lbtabs").onclick=e=>{const b=e.target.closest("[data-lp]");if(!b||b.dataset.lp==lbPer)return;lbPer=localStorage.lbPer=b.dataset.lp;renderLb();lbUI()};
 
 /* ---------- wiring ---------- */
-$("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
+/* ---------- search: ticker or company name, with suggestions (contracts/catalog.md) ---------- */
+let acItems=[],acIdx=-1,acSeq=0,acTimer=0;
+function closeAc(){acItems=[];acIdx=-1;$("ac").hidden=true;$("t").setAttribute("aria-expanded","false");$("t").removeAttribute("aria-activedescendant")}
+function drawAc(q){const ul=$("ac");if(!q){closeAc();return}
+  ul.innerHTML=acItems.length?acItems.map((r,i)=>`<li role="option" id="ac${i}" data-i="${i}" class="${i==acIdx?"on":""}" aria-selected="${i==acIdx}"><b>${esc(r.ticker)}</b><span class="nm">${esc(r.name)}</span><small>${esc(r.sector||"")}</small></li>`).join(""):`<li class="hint">No matching company. Press Enter to try "${esc(q.toUpperCase())}" as a ticker.</li>`;
+  ul.hidden=false;$("t").setAttribute("aria-expanded","true");if(acIdx>=0)$("t").setAttribute("aria-activedescendant","ac"+acIdx);else $("t").removeAttribute("aria-activedescendant")}
+async function suggest(q){const seq=++acSeq;try{const r=await J("/search?q="+encodeURIComponent(q));if(seq!==acSeq||$("t").value.trim()!==q)return;acItems=r.results;acIdx=-1;drawAc(q)}catch(e){}}
+async function resolve(q){/* Enter: highlighted suggestion > exact ticker > best name match > typed text as ticker */
+  if(acIdx>=0&&acItems[acIdx])return acItems[acIdx].ticker;
+  try{const r=await J("/search?q="+encodeURIComponent(q));const ex=r.results.find(x=>x.ticker==q.toUpperCase());return ex?ex.ticker:r.results[0]?r.results[0].ticker:q.toUpperCase()}catch(e){return q.toUpperCase()}}
+$("t").oninput=()=>{const q=$("t").value.trim();clearTimeout(acTimer);if(!q){acSeq++;closeAc();return}acTimer=setTimeout(()=>suggest(q),150)};
+$("t").onkeydown=e=>{if(e.key=="Escape"){closeAc();return}if($("ac").hidden||!acItems.length)return;
+  if(e.key=="ArrowDown"||e.key=="ArrowUp"){e.preventDefault();const n=acItems.length+1;acIdx=(acIdx+1+(e.key=="ArrowDown"?1:-1)+n)%n-1;drawAc($("t").value.trim())}};
+$("ac").onmousedown=e=>{const li=e.target.closest("li[data-i]");if(!li)return;e.preventDefault();run(acItems[+li.dataset.i].ticker)};
+$("t").onblur=()=>setTimeout(closeAc,120);
+$("f").onsubmit=async e=>{e.preventDefault();const q=$("t").value.trim();if(!q)return;clearTimeout(acTimer);acSeq++;run(await resolve(q))};
+$("mkt").onclick=marketsView;
 $("home").onclick=landing;
 $("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();if(lastLb)renderLb();toast(`Switched to workspace <b>${esc(P)}</b>`)};
 $("newp").onclick=async()=>{const n=await modal({title:"New workspace",text:"Each workspace has its own saved briefs, paper account and learned preferences.",input:"e.g. Tech stocks",confirm:"Create"});if(!n)return;
