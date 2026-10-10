@@ -1,3 +1,4 @@
 agent_service/store/
 __pycache__/
 .env
+agent_service/cache/
