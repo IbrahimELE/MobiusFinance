@@ -28,7 +28,8 @@ ERROR_TEXT = {
     "not_in_cache": "Offline mode: no saved data for this ticker (demo tickers: AAPL, MSFT, NVDA).",
     "upstream_unavailable": "The data source isn't responding. Try again in a few seconds.",
     "insufficient_cash": "Not enough cash in your paper account for this order.",
-    "insufficient_position": "You don't own that many shares to sell.",
+    "insufficient_position": "You don't own enough free shares (some may be locked in open orders).",
+    "order_not_found": "That order is no longer open (it may have just filled).",
 }
 
 def upstream_error(r: httpx.Response) -> HTTPException:
@@ -246,6 +247,10 @@ def paper_portfolio(project_id: str = "default"):
 @app.post("/paper/orders")
 def paper_order(body: dict):
     return proxy(DATA_URL, "POST", "/paper/orders", body=body)
+
+@app.delete("/paper/orders/{order_id}")
+def paper_cancel(order_id: str, project_id: str = "default"):
+    return proxy(DATA_URL, "DELETE", f"/paper/orders/{order_id}", {"project_id": slug(project_id)})
 
 @app.post("/paper/reset")
 def paper_reset(project_id: str = "default"):

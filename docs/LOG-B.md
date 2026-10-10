@@ -91,3 +91,11 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - Grana sadrži i commit iz PR #16 (test okvir); nakon spajanja #16 rebase na dev ga sam izbaci.
 - Sljedeće: stavka 3 (limit i stop nalozi).
 - Dopuna (isti PR): provjera s A-ovim radom pokazala je da Möbius paket (`mobius/`) ima vlastite rute pa /search i /markets tamo ne bi radili. Dodano u `mobius/sync.sh` i `mobius/service.py` (vidi docs/QUESTIONS.md), uz odobrenje vlasnika; `ui_*.js` regenerisani. Möbius testovi: 18 prolazi (`cd mobius && python -m pytest tests`).
+
+## 2026-10-10 · Korak 16: limit i stop-loss nalozi, paper (feature/b-limit-stop-orders)
+- Ugovor prvo: `contracts/paper.md` "Limit i stop nalozi". Backend je u A-ovom `data_service` i `mobius/` (uz odobrenje vlasnika; detalji za A u docs/QUESTIONS.md).
+- Pravila: limit buy kad cijena ≤ limita, limit sell kad ≥ limita, stop-loss (samo prodaja) kad ≤ stopa; izvršenje po zadanoj cijeni. Ako je uslov ispunjen već pri slanju, nalog se odmah izvršava po trenutnoj (boljoj) cijeni. Rezervacija gotovine/dionica dok je nalog otvoren; otkazivanje oslobađa rezervaciju; reset briše otvorene naloge.
+- Provjera: data_service pozadinska nit svakih 10 s + pri svakom GET /paper/portfolio (UI ga zove svakih 10 s). Möbius paket: samo pri učitavanju portfelja. Nalozi se izvršavaju samo dok servis radi.
+- UI: Market / Limit / Stop-loss, polje cijene (počinje od žive cijene), pregled rezervacije, Buy onemogućen za stop-loss, "Open orders" s Cancel, "Recent orders" sa oznakom tipa (sa servera, ne više iz localStorage), obavijest kad se otvoreni nalog izvrši, napomena "only while Finance Desk is running". Panel se ne iscrtava ponovo dok korisnik kuca u polje količine ili cijene.
+- Testovi: data_service 65 (8 novih), Möbius 19 (1 novi), agent+UI 20 (3 nova e2e). Vizualno provjereno 1280 i 390.
+- Sljedeće: stavka 4 (Crypto).

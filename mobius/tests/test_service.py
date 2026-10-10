@@ -90,3 +90,13 @@ def test_search_and_markets_come_from_the_catalog_offline(call, monkeypatch):
     assert status == 200 and r["results"][0]["ticker"] == "NVDA"
     status, m = call("GET", "/markets")
     assert status == 200 and m["live"] is False and len(m["sectors"]) == 11
+
+
+def test_limit_order_waits_and_can_be_cancelled(call):
+    status, r = call("POST", "/paper/orders", {"project_id": "demo", "ticker": "AAPL", "side": "buy", "qty": 1,
+                                               "type": "limit", "limit_price": 150})
+    assert status == 200 and r["fill"] is None and r["reserved_cash"] == 150
+    status, pf = call("DELETE", f"/paper/orders/{r['pending']['id']}", project_id="demo")
+    assert status == 200 and pf["open_orders"] == [] and pf["cash"] == 100_000
+    status, err = call("DELETE", f"/paper/orders/{r['pending']['id']}", project_id="demo")
+    assert status == 404 and err["error"] == "order_not_found"
