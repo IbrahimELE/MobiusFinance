@@ -9,6 +9,7 @@ const REFRESH_MS = 30000
 const esc = (x) => String(x ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 const usd = (x) => (x == null ? '–' : Number(x).toLocaleString('en-US', { style: 'currency', currency: 'USD' }))
 const cls = (x) => (x > 0.004 ? 'up' : x < -0.004 ? 'down' : 'muted')
+const money = (x) => `${x > 0.004 ? '+' : x < -0.004 ? '−' : ''}${usd(Math.abs(x || 0))}`
 const signed = (x, d = 2) => `${Math.abs(x) < 0.005 ? '' : x > 0 ? '+' : ''}${(Math.abs(x) < 0.005 ? 0 : x).toFixed(d)}%`
 const rid = () => (crypto.randomUUID ? crypto.randomUUID() : `${Date.now().toString(16)}-${Math.random().toString(16).slice(2, 14)}`)
 
@@ -16,7 +17,7 @@ export function startCompetition({ root, call, every }) {
   const aside = root.querySelector('aside')
   aside.insertAdjacentHTML('afterbegin', `
     <div class="card acct" id="gc-card">
-      <div class="card-h"><h3>Global competition</h3><span class="pill" id="gc-pill">All Möbius players</span></div>
+      <div class="card-h"><h3>Leaderboard</h3><span class="pill" id="gc-pill">All Möbius players</span></div>
       <div id="gc-body"><div class="loading"><div class="spinner"></div><span class="muted">Connecting to the competition…</span></div></div>
     </div>`)
   const body = root.querySelector('#gc-body')
@@ -59,16 +60,25 @@ export function startCompetition({ root, call, every }) {
     body.innerHTML = `<p class="muted" style="margin:0 0 12px">${esc(message)}</p><button class="btn ghost sm" id="gc-retry">Try again</button>`
   }
 
+  // One row per person (@handle), ranked by the money made in the period; % is secondary.
+  function rowHtml(s, moved) {
+    const mine = s.project_id === ctx.handle
+    return `
+      <div class="lb-row${mine ? ' me' : ''}${moved && s.rank === 1 ? ' first' : ''}">
+        <span class="rk">${moved && s.rank <= 3 ? MEDAL[s.rank - 1] : s.rank}</span>
+        <span class="nm" title="${esc(s.project_id)}">${esc(s.project_id)}${mine ? ' <span class="faint">(you)</span>' : ''}</span>
+        <span style="text-align:right;line-height:1.25"><b class="${cls(s.profit)}">${money(s.profit)}</b><small class="${cls(s.return_pct)}" style="display:block;font-size:11px">${signed(s.return_pct)}</small></span></div>`
+  }
+
   function standingsHtml() {
     const rows = board.standings
-    const moved = rows.some((s) => !s.disqualified && Math.abs(s.return_pct) >= 0.005)
-    const list = rows.slice(0, 10).map((s) => `
-      <div class="lb-row${s.project_id === ctx.handle ? ' me' : ''}${moved && s.rank === 1 ? ' first' : ''}">
-        <span class="rk">${moved && s.rank <= 3 ? MEDAL[s.rank - 1] : s.rank}</span>
-        <span class="nm" title="${esc(s.project_id)}">${esc(s.project_id)}${s.project_id === ctx.handle ? ' <span class="faint">(you)</span>' : ''}</span>
-        <b class="${cls(s.return_pct)}">${signed(s.return_pct)}</b></div>`).join('')
-    const me = rows.find((s) => s.project_id === ctx.handle)
-    const outside = me && me.rank > 10 ? `<div class="note" style="margin:6px 0 0">You are #${me.rank} of ${rows.length}.</div>` : ''
+    const moved = rows.some((s) => Math.abs(s.profit || 0) >= 0.005)
+    const list = rows.map((s) => rowHtml(s, moved)).join('')
+    const me = board.me
+    const outside = me && !rows.some((s) => s.project_id === me.project_id)
+      ? `<div class="faint" style="text-align:center;letter-spacing:4px;margin:2px 0" aria-hidden="true">···</div>${rowHtml(me, moved)}
+         <div class="note" style="margin:6px 0 0">You are #${me.rank} of ${board.ranked}, ${usd(Math.max(0, rows[rows.length - 1].profit - me.profit))} behind the top ${rows.length}.</div>`
+      : ''
     const idle = list && !moved ? `<div class="note" style="margin:8px 0 0">No price moves yet ${PERIOD_NAME[period]}; medals go only to periods where something moved.</div>` : ''
     const medals = board.medals.length ? `<div class="eyebrow" style="margin:16px 0 6px">All-time podiums</div><div class="lb-medals"><span></span><span>🥇</span><span>🥈</span><span>🥉</span>${board.medals.slice(0, 8).map((m) => `<span class="nm">${esc(m.project_id)}</span><span>${m.gold}</span><span>${m.silver}</span><span>${m.bronze}</span>`).join('')}</div>` : ''
     return `
@@ -107,7 +117,7 @@ export function startCompetition({ root, call, every }) {
       </form>
       ${positions}
       <div style="margin-top:20px">${standingsHtml()}</div>
-      <div class="note">Separate from your workspaces. Filled at the host's price; no resets.</div>`
+      <div class="note">Ranked by money made in the period. Your competition account is separate from your workspaces, filled at the host's price, with no resets.</div>`
   }
 
   async function trade(side) {

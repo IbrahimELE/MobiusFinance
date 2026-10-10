@@ -91,7 +91,7 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
     key = (method, parts[0] if parts else "", len(parts))
 
     if key == ("GET", "features", 1):
-        return {"paper": True, "learning": True, "live_data": True, "ai": True}
+        return {"paper": True, "learning": True, "live_data": True, "ai": True, "workspace_leaderboard": False}
     if key == ("GET", "projects", 1):
         return app.desk.projects()
     if key == ("POST", "projects", 1):

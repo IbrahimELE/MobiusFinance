@@ -87,3 +87,10 @@ Estetika:
 - Provjera: testovi mobius 16 (lažni @handle, izmijenjen nalog, neregistrovana instanca, ponovljeni nalog, nalog prije pridruživanja, samo domaćin prima razmjenu, nema reseta), data 56; uživo: identitet @ibrahim, javne rute s interneta (privatne 404), siguran dohvat dokaza 0,29 s, blokirane lokalne/privatne adrese; u pregledniku pridruživanje i kupovina 10 NVDA u takmičenju.
 - Ograničenje: put igrač → domaćin s dvije različite instance testiran je simulacijom i mrežnim dijelovima zasebno; prvi stvarni drugi igrač je konačna provjera. Domaćin ne smije sam sebi slati razmjenu (Möbius serijalizuje javne zahtjeve aplikacije) pa igra lokalno.
 - Sljedeće: objava u Store (faza 3), da drugi mogu instalirati.
+
+## 2026-10-10 · Korak 11: leaderboard po osobama i zaradi (po zahtjevu vlasnika)
+- Vlasnik: leaderboard treba prikazivati osobu (ne workspace) i koliko je novca zaradila, sortirano po tome; samo top 5–10, a ako sam van toga, moje ime i mjesto ispod.
+- data_service `leaderboard.py`: novo polje `profit` (zarada u periodu, USD) u redovima i podijima; opcija `rank_by="profit"` (zadano ostaje `return_pct` za workspaceove). Ugovor i mock dopunjeni (`profit`).
+- Takmičenje rangira po zaradi; odgovor nosi top 10, `me` (moj red i mjesto) i `ranked` (broj rangiranih).
+- Möbius UI: kartica „Leaderboard" = @handle + zarada u $ (procenat sitnije), top 10, pa „···" i moj red s „#N of M, $X behind the top 10"; stari leaderboard workspaceova se u Möbius verziji ne prikazuje (`workspace_leaderboard: false`, pravilo u `port_ui.py`); web verzija nepromijenjena.
+- Provjera: data 57, mobius 17 testova (rang po zaradi, top 10 + moje mjesto); probna stranica s 23 igrača (pravi kod i stil) i živa aplikacija.

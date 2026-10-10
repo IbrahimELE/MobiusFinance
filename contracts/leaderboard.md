@@ -11,11 +11,12 @@ Lokalno rangiranje paper računa svih workspaceova na jednoj instalaciji po prin
 - U rangu je svaki workspace koji je napravio bar jedan nalog prije kraja perioda.
 - **Reset računa usred perioda = diskvalifikacija za taj period** (`disqualified: true`, `note: "reset"`, bez ranga). Reset briše naloge, pa se prinos ne bi mogao pošteno izračunati, a reset ne smije brisati loš rezultat.
 - Kad period završi, top 3 se trajno upisuju (`podiums`); `medals` broji koliko je puta koji workspace bio 1., 2. i 3. u toj vrsti perioda. Period u kojem se ničija vrijednost nije pomjerila (vikend, praznik, sve u gotovini) nema pobjednika ni medalja. Jednak prinos se razvrstava po imenu workspacea. Zatvoreni periodi se upisuju pri prvom čitanju nakon granice (unazad najviše 62 dana / 26 sedmica / 12 mjeseci).
+- `profit` = zarada u periodu u USD (vrijednost na kraju − vrijednost na početku). Rang je po `return_pct`; zajedničko takmičenje (svi počinju sa 100.000 USD) rangira po `profit`.
 - `stale_prices: true` kad je neka trenutna vrijednost izračunata bez žive cijene.
 
 ## Odgovor
 ```
-{period, timezone, start, end, standings[{rank|null, project_id, start_equity, equity, return_pct, disqualified, note|null}],
- medals[{project_id, gold, silver, bronze}], last_podium{start, end, places[{rank, project_id, return_pct}]}|null, stale_prices, updated_at}
+{period, timezone, start, end, standings[{rank|null, project_id, start_equity, equity, return_pct, profit, disqualified, note|null}],
+ medals[{project_id, gold, silver, bronze}], last_podium{start, end, places[{rank, project_id, return_pct, profit}]}|null, stale_prices, updated_at}
 ```
 `standings`: rangirani od najboljeg, diskvalifikovani na kraju. `medals`: od najviše zlata (pa srebra, bronze).

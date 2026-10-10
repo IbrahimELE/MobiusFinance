@@ -50,6 +50,10 @@ JS_RULES = [
      'vertLine:{labelBackgroundColor:cssVar("--accent")},horzLine:{labelBackgroundColor:cssVar("--accent")}'),
     (r'setInterval\(tick,LIVE_MS\);document\.addEventListener\("visibilitychange",\(\)=>\{if\(!document\.hidden\)tick\(\)\}\);',
      'every(tick,LIVE_MS);onVisible(()=>{if(!document.hidden)tick()});'),
+    # Möbius ranks people (@handle) in the competition card instead of workspaces; the service
+    # reports workspace_leaderboard: false, so the workspace card stays hidden and never polls.
+    (r'async function lbUI\(\)\{if\(!feat\.paper\)return;',
+     'async function lbUI(){if(!feat.paper||feat.workspace_leaderboard===false)return;'),
     # Alerts are checked while the app is open; they now arrive as Möbius notifications.
     (r'We\'ll notify you when \$\{t\} crosses the price you enter \(while Finance Desk is open\)\.',
      "We'll send you a Möbius notification when ${t} crosses the price you enter (checked while Finance Desk is open)."),

@@ -25,6 +25,7 @@ PeriodKind = Literal["day", "week", "month"]
 # How far back closed periods are backfilled on the first read (bounds work after a long pause).
 BACKFILL = {"day": 62, "week": 26, "month": 12}
 PODIUM_SIZE = 3
+RankBy = Literal["return_pct", "profit"]
 
 
 # --- contract models ------------------------------------------------------------
@@ -35,6 +36,7 @@ class Standing(BaseModel):
     start_equity: float
     equity: float
     return_pct: float | None
+    profit: float | None = None  # money made in the period (equity - start_equity), USD
     disqualified: bool
     note: str | None = None
 
@@ -43,6 +45,7 @@ class Place(BaseModel):
     rank: int
     project_id: str
     return_pct: float
+    profit: float | None = None
 
 
 class Podium(BaseModel):
@@ -142,7 +145,10 @@ def equity_at(acc: dict, boundary: datetime, closes: Closes) -> float:
 
 class Leaderboard:
     def __init__(self, store: PaperStore, paper: PaperService, closes: Closes, podium_path: Path,
-                 now: Callable[[], datetime] = lambda: datetime.now(timezone.utc)):
+                 now: Callable[[], datetime] = lambda: datetime.now(timezone.utc), rank_by: RankBy = "return_pct"):
+        """rank_by: "return_pct" (workspaces, contract default) or "profit" (money made; used when every
+        player starts from the same cash, like the shared competition)."""
+        self.rank_by = rank_by
         self.store = store
         self.paper = paper
         self.closes = closes
@@ -163,7 +169,7 @@ class Leaderboard:
             pf = self.paper.portfolio(pid)
             live[pid] = pf.equity
             stale |= pf.stale_prices
-        rows = _rank(accounts, start, now, closes, lambda pid: live[pid])
+        rows = _rank(accounts, start, now, closes, lambda pid: live[pid], self.rank_by)
 
         podiums = [p for p in state["podiums"] if p["kind"] == kind]
         return LeaderboardOut(
@@ -191,8 +197,9 @@ class Leaderboard:
         changed = False
         while cursor < current:
             end = next_start(kind, cursor)
-            rows = _rank(accounts, cursor, end, closes, lambda pid, e=end: equity_at(accounts[pid], e, closes))
-            places = [Place(rank=r.rank, project_id=r.project_id, return_pct=r.return_pct).model_dump()
+            rows = _rank(accounts, cursor, end, closes, lambda pid, e=end: equity_at(accounts[pid], e, closes),
+                         self.rank_by)
+            places = [Place(rank=r.rank, project_id=r.project_id, return_pct=r.return_pct, profit=r.profit).model_dump()
                       for r in rows if r.rank and r.rank <= PODIUM_SIZE]
             # A period where nobody's value moved (weekend, holiday, all cash) has no winner;
             # otherwise the name tie-break would hand out medals.
@@ -220,7 +227,7 @@ class Leaderboard:
 
 
 def _rank(accounts: dict, start: datetime, end: datetime, closes: Closes,
-          end_equity: Callable[[str], float]) -> list[Standing]:
+          end_equity: Callable[[str], float], rank_by: RankBy = "return_pct") -> list[Standing]:
     ranked, out = [], []
     for pid, acc in accounts.items():
         opened = opened_at(acc)
@@ -237,8 +244,8 @@ def _rank(accounts: dict, start: datetime, end: datetime, closes: Closes,
             continue
         pct = round((value / begin - 1) * 100, 2) if begin else 0.0
         ranked.append(Standing(rank=None, project_id=pid, start_equity=begin, equity=value, return_pct=pct,
-                               disqualified=False))
-    ranked.sort(key=lambda s: (-s.return_pct, s.project_id))
+                               profit=round(value - begin, 2), disqualified=False))
+    ranked.sort(key=lambda s: (-getattr(s, rank_by), s.project_id))
     for i, s in enumerate(ranked, 1):
         s.rank = i
     return ranked + sorted(out, key=lambda s: s.project_id)

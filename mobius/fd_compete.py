@@ -32,6 +32,7 @@ SERVICE_PATH = "/api/app-services/finance-desk"
 PROOF_TTL = 120
 DIRECTORY_TTL = 300
 RECEIPT_TTL = 24 * 3600
+TOP = 10  # rows everyone sees; a player outside them also gets their own row and place
 ACTIONS = {"join", "portfolio", "order", "standings"}
 WRITES = {"join", "order"}
 
@@ -114,7 +115,9 @@ class Competition:
         self.root = Path(root) / "competition"
         store = JsonPaperStore(self.root / "accounts")
         self.paper = PaperService(store, price_of)
-        self.board = Leaderboard(store, self.paper, closes, self.root / "leaderboard" / "podiums.json")
+        # Everyone starts with the same cash, so players are ranked by the money they made.
+        self.board = Leaderboard(store, self.paper, closes, self.root / "leaderboard" / "podiums.json",
+                                 rank_by="profit")
         self._lock = threading.Lock()
 
     def execute(self, actor: str, action: str, body: dict, request_id: str) -> dict:
@@ -151,7 +154,10 @@ class Competition:
             # Accounts are stored by handle without "@"; players see handles.
             for row in board["standings"] + board["medals"] + ((board["last_podium"] or {}).get("places") or []):
                 row["project_id"] = "@" + row["project_id"]
-            return {**board, "joined": self._joined(pid), "players": len(self.paper.store.ids())}
+            ranked = [r for r in board["standings"] if r["rank"]]
+            me = next((r for r in ranked if r["project_id"] == "@" + pid), None)
+            return {**board, "standings": ranked[:TOP], "me": me, "ranked": len(ranked),
+                    "medals": board["medals"][:TOP], "joined": self._joined(pid), "players": len(self.paper.store.ids())}
         require(self._joined(pid), 409, "not_joined", "Join the competition first.")
         if action == "portfolio":
             return self.paper.portfolio(pid).model_dump(mode="json")

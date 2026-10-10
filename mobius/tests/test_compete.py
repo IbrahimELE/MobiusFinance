@@ -154,3 +154,22 @@ def test_the_host_refuses_an_exchange_claiming_to_come_from_itself(world):
     status, body = service.handle({"schema": 1, "public": True, "method": "POST", "path": "exchange", "query": {},
                                    "body": {"sender": HOST, "proof": "0" * 64, "request": {}}}, world.roots[HOST])
     assert (status, body["error"]) == (400, "invalid_request")
+
+
+def test_board_shows_top_ten_by_money_made_plus_the_players_own_place(world, monkeypatch):
+    world.call(PLAYER, "join")
+    comp = service.App(world.roots[HOST]).competition
+    store = comp.paper.store
+    for i in range(1, 13):                                # 12 other players with growing profits
+        name = f"p{i:02d}"
+        store.save(name, {"cash": 100_000 - 10 * (200.0 - i), "starting_cash": 100_000.0, "realized_pnl": 0.0,
+                          "positions": {"AAPL": {"qty": 10.0, "avg_price": 200.0 - i, "last_price": 200.0}},
+                          "orders": [{"id": name, "ticker": "AAPL", "side": "buy", "qty": 10.0, "price": 200.0 - i,
+                                      "value": 10 * (200.0 - i), "created_at": "2026-10-01T15:00:00+00:00"}],
+                          "created_at": "2026-10-01T15:00:00+00:00", "resets": []})
+    world.call(PLAYER, "order", {"ticker": "AAPL", "side": "buy", "qty": 1}, rid="d3d3d3d3-0000-0000-0001")
+    status, board = world.call(PLAYER, "standings", {"period": "month"})
+    assert status == 200 and len(board["standings"]) == 10 and board["ranked"] == 13
+    profits = [r["profit"] for r in board["standings"]]
+    assert profits == sorted(profits, reverse=True) and board["standings"][0]["project_id"] == "@p12"
+    assert board["me"]["project_id"] == "@amra" and board["me"]["rank"] == 13
