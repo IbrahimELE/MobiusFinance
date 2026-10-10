@@ -13,3 +13,4 @@ Opcionalna polja (peers...) su prazna dok funkcija nije uključena.
 
 Dodatna polja koja agent vraća uz Brief (opciona, ne lome ugovor): `mode` ("llm"|"cache"|"template"), `peers` = lista ticker stringova.
 Agent endpointi: GET /projects, POST /projects {name}, DELETE /briefs/{ticker}?project_id=, GET /compare?tickers=A,B, POST /chat {message, project_id}.
+Katalog dionica (pretraga po imenu, Browse stocks): `catalog.md` (GET /search, GET /markets, servira agent_service).
