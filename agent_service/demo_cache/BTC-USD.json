@@ -1,0 +1,34 @@
+{
+ "ticker": "BTC-USD",
+ "name": "Bitcoin",
+ "asset_class": "crypto",
+ "thesis": "Bitcoin trades at about $82,960, up 0.50% on the day and 8.35% over the last 30 days, but it remains 26.72% lower over one year [1]. Price sits well below the 52-week high of $116,273 and about 44% above the low of $57,748, and the maximum drawdown over the year was 49.2% [1]. Annualized 30-day volatility of 38.02% shows sizeable price swings even during the recent rebound [1]. This data shows price behaviour only, so the short-term recovery within a weaker one-year trend is the extent of what it supports [1].",
+ "mode": "llm",
+ "metrics": {
+  "price": 82960.1328,
+  "pe": null,
+  "revenue_growth_yoy": null,
+  "net_margin": null
+ },
+ "risks": [],
+ "peers": [
+  "ETH-USD",
+  "SOL-USD"
+ ],
+ "extras": {
+  "year_high": 116273.3125,
+  "year_low": 57747.7656,
+  "volume": 14777873408.0,
+  "return_1y": -0.2672,
+  "return_30d": 0.0835,
+  "volatility_30d": 0.3802,
+  "max_drawdown_1y": -0.492
+ },
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/BTC-USD"
+  }
+ ],
+ "generated_at": "2026-10-10T16:46:56.861395+00:00"
+}

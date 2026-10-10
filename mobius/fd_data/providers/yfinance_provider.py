@@ -7,6 +7,7 @@ the limits. Every NaN/inf coming out of pandas is turned into None here.
 from __future__ import annotations
 
 import math
+import re
 import time
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
@@ -51,6 +52,11 @@ def _market_time(info: dict) -> str | None:
 
 _NAMES: dict[str, tuple[float, dict]] = {}
 _NY = ZoneInfo("America/New_York")
+
+
+def is_crypto(ticker: str) -> bool:
+    """Yahoo crypto pairs priced in dollars, e.g. BTC-USD, ETH-USD. They trade 24/7."""
+    return re.fullmatch(r"[A-Z0-9]{2,12}-USD", ticker.upper()) is not None
 
 
 def us_market_state(now: datetime | None = None) -> str:
@@ -136,7 +142,8 @@ class YFinanceProvider:
         prev = _num(fi.get("regularMarketPreviousClose")) or _num(fi.get("previousClose"))
         change = round(price - prev, 4) if prev else None
         names = self._names(t, ticker)
-        state = us_market_state()
+        crypto = is_crypto(ticker)
+        state = "REGULAR" if crypto else us_market_state()  # crypto never closes
         return Quote(
             ticker=ticker,
             name=names.get("name"),
@@ -149,6 +156,7 @@ class YFinanceProvider:
             as_of=_now(),
             market_state=state,
             market_open=state == "REGULAR",
+            asset_class="crypto" if crypto else "equity",
             day_high=_num(fi.get("dayHigh"), 4),
             day_low=_num(fi.get("dayLow"), 4),
             year_high=_num(fi.get("yearHigh"), 4),

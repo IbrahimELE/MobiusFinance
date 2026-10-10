@@ -99,3 +99,12 @@ Format: datum · korak · šta · zašto · kako provjeriti · sljedeće.
 - UI: Market / Limit / Stop-loss, polje cijene (počinje od žive cijene), pregled rezervacije, Buy onemogućen za stop-loss, "Open orders" s Cancel, "Recent orders" sa oznakom tipa (sa servera, ne više iz localStorage), obavijest kad se otvoreni nalog izvrši, napomena "only while Finance Desk is running". Panel se ne iscrtava ponovo dok korisnik kuca u polje količine ili cijene.
 - Testovi: data_service 65 (8 novih), Möbius 19 (1 novi), agent+UI 20 (3 nova e2e). Vizualno provjereno 1280 i 390.
 - Sljedeće: stavka 4 (Crypto).
+
+## 2026-10-10 · Korak 17: Crypto (feature/b-crypto)
+- Kartica "Crypto" (dugme u zaglavlju): 12 velikih coinova sa živom cijenom i dnevnom promjenom (keš 60 s), oznaka "Live 24/7" ili "Saved prices"; klik otvara brief. Pretraga "bitcoin"/"btc" → BTC-USD.
+- Brief za crypto: isti tok kao dionice (graf, živa cijena, watchlist, paper trading), ali samo izvor [1]: prinos 30 dana / 1 godina, volatilnost, najveći pad, 52-sedmični raspon, volumen. Nema sekcije rizika ni fundamenata (P/E, prihodi); jasna napomena u briefu. LLM prompt izričito zabranjuje izmišljanje rizika i 10-K.
+- Status tržišta za crypto je uvijek "Live" (ispravljeno na izvoru u data_service, `asset_class`). Paper: decimalne količine (0.01 / 0.1 / 0.5 / 1 / Max do 6 decimala, korak ±0.01, "per coin").
+- Offline: BTC-USD i ETH-USD u data_service demo kešu + AI briefovi u `agent_service/demo_cache/`; lista coinova iz snimka.
+- Möbius paket: iste rute (vidi docs/QUESTIONS.md).
+- Testovi: agent+UI 29 (6 unit + 3 e2e novih), Möbius 20, data_service 66. Vizualno provjereno sa živim podacima.
+- Izvor [2]: postoji stvarni prijedlog (10-K spot ETF-ova IBIT/ETHA, Item 1A o rizicima bitcoina/ethera), čeka odluku vlasnika; do tada brief bez rizika.

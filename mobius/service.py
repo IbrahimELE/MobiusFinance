@@ -18,6 +18,7 @@ MOBIUS_PRELOAD = True
 import httpx
 
 import fd_catalog
+import fd_crypto
 import fd_compete
 import fd_desk
 from fd_compete import Competition, Proofs, Refused
@@ -107,6 +108,16 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
     # --- briefs ---
     if key == ("POST", "brief", 2) and parts[1] == "prepare":
         t = normalize_ticker(str(body.get("ticker", "")))
+        if fd_crypto.is_crypto(t):  # price data only: no 10-K, no risk section (contracts/catalog.md)
+            q = _dump(app.data.quote(t))
+            st = fd_crypto.stats(_dump(app.data.history(t, "1y")).get("points", []))
+            prof = _dump(app.learning.profile(body.get("project_id") or pid))
+            name = fd_crypto.display_name(t, q.get("name"))
+            b = fd_crypto.brief(t, q, st, fd_crypto.template_thesis(name, t, q, st), "template")
+            ins = prof.get("instructions") if prof.get("feedback_count") else ""
+            if ins:
+                b["learned"] = {"instructions": ins, "label": prof.get("label", ""), "feedback_count": prof["feedback_count"]}
+            return {"brief": b, "prompt": fd_crypto.prompt(t, name, q, st, ins or "")}
         q, f, r = app.data.quote(t), app.data.financials(t), app.data.risk_factors(t)
         prof = _dump(app.learning.profile(body.get("project_id") or pid))
         return fd_desk.prepare(t, _dump(q), _dump(f), _dump(r), prof)
@@ -129,9 +140,10 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
     if key == ("GET", "compare", 1):
         rows = []
         for t in [x.strip().upper() for x in (_one(query, "tickers", "") or "").split(",") if x.strip()][:4]:
-            q, f = app.data.quote(t), app.data.financials(t)
-            rows.append({"ticker": t, "name": q.name, "price": q.price, "pe": f.pe,
-                         "revenue_growth_yoy": f.revenue_growth_yoy, "net_margin": f.net_margin})
+            q = app.data.quote(t)
+            f = None if fd_crypto.is_crypto(t) else app.data.financials(t)  # crypto: no financials
+            rows.append({"ticker": t, "name": q.name, "price": q.price, "pe": f and f.pe,
+                         "revenue_growth_yoy": f and f.revenue_growth_yoy, "net_margin": f and f.net_margin})
         return rows
 
     # --- stock catalog: search by name, browse stocks (contracts/catalog.md) ---
@@ -143,6 +155,8 @@ def route(app: App, method: str, path: str, query: dict, body) -> object:
         return fd_catalog.search(_one(query, "q", "") or "", limit)
     if key == ("GET", "markets", 1):
         return fd_catalog.markets()
+    if key == ("GET", "crypto", 1):
+        return fd_catalog.crypto_market()
 
     # --- market data ---
     if key == ("GET", "quote", 2):

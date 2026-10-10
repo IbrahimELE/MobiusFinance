@@ -68,6 +68,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(7,11,20,.85);backdrop-fi
 .navb{height:44px}
 .mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--s4)}
 .mk-grid .card{margin:0;padding:var(--s4)}
+.cr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));column-gap:var(--s5)}
 .mrow{display:flex;align-items:center;gap:var(--s3);padding:7px 6px;border-radius:8px;cursor:pointer;font-size:14px}
 .mrow:hover{background:var(--surface-2)}.mrow .tk{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}.mrow .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:12px}
 .mrow .mpx{text-align:right;min-width:72px}.mrow .mch{text-align:right;min-width:62px;font-weight:600}
@@ -225,6 +226,7 @@ footer{max-width:1320px;margin:0 auto;padding:0 var(--s5) var(--s6);color:var(--
     <button class="btn primary" title="Pull live data and the latest 10-K, then let the AI write a sourced brief"><span class="long">Generate AI brief</span><span class="short">AI brief</span></button>
   </form>
   <button class="btn ghost navb" id="mkt" title="Browse stocks by sector and today's movers">Markets</button>
+  <button class="btn ghost navb" id="cry" title="Bitcoin, Ethereum and other large coins, live 24/7">Crypto</button>
   <div class="ws"><span class="ws-label">Workspace</span>
     <select class="input" id="proj" aria-label="Workspace"></select>
     <button class="btn ghost sm" id="newp" title="Create a separate workspace with its own briefs, paper account and learned preferences">+ New workspace</button>
@@ -268,6 +270,8 @@ const pct=x=>x==null?"–":(x*100).toFixed(1)+"%",num=(x,d=1)=>x==null?"–":Num
 const big=x=>x==null?"–":Math.abs(x)>=1e12?"$"+(x/1e12).toFixed(2)+"T":Math.abs(x)>=1e9?"$"+(x/1e9).toFixed(1)+"B":Math.abs(x)>=1e6?"$"+(x/1e6).toFixed(0)+"M":"$"+num(x,0);
 const usd=x=>x==null?"–":Number(x).toLocaleString("en-US",{style:"currency",currency:"USD"});
 const signed=(x,f)=>(Math.abs(x)<0.005?"":x>0?"+":"")+f(Math.abs(x)<0.005?0:x);
+const isCrypto=t=>/^[A-Z0-9]{2,12}-USD$/.test(t||"");   // Yahoo crypto pairs (BTC-USD): 24/7, decimal quantities
+const fmtQty=q=>String(+Number(q).toFixed(8));
 const cls=x=>x>0.004?"up":x<-0.004?"down":"muted";  // tiny moves around zero stay neutral
 
 /* ---------- modal + toast (one look everywhere, no browser popups) ---------- */
@@ -316,11 +320,19 @@ function landing(){leaveMarkets();cur=null;series=null;lastQuote=null;renderPape
 }
 
 /* ---------- markets: browse stocks by sector and today's movers (contracts/catalog.md) ---------- */
-let mkOpen=false,mkData=null;
+let mkOpen=false,mkData=null,mkMode="stocks",crData=null;
 const MK_LISTS=[["most_actives","Most active"],["day_gainers","Top gainers"],["day_losers","Top losers"]];
 const mrow=r=>`<div class="mrow" data-open="${esc(r.ticker)}" role="button" tabindex="0" title="Open the brief for ${esc(r.name)}"><span class="tk"><b>${esc(r.ticker)}</b><span class="nm">${esc(r.name)}</span></span><span class="mpx">${usd(r.price)}</span><span class="mch ${cls((r.change_pct??0)/100)}">${r.change_pct==null?"–":signed(r.change_pct,v=>v.toFixed(2))+"%"}</span></div>`;
 function leaveMarkets(){mkOpen=false;$("main").onclick=$("main").onkeydown=null}
-function renderMarkets(){if(!mkOpen)return;const m=mkData;
+function renderCrypto(){const m=crData;
+  const when=m&&m.as_of?new Date(m.as_of).toLocaleString([],{dateStyle:"medium",timeStyle:"short"}):"";
+  const status=!m?"":m.live?`<span class="pill live" title="Crypto trades 24/7; prices refresh every 30 seconds"><span class="dot"></span>Live 24/7 · ${esc(when)}</span>`:`<span class="pill" title="No connection to market data; showing the last saved prices">○ Saved prices · ${esc(when)}</span>`;
+  $("main").innerHTML=`<section id="crypto"><div class="card"><div class="card-h"><div><div class="eyebrow">Crypto</div><h2 style="margin-top:6px">Crypto market</h2></div>${status}</div>
+    <p class="muted" style="margin:0">Crypto trades around the clock. Open a coin for its chart, live price and a price-based brief, and practise with paper money (fractions of a coin are fine). There is no annual report for crypto, so briefs have no risk section.</p></div>
+    ${!m?'<div class="card"><div class="loading"><div class="spinner"></div><span class="muted">Loading prices…</span></div></div>':`<div class="card"><div class="card-h" style="margin-bottom:8px"><h3>Large coins</h3><span class="faint" style="font-size:12px">Price in USD · change vs yesterday</span></div><div class="cr-grid">${m.coins.map(mrow).join("")}</div></div>`}</section>`;
+  $("main").onclick=e=>{const r=e.target.closest("[data-open]");if(r)run(r.dataset.open)};
+  $("main").onkeydown=e=>{const r=e.target.closest("[data-open]");if(r&&e.key=="Enter")run(r.dataset.open)}}
+function renderMarkets(){if(!mkOpen)return;if(mkMode=="crypto")return renderCrypto();const m=mkData;
   const when=m&&m.as_of?new Date(m.as_of).toLocaleString([],{dateStyle:"medium",timeStyle:"short"}):"";
   const status=!m?"":m.live?`<span class="pill" title="Prices refresh every few minutes">● Live · ${esc(when)}</span>`:`<span class="pill" title="No connection to market data; showing the last saved prices">○ Saved prices · ${esc(when)}</span>`;
   $("main").innerHTML=`<section id="markets"><div class="card"><div class="card-h"><div><div class="eyebrow">Markets</div><h2 style="margin-top:6px">Browse stocks</h2></div>${status}</div>
@@ -330,8 +342,9 @@ function renderMarkets(){if(!mkOpen)return;const m=mkData;
       <div class="eyebrow" style="margin:24px 0 10px">By sector</div>${m.sectors.length?`<div class="mk-grid">${m.sectors.map(s=>`<div class="card" data-sector="${esc(s.key)}"><div class="card-h" style="margin-bottom:8px"><h3>${esc(s.name)}</h3></div>${s.stocks.map(mrow).join("")}</div>`).join("")}</div>`:'<div class="empty">Sector lists are not available offline yet.</div>'}`}</section>`;
   $("main").onclick=e=>{const r=e.target.closest("[data-open]");if(r)run(r.dataset.open)};
   $("main").onkeydown=e=>{const r=e.target.closest("[data-open]");if(r&&e.key=="Enter")run(r.dataset.open)}}
-async function loadMarkets(){try{const m=await J("/markets");if(mkOpen){mkData=m;renderMarkets()}}catch(e){if(mkOpen&&!mkData)$("main").innerHTML=`<div class="card errbox"><h3>Couldn't load markets</h3><p class="muted">${esc(e.message)}</p></div>`}}
-function marketsView(){cur=null;series=null;lastQuote=null;mkOpen=true;renderMarkets();renderPaper();loadMarkets()}
+async function loadMarkets(){const mode=mkMode;try{const m=await J(mode=="crypto"?"/crypto":"/markets");if(mkOpen&&mkMode==mode){mode=="crypto"?crData=m:mkData=m;renderMarkets()}}catch(e){if(mkOpen&&!mkData)$("main").innerHTML=`<div class="card errbox"><h3>Couldn't load markets</h3><p class="muted">${esc(e.message)}</p></div>`}}
+function marketsView(){cur=null;series=null;lastQuote=null;mkOpen=true;mkMode="stocks";renderMarkets();renderPaper();loadMarkets()}
+function cryptoView(){cur=null;series=null;lastQuote=null;mkOpen=true;mkMode="crypto";renderMarkets();renderPaper();loadMarkets()}
 
 /* ---------- workspaces ---------- */
 async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(P);
@@ -339,13 +352,13 @@ async function projects(){const l=await J("/projects");if(!l.includes(P))l.push(
 
 /* ---------- brief ---------- */
 async function run(t){if(!t)return;leaveMarkets();closeAc();$("t").value=t;
-  $("main").innerHTML=`<div class="card"><div class="loading"><div class="spinner"></div><div><b>Researching ${esc(t)}…</b><div class="muted" style="font-size:14px">Fetching price, financials and the 10-K risk section, then writing the brief. This can take up to a minute.</div></div></div><div class="skel" style="width:60%;margin-top:20px"></div><div class="skel"></div><div class="skel" style="width:80%"></div></div>`;
+  $("main").innerHTML=`<div class="card"><div class="loading"><div class="spinner"></div><div><b>Researching ${esc(t)}…</b><div class="muted" style="font-size:14px">${isCrypto(t)?"Fetching the live price and one year of price history, then writing the brief.":"Fetching price, financials and the 10-K risk section, then writing the brief."} This can take up to a minute.</div></div></div><div class="skel" style="width:60%;margin-top:20px"></div><div class="skel"></div><div class="skel" style="width:80%"></div></div>`;
   try{show(await post("/brief",{ticker:t,project_id:P}));list()}
   catch(e){$("main").innerHTML=`<div class="card errbox"><h3 style="margin-bottom:8px">Couldn't build a brief for ${esc(t)}</h3><p class="muted" style="margin:0 0 16px">${esc(e.message)}</p><button class="btn ghost" id="back">Back to start</button></div>`;$("back").onclick=landing}}
 function bars(vals,labels,color){const mx=Math.max(...vals.map(v=>Math.abs(v||0)),1),w=100/vals.length;
   return `<svg viewBox="0 0 100 60" preserveAspectRatio="none">${vals.map((v,i)=>{const h=Math.abs(v||0)/mx*46;return `<rect x="${i*w+w*.2}" y="${52-h}" width="${w*.6}" height="${h}" fill="${color}" rx="1.5"/><text x="${i*w+w/2}" y="59" font-size="5" text-anchor="middle" fill="#8b97ab">${labels[i]}</text>`}).join("")}</svg>`}
 function cite(b){return esc(b.thesis).replace(/\[(\d+)\]/g,(m,n)=>{const s=b.sources[n-1];return s?`<a class="src" title="${esc(s.label)}" href="${esc(s.url)}" target="_blank" rel="noopener">${n}</a>`:m})}
-function show(b){leaveMarkets();cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||{};
+function show(b){leaveMarkets();cur=b;lastQuote=null;lastPx=null;const m=b.metrics,x=b.extras||{},cx=b.asset_class=="crypto"||isCrypto(b.ticker);
   const kp=(l,v,tip="")=>v==null||v==="–"?"":`<div class="kpi" title="${esc(tip)}"><small>${l}</small><b>${v}</b></div>`;
   const rng=x.year_low!=null&&x.year_high!=null?`<div class="kpi wide"><small>52-week range</small><div class="range"><i style="left:calc(${Math.min(100,Math.max(0,(m.price-x.year_low)/(x.year_high-x.year_low)*100))}% - 2px)"></i></div><div class="range-ends"><span>Low ${usd(x.year_low)}</span><span>High ${usd(x.year_high)}</span></div></div>`:"";
   const cats={};b.risks.forEach(r=>(cats[r.category||"Risks"]??=[]).push(r));
@@ -353,7 +366,7 @@ function show(b){leaveMarkets();cur=b;lastQuote=null;lastPx=null;const m=b.metri
   $("main").innerHTML=`
   <div class="card">
     <div class="quote-h">
-      <div><h2>${esc(b.name||b.ticker)}<span class="tick">${esc(b.ticker)}</span></h2><div class="sector">${esc([x.sector,x.industry].filter(Boolean).join(" · "))}</div></div>
+      <div><h2>${esc(b.name||b.ticker)}<span class="tick">${esc(b.ticker)}</span></h2><div class="sector">${esc(cx?"Cryptocurrency · trades 24/7":[x.sector,x.industry].filter(Boolean).join(" · "))}</div></div>
       <div style="text-align:right"><div><span class="px" id="px">${usd(m.price)}</span><span class="chg" id="chg"></span></div>
         <div class="qmeta"><span class="pill closed" id="live"><span class="dot"></span>Checking market…</span><span class="pill" title="How the thesis was produced">${esc(MODE[b.mode]||b.mode||"")}</span></div></div>
     </div>
@@ -367,14 +380,17 @@ function show(b){leaveMarkets();cur=b;lastQuote=null;lastPx=null;const m=b.metri
     ${feat.learning?`<div class="rate" id="rate"><span class="muted">Was this brief useful?</span><button class="btn ghost sm" data-r="up">👍 Yes</button><button class="btn ghost sm" data-r="down">👎 Not really</button></div>`:""}
   </div>
   <div class="card"><div class="card-h"><h3>Key numbers</h3></div><div class="kpis">
-    ${kp("P/E (trailing)",num(m.pe),"Price divided by the last 12 months of earnings")}${kp("Forward P/E",num(x.forward_pe),"Price divided by expected earnings")}
+    ${cx?`${kp("Market cap",x.market_cap!=null?big(x.market_cap):null)}${kp("24h volume",x.volume!=null?big(x.volume):null,"Dollar value traded in the last 24 hours")}
+    ${kp("30-day return",x.return_30d!=null?signed(x.return_30d*100,v=>v.toFixed(1))+"%":null)}${kp("1-year return",x.return_1y!=null?signed(x.return_1y*100,v=>v.toFixed(1))+"%":null)}
+    ${kp("Volatility (30d, yearly)",x.volatility_30d!=null?pct(x.volatility_30d):null,"How much the price swings: standard deviation of daily moves over 30 days, scaled to a year")}${kp("Biggest drop (1y)",x.max_drawdown_1y!=null?pct(x.max_drawdown_1y):null,"Largest fall from a high during the last year")}
+    ${rng}</div><p class="note" style="margin:12px 0 0">Crypto has no earnings or annual report (10-K), so this brief uses price data only and has no risk section.</p></div>`:`${kp("P/E (trailing)",num(m.pe),"Price divided by the last 12 months of earnings")}${kp("Forward P/E",num(x.forward_pe),"Price divided by expected earnings")}
     ${kp("Revenue growth",pct(m.revenue_growth_yoy),"Last fiscal year vs the year before")}${kp("Net margin",pct(m.net_margin),"Net income as a share of revenue")}
     ${kp("Gross margin",x.gross_margin!=null?pct(x.gross_margin):null)}${kp("Operating margin",x.operating_margin!=null?pct(x.operating_margin):null)}
     ${kp("Debt / equity",x.debt_to_equity!=null?num(x.debt_to_equity,2):null,"Total debt divided by shareholder equity")}${kp("Free cash flow",x.free_cash_flow!=null?big(x.free_cash_flow):null,"Cash left after running and investing in the business")}
-    ${rng}</div></div>
-  <div class="card"><div class="card-h"><h3>Key risks from the 10-K</h3><span class="faint" style="font-size:12px">${esc(b.risks[0]?.source||"")}</span></div>
+    ${rng}</div></div>`}
+  ${b.risks.length?`<div class="card"><div class="card-h"><h3>Key risks from the 10-K</h3><span class="faint" style="font-size:12px">${esc(b.risks[0]?.source||"")}</span></div>
     ${Object.entries(cats).map(([c,rs])=>`<div class="riskgrp"><div class="eyebrow">${esc(c)}</div>${rs.map(r=>`<div class="risk">${esc(r.text)}${r.detail?`<details><summary>Read more</summary>${esc(r.detail)}</details>`:""}</div>`).join("")}</div>`).join("")}
-  </div>
+  </div>`:""}
   ${ann}
   <div class="card"><div class="card-h"><h3>Sources</h3></div><ol class="srcs">${b.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a></li>`).join("")}</ol>
     ${b.peers&&b.peers.length?`<p class="muted" style="margin:16px 0 0">Compare with peers: ${b.peers.map(p=>`<button class="chipT" style="height:30px" data-peer="${esc(p)}">${esc(p)}</button>`).join(" ")}</p>`:""}</div>`;
@@ -416,7 +432,7 @@ async function draw(t){if(!window.LightweightCharts)return;const el=$("chart"),s
 function setLive(q){const el=$("live");if(!el)return;
   if(q==null){el.className="pill offline";el.innerHTML='<span class="dot"></span>No connection';return}
   if(q.meta&&q.meta.cached&&q.meta.stale){el.className="pill offline";el.innerHTML='<span class="dot"></span>Offline data';el.title="Served from saved data; the live source is unreachable";return}
-  if(q.market_open){el.className="pill live";el.innerHTML=`<span class="dot"></span>Live · ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}`;el.title="US market is open; price refreshes every 10 seconds"}
+  if(q.market_open){el.className="pill live";el.innerHTML=`<span class="dot"></span>Live · ${new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}`;el.title=q.asset_class=="crypto"||isCrypto(q.ticker)?"Crypto trades 24/7; price refreshes every 10 seconds":"US market is open; price refreshes every 10 seconds"}
   else{el.className="pill closed";el.innerHTML=`<span class="dot"></span>Market closed`;el.title="US market hours are 15:30–22:00 CET (Mon–Fri). Showing the last price; it updates again when the market opens."}}
 async function refreshQuote(){if(!cur)return;const b=cur;
   try{const q=await J("/quote/"+b.ticker);
@@ -432,7 +448,7 @@ async function refreshQuote(){if(!cur)return;const b=cur;
   }catch(e){setLive(null)}}
 const LIVE_MS=10000;
 let tickN=0;
-async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI();if(mkOpen&&tickN%6===0)loadMarkets()}
+async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI();if(mkOpen&&tickN%(mkMode=="crypto"?3:6)===0)loadMarkets()}
 setInterval(tick,LIVE_MS);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ---------- learning ---------- */
@@ -488,13 +504,13 @@ $("cmp").onclick=async()=>{const s=[...document.querySelectorAll("#saved input:c
 
 /* ---------- paper trading: cash is the headline, every order is confirmed ---------- */
 const actKey=()=>"fills:"+P,acts=()=>JSON.parse(localStorage[actKey()]||"[]");
-let lastPf=null,pfSeq=0,qtyVal="10",otype="market",lpxVal="",lpxFor="",heldRender=false;const QUICK=[10,20,50,100];
+let lastPf=null,pfSeq=0,qtyVals={stock:"10",crypto:"0.1"},otype="market",lpxVal="",lpxFor="",heldRender=false;const QUICK=[10,20,50,100],QUICK_C=[0.01,0.1,0.5,1];
 const OTYPES=[["market","Market"],["limit","Limit"],["stop","Stop-loss"]],TLABEL={market:"Market",limit:"Limit",stop:"Stop-loss"};
 const editing=()=>["qty","lpx"].includes(document.activeElement&&document.activeElement.id);
 function noticeFills(prev,p){/* an open order that disappeared and shows up in recent orders has filled */
   if(!prev||prev.project_id!==p.project_id)return;const now=new Set((p.open_orders||[]).map(o=>o.id));
   for(const o of prev.open_orders||[]){if(now.has(o.id))continue;const f=(p.recent_orders||[]).find(r=>r.ticker==o.ticker&&r.side==o.side&&r.qty==o.qty&&r.type==o.type);
-    if(f)toast(`🔔 ${TLABEL[o.type]} order filled: ${o.side=="buy"?"bought":"sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}`,"ok")}}
+    if(f)toast(`🔔 ${TLABEL[o.type]} order filled: ${o.side=="buy"?"bought":"sold"} ${fmtQty(f.qty)} ${esc(f.ticker)} at ${usd(f.price)}`,"ok")}}
 async function paperUI(){if(!feat.paper)return;const seq=++pfSeq;
   try{const p=await J("/paper/portfolio?project_id="+encodeURIComponent(P));if(seq!==pfSeq)return;noticeFills(lastPf,p);lastPf=p;renderPaper()}
   catch(e){if(seq===pfSeq&&!lastPf)$("paper").hidden=true}}
@@ -503,55 +519,56 @@ function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=fa
   if(!p){$("pf").innerHTML='<div class="loading"><div class="spinner"></div><span class="muted">Loading your paper account…</span></div>';return}
   const invested=p.positions.reduce((s,x)=>s+x.market_value,0),t=cur?cur.ticker:"",pos=p.positions.find(x=>x.ticker==t);
   const priced=!!(lastQuote&&cur&&lastQuote.ticker==t),px=priced?lastQuote.price:null,free=pos?pos.qty-(pos.reserved_qty||0):0;
+  const cq=isCrypto(t),qk=cq?"crypto":"stock",unit=cq?"coins":"shares";
   if(lpxFor!==t){lpxVal=px?String(+px.toFixed(2)):"";lpxFor=px?t:""}   /* set price starts at the live price for each stock */
   const reserved=p.reserved_cash||0,opens=p.open_orders||[],recent=p.recent_orders||acts();
   $("pf").innerHTML=`<small class="muted" style="font-weight:600">Cash available</small><div class="cash" id="cashv">${usd(p.cash)}</div>
   ${reserved>0?`<div class="muted" style="font-size:13px;margin-top:-2px">+ ${usd(reserved)} reserved for open buy orders</div>`:""}
   <div class="acct-grid"><div><small>Invested</small><b>${usd(invested)}</b></div><div><small>Total value</small><b>${usd(p.equity)}</b></div>
     <div><small>Profit / loss</small><b class="${cls(p.pnl)}">${signed(p.pnl,usd)}</b></div><div><small>Return</small><b class="${cls(p.pnl)}">${signed(p.pnl/p.starting_cash*100||0,v=>v.toFixed(2))}%</b></div></div>
-  ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${priced?usd(px)+" per share":'<span class="loading" style="display:inline-flex;gap:6px"><span class="spinner" style="width:12px;height:12px;border-width:2px"></span>Getting live price…</span>'}${pos?` · you own ${pos.qty}${pos.reserved_qty?` (${pos.reserved_qty} in open orders)`:""}`:""}</div></div>
+  ${t?`<div class="trade"><div style="margin-bottom:8px"><b>Trade ${esc(t)}</b><div class="muted" style="font-size:13px">${priced?usd(px)+(cq?" per coin":" per share"):'<span class="loading" style="display:inline-flex;gap:6px"><span class="spinner" style="width:12px;height:12px;border-width:2px"></span>Getting live price…</span>'}${pos?` · you own ${fmtQty(pos.qty)}${pos.reserved_qty?` (${fmtQty(pos.reserved_qty)} in open orders)`:""}`:""}</div></div>
     <div class="tabs otype" role="tablist" aria-label="Order type">${OTYPES.map(([k,n])=>`<button role="tab" data-ot="${k}" class="${otype==k?"on":""}" aria-selected="${otype==k}">${n}</button>`).join("")}</div>
     ${otype!="market"?`<label class="lpx"><span>${otype=="limit"?"Limit price":"Stop price"}</span><span class="box">$<input id="lpx" type="number" min="0.01" step="0.01" inputmode="decimal" value="${esc(lpxVal)}" aria-label="${otype=="limit"?"Limit price":"Stop price"}"></span></label>`:""}
-    <div class="row"><div class="stepper"><button data-q="-1" aria-label="Fewer shares">−</button><input id="qty" type="number" min="1" value="${esc(qtyVal)}" aria-label="Shares"><button data-q="1" aria-label="More shares">+</button></div>
+    <div class="row"><div class="stepper"><button data-q="-1" aria-label="Fewer shares">−</button><input id="qty" type="number" min="${cq?"0.000001":"1"}" step="${cq?"any":"1"}" inputmode="decimal" value="${esc(qtyVals[qk])}" aria-label="${cq?"Amount in coins":"Shares"}"><button data-q="1" aria-label="More shares">+</button></div>
     <button class="btn success sm" data-s="buy" style="flex:1" ${priced&&otype!="stop"?"":"disabled"} ${otype=="stop"?'title="A stop-loss sells shares you own"':""}>Buy</button><button class="btn danger sm" data-s="sell" style="flex:1" ${priced&&free>0?"":"disabled"}>Sell</button></div>
-    <div class="quick" role="group" aria-label="Quick amounts">${QUICK.map(n=>`<button data-quick="${n}">${n}</button>`).join("")}<button data-quick="max" title="Most whole shares your free cash can buy" ${priced?"":"disabled"}>Max</button></div>
+    <div class="quick" role="group" aria-label="Quick amounts">${(cq?QUICK_C:QUICK).map(n=>`<button data-quick="${n}">${n}</button>`).join("")}<button data-quick="max" title="${cq?"Most coins your free cash can buy":"Most whole shares your free cash can buy"}" ${priced?"":"disabled"}>Max</button></div>
     <div class="preview" id="pv"></div>
     ${otype!="market"?`<div class="note ohint">⏱ ${otype=="limit"?"A limit order waits until the price reaches your limit, then fills at that price.":"A stop-loss sells automatically if the price falls to your stop price."} Open orders are checked every 10 seconds <b>only while Finance Desk is running</b>; nothing fills while it is closed.</div>`:""}</div>`:`<div class="empty" style="margin-bottom:16px">Open a stock brief to buy or sell it.</div>`}
-  ${opens.length?`<div class="eyebrow" style="margin-bottom:6px">Open orders</div><ul class="activity" id="opens">${opens.map(o=>`<li><span><span class="otag">${TLABEL[o.type]}</span> <b class="${o.side=="buy"?"up":"down"}">${o.side=="buy"?"Buy":"Sell"}</b> ${o.qty} ${esc(o.ticker)} ${o.type=="stop"?"if ≤ ":o.side=="buy"?"at ≤ ":"at ≥ "}${usd(o.limit_price??o.stop_price)}</span><button class="btn ghost sm" data-cancel="${esc(o.id)}" aria-label="Cancel ${TLABEL[o.type]} order for ${esc(o.ticker)}">Cancel</button></li>`).join("")}</ul>
+  ${opens.length?`<div class="eyebrow" style="margin-bottom:6px">Open orders</div><ul class="activity" id="opens">${opens.map(o=>`<li><span><span class="otag">${TLABEL[o.type]}</span> <b class="${o.side=="buy"?"up":"down"}">${o.side=="buy"?"Buy":"Sell"}</b> ${fmtQty(o.qty)} ${esc(o.ticker)} ${o.type=="stop"?"if ≤ ":o.side=="buy"?"at ≤ ":"at ≥ "}${usd(o.limit_price??o.stop_price)}</span><button class="btn ghost sm" data-cancel="${esc(o.id)}" aria-label="Cancel ${TLABEL[o.type]} order for ${esc(o.ticker)}">Cancel</button></li>`).join("")}</ul>
     <div class="note" style="margin:6px 0 16px">Orders fill only while Finance Desk is running.</div>`:""}
   <div class="eyebrow" style="margin-bottom:6px">Positions</div>
-  ${p.positions.length?`<table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td><a href="#" data-open-pos="${esc(x.ticker)}">${esc(x.ticker)}</a></td><td>${x.qty}</td><td>${usd(x.market_value)}</td><td class="${cls(x.pnl)}">${signed(x.pnl_pct,v=>v.toFixed(1))}%</td></tr>`).join("")}</table>`:'<div class="empty">No positions yet.</div>'}
-  ${recent.length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity" id="recent">${recent.slice(0,5).map(a=>`<li><span><span class="otag">${TLABEL[a.type||"market"]}</span> <b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${a.qty} ${esc(a.ticker)} @ ${usd(a.price)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
+  ${p.positions.length?`<table><tr><th>Stock</th><th>Shares</th><th>Value</th><th>P/L</th></tr>${p.positions.map(x=>`<tr><td><a href="#" data-open-pos="${esc(x.ticker)}">${esc(x.ticker)}</a></td><td>${fmtQty(x.qty)}</td><td>${usd(x.market_value)}</td><td class="${cls(x.pnl)}">${signed(x.pnl_pct,v=>v.toFixed(1))}%</td></tr>`).join("")}</table>`:'<div class="empty">No positions yet.</div>'}
+  ${recent.length?`<div class="eyebrow" style="margin:16px 0 6px">Recent orders</div><ul class="activity" id="recent">${recent.slice(0,5).map(a=>`<li><span><span class="otag">${TLABEL[a.type||"market"]}</span> <b class="${a.side=="buy"?"up":"down"}">${a.side=="buy"?"Bought":"Sold"}</b> ${fmtQty(a.qty)} ${esc(a.ticker)} @ ${usd(a.price)}</span><span class="muted">${usd(a.price*a.qty)}</span></li>`).join("")}</ul>`:""}
   <div class="row" style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="note" style="margin:0">Virtual money · not investment advice</span><button class="btn ghost sm" id="prst">Reset account</button></div>`;
   const at=()=>otype=="market"?px:(+($("lpx")?.value||0)||null);
-  const maxBuy=()=>{const a=at();return a>0?Math.max(0,Math.floor(p.cash/a+1e-9)):0};
-  const preview=()=>{const q=+($("qty")?.value||0),a=at();qtyVal=$("qty")?.value||qtyVal;if($("lpx"))lpxVal=$("lpx").value;
+  const maxBuy=()=>{const a=at();return a>0?Math.max(0,cq?Math.floor(p.cash/a*1e6)/1e6:Math.floor(p.cash/a+1e-9)):0};
+  const preview=()=>{const q=+($("qty")?.value||0),a=at();qtyVals[qk]=$("qty")?.value||qtyVals[qk];if($("lpx"))lpxVal=$("lpx").value;
     document.querySelectorAll("#pf [data-quick]").forEach(b=>b.classList.toggle("on",q>0&&(b.dataset.quick=="max"?a&&q==maxBuy():q==+b.dataset.quick)));
     if(!$("pv")||!px)return;if(!(q>0)||!a){$("pv").innerHTML=otype!="market"&&!a?"Enter a price.":"";return}
-    $("pv").innerHTML=otype=="market"?`Buying ${q} costs about <b>${usd(q*a)}</b> · cash after: <b class="${p.cash-q*a<0?"down":""}">${usd(p.cash-q*a)}</b>`
-      :otype=="limit"?`Buy ${q} at ≤ <b>${usd(a)}</b> reserves <b>${usd(q*a)}</b> · cash after: <b class="${p.cash-q*a<0?"down":""}">${usd(p.cash-q*a)}</b><br>Sell ${q} at ≥ <b>${usd(a)}</b> brings in <b>${usd(q*a)}</b>`
-      :`If ${esc(t)} falls to <b>${usd(a)}</b>, sell ${q} for <b>${usd(q*a)}</b>${a>=px?' · <span class="down">at or above today\'s price: sells now</span>':""}`};preview();
+    $("pv").innerHTML=otype=="market"?`Buying ${fmtQty(q)}${cq?" "+esc(t.split("-")[0]):""} costs about <b>${usd(q*a)}</b> · cash after: <b class="${p.cash-q*a<0?"down":""}">${usd(p.cash-q*a)}</b>`
+      :otype=="limit"?`Buy ${fmtQty(q)} at ≤ <b>${usd(a)}</b> reserves <b>${usd(q*a)}</b> · cash after: <b class="${p.cash-q*a<0?"down":""}">${usd(p.cash-q*a)}</b><br>Sell ${fmtQty(q)} at ≥ <b>${usd(a)}</b> brings in <b>${usd(q*a)}</b>`
+      :`If ${esc(t)} falls to <b>${usd(a)}</b>, sell ${fmtQty(q)} for <b>${usd(q*a)}</b>${a>=px?' · <span class="down">at or above today\'s price: sells now</span>':""}`};preview();
   if($("qty"))$("qty").oninput=preview;if($("lpx"))$("lpx").oninput=preview;
   ["qty","lpx"].forEach(id=>{if($(id))$(id).onblur=()=>setTimeout(()=>{if(heldRender&&!editing())renderPaper()},0)});
   $("pf").onclick=async e=>{
     const ot=e.target.closest("[data-ot]");if(ot){otype=ot.dataset.ot;renderPaper();return}
-    const step=e.target.dataset.q;if(step){const i=$("qty");i.value=Math.max(1,(+i.value||0)+ +step);preview();return}
+    const step=e.target.dataset.q;if(step){const i=$("qty"),d=cq?0.01:1;i.value=fmtQty(Math.max(d,Math.round(((+i.value||0)+ +step*d)/d)*d));preview();return}
     const qb=e.target.closest("[data-quick]");if(qb){if(qb.disabled)return;const v=qb.dataset.quick=="max"?maxBuy():+qb.dataset.quick;
-      if(!v){toast("Not enough cash for even one share.","err");return}$("qty").value=v;preview();return}
+      if(!v){toast(cq?"Not enough free cash.":"Not enough cash for even one share.","err");return}$("qty").value=v;preview();return}
     const op=e.target.closest("[data-open-pos]");if(op){e.preventDefault();const b=briefsCache.find(b=>b.ticker==op.dataset.openPos);b?show(b):run(op.dataset.openPos);return}
     const cx=e.target.closest("[data-cancel]");if(cx){cx.disabled=true;
       try{lastPf=await J(`/paper/orders/${encodeURIComponent(cx.dataset.cancel)}?project_id=${encodeURIComponent(P)}`,{method:"DELETE"});pfSeq++;renderPaper();toast("Order cancelled; its reservation is released.","ok")}
       catch(er){toast(esc(er.message),"err");paperUI()}return}
     const btn=e.target.closest("[data-s]"),s=btn&&btn.dataset.s;
-    if(s){if(btn.disabled)return;const qty=+$("qty").value,before=p.cash,a=at();if(!(qty>0)){toast("Enter how many shares.","err");return}
+    if(s){if(btn.disabled)return;const qty=+$("qty").value,before=p.cash,a=at();if(!(qty>0)){toast(`Enter how many ${unit}.`,"err");return}
       if(otype!="market"&&!(a>0)){toast(`Enter a ${otype=="limit"?"limit":"stop"} price.`,"err");return}
       const body={project_id:P,ticker:cur.ticker,side:s,qty,type:otype};if(otype=="limit")body.limit_price=a;if(otype=="stop")body.stop_price=a;
       document.querySelectorAll("#pf [data-s]").forEach(b=>b.disabled=true);btn.innerHTML='<span class="spinner"></span>';
       try{const r=await post("/paper/orders",body);
         lastPf=r;pfSeq++;renderPaper();lbUI();
-        if(r.pending){const o=r.pending;toast(`⏳ ${TLABEL[o.type]} order placed: ${o.side=="buy"?"buy":"sell"} ${o.qty} ${esc(o.ticker)} ${o.type=="stop"?"if ≤":o.side=="buy"?"at ≤":"at ≥"} ${usd(o.limit_price??o.stop_price)}<br><span class="muted">It fills only while Finance Desk is running.</span>`,"ok");return}
+        if(r.pending){const o=r.pending;toast(`⏳ ${TLABEL[o.type]} order placed: ${o.side=="buy"?"buy":"sell"} ${fmtQty(o.qty)} ${esc(o.ticker)} ${o.type=="stop"?"if ≤":o.side=="buy"?"at ≤":"at ≥"} ${usd(o.limit_price??o.stop_price)}<br><span class="muted">It fills only while Finance Desk is running.</span>`,"ok");return}
         const f=r.fill;if(!r.recent_orders)localStorage[actKey()]=JSON.stringify([{...f,type:otype},...acts()].slice(0,20));
-        toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}${otype!="market"?" (price already met)":""}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
+        toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${fmtQty(f.qty)} ${esc(f.ticker)} at ${usd(f.price)}${otype!="market"?" (price already met)":""}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
         const c=$("cashv");if(c){c.style.color=s=="buy"?"var(--down)":"var(--up)";setTimeout(()=>c.style.color="",900)}}
       catch(er){toast(esc(er.message),"err");renderPaper()}}
     if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions, open orders and order history in this workspace are cleared and your cash goes back to $100,000. This workspace also sits out the current leaderboard periods.",confirm:"Reset account",danger:true})){
@@ -597,7 +614,7 @@ $("t").onkeydown=e=>{if(e.key=="Escape"){closeAc();return}if($("ac").hidden||!ac
 $("ac").onmousedown=e=>{const li=e.target.closest("li[data-i]");if(!li)return;e.preventDefault();run(acItems[+li.dataset.i].ticker)};
 $("t").onblur=()=>setTimeout(closeAc,120);
 $("f").onsubmit=async e=>{e.preventDefault();const q=$("t").value.trim();if(!q)return;clearTimeout(acTimer);acSeq++;run(await resolve(q))};
-$("mkt").onclick=marketsView;
+$("mkt").onclick=marketsView;$("cry").onclick=cryptoView;
 $("home").onclick=landing;
 $("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();if(lastLb)renderLb();toast(`Switched to workspace <b>${esc(P)}</b>`)};
 $("newp").onclick=async()=>{const n=await modal({title:"New workspace",text:"Each workspace has its own saved briefs, paper account and learned preferences.",input:"e.g. Tech stocks",confirm:"Create"});if(!n)return;

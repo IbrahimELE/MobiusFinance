@@ -100,3 +100,18 @@ def test_limit_order_waits_and_can_be_cancelled(call):
     assert status == 200 and pf["open_orders"] == [] and pf["cash"] == 100_000
     status, err = call("DELETE", f"/paper/orders/{r['pending']['id']}", project_id="demo")
     assert status == 404 and err["error"] == "order_not_found"
+
+
+def test_crypto_brief_prepare_uses_price_data_only(call, monkeypatch):
+    monkeypatch.setenv("DATA_OFFLINE", "1")    # /crypto from the committed snapshot
+    def quote(self, t):
+        return SimpleNamespace(model_dump=lambda **_: {"ticker": t, "name": "Bitcoin USD", "price": 80.0})
+    def history(self, t, period):
+        return SimpleNamespace(model_dump=lambda **_: {"points": [{"time": str(i), "close": 100.0 - i} for i in range(40)]})
+    monkeypatch.setattr(FakeData, "quote", quote)
+    monkeypatch.setattr(FakeData, "history", history)
+    status, r = call("POST", "/brief/prepare", {"ticker": "BTC-USD", "project_id": "demo"})
+    assert status == 200 and r["brief"]["risks"] == [] and r["brief"]["asset_class"] == "crypto"
+    assert "10-K" in r["prompt"] and len(r["brief"]["sources"]) == 1
+    status, c = call("GET", "/crypto")
+    assert status == 200 and c["coins"][0]["ticker"] == "BTC-USD"

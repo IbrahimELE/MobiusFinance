@@ -19,3 +19,9 @@ from app.providers.yfinance_provider import us_market_state
 def test_us_market_state(utc, state):
     expected = "PRE" if utc == "2026-10-08T13:00" else state
     assert us_market_state(datetime.fromisoformat(utc).replace(tzinfo=timezone.utc)) == expected
+
+
+def test_crypto_pairs_are_recognised():
+    from app.providers.yfinance_provider import is_crypto
+    assert is_crypto("BTC-USD") and is_crypto("eth-usd")
+    assert not is_crypto("AAPL") and not is_crypto("BRK-B")

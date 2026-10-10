@@ -2,7 +2,8 @@
 # Builds the Möbius package from the repo's own modules, so trading/data/learning logic has one source.
 #   fd_data/      <- data_service/app      (without main.py: the FastAPI layer; service.py routes instead)
 #   fd_learning/  <- learning_service/app  (without main.py)
-#   fd_catalog.py <- agent_service/catalog.py (+ catalog/*.snapshot.json): /search and /markets
+#   fd_catalog.py <- agent_service/catalog.py (+ catalog/*.snapshot.json): /search, /markets, /crypto
+#   fd_crypto.py  <- agent_service/crypto.py: price-only crypto briefs
 #   vendor/       <- frontend/vendor/lightweight-charts.js
 # Usage: mobius/sync.sh [install-dir]   e.g. mobius/sync.sh /data/apps/finance-desk
 set -eu
@@ -22,6 +23,7 @@ python3 "$HERE/port_ui.py"
 copy_pkg "$ROOT/data_service/app" "$HERE/fd_data"
 copy_pkg "$ROOT/learning_service/app" "$HERE/fd_learning"
 cp "$ROOT/agent_service/catalog.py" "$HERE/fd_catalog.py"
+cp "$ROOT/agent_service/crypto.py" "$HERE/fd_crypto.py"
 rm -rf "$HERE/catalog" && mkdir -p "$HERE/catalog" && cp "$ROOT"/agent_service/catalog/*.snapshot.json "$HERE/catalog/"
 mkdir -p "$HERE/vendor"
 cp "$ROOT/frontend/vendor/lightweight-charts.js" "$HERE/vendor/lightweight-charts.js"

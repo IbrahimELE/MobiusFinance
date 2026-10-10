@@ -1,0 +1,35 @@
+{
+ "stored_at": "2026-10-10T16:45:38+00:00",
+ "payload": {
+  "ticker": "BTC-USD",
+  "name": "Bitcoin USD",
+  "price": 82976.3203,
+  "currency": "USD",
+  "change_pct": 0.5209,
+  "market_cap": null,
+  "as_of": "2026-10-10T16:45:38+00:00",
+  "market_state": "REGULAR",
+  "market_open": true,
+  "asset_class": "crypto",
+  "exchange": "CCC",
+  "previous_close": 82546.3203125,
+  "change": 430.0,
+  "day_high": 82994.0469,
+  "day_low": 82475.2031,
+  "year_high": 116273.3125,
+  "year_low": 57747.7656,
+  "volume": 14777873408.0,
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-10T16:45:38+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance quote",
+     "url": "https://finance.yahoo.com/quote/BTC-USD"
+    }
+   ]
+  }
+ }
+}

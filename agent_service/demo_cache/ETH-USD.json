@@ -1,0 +1,34 @@
+{
+ "ticker": "ETH-USD",
+ "name": "Ethereum",
+ "asset_class": "crypto",
+ "thesis": "Ethereum trades at $2,504.73, up 0.77% on the day and 2.78% over the past 30 days, but it remains down 34.82% over the past year [1]. The price sits well below its one-year high of $4,292.85 and about 66% above its one-year low of $1,506.51, and the maximum one-year drawdown reached -63.14% [1]. Thirty-day volatility of 44.84% points to large price swings, so the recent modest gain looks like a tentative stabilisation within a longer downtrend rather than a confirmed reversal [1]. This data shows price behaviour only and says nothing about fundamentals, adoption or news [1].",
+ "mode": "llm",
+ "metrics": {
+  "price": 2504.73,
+  "pe": null,
+  "revenue_growth_yoy": null,
+  "net_margin": null
+ },
+ "risks": [],
+ "peers": [
+  "BTC-USD",
+  "SOL-USD"
+ ],
+ "extras": {
+  "year_high": 4292.8457,
+  "year_low": 1506.5057,
+  "volume": 5108818432.0,
+  "return_1y": -0.3482,
+  "return_30d": 0.0278,
+  "volatility_30d": 0.4484,
+  "max_drawdown_1y": -0.6314
+ },
+ "sources": [
+  {
+   "label": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/quote/ETH-USD"
+  }
+ ],
+ "generated_at": "2026-10-10T16:47:00.856731+00:00"
+}

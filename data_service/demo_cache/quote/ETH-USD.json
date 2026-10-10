@@ -1,0 +1,35 @@
+{
+ "stored_at": "2026-10-10T16:45:39+00:00",
+ "payload": {
+  "ticker": "ETH-USD",
+  "name": "Ethereum USD",
+  "price": 2505.1499,
+  "currency": "USD",
+  "change_pct": 0.789,
+  "market_cap": null,
+  "as_of": "2026-10-10T16:45:39+00:00",
+  "market_state": "REGULAR",
+  "market_open": true,
+  "asset_class": "crypto",
+  "exchange": "CCC",
+  "previous_close": 2485.53857421875,
+  "change": 19.6113,
+  "day_high": 2511.2874,
+  "day_low": 2484.8176,
+  "year_high": 4292.8457,
+  "year_low": 1506.5057,
+  "volume": 5108818432.0,
+  "meta": {
+   "provider": "yfinance",
+   "fetched_at": "2026-10-10T16:45:39+00:00",
+   "cached": false,
+   "stale": false,
+   "sources": [
+    {
+     "label": "Yahoo Finance quote",
+     "url": "https://finance.yahoo.com/quote/ETH-USD"
+    }
+   ]
+  }
+ }
+}

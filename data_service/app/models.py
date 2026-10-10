@@ -44,6 +44,7 @@ class Quote(BaseModel):
     market_state: str | None = Field(None, description="Exchange session from Yahoo: REGULAR (open), PRE, POST, CLOSED, ...")
     market_open: bool | None = Field(None, description="True during the regular session, i.e. the price is moving live.")
     # extras
+    asset_class: str | None = Field(None, description='"equity" or "crypto" (crypto trades 24/7, market_open is always true).')
     exchange: str | None = None
     previous_close: float | None = None
     change: float | None = None
