@@ -67,3 +67,14 @@ Estetika:
 - Provjera: testovi data 55 (13 novih: granice perioda i DST, vrednovanje, rang, reset, vikend bez medalja, trajnost medalja, ugovor rute), `node --check`; uživo sa pravim yfinance cijenama i 4 probna workspacea (u privremenom DATA_PAPER_DIR), reset preko agenta → odmah „reset"; Playwright desktop 1440 i mobilni 390 bez JS grešaka.
 - Ograničenja: rang je lokalan (jedan korisnik, više workspaceova); nalozi stariji od reseta se ne mogu vratiti pa se medalje za period prije reseta upisuju samo ako je leaderboard otvoren prije reseta; offline bez istorije cijena vrednuje se po zadnjoj cijeni naloga.
 - Sljedeće: pregled B-a (frontend, agent, ugovor), PR u dev uz odobrenje vlasnika; kasnije dijeljena verzija = isti ugovor, server vodi takmičarske račune.
+
+## 2026-10-10 · Korak 9: Finance Desk kao Möbius aplikacija (grana `feature/a-mobius-app`, iz `feature/a-leaderboard`, po izboru vlasnika)
+- Zašto: da je mogu instalirati drugi Möbius korisnici (faza 1 plana; faza 2 = zajednički leaderboard preko hosta i @handle, faza 3 = Store).
+- Novi folder `mobius/` (Möbius paket). Jedan izvor koda: `mobius/sync.sh` kopira `data_service/app` → `fd_data/`, `learning_service/app` → `fd_learning/` (bez FastAPI `main.py`), a `port_ui.py` generiše `ui_css.js`/`ui_markup.js`/`ui_desk.js` iz `frontend/index.html` (zamjene moraju pogoditi tačno jednom, inače sync pada). Generisane fajlove ne uređivati ručno.
+- `service.py` (Möbius servis, proces po zahtjevu): iste putanje kao agent_service; greške u obliku `{"error","detail"}` s istim statusima. `fd_desk.py` = brief/workspace logika iz agent_service bez HTTP-a i LLM-a (držati usklađeno).
+- AI: servis smije raditi 15 s, AI duže → servis vraća podatke + šablonsku tezu + prompt; aplikacija pita vlasnikov Möbius AI (skriveni app chat, bilo koji model), čita SSE tok do `done`; bez AI-ja ostaje šablon. Učenje radi po pravilima (LLM sažetak isključen).
+- Browser API-ji koje opaque frame nema: localStorage → `ui-state.json` u app storageu; Notification → Möbius push; boje i font prate Möbius temu (svijetla/tamna).
+- `requirements.lock` (pip-compile --generate-hashes, 31 paket, sve wheels).
+- Provjera: validate-app 0 grešaka; instalirano lokalno (app 10); u pregledniku: AI brief AAPL i MSFT (~15–20 s, mode „AI analyst"), kupovina 10 MSFT, leaderboard, pitanje nad briefovima, ocjena → profil „focus on debt · shorter", stanje sačuvano; desktop 1920 i telefon 390. Hladni `brief/prepare` 5–7 s (< 15 s). Testovi: mobius 6 (rute, greške, javni pozivi odbijeni), data 55.
+- Napomena za B: frontend se ne mijenja; Möbius UI se generiše iz njega. Ako mijenjaš `frontend/index.html`, pokreni `mobius/sync.sh` (javit će ako neka zamjena više ne pogađa).
+- Sljedeće: zajednički leaderboard (faza 2), objava u Store (faza 3).
