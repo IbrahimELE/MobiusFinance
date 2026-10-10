@@ -150,6 +150,14 @@ td,th{padding:var(--s2) var(--s1);text-align:right;border-bottom:1px solid var(-
 .chat .me{color:var(--muted)}.chat div{margin:var(--s2) 0;white-space:pre-wrap}
 .note{font-size:12px;color:var(--faint);margin-top:var(--s3)}
 .empty{color:var(--muted);font-size:14px}
+.lb-tabs{margin-top:0}
+.lb-row{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:var(--s2);padding:8px 10px;border-radius:var(--r);font-size:14px}
+.lb-row+.lb-row{margin-top:2px}.lb-row .rk{font-weight:700;color:var(--muted);text-align:center}
+.lb-row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lb-row b{font-variant-numeric:tabular-nums}
+.lb-row.me{background:var(--surface-2);border:1px solid var(--border)}.lb-row.first .nm{font-weight:700}
+.lb-row.dq{opacity:.55}.lb-row.dq b{font-weight:600;font-size:12px;color:var(--warn)}
+.lb-medals{display:grid;grid-template-columns:1fr repeat(3,32px);gap:4px 6px;font-size:13px;align-items:center}
+.lb-medals span{text-align:center;font-variant-numeric:tabular-nums}.lb-medals .nm{text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* ===== States ===== */
 .loading{display:flex;align-items:center;gap:var(--s3)}
@@ -206,6 +214,11 @@ footer{max-width:1320px;margin:0 auto;padding:0 var(--s5) var(--s6);color:var(--
     <div class="card acct" id="paper" hidden>
       <div class="card-h"><h3>Paper trading</h3><span class="pill">Virtual money</span></div>
       <div id="pf"></div>
+    </div>
+    <div class="card" id="lb" hidden>
+      <div class="card-h"><h3>Leaderboard</h3><span class="pill" id="lbend" title="When this period closes and its top 3 get their medals"></span></div>
+      <div class="tabs lb-tabs" id="lbtabs" role="tablist"><button role="tab" data-lp="day" class="on">Day</button><button role="tab" data-lp="week">Week</button><button role="tab" data-lp="month">Month</button></div>
+      <div id="lbout"></div>
     </div>
     <div class="card">
       <div class="card-h"><h3>Watchlist</h3><button class="btn ghost sm" id="cmp" title="Compare the checked stocks side by side">Compare</button></div>
@@ -378,7 +391,7 @@ async function refreshQuote(){if(!cur)return;const b=cur;
   }catch(e){setLive(null)}}
 const LIVE_MS=10000;
 let tickN=0;
-async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch()}
+async function tick(){if(document.hidden)return;if(cur&&$("px"))await refreshQuote();paperUI();if(++tickN%2===0)refreshWatch();if(tickN%4===0)lbUI()}
 setInterval(tick,LIVE_MS);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ---------- learning ---------- */
@@ -463,24 +476,47 @@ function renderPaper(){if(!feat.paper)return;const p=lastPf;$("paper").hidden=fa
       document.querySelectorAll("#pf [data-s]").forEach(b=>b.disabled=true);btn.innerHTML='<span class="spinner"></span>';
       try{const r=await post("/paper/orders",{project_id:P,ticker:cur.ticker,side:s,qty});
         const f=r.fill||{ticker:cur.ticker,side:s,qty,price:px};localStorage[actKey()]=JSON.stringify([f,...acts()].slice(0,20));
-        lastPf=r;pfSeq++;renderPaper();
+        lastPf=r;pfSeq++;renderPaper();lbUI();
         toast(`${s=="buy"?"✅ Bought":"💰 Sold"} ${f.qty} ${esc(f.ticker)} at ${usd(f.price)}<br><span class="muted">Cash ${usd(before)} → <b>${usd(r.cash)}</b></span>`,"ok");
         const c=$("cashv");if(c){c.style.color=s=="buy"?"var(--down)":"var(--up)";setTimeout(()=>c.style.color="",900)}}
       catch(er){toast(esc(er.message),"err");renderPaper()}}
-    if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions and order history in this workspace are cleared and your cash goes back to $100,000.",confirm:"Reset account",danger:true})){
-      lastPf=await post("/paper/reset?project_id="+encodeURIComponent(P),{});pfSeq++;localStorage.removeItem(actKey());renderPaper();toast("Paper account reset to $100,000","ok")}}}}
+    if(e.target.id=="prst"){if(await modal({title:"Reset your paper account?",text:"All positions and order history in this workspace are cleared and your cash goes back to $100,000. This workspace also sits out the current leaderboard periods.",confirm:"Reset account",danger:true})){
+      lastPf=await post("/paper/reset?project_id="+encodeURIComponent(P),{});pfSeq++;localStorage.removeItem(actKey());renderPaper();lbUI();toast("Paper account reset to $100,000","ok")}}}}
+
+/* ---------- leaderboard: workspaces ranked by return, see contracts/leaderboard.md ---------- */
+let lbPer=localStorage.lbPer||"day",lbSeq=0,lastLb=null;
+const MEDAL=["🥇","🥈","🥉"],LB_NAME={day:"days",week:"weeks",month:"months"};
+async function lbUI(){if(!feat.paper)return;const seq=++lbSeq;
+  try{const r=await J("/paper/leaderboard?period="+lbPer);if(seq!==lbSeq)return;lastLb=r;renderLb()}
+  catch(e){if(seq===lbSeq&&!lastLb)$("lb").hidden=true}}
+function lbEnds(end){const h=Math.max(0,(new Date(end)-Date.now())/36e5);return h<1?"Closes in <1 h":h<48?`Closes in ${Math.round(h)} h`:`Closes in ${Math.round(h/24)} days`}
+function renderLb(){const r=lastLb;$("lb").hidden=false;
+  document.querySelectorAll("#lbtabs button").forEach(b=>b.classList.toggle("on",b.dataset.lp==lbPer));
+  if(!r||r.period!=lbPer){$("lbout").innerHTML='<div class="loading"><div class="spinner"></div><span class="muted">Ranking workspaces…</span></div>';return}
+  $("lbend").textContent=lbEnds(r.end);
+  // Same rule as the podium: while nobody's value has moved there is no leader yet (weekend, market closed).
+  const moved=r.standings.some(s=>!s.disqualified&&Math.abs(s.return_pct)>=0.005);
+  const rows=r.standings.map(s=>`<div class="lb-row${s.project_id==P?" me":""}${moved&&s.rank==1?" first":""}${s.disqualified?" dq":""}">
+    <span class="rk">${s.disqualified?"–":moved&&s.rank<=3?MEDAL[s.rank-1]:s.rank}</span><span class="nm" title="${esc(s.project_id)}">${esc(s.project_id)}${s.project_id==P?' <span class="faint">(you)</span>':""}</span>
+    ${s.disqualified?'<b title="This account was reset during the period, so it sits out until the next one.">Reset · out</b>':`<b class="${cls(s.return_pct)}">${signed(s.return_pct,v=>v.toFixed(2))}%</b>`}</div>`).join("");
+  const last=r.last_podium?`<div class="note" style="margin:12px 0 0">Last ${lbPer=="day"?"day":lbPer}: ${r.last_podium.places.map(p=>`${MEDAL[p.rank-1]} ${esc(p.project_id)}`).join(" · ")}</div>`:"";
+  const medals=r.medals.length?`<div class="eyebrow" style="margin:16px 0 6px">All-time podiums · ${LB_NAME[lbPer]}</div><div class="lb-medals"><span></span><span>🥇</span><span>🥈</span><span>🥉</span>${r.medals.map(m=>`<span class="nm">${esc(m.project_id)}</span><span>${m.gold}</span><span>${m.silver}</span><span>${m.bronze}</span>`).join("")}</div>`:"";
+  const idle=rows&&!moved?`<div class="note" style="margin:8px 0 0">No price moves yet ${lbPer=="day"?"today":"this "+lbPer} — the market is closed or nobody holds stocks. Medals go only to periods where something moved.</div>`:"";
+  $("lbout").innerHTML=(rows||'<div class="empty">No trades yet. Buy a stock in any workspace to enter the ranking.</div>')+idle+last+medals+
+    `<div class="note" style="margin:12px 0 0">Ranked by return since the period started. Resetting an account takes it out of the current period.</div>`}
+$("lbtabs").onclick=e=>{const b=e.target.closest("[data-lp]");if(!b||b.dataset.lp==lbPer)return;lbPer=localStorage.lbPer=b.dataset.lp;renderLb();lbUI()};
 
 /* ---------- wiring ---------- */
 $("f").onsubmit=e=>{e.preventDefault();run($("t").value.trim().toUpperCase())};
 $("home").onclick=landing;
-$("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();toast(`Switched to workspace <b>${esc(P)}</b>`)};
+$("proj").onchange=()=>{P=$("proj").value;watchQ={};localStorage.proj=P;$("log").innerHTML="";lastPf=null;renderPaper();list();paperUI();if(lastLb)renderLb();toast(`Switched to workspace <b>${esc(P)}</b>`)};
 $("newp").onclick=async()=>{const n=await modal({title:"New workspace",text:"Each workspace has its own saved briefs, paper account and learned preferences.",input:"e.g. Tech stocks",confirm:"Create"});if(!n)return;
   P=(await post("/projects",{name:n})).project_id;localStorage.proj=P;lastPf=null;renderPaper();await projects();list();paperUI();toast(`Workspace <b>${esc(P)}</b> created`,"ok")};
 $("cf").onsubmit=async e=>{e.preventDefault();const q=$("q").value.trim();if(!q)return;$("q").value="";
   $("log").insertAdjacentHTML("beforeend",`<div class="me">You: ${esc(q)}</div><div id="pend" class="muted">Thinking…</div>`);
   try{const r=await post("/chat",{message:q,project_id:P});$("pend").outerHTML=`<div>${esc(r.answer)}</div>`}catch(e){$("pend").outerHTML=`<div class="down">${esc(e.message)}</div>`}};
 landing();
-J("/features").then(f=>feat=f).catch(()=>{}).finally(()=>{projects().then(list);paperUI()});
+J("/features").then(f=>feat=f).catch(()=>{}).finally(()=>{projects().then(list);paperUI();lbUI()});
 </script>
 </body>
 </html>

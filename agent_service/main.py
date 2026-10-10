@@ -250,6 +250,11 @@ def paper_order(body: dict):
 def paper_reset(project_id: str = "default"):
     return proxy(DATA_URL, "POST", "/paper/reset", {"project_id": slug(project_id)})
 
+@app.get("/paper/leaderboard")
+def paper_leaderboard(period: str = "day"):
+    """Rang workspaceova (contracts/leaderboard.md); period: day|week|month."""
+    return proxy(DATA_URL, "GET", "/paper/leaderboard", {"period": period})
+
 @app.post("/feedback")
 def feedback_post(body: dict):
     return proxy(LEARNING_URL, "POST", "/feedback", body=body)

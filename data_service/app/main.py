@@ -20,6 +20,7 @@ from .models import ErrorBody, Financials, History, Quote, RiskFactors
 from .providers.base import FilingNotFound, TickerNotFound, UpstreamError
 from .providers.edgar_provider import EdgarProvider
 from .providers.yfinance_provider import YFinanceProvider
+from .leaderboard import Leaderboard, LeaderboardOut, PeriodKind
 from .paper import (InsufficientCash, InsufficientPosition, JsonPaperStore, OrderIn, OrderResult, PaperService,
                     Portfolio)
 from .service import DataService, InvalidParameter, InvalidTicker, NotInCache, normalize_ticker
@@ -45,6 +46,22 @@ def get_service() -> DataService:
 def get_paper() -> PaperService:
     svc = get_service()
     return PaperService(JsonPaperStore(svc.settings.paper_dir), lambda t: svc.quote(t).price)
+
+
+def _daily_closes(svc: DataService, ticker: str) -> list[tuple[str, float]]:
+    try:
+        points = svc.history(ticker, "1y").points
+    except Exception:  # offline/unknown ticker: the leaderboard falls back to the last trade price
+        return []
+    return [(p.time, p.close) for p in points if isinstance(p.time, str)]
+
+
+@lru_cache
+def get_leaderboard() -> Leaderboard:
+    svc, paper = get_service(), get_paper()
+    # A subdirectory, so no workspace slug can collide with the podium file.
+    return Leaderboard(paper.store, paper, lambda t: _daily_closes(svc, t),
+                       svc.settings.paper_dir / "leaderboard" / "podiums.json")
 
 
 ERRORS = {404: {"model": ErrorBody}, 409: {"model": ErrorBody}, 422: {"model": ErrorBody}, 502: {"model": ErrorBody}, 503: {"model": ErrorBody}}
@@ -151,3 +168,9 @@ def paper_portfolio(project_id: str = "default", paper: PaperService = Depends(g
 @app.post("/paper/reset", response_model=Portfolio, responses=ERRORS)
 def paper_reset(project_id: str = "default", starting_cash: float = 100_000.0, paper: PaperService = Depends(get_paper)):
     return paper.reset(project_id, starting_cash)
+
+
+@app.get("/paper/leaderboard", response_model=LeaderboardOut, responses=ERRORS)
+def paper_leaderboard(period: PeriodKind = "day", board: Leaderboard = Depends(get_leaderboard)):
+    """Workspaces ranked by return for the current day/week/month; see contracts/leaderboard.md."""
+    return board.standings(period)
