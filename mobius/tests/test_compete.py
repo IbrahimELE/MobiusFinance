@@ -17,9 +17,12 @@ HOST, PLAYER, OTHER = fd_compete.HOST_DEFAULT, "player.example.app", "someone-el
 DIRECTORY = {"ibrahim": [HOST], "amra": [PLAYER]}
 
 
+PRICES = {"AAPL": 200.0, "MSFT": 500.0}
+
+
 class FakeData:
     def quote(self, t):
-        return SimpleNamespace(price={"AAPL": 200.0, "MSFT": 500.0}[t.upper()])
+        return SimpleNamespace(price=PRICES[t.upper()])
 
     def history(self, t, period):
         return SimpleNamespace(points=[])
@@ -173,3 +176,39 @@ def test_board_shows_top_ten_by_money_made_plus_the_players_own_place(world, mon
     profits = [r["profit"] for r in board["standings"]]
     assert profits == sorted(profits, reverse=True) and board["standings"][0]["project_id"] == "@p12"
     assert board["me"]["project_id"] == "@amra" and board["me"]["rank"] == 13
+
+
+def test_limit_and_stop_orders_wait_on_the_host_and_fill_when_the_host_checks(world, monkeypatch):
+    world.call(PLAYER, "join")
+    status, pf = world.call(PLAYER, "order", {"ticker": "AAPL", "side": "buy", "qty": 10, "type": "limit",
+                                              "limit_price": 190}, rid="c1c1c1c1-0000-0000-0001")
+    assert status == 200 and pf["pending"]["type"] == "limit" and pf["reserved_cash"] == 1_900
+    assert pf["order_types"] == ["market", "limit", "stop"]   # players' apps unlock limit/stop on this
+    monkeypatch.setitem(PRICES, "AAPL", 185.0)
+    # The one-minute schedule on the host fills it, whether or not any player has the app open.
+    world.current = HOST
+    assert service.handle({"schema": 1, "method": "POST", "path": "jobs/sweep", "query": {}, "body": {}},
+                          world.roots[HOST]) == (200, {"filled": 1})
+    status, pf = world.call(PLAYER, "portfolio", rid="c1c1c1c1-0000-0000-0002")
+    assert pf["positions"][0]["qty"] == 10 and pf["recent_orders"][0]["price"] == 190  # at the limit price
+
+
+def test_a_player_cancels_an_open_competition_order(world):
+    world.call(PLAYER, "join")
+    world.call(PLAYER, "order", {"ticker": "AAPL", "side": "buy", "qty": 5}, rid="c2c2c2c2-0000-0000-0001")
+    _, pf = world.call(PLAYER, "order", {"ticker": "AAPL", "side": "sell", "qty": 5, "type": "stop",
+                                         "stop_price": 150}, rid="c2c2c2c2-0000-0000-0002")
+    status, pf = world.call(PLAYER, "cancel", {"order_id": pf["pending"]["id"]}, rid="c2c2c2c2-0000-0000-0003")
+    assert status == 200 and pf["open_orders"] == []
+    status, err = world.call(PLAYER, "cancel", {"order_id": "gone"}, rid="c2c2c2c2-0000-0000-0004")
+    assert status == 404
+
+
+def test_only_the_host_sweeps_competition_accounts(world, monkeypatch):
+    world.call(PLAYER, "join")
+    world.call(PLAYER, "order", {"ticker": "AAPL", "side": "buy", "qty": 1, "type": "limit", "limit_price": 100},
+               rid="c3c3c3c3-0000-0000-0001")
+    monkeypatch.setitem(PRICES, "AAPL", 90.0)
+    world.current = PLAYER   # a player's schedule checks only its own practice accounts
+    assert service.handle({"schema": 1, "method": "POST", "path": "jobs/sweep", "query": {}, "body": {}},
+                          world.roots[PLAYER]) == (200, {"filled": 0})

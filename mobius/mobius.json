@@ -1,7 +1,7 @@
 {
   "id": "finance-desk",
   "name": "Finance Desk",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "AI stock research briefs, live charts, paper trading and a leaderboard shared by Möbius players.",
   "author": "IbrahimELE, mfehric",
   "license": "MIT",
@@ -11,6 +11,11 @@
   "offline_capable": false,
   "permissions": {
     "identity_manage": true
+  },
+  "schedule": {
+    "default": "* * * * *",
+    "user_configurable": false,
+    "job": "job.sh"
   },
   "service": {
     "id": "finance-desk",
