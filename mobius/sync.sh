@@ -31,7 +31,7 @@ cp "$ROOT/frontend/vendor/lightweight-charts.js" "$HERE/vendor/lightweight-chart
 if [ "${1:-}" ]; then
   mkdir -p "$1"
   # Copy the package (no tests, caches or local data) into a Möbius app source dir, then apply it there.
-  (cd "$HERE" && find . -type f ! -path '*/__pycache__/*' ! -path './tests/*' ! -name '*.pyc' ! -name sync.sh ! -name port_ui.py ! -name requirements.in) | while read -r f; do
+  (cd "$HERE" && find . -type f ! -path '*/__pycache__/*' ! -path './tests/*' ! -name '*.pyc' ! -name sync.sh ! -name port_ui.py ! -name .gitignore ! -name requirements.in) | while read -r f; do
     mkdir -p "$1/$(dirname "$f")"
     cp "$HERE/$f" "$1/$f"
   done
