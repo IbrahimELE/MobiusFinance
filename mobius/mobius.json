@@ -65,17 +65,17 @@
   ],
   "store": {
     "tagline": "AI stock briefs, live charts and a paper-trading league with other Möbius players.",
-    "description": "Type a ticker and Finance Desk pulls the live price, the key financials and the risk section of the company's latest annual report (10-K). An AI analyst turns it into a short brief, and every claim links to Yahoo Finance or the SEC filing so you can check it.\n\nPractise with $100,000 of virtual money: buy and sell at live prices, follow your positions and set price alerts on your watchlist. Don't know a ticker? Browse today's most active stocks, top gainers and losers, sectors and crypto.\n\nJoin the shared leaderboard to compete with other Möbius players under your @handle. Your competition account is separate from your practice workspaces, trades fill at the host's price and there are no resets. Players are ranked by money made per day, week and month.\n\nAI briefs use your own Möbius AI model. Market data comes from Yahoo Finance and SEC EDGAR, so an internet connection is required. Virtual money only, not investment advice.",
+    "description": "Type a ticker and Finance Desk pulls the live price, the key financials and the risk section of the company's latest annual report (10-K). An AI analyst turns it into a short brief, and every claim links to Yahoo Finance or the SEC filing so you can check it.\n\nPractise with $100,000 of virtual money: place market, limit and stop-loss orders at live prices, follow your positions and set price alerts on your watchlist. Open limit and stop-loss orders fill automatically when their price is reached, even while the app is closed. Don't know a ticker? Browse today's most active stocks, top gainers and losers, sectors and crypto.\n\nJoin the shared leaderboard to compete with other Möbius players under your @handle. One trading panel switches between Practice and Competition. Your competition account is separate from your practice workspaces, orders fill at the host's price and there are no resets. Players are ranked by money made per day, week and month.\n\nAI briefs use your own Möbius AI model. Market data comes from Yahoo Finance and SEC EDGAR, so an internet connection is required. Virtual money only, not investment advice.",
     "screenshots": [
       {
         "src": "static/store/home.png",
-        "alt": "Finance Desk home with the stock search, paper-trading balance and the shared leaderboard of Möbius players.",
+        "alt": "Finance Desk home with stock search, example tickers and an introduction to AI research briefs and virtual trading.",
         "label": "Research any stock"
       },
       {
         "src": "static/store/markets.png",
-        "alt": "Markets view listing today's most active stocks, top gainers and top losers next to the competition account and leaderboard.",
-        "label": "Browse markets and compete"
+        "alt": "Markets view showing today's most active stocks, top gainers and top losers with public market prices.",
+        "label": "Browse today's markets"
       }
     ]
   }

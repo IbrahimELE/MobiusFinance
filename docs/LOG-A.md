@@ -100,3 +100,9 @@ Estetika:
 - `mobius/mobius.json`: sekcija `store` (slogan, opis, 2 slike: početna i Markets s leaderboardom), opis ažuriran na zajednički leaderboard, v0.2.1. Slike: `mobius/static/store/home.png`, `markets.png` (1920×953, snimljene iz žive aplikacije).
 - Grana `feature/a-store-release`: commit bez roditelja u kojem je sadržaj `mobius/` (bez testova, `sync.sh`, `port_ui.py`, `requirements.in`) u korijenu repoa. Taj commit se upisuje u Store formu („List a GitHub release"). NIKAD je ne mergeati u `dev`.
 - Novo izdanje: ponovo napraviti commit iz `mobius/` (isti postupak) s prethodnim release commitom kao roditeljem.
+
+## 2026-10-11 · Korak 13: Store izdanje 0.3.0 (grana `feature/a-store-v030`, iz `dev` 2d1e7fe)
+- Ispravka koraka 12: Store unos NIJE napravljen iz `feature/a-store-release`. Finance Desk je objavljen 10.10. kroz Möbius objavu lokalne aplikacije, u zaseban javni repo `IbrahimELE/finance-desk` (Möbius ga sam puni). Nova izdanja idu istim putem: `mobius/sync.sh <app-dir>`, apply, pa objava app 10 (`POST /api/community/publications/github`, `repository_name: finance-desk`). Grana `feature/a-store-release` se više ne koristi.
+- Store slike u repou zamijenjene objavljenim (1000×800, bez ličnih stanja i @handleova), a alt tekstovi su preuzeti iz objave. Opis dopunjen: market, limit i stop-loss nalozi, automatsko izvršavanje dok je aplikacija zatvorena, jedan panel Practice | Competition.
+- `mobius/sync.sh`: ne kopira više `.gitignore` u app folder (prepisivao je Möbiusov sistemski `.gitignore`, koji npr. drži `init-cron.sh` van gita).
+- Provjera: sync bez odstupanja, testovi mobius 23 i data 66, validate-app 0 grešaka; lokalno instalirano 0.3.0 (domaćin takmičenja), raspored svake minute aktivan, `jobs/sweep` odgovara, prekidač Practice | Competition vidljiv u aplikaciji.
